@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.UserMapper">
+
+	<resultMap type="com.ykkj.weiyi.pojo.OutPatient" id="pf_patient_resultMap">  
+        <id property="patientId" column="patient_id"/>  
+        <result property="id" column="id"/>
+        <result property="otype" column="otype"/>  
+        <result property="patientName" column="patient_name"/>
+        <result property="sex" column="sex"/>  
+        <result property="mobile" column="mobile"/>  
+        <result property="idNum" column="id_num"/>
+        <result property="idType" column="id_type"/>
+        <result property="city" column="city"/>
+        <result property="bindcardcnt" column="bindcardcnt"/>
+    </resultMap>
+    
+    
+	<!--新建用户-->
+	<insert id="saveUser" parameterType="com.ykkj.weiyi.pojo.OutUser">
+		INSERT INTO out_user(id,name,cardcode,mobile,password)
+		VALUES(#{id},#{name},#{cardcode},#{mobile},#{password})
+	</insert>
+    <select id="selectByMobile" parameterType="com.ykkj.weiyi.pojo.OutUser" resultType="com.ykkj.weiyi.pojo.OutUser">
+        select * from out_user where mobile=#{mobile}
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.String" resultType="com.ykkj.weiyi.pojo.OutUser">
+        select * from out_user where id=#{id}
+    </select>
+    <select id="selectByID" parameterType="String" resultType="com.ykkj.weiyi.pojo.OutUser">
+        select * from out_user where id=#{userId}
+    </select>
+    <select id="findUserByMobile" parameterType="String" resultType="com.ykkj.weiyi.pojo.OutUser">
+        select * from out_user where mobile=#{mobile}
+    </select>
+    <select id="findPatientList" parameterType="String" resultMap="pf_patient_resultMap">
+        select * from pf_patient where id=#{id} order by otype,patient_id
+    </select>
+    <select id="findOtherPatientList" parameterType="String" resultMap="pf_patient_resultMap">
+        select * from pf_patient where id=#{id} and otype!=1
+    </select>
+    <select id="loadMyselfPatient" parameterType="String" resultMap="pf_patient_resultMap">
+        select * from pf_patient where id=#{id} and otype=1 limit 1
+    </select>
+    <select id="loadPatient" parameterType="com.ykkj.weiyi.pojo.OutPatient" resultMap="pf_patient_resultMap">
+        select * from pf_patient where id=#{id} and id_num=#{idNum} limit 1
+    </select>
+    <select id="loadPatientAll" parameterType="String" resultMap="pf_patient_resultMap">
+        select * from pf_patient where id=#{id}
+    </select>
+    <select id="loadPatientByPID" parameterType="String" resultType="com.ykkj.weiyi.pojo.OutPatient">
+        select * from pf_patient where patient_id=#{patientId}
+    </select>
+    <!--  
+    <select id="selectByOpenId" parameterType="String" resultType="com.ykkj.weiyi.pojo.OutUser">
+    	select * from out_user where openid=#{openId}
+    </select>
+    
+    <select id="loadUserCardList" parameterType="java.util.Map" resultMap="out_user_card_resultMap">
+    	select * from out_user_card where userid=#{userid} and chinacard=#{idcardno}
+    </select>
+    <select id="countBindUserCard" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select count(*) from out_user_card where userid=#{userid} and telephone=#{mobile} and patientname=#{realname} and chinacard=#{idcardno}
+    </select>    
+    <select id="removeUserCard" parameterType="java.util.Map">
+    	delete from out_user_card where userid=#{userid} and medicalcard=#{medicalcard} and medicalcode=#{medicalcode} and chinacard=#{chinacard}
+    </select>
+        <select id="searchVirtualCard" parameterType="java.util.Map" resultType="java.lang.String">
+    	select mzh from out_virtual_card where hospitalId=#{hospital} and patIdCard=#{idcardno} and patName=#{realname}
+    </select> 
+    <update id="updateCardImage" parameterType="java.util.Map">
+  	update out_user_card  
+  	<set>
+  		<if test="bar_code != null and bar_code != ''">
+  			bar_code = #{bar_code},
+  		</if>
+  		<if test="qr_code != null and qr_code != ''">
+  			qr_code = #{qr_code},
+  		</if>
+  		<if test="brid != null and brid != ''">
+  			brid = #{brid},
+  		</if>
+  		<if test="mzh != null and mzh != ''">
+  			mzh = #{mzh},
+  		</if>
+  		<if test="patient_id != null and patient_id != ''">
+  			patient_id = #{patient_id},
+  		</if>
+  	</set>
+  	where userid = #{userid} and medicalcode = #{medicalcode} and chinacard = #{chinacard}
+  </update>
+    -->
+    <select id="removePatient" parameterType="java.util.Map">
+    	delete from pf_patient where id=#{userid} and patient_id=#{patientId}
+    </select>
+    <delete id="deletePatient" parameterType="java.lang.String" >
+    	delete from pf_patient where  patient_id=#{patientId}
+    </delete>
+    <select id="selPatientCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	SELECT COUNT(1) FROM  pf_patient WHERE id=#{id}
+    </select>
+	<insert id="savePatient" parameterType="com.ykkj.weiyi.pojo.OutPatient">
+		INSERT INTO pf_patient(patient_id,id,otype,patient_name,id_type,id_num,sex,mobile,birth_day,city)
+		VALUES(#{patientId},#{id},#{otype},#{patientName},#{idType},#{idNum},#{sex},#{mobile},#{birthday},#{city})
+	</insert>
+	<update id="updateUser" parameterType="com.ykkj.weiyi.pojo.OutUser">
+  	update out_user 
+  	<set>
+  		<if test="name != null and name != ''">
+  			name = #{name},
+  		</if>
+  		<if test="cardcode!= null and cardcode != ''">
+  			cardcode = #{cardcode},
+  		</if>
+  		<if test="mobile != null and mobile != ''">
+  			mobile = #{mobile},
+  		</if>
+  		<if test="password != null and password != ''">
+  			password = #{password},
+  		</if>
+  		<if test="openid != null and openid != ''">
+  			openid=#{openid},
+  		</if>
+  		<if test="headImg != null and headImg != ''">
+  			head_img=#{headImg}
+  		</if>
+  	</set>
+  	where id = #{id}
+    </update>
+  	<update id="updatePatient" parameterType="com.ykkj.weiyi.pojo.OutPatient">
+  	update pf_patient
+  	<set>
+  		<if test="patientName != null and patientName != ''">
+  			patient_name = #{patientName},
+  		</if>
+  		<if test="sex != null and sex != ''">
+  			sex = #{sex},
+  		</if>
+  		<if test="birthday != null and birthday != ''">
+  			birth_day = #{birthday},
+  		</if>
+  		<if test="mobile != null and mobile != ''">
+  			mobile = #{mobile},
+  		</if>
+  		<if test="idNum != null and idNum != ''">
+  			id_num = #{idNum},
+  		</if>
+  		<if test="idType != null and idType != ''">
+  			id_type = #{idType},
+  		</if>
+  		<if test="city != null and city != ''">
+  			city = #{city},
+  		</if>
+  		<if test="bindcardcnt != null">
+  			bindcardcnt = #{bindcardcnt},
+  		</if>
+  	</set>
+  	where patient_id = #{patientId}
+    </update>
+      	<update id="updatePatientBind" parameterType="com.ykkj.weiyi.pojo.OutPatient">
+  	update pf_patient set bindcardcnt = #{bindcardcnt} where patient_id = #{patientId}
+    </update>
+</mapper>

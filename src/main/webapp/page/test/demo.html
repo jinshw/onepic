@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加raster(栅格)图层</title>
+    <link rel="stylesheet" href="http://minedata.cn/minemapapi/v1.2/minemap.css">
+    <script src="http://minedata.cn/minemapapi/v1.2/minemap.js"></script>
+    <style>
+    html,
+    body,
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .marker {
+        background-image: url('http://minedata.cn/minemapapi/demo/images/police.png');
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .minemap-popup {
+        max-width: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="popup" style="color: #000000;font-size: 14px;">
+        <section>
+            项目名称：新修高速公路18号
+        </section>
+        <section>
+            里程：1000公里
+        </section>
+        <section>
+            设计单位：中铁XX局
+        </section>
+        <section>
+            计划进度：5公里/月
+        </section>
+        <section>
+            实际进度：4公里/月
+        </section>
+    </div> -->
+    <div id="map"></div>
+    <script>
+    minemap.accessToken = '429284df23894e7584c3acff7fbfd5af';
+    minemap.solution = 2116;
+    // minemap.domainUrl = 'http://minedata.cn:8085'
+    var map = new minemap.Map({
+        container: 'map',
+        style: "http://minedata.cn/service/solu/style/id/2116",
+        center: [116.46, 39.92],
+        zoom: 6,
+        pitch: 0
+    });
+
+    /*map.on("load", function () {
+        map.addSource("hillshade", {
+            "type": "raster",
+            "tileSize": 256,
+            "tiles": ["minemapdatao://hillshade/{z}/{x}/{y}"]
+        });
+        map.addLayer({
+            "id": "hillshade",
+            "type": "raster",
+            "source": "hillshade",
+            "minzoom": 1,
+            "maxzoom": 17,
+            "layout": {
+                "visibility": "visible"
+            }
+        })
+    })*/
+
+    map.on("load", function() {
+
+        // 一、添加卫星影像
+        map.addSource("hillshade", {
+            "type": "raster",
+            "tileSize": 256,
+
+            /**
+             * 确保数据源可以访问，
+             */
+            // "tiles": ["minemapdatao://hillshade/{z}/{x}/{y}"]
+            "tiles": ["http://minedata.cn:8085/otherdata/hillshade/{z}/{x}/{y}?token=25cc55a69ea7422182d00d6b7c0ffa93&solu=716"]
+
+        });
+        map.addLayer({
+            "id": "hillshade",
+            "type": "raster",
+            "source": "hillshade",
+            "minzoom": 1,
+            "maxzoom": 17,
+            "layout": {
+                "visibility": "visible"
+            }
+        }, "5569f5fe954b436fa2d3cdd20eb1ad4c")
+
+
+        // 二、添加道路marker标识
+        var _popupStr = ""
+        for (var i = 0; i < _markerList.length; i++) {
+            console.log(_markerList[i])
+
+            _popupStr = getPopupMsg(_markerList[i].properties)
+
+            var popup = new minemap.Popup({
+                offset: [0, 0]
+            }).setHTML(_popupStr);
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            new minemap.Marker(el, {
+                    offset: [0, 0]
+                })
+                .setLngLat(_markerList[i].geometry.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+
+        }
+
+
+        // var _popupStr = document.querySelector('.popup')
+
+        // var popup = new minemap.Popup({
+        //     offset: [0, 0]
+        // }).setDOMContent(_popupStr);
+        // // }).setText('这里是一个执勤人员');
+        // var el = document.createElement('div');
+        // el.className = 'marker';
+
+        // var marker = new minemap.Marker(el, {
+        //         offset: [0, 0]
+        //     })
+        //     .setLngLat([116.46, 39.95])
+        //     .setPopup(popup)
+        //     .addTo(map);
+
+
+
+
+
+
+
+    })
+
+    /**
+     * [获取提示内容]
+     * @param  {[type]} obj [properties属性]
+     * @return {[type]}     [string]
+     */
+    function getPopupMsg(obj) {
+        var _tempTepl = _markerTepl
+        _tempTepl = _tempTepl.replace("##name##", obj.name)
+            .replace("##mileage##", obj.mileage)
+            .replace("##design##", obj.mileage)
+            .replace("##plan##", obj.mileage)
+            .replace("##actual##", obj.mileage)
+        return _tempTepl
+    }
+
+    // marker 模板数据
+    var _markerTepl = '<div class="popup" style="color: #000000;font-size: 14px;">  ' +
+        '   <section> ' +
+        '       项目名称：##name##' +
+        '   </section>' +
+        '   <section> ' +
+        '       里程：##mileage##公里' +
+        '   </section> ' +
+        '   <section>' +
+        '       设计单位：##design##' +
+        '   </section>' +
+        '   <section>' +
+        '       计划进度：##plan##公里/月' +
+        '   </section>' +
+        '   <section>' +
+        '       实际进度：##actual##公里/月' +
+        '   </section>' +
+        '</div>'
+
+    // marker数据集
+    var _markerList = [{
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.31,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.32,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.39,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路01号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.4
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路02号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.5
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路03号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3,
+                39.6
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路04号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.4,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路06号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.36,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路07号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.37,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路08号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.38,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路09号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3912321,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路10号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.313232,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路11号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3232,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路12号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                119.3912,
+                39.3
+            ]
+        },
+        "properties": {
+            "name": "新修高速公路13号",
+            "mileage": "1000",
+            "design": "中铁XX局",
+            "plan": "5",
+            "actual": "6"
+        }
+    }]
+    </script>
+</body>

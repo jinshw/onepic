@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.RoudDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.Roud">
+        <result column="roudid" property="roudid"/>
+        <result column="roudname" property="roudname"/>
+        <result column="roudtype" property="roudtype"/>
+        <result column="roudlevel" property="roudlevel"/>
+        <result column="roudlength" property="roudlength"/>
+        <result column="roudstatus" property="roudstatus"/>
+        <result column="startlon" property="startlon"/>
+        <result column="startlat" property="startlat"/>
+        <result column="endlon" property="endlon"/>
+        <result column="endlat" property="endlat"/>
+        <result column="parentid" property="parentid"/>
+        <result column="smid" property="smid"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `roudid`,
+        `roudname`,
+        `roudtype`,
+        `roudlevel`,
+        `roudlength`,
+        `roudstatus`,
+        `startlon`,
+        `startlat`,
+        `endlon`,
+        `endlat`,
+        `parentid`,
+        `smid`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.roudid">
+        INSERT INTO roud (
+            `roudid`,
+            `roudname`,
+            `roudtype`,
+            `roudlevel`,
+            `roudlength`,
+            `roudstatus`,
+            `startlon`,
+            `startlat`,
+            `endlon`,
+            `endlat`,
+            `parentid`,
+            `smid`
+        ) VALUES (
+            #{pojo.roudid},
+            #{pojo.roudname},
+            #{pojo.roudtype},
+            #{pojo.roudlevel},
+            #{pojo.roudlength},
+            #{pojo.roudstatus},
+            #{pojo.startlon},
+            #{pojo.startlat},
+            #{pojo.endlon},
+            #{pojo.endlat},
+            #{pojo.parentid},
+            #{pojo.smid}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.roudid">
+        INSERT INTO roud
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.roudid!=null">`roudid`,</if>
+            <if test="pojo.roudname!=null">`roudname`,</if>
+            <if test="pojo.roudtype!=null">`roudtype`,</if>
+            <if test="pojo.roudlevel!=null">`roudlevel`,</if>
+            <if test="pojo.roudlength!=null">`roudlength`,</if>
+            <if test="pojo.roudstatus!=null">`roudstatus`,</if>
+            <if test="pojo.startlon!=null">`startlon`,</if>
+            <if test="pojo.startlat!=null">`startlat`,</if>
+            <if test="pojo.endlon!=null">`endlon`,</if>
+            <if test="pojo.endlat!=null">`endlat`,</if>
+            <if test="pojo.parentid!=null">`parentid`,</if>
+            <if test="pojo.smid!=null">`smid`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.roudid!=null">#{pojo.roudid},</if>
+            <if test="pojo.roudname!=null">#{pojo.roudname},</if>
+            <if test="pojo.roudtype!=null">#{pojo.roudtype},</if>
+            <if test="pojo.roudlevel!=null">#{pojo.roudlevel},</if>
+            <if test="pojo.roudlength!=null">#{pojo.roudlength},</if>
+            <if test="pojo.roudstatus!=null">#{pojo.roudstatus},</if>
+            <if test="pojo.startlon!=null">#{pojo.startlon},</if>
+            <if test="pojo.startlat!=null">#{pojo.startlat},</if>
+            <if test="pojo.endlon!=null">#{pojo.endlon},</if>
+            <if test="pojo.endlat!=null">#{pojo.endlat},</if>
+            <if test="pojo.parentid!=null">#{pojo.parentid},</if>
+            <if test="pojo.smid!=null">#{pojo.smid},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO roud (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.roudid},
+            #{pojo.roudname},
+            #{pojo.roudtype},
+            #{pojo.roudlevel},
+            #{pojo.roudlength},
+            #{pojo.roudstatus},
+            #{pojo.startlon},
+            #{pojo.startlat},
+            #{pojo.endlon},
+            #{pojo.endlat},
+            #{pojo.parentid},
+            #{pojo.smid}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE roud
+        <set>
+            <if test="pojo.roudid != null">`roudid` = #{pojo.roudid},</if>
+            <if test="pojo.roudname != null">`roudname` = #{pojo.roudname},</if>
+            <if test="pojo.roudtype != null">`roudtype` = #{pojo.roudtype},</if>
+            <if test="pojo.roudlevel != null">`roudlevel` = #{pojo.roudlevel},</if>
+            <if test="pojo.roudlength != null">`roudlength` = #{pojo.roudlength},</if>
+            <if test="pojo.roudstatus != null">`roudstatus` = #{pojo.roudstatus},</if>
+            <if test="pojo.startlon != null">`startlon` = #{pojo.startlon},</if>
+            <if test="pojo.startlat != null">`startlat` = #{pojo.startlat},</if>
+            <if test="pojo.endlon != null">`endlon` = #{pojo.endlon},</if>
+            <if test="pojo.endlat != null">`endlat` = #{pojo.endlat},</if>
+            <if test="pojo.parentid != null">`parentid` = #{pojo.parentid},</if>
+            <if test="pojo.smid != null">`smid` = #{pojo.smid}</if>
+        </set>
+        WHERE roudid = #{pojo.roudid}
+    </update>
+
+    <!--auto generated by codehelper on 2017-07-10 09:59:40-->
+    <select id="find" parameterType="com.ykkj.weiyi.pojo.Roud" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from roud
+        <where>
+            <if test="1==1">
+                AND 1=1
+            </if>
+            <if test="roudname != null and roudname != ''">
+                AND roudName=#{roudname}
+            </if>
+            <if test="roudtype != null and roudtype != ''">
+                AND roudType=#{roudtype}
+            </if>
+            <if test="roudid != null and roudid != ''">
+                AND roudId=#{roudid}
+            </if>
+            <if test="roudstatus != null and roudstatus != ''">
+                AND roudStatus=#{roudstatus}
+            </if>
+            <if test="smid != null and smid != ''">
+                AND smid=#{smid}
+            </if>
+        </where>
+        order by smid
+    </select>
+</mapper>
+

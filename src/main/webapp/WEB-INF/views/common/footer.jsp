@@ -1,0 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<footer>
+    <p>
+        Copyright &copy; 2016.Company name All rights reserved.
+        <a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+    </p>
+</footer>

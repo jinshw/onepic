@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> 经纬度地图</title>
+    <link href="../../static/lib/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript"
+            src="../../static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css"
+          href="../../static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="../../static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #map {
+            position: relative;
+            height: 800px;
+            border: 1px solid #3473b7;
+        }
+
+        .mymap-toolbar-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background-color: transparent;
+        }
+
+        .mymap-toolbar-container .item {
+            height: 34px;
+            width: 87px;
+            padding-left: 14px;
+            padding-right: 14px;
+            cursor: pointer;
+            background-color: #313d4f;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 34px;
+            text-align: center;
+            white-space: nowrap;
+            color: #abacae;
+            position: relative;
+            float: right;
+            box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+        }
+
+        .mymap-toolbar-container .active {
+            color: #ffffff;
+        }
+
+        .mymap-toolbar-container .item:hover {
+            color: #ffffff;
+        }
+
+        .time-bar {
+            height: 34px;
+            width: 130px;
+            padding-left: 14px;
+            padding-right: 14px;
+            cursor: pointer;
+            background-color: #313d4f;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 34px;
+            text-align: center;
+            white-space: nowrap;
+            color: #abacae;
+            position: relative;
+            float: right;
+            box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+        }
+
+        .angle-left-bt {
+            position: absolute;
+            left: 0;
+            padding: 0 10px;
+            top: 3px;
+        }
+
+        .angle-right-bt {
+            position: absolute;
+            right: 0;
+            padding: 0 10px;
+            top: 3px;
+        }
+
+        .angle-left-bt:hover,
+        .angle-right-bt:hover {
+            color: #ffffff;
+        }
+
+        .time-show {
+            text-align: center;
+            font-size: 12px;
+            color: #ffffff;
+            position: absolute;
+            right: 16px;
+        }
+
+        .time-show .date-input {
+            background-color: #313d4f;
+            border: 0;
+            width: 80px;
+            height: 34px;
+        }
+    </style>
+    <!-- <link href='./css/bootstrap.min.css' rel='stylesheet' />
+    <link href='./css/bootstrap-responsive.min.css' rel='stylesheet' /> -->
+    <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+    <script type="text/javascript">
+        var infowin = null;
+        var map, layer, layerMark, layerYXALL,
+                layer20150913, layer20161210, layer20170101,
+                host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
+        url = host + "/iserver/services/map-xjsl3/rest/maps/新疆交通一张图";
+
+        var MARK_URL = host + "/iserver/services/map-xjsl3/rest/maps/新疆交通道路"
+        var XJ_YX_ALL = host + "/iserver/services/map-11jiyingxiang6102/rest/maps/新疆维吾尔自治区谷歌卫星_170609225420@11jiyingxiang610"
+        var YX_2015 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+        var YX_2016 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+        var YX_2017 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+
+        function init() {
+            document.getElementById('map').style.height = (document.documentElement.clientHeight - 30) + 'px'
+
+            var _oneTime = _layerImageList[0].time
+            $('#mapTime').val(_oneTime);
+            $('#mapTime').data("layerindex", 0)
+
+
+            //初始化地图
+            map = new SuperMap.Map("map", {
+                minZoom: 2,
+                maxZoom: 18,
+                allOverlays: true,
+                controls: [
+                    new SuperMap.Control.Navigation(),
+                    new SuperMap.Control.Zoom(),
+                    new SuperMap.Control.LayerSwitcher()
+                ]
+            });
+
+            var _mp = new SuperMap.Control.MousePosition({
+                id: "1234",
+                autoActivate: true,
+                separator: ','
+            })
+            map.addControl(_mp);
+            _mp.activate()
+
+
+            //初始化图层
+            layer = new SuperMap.Layer.TiledDynamicRESTLayer("ditu", url, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+
+            //监听图层信息加载完成事件
+            layer.events.on({
+                "layerInitialized": addLayer1
+            });
+
+
+            //初始化标记图层类
+            markers = new SuperMap.Layer.Markers("Markers");
+            size = new SuperMap.Size(21, 25);
+            offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
+            icon = new SuperMap.Icon('../../static/lib/supermap/theme/images/cluster1.png', size, offset);
+            //初始化标记覆盖物类
+            // marker = new SuperMap.Marker(new SuperMap.LonLat(9739015.80602, 5435670.72615), icon);
+            // marker2 = new SuperMap.Marker(new SuperMap.LonLat(9738404.30981, 5439110.39242), icon);
+            // marker3 = new SuperMap.Marker(new SuperMap.LonLat(284557.99597, -267487.04680), icon);
+
+            // //添加覆盖物到标记图层
+            // markers.addMarker(marker);
+            // markers.addMarker(marker2);
+            // markers.addMarker(marker3);
+            // //注册 click 事件,触发 mouseClickHandler()方法
+            // marker.events.on({
+            //     "click": mouseClickHandler,
+            //     "touchstart": mouseClickHandler //假如要在移动端的浏览器也实现点击弹框，则在注册touch类事件
+            // });
+            // marker2.events.on({
+            //     "click": mouseClickHandler,
+            //     "touchstart": mouseClickHandler //假如要在移动端的浏览器也实现点击弹框，则在注册touch类事件
+            // });
+            // marker3.events.on({
+            //     "click": mouseClickHandler,
+            //     "touchstart": mouseClickHandler //假如要在移动端的浏览器也实现点击弹框，则在注册touch类事件
+            // });
+
+
+            // 二、添加道路marker标识
+            var _popupStr = ""
+            var _mark;
+
+            for (var i = 0; i < _markerList.length; i++) {
+                _popupStr = getPopupMsg(_markerList[i].properties)
+
+
+                _mark = new SuperMap.Marker(new SuperMap.LonLat(_markerList[i].geometry.coordinates), icon);
+
+                markers.addMarker(_mark);
+                var k = i;
+                _mark.events.on({
+                    "click": function (e) {
+                        closeInfoWin();
+                        //初始化FramedCloud类
+                        framedCloud = new SuperMap.Popup.FramedCloud(
+                                "chicken",
+                                this.lonlat,
+                                null,
+                                _popupStr,
+                                icon,
+                                true,
+                                null,
+                                true
+                        );
+
+                        infowin = framedCloud;
+                        map.addPopup(framedCloud);
+                    }
+                });
+
+            }
+
+
+            // 点击事件
+            map.events.register('click', layer, function (obj, ele) {
+                console.log(obj, ele)
+                console.log(map.getControl('1234'))
+
+                document.getElementById('xy').value = _mp.div.textContent
+                closeInfoWin()
+            });
+
+
+        }
+        //异步加载图层
+        function addLayer() {
+            // map.addLayer(layer);
+            // layerMark.setOpacity(1);
+            //map上添加分块动态REST图层和标记图层
+            // map.addLayers([layer, markers, layerMark]);
+            map.addLayers([layer, layerYXALL, layer20150913, layer20161210, layer20170101, layerMark, markers]);
+
+            //显示地图范围9732011.83931, 5440449.31251
+            map.setCenter(new SuperMap.LonLat(597829.62986, 4794549.56123), 4);
+            // 隐藏矢量面积底图
+            layer.setVisibility(false)
+            layer20161210.setVisibility(false)
+            layer20170101.setVisibility(false)
+        }
+
+        function addLayer1() {
+            // layerJingjing = new SuperMap.Layer.TiledDynamicRESTLayer("京津地区地图", url2, {
+            //     transparent: true,
+            //     cacheEnabled: true
+            // });
+
+            layerMark = new SuperMap.Layer.TiledDynamicRESTLayer("road", MARK_URL, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layerMark.events.on({
+                "layerInitialized": addLayer3
+            });
+            // layerMark.setOpacity(0.5);
+        }
+        function addLayer3() {
+            layerYXALL = new SuperMap.Layer.TiledDynamicRESTLayer("yxall", XJ_YX_ALL, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layerYXALL.events.on({
+                "layerInitialized": addlayer20150913
+            });
+        }
+        function addlayer20150913() {
+            layer20150913 = new SuperMap.Layer.TiledDynamicRESTLayer("20150913", YX_2015, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layer20150913.events.on({
+                "layerInitialized": addlayer20161210
+            });
+        }
+        function addlayer20161210() {
+            layer20161210 = new SuperMap.Layer.TiledDynamicRESTLayer("20161210", YX_2016, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layer20161210.events.on({
+                "layerInitialized": addlayer20170101
+            });
+        }
+        function addlayer20170101() {
+            layer20170101 = new SuperMap.Layer.TiledDynamicRESTLayer("20170101", YX_2017, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layer20170101.events.on({
+                "layerInitialized": addLayer
+            });
+        }
+
+        function closeInfoWin() {
+            if (infowin) {
+                try {
+                    infowin.hide();
+                    infowin.destroy();
+                } catch (e) {
+                }
+            }
+        }
+
+        function preTimeEvent() {
+            // console.log('preTimeEvent......')
+            // markers.setVisibility(true)
+            // layerMark.setVisibility(true)
+
+            var _index = parseInt($('#mapTime').data('layerindex'))
+            var _oldObj = _layerImageList[_index]
+            console.log(_oldObj.id)
+            changeLayerYXTime(_oldObj.id, false)
+
+            var _tempIndex = _index - 1
+            if (_tempIndex < 0) {
+                _tempIndex = 0
+            }
+            var _obj = _layerImageList[_tempIndex]
+            $('#mapTime').val(_obj.time);
+            $('#mapTime').data('layerindex', _tempIndex)
+            changeLayerYXTime(_obj.id, true)
+        }
+
+        function nextTimeEvent() {
+
+
+            // console.log('nextTimeEvent......')
+            // markers.setVisibility(false)
+            // layerMark.setVisibility(false)
+
+            var _index = parseInt($('#mapTime').data('layerindex'))
+            var _oldObj = _layerImageList[_index]
+            console.log(_oldObj.id)
+            changeLayerYXTime(_oldObj.id, false)
+
+            var _tempIndex = _index + 1
+            if (_tempIndex >= _layerImageList.length) {
+                _tempIndex = _layerImageList.length - 1
+            }
+            var _obj = _layerImageList[_tempIndex]
+            $('#mapTime').val(_obj.time);
+            $('#mapTime').data('layerindex', _tempIndex)
+            changeLayerYXTime(_obj.id, true)
+
+        }
+
+        function changeLayerYXTime(id, isVisib) {
+            if (id == 'layer20150913') {
+                layer20150913.setVisibility(isVisib)
+                layer20161210.setVisibility(!isVisib)
+                layer20170101.setVisibility(!isVisib)
+            } else if (id == 'layer20161210') {
+                layer20150913.setVisibility(!isVisib)
+                layer20161210.setVisibility(isVisib)
+                layer20170101.setVisibility(!isVisib)
+            } else if (id == 'layer20170101') {
+                layer20150913.setVisibility(!isVisib)
+                layer20161210.setVisibility(!isVisib)
+                layer20170101.setVisibility(isVisib)
+            }
+
+        }
+
+        // 图层显示和隐藏
+        function clickToolBarBT(e, id) {
+            var _classNames = e.className
+            console.log(layerYXALL)
+
+            // layerYXALL.setVisibility(false)
+            //     layer.setVisibility(true)
+            if (_classNames.indexOf("active") == -1) { //不包含active
+                e.className = 'item active'
+                layerChange(id, true)
+            } else {
+                e.className = 'item'
+                layerChange(id, false)
+            }
+
+        }
+
+        function layerChange(id, isVisib) {
+            console.log('id==', id)
+            if (id == 'yx') {
+                layerYXALL.setVisibility(isVisib)
+
+                layer.setVisibility(!isVisib)
+            } else {
+                // layerYXALL.setVisibility(false)
+                layer.setVisibility(isVisib)
+            }
+
+        }
+
+
+        // 卫星影像数组
+        var _layerImageList = [{
+            id: "layer20150913",
+            time: "20150913",
+
+        }, {
+            id: "layer20161210",
+            time: "20161210",
+        }, {
+            id: "layer20170101",
+            time: "20170101",
+        }]
+    </script>
+</head>
+
+<body onLoad="init()">
+<section class="mymap-toolbar-container">
+    <!-- <section class="item active" onclick="clickToolBarBT(this,'sl')">矢量图</section> -->
+    <section class="item active" onclick="clickToolBarBT(this,'yx')">卫星影像图</section>
+    <!-- <section class="item"
+    onclick="clickToolBarBT(this,'d03f8723017342db80c25d8d354845f8')">影像时间轴</section> -->
+    <section class="time-bar">
+        <section class="angle-left-bt" onclick="preTimeEvent()">
+            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+        </section>
+        <section class="time-show">
+            <input type="text" value="" readonly class="form_datetime date-input" id="mapTime">
+            <!-- <span id="mapTime" class="date-input"></span> -->
+        </section>
+        <section class="angle-right-bt" onclick="nextTimeEvent()">
+            <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+        </section>
+    </section>
+</section>
+<div id="map"></div>
+<input type="text" id="xy" name="">
+<script type="text/javascript">
+
+
+    /**
+     * [获取提示内容]
+     * @param  {[type]} obj [properties属性]
+     * @return {[type]}     [string]
+     */
+    function getPopupMsg(obj) {
+        var _tempTepl = _markerTepl
+        _tempTepl = _tempTepl.replace("##name##", obj.name)
+                .replace("##mileage##", obj.mileage)
+                .replace("##design##", obj.design)
+                .replace("##plan##", obj.mileage)
+                .replace("##actual##", obj.mileage)
+        return _tempTepl
+    }
+
+    // marker 模板数据
+    var _markerTepl = '<div class="popup" style="color: #000000;font-size: 14px;">  ' +
+            '   <section> ' +
+            '       公路名：##name##' +
+            '   </section>' +
+            '   <section> ' +
+            '       全长：##mileage##KM' +
+            '   </section> ' +
+            '   <section>' +
+            '       设计单位：##design##' +
+            '   </section>' +
+            '   <section>' +
+            '</div>'
+
+    // marker数据集
+    var _markerList = [{
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                623865.51010, 4772555.12113
+            ]
+        },
+        "properties": {
+            "name": "G314线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                622867.43265, 4774969.16099
+            ]
+        },
+        "properties": {
+            "name": "G314线福海-五家渠-乌鲁木齐",
+            "mileage": "381",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                620879.68869, 4779458.34025
+            ]
+        },
+        "properties": {
+            "name": "G314线福海-五家渠-乌鲁木齐",
+            "mileage": "382",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                614764.72642, 4787675.32079
+            ]
+        },
+        "properties": {
+            "name": "G314线福海-五家渠-乌鲁木齐",
+            "mileage": "383",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                609223.04187, 4793446.31642
+            ]
+        },
+        "properties": {
+            "name": "G314线福海-五家渠-乌鲁木齐",
+            "mileage": "384",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }]
+</script>
+</body>
+
+</html>

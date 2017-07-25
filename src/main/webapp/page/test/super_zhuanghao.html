@@ -1,0 +1,252 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>SQL 查询</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #map {
+            position: relative;
+            height: 510px;
+            border: 1px solid #3473b7;
+        }
+
+        #toolbar {
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+    </style>
+    <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+    <script type="text/javascript">
+        var map, local, layer, vectorLayer,markerlayer,marker,
+                style = {
+                    strokeColor: "#304DBE",
+                    strokeWidth: 1,
+                    fillColor: "#304DBE",
+                    fillOpacity: "0.8"
+                },
+//                host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host,
+                host = "http://localhost:8090"
+        url = host + "/iserver/services/map-zhzdcs/rest/maps/GLLX@GLLX";
+
+
+        function init() {
+            map = new SuperMap.Map("map", {
+                controls: [
+                    new SuperMap.Control.LayerSwitcher(),
+                    new SuperMap.Control.ScaleLine(),
+                    new SuperMap.Control.Zoom(),
+                    new SuperMap.Control.Navigation({
+                        dragPanOptions: {
+                            enableKinetic: true
+                        }
+                    })]
+            });
+
+            var _mp = new SuperMap.Control.MousePosition({
+                id: "1234",
+                autoActivate: true,
+                separator: ','
+            })
+            map.addControl(_mp);
+            _mp.activate()
+
+
+            layer = new SuperMap.Layer.TiledDynamicRESTLayer("World", url, {
+                transparent: true,
+                cacheEnabled: true
+            }, {maxResolution: "auto"});
+            layer.events.on({"layerInitialized": addLayer});
+//            vectorLayer = new SuperMap.Layer.Vector("Vector Layer");
+
+
+            // 选择要素
+            var callbacks = {
+                click: function (currentFeature) {
+                    console.log("..............")
+                    console.log(currentFeature.layer.features[0])
+                    console.log("..............")
+                    // 鼠标获取的坐标
+                    var _xy = _mp.div.textContent
+                    console.log(_xy)
+
+
+                    var feature = currentFeature
+                    var _components = feature.geometry.components
+                    var _tempArr = [];
+                    for (var i = 0; i < _components.length; i++) {
+                        _tempArr = _tempArr.concat(_components[i].components)
+                    }
+//                    console.log(_tempArr)
+                    var tempXY = [93.82547, 43.44853]
+                    var _points = [], distance;
+                    console.log(">>>>>>>>>>>>>>>")
+                    console.log(_tempArr[0].x, _tempArr[0].y)
+                    console.log(_tempArr[1].x, _tempArr[1].y)
+                    console.log(">>>>>>>>>>>>>>>")
+                    _points.push(new SuperMap.Geometry.Point(_tempArr[0].x, _tempArr[0].y))
+                    _points.push(new SuperMap.Geometry.Point(_tempArr[1].x, _tempArr[1].y))
+                    getDistance(_points, [_tempArr[1].x, _tempArr[1].y])
+
+//                    for (var i = 0; i < _tempArr.length - 1; i++) {
+//                        _points = []
+//                        _points.push(new SuperMap.Geometry.Point(_tempArr[i].x, _tempArr[i].y))
+//                        _points.push(new SuperMap.Geometry.Point(_tempArr[i + 1].x, _tempArr[i + 1].y))
+//                        getDistance(_points, [_tempArr[i + 1].x, _tempArr[i + 1].y])
+//                        console.log("distance==" + distance)
+////                        if( distance > 10){
+////                            console.log(_tempArr[i + 1].x, _tempArr[i + 1].y,"distance=="+distance)
+////                        }
+//                    }
+
+
+//                    // 计算两点间距离
+//                    var points = [new SuperMap.Geometry.Point(93.82930348000002, 43.44647355000001),
+//                                new SuperMap.Geometry.Point(93.82832685000005, 43.446966400000065)],
+//                            roadLine = new SuperMap.Geometry.LineString(points);
+//console.log(roadLine)
+//                    var measureParam = new SuperMap.REST.MeasureParameters(roadLine), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
+//                            myMeasuerService = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
+//                    myMeasuerService.events.on({
+//                        "processCompleted": function (measureEventArgs) {
+//                            var distance = measureEventArgs.result.distance;
+//                            var unit = measureEventArgs.result.unit;
+//                            console.log("量算结果:" + distance + "米");
+//                        }
+//                    });
+//                    myMeasuerService.measureMode = SuperMap.REST.MeasureMode.DISTANCE;
+//                    myMeasuerService.processAsync(measureParam); //processAsync负责将客户端的量算参数传递到服务端。
+
+
+                }
+            }
+            vectorLayer = new SuperMap.Layer.Vector("vectorLayer");
+            var selectFeature = new SuperMap.Control.SelectFeature(vectorLayer, {
+                callbacks: callbacks
+            })
+            map.addControl(selectFeature);
+            selectFeature.activate();
+
+
+            // 标记层
+            markerlayer = new SuperMap.Layer.Markers("markerLayer");
+            addData()
+
+        }
+
+        //添加数据
+        function addData() {
+            markerlayer.removeMarker(marker);
+            var size = new SuperMap.Size(44, 33);
+            var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
+            var icon = new SuperMap.Icon('../../static/images/marker.png', size, offset);
+            marker = new SuperMap.Marker(new SuperMap.LonLat(93.69085984999998, 43.513666080000064), icon);
+            markerlayer.addMarker(marker);
+        }
+
+
+        function getDistance(points, point) {
+            // 计算两点间距离
+            var roadLine = new SuperMap.Geometry.LineString(points);
+            var measureParam = new SuperMap.REST.MeasureParameters(roadLine), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
+                    myMeasuerService = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
+            myMeasuerService.events.on({
+                "processCompleted": function (measureEventArgs) {
+                    var distance = measureEventArgs.result.distance;
+                    var unit = measureEventArgs.result.unit;
+//                    console.log("量算结果:" + distance + "米");
+                    if (distance > 10) {
+                        console.log(point[0], point[1], "distance==" + distance)
+                    }
+
+                }
+            });
+            myMeasuerService.measureMode = SuperMap.REST.MeasureMode.DISTANCE;
+            myMeasuerService.processAsync(measureParam); //processAsync负责将客户端的量算参数传递到服务端。
+        }
+
+
+        function addLayer() {
+            map.addLayers([layer, vectorLayer,markerlayer]);
+            map.setCenter(new SuperMap.LonLat(92.1, 43.7), 0);
+        }
+        function queryBySQL() {
+            vectorLayer.removeAllFeatures();
+
+            var queryParam, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "GLLX@GLLX"
+            });
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(url, {
+                eventListeners: {"processCompleted": processCompleted, "processFailed": processFailed}
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+        function processCompleted(queryEventArgs) {
+
+
+            var style = {
+                strokeColor: "red",
+                strokeWidth: 5,
+                fillOpacity: "1"
+            }
+            var feature = queryEventArgs.result.recordsets[0].features[0]
+
+//            var _components = feature.geometry.components
+//            var _tempArr = [];
+//            for(var i=0;i<_components.length;i++){
+//                _tempArr = _tempArr.concat(_components[i].components)
+//            }
+//            console.log(_tempArr)
+//            var tempXY =[93.82547,43.44853]
+//
+//
+//            var points = [new SuperMap.Geometry.Point(93.82930348000002, 43.44647355000001),
+//                        new SuperMap.Geometry.Point(93.82832685000005, 43.446966400000065)],
+//                    roadLine = new SuperMap.Geometry.LineString(points);
+//
+//            var measureParam = new SuperMap.REST.MeasureParameters(roadLine), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
+//                myMeasuerService = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
+//            myMeasuerService.events.on({
+//                "processCompleted": function (measureEventArgs) {
+//                    var distance = measureEventArgs.result.distance;
+//                    var unit = measureEventArgs.result.unit;
+//                    console.log("量算结果:" + distance + "米");
+//                }
+//            });
+//            myMeasuerService.measureMode = SuperMap.REST.MeasureMode.DISTANCE;
+//            myMeasuerService.processAsync(measureParam); //processAsync负责将客户端的量算参数传递到服务端。
+
+
+            feature.style = style;
+            vectorLayer.addFeatures(feature);
+
+
+        }
+        function processFailed(e) {
+            alert(e.error.errorMsg);
+        }
+        function clearFeatures() {
+//先清除上次的显示结果
+            vectorLayer.removeAllFeatures();
+            vectorLayer.refresh();
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="toolbar">
+    <input type="button" class="btn" value="查询" onclick="queryBySQL()"/>
+    <input type="button" class="btn" value="清除" onclick="clearFeatures()"/>
+</div>
+<div id="map"></div>
+</body>
+</html>

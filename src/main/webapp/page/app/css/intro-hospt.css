@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+body {
+  background: #f5f5f5;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+header {
+  width: 100%;
+  height: 1rem;
+  background: #2ed0bb;
+}
+header .back {
+  float: left;
+  width: 1rem;
+  height: 1rem;
+  background: url(../img/back.png) no-repeat 0.24rem center;
+  background-size: 15% 30%;
+}
+header p {
+  width: 5.5rem;
+  height: 1rem;
+  float: left;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1rem;
+  font-size: 0.36rem;
+}
+section {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.hosintro {
+  width: 100%;
+  padding-bottom: 0.3rem;
+  position: relative;
+  background: #fff;
+  margin-top: 0.17rem;
+}
+.hosintro dl {
+  width: 100%;
+  padding-bottom: 0.2rem;
+  zoom: 1;
+}
+.hosintro dl:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.hosintro dl dt {
+  float: left;
+  width: 0.78rem;
+  margin-left: 0.24rem;
+  margin-right: 0.28rem;
+}
+.hosintro dl dt img {
+  width: 0.78rem;
+  margin-top: 0.5rem;
+}
+.hosintro dl dd {
+  width: 5.95rem;
+  float: right;
+  margin-right: 0.24rem;
+}
+.hosintro dl dd h3 {
+  font-size: 0.30rem;
+  color: #1a1a1a;
+  margin-top: 0.2rem;
+  line-height: 0.42rem;
+  font-weight: normal;
+}
+.hosintro dl dd p {
+  color: #656565;
+  font-size: 0.28rem;
+}
+.hosintro dl dd p.hospName {
+  line-height: 0.47rem;
+}
+.hosintro dl dd p.downarrow {
+  width: 0.67rem;
+  height: 0.67rem;
+  position: absolute;
+  bottom: 0;
+  right: 0.3rem;
+}
+.hosintro dl dd p.downarrow img {
+  width: 0.31rem;
+  height: 0.31rem;
+}
+.hosintro dl dd p.downarrow img.down {
+  margin: 0.2rem 0 0 0.2rem;
+}
+.hosintro dl dd p.downarrow img.up {
+  width: 0.34rem;
+  height: 0.25rem;
+  margin: 0.25rem 0 0 0.2rem;
+}
+.hosintro dl dd p.intro {
+  line-height: 0.44rem;
+}
+.docList {
+  width: 100%;
+}
+.docList h2 {
+  font-size: 0.3rem;
+  line-height: 0.88rem;
+  padding-left: 0.45rem;
+  background: url(../img/line.png) no-repeat 0.3rem;
+}
+.docList .img {
+  width: 100%;
+  background: #fff;
+}
+.docList .img .swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.docList .img .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.docList .img .swiper-slide {
+  width: 1.61rem;
+  text-align: center;
+  font-size: 0.18rem;
+  background: #fff;
+  padding-top: 5%;
+}
+.docList .img .swiper-slide img {
+  width: 1.61rem;
+  height: 1.57rem;
+  border-radius: 0.2rem;
+}
+.docList .img .swiper-slide p {
+  width: 1.61rem;
+  line-height: 0.44rem;
+  text-align: center;
+  margin-left: 0.24rem;
+}
+.docList .img .swiper-slide p.dleader {
+  font-size: 0.27rem;
+  color: #1a1a1a;
+  margin-top: 0.21rem;
+}
+.docList .img .swiper-slide p.dName {
+  font-size: 0.24rem;
+  color: #656565;
+  line-height: 0.54rem;
+}
+.etcBtn {
+  width: 70%;
+  height: 0.8rem;
+  background: #2ed0bb;
+  line-height: .8rem;
+  color: #fff;
+  margin: 1.02rem 15% 1.5rem 15%;
+  border-radius: 0.1rem;
+  font-size: 0.3rem;
+  border: none;
+}

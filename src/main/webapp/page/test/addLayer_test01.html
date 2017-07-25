@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加raster(栅格)图层</title>
+    <link rel="stylesheet" href="http://minedata.cn/minemapapi/v1.2/minemap.css">
+    <script src="http://minedata.cn/minemapapi/v1.2/minemap.js"></script>
+    <style>
+    html,
+    body,
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    #marker {
+        background-image: url('http://minedata.cn/minemapapi/demo/images/police.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .minemap-popup {
+        max-width: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="popup" style="color: #000000;font-size: 14px;">
+        <section>
+            项目名称：新修高速公路18号
+        </section>
+        <section>
+            里程：1000公里
+        </section>
+        <section>
+            设计单位：中铁XX局
+        </section>
+        <section>
+            计划进度：5公里/月
+        </section>
+        <section>
+            实际进度：4公里/月
+        </section>
+    </div>
+    <div id="map"></div>
+    <script>
+    minemap.accessToken = '429284df23894e7584c3acff7fbfd5af';
+    minemap.solution = 2116;
+    // minemap.domainUrl = 'http://minedata.cn:8085'
+    var map = new minemap.Map({
+        container: 'map',
+        style: "http://minedata.cn/service/solu/style/id/2116",
+        center: [116.46, 39.92],
+        zoom: 6,
+        pitch: 0
+    });
+
+    /*map.on("load", function () {
+        map.addSource("hillshade", {
+            "type": "raster",
+            "tileSize": 256,
+            "tiles": ["minemapdatao://hillshade/{z}/{x}/{y}"]
+        });
+        map.addLayer({
+            "id": "hillshade",
+            "type": "raster",
+            "source": "hillshade",
+            "minzoom": 1,
+            "maxzoom": 17,
+            "layout": {
+                "visibility": "visible"
+            }
+        })
+    })*/
+
+    map.on("load", function() {
+
+        map.addSource("hillshade", {
+            "type": "raster",
+            "tileSize": 256,
+
+            /**
+             * 确保数据源可以访问，
+             */
+            // "tiles": ["minemapdatao://hillshade/{z}/{x}/{y}"]
+            // "tiles": ["http://minedata.cn:8085/otherdata/hillshade/{z}/{x}/{y}?token=25cc55a69ea7422182d00d6b7c0ffa93&solu=716"]
+            "tiles": ["http://203.81.245.38:48083/minemap-data/hbase/satellite/15/24321/20844?token=25cc55a69ea7422182d00d6b7c0ffa93&solu=716"]
+
+        });
+        map.addLayer({
+            "id": "hillshade",
+            "type": "raster",
+            "source": "hillshade",
+            "minzoom": 1,
+            "maxzoom": 17,
+            "layout": {
+                "visibility": "visible"
+            }
+        }, "5569f5fe954b436fa2d3cdd20eb1ad4c")
+
+        var _popupStr = document.querySelector('.popup')
+
+        var popup = new minemap.Popup({
+            offset: [0, 0]
+        }).setDOMContent(_popupStr);
+        // }).setText('这里是一个执勤人员');
+        var el = document.createElement('div');
+        el.id = 'marker';
+
+        var marker = new minemap.Marker(el, {
+                offset: [0, 0]
+            })
+            .setLngLat([116.46, 39.95])
+            .setPopup(popup)
+            .addTo(map);
+
+
+
+
+        console.log("----", map.getStyle())
+        console.log("****")
+
+        var _mapObj = map.getStyle();
+
+        var _layers = _mapObj.layers;
+
+        // _mapObj.layers.splice(1,1);
+
+        console.log("_mapObj", _mapObj)
+        map.setStyle(_mapObj)
+
+        var _roadLineObj = _layers[5]
+
+        console.log("_roadLineObj.paint", _roadLineObj.paint["line-color"])
+            // _roadLineObj.paint[line-color]
+
+        _roadLineObj.paint["line-color"].stops = [
+            [5, "#000000"],
+            [8, "#000000"],
+            [20, "#000000"]
+        ]
+
+        console.log("_mapObj-----", _mapObj)
+
+        // 第一种方式：添加一个layer层，重新渲染图层
+        map.addLayer(_roadLineObj)
+
+        // map.removeLayer("e24c5c2fcfdf4070910ed4519240e50f")
+
+
+        // 第二种：获取平台上的数据源
+        // 
+        // 不需要重新添加数据源
+        // map.addSource("Merge_1", {
+        //     "type": "vector",
+        //     "tiles":['minemapdatam://Railway,Road,Adminflag/{z}/{x}/{y}']
+        // })
+
+        // map.addLayer({
+        //     "id": "lines",
+        //     "type": "line",
+        //     "source": "Merge_1",
+        //     "source-layer":"Road",
+        //     "layout": {
+        //         "line-join": "round",
+        //         "line-cap": "round"
+        //     },
+        //     "paint": {
+        //         // "line-color": "#BBC0C4",
+        //         "line-color": {base:1,stops:[[5,"red"],[10,"green"],[15,"blue"]]},
+        //         "line-width": 2
+        //     },
+        //     filter: ['in', '$type', 'LineString']
+        // });
+
+
+
+        /**
+         * 自定义控件
+         * 需要重写onAdd和onRemove方法
+         */
+        function HelloWorldControl() {}
+
+        HelloWorldControl.prototype.onAdd = function(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'minemap-ctrl';
+            this._container.textContent = 'Hello, world';
+            return this._container;
+        };
+
+        HelloWorldControl.prototype.onRemove = function() {
+            this._container.parentNode.removeChild(this._container);
+            this._map = undefined;
+        };
+        map.addControl(new HelloWorldControl(), "bottom-right");
+
+        map.addControl(new minemap.Navigation(), "bottom-right");
+        map.addControl(new minemap.Scale(), "top-right");
+
+
+    })
+    </script>
+</body>

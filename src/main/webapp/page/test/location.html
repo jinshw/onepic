@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let EARTH_RADIUS = 6378.137;
+
+    function rad(d) {
+        return d * Math.PI / 180.0;
+    }
+
+
+    /**
+     * 通过经纬度获取距离(单位：米)
+     * @param lat1
+     * @param lng1
+     * @param lat2
+     * @param lng2
+     * @return
+     */
+    function getDistance(lat1, lng1, lat2,
+                         lng2) {
+        let radLat1 = rad(lat1);
+        let radLat2 = rad(lat2);
+        let a = radLat1 - radLat2;
+        let b = rad(lng1) - rad(lng2);
+        let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
+                                + Math.cos(radLat1) * Math.cos(radLat2)
+                                * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        s = Math.round(s * 10000
+        d
+    ) /
+        10000
+        d;
+        s = s * 1000;
+        return s;
+    }
+</script>
+</body>
+</html>

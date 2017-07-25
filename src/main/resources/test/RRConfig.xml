@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zm>
+	<modules>
+		<module id="1" name="mongodb数据库连接">
+			<Parameter id="1" isshow="true">
+                <name>ip</name>
+                <value>127.0.0.1</value>
+            </Parameter>
+            <Parameter id="2" isshow="true">
+                <name>port</name>
+                <value>27017</value>
+            </Parameter>
+            <Parameter id="3" isshow="true">
+                <name>db数据库</name>
+                <value>repository</value>
+            </Parameter>
+            <Parameter id="4" isshow="true">
+                <name>user</name>
+                <value>res</value>
+            </Parameter>
+            <Parameter id="5" isshow="true">
+                <name>passwod</name>
+                <value>res</value>
+            </Parameter>
+		</module>
+		
+		<module id="2" name="本地资源路径">
+			<Parameter id="1" isshow="true">
+                <name>访问路径前半部分</name>
+                <value>http://localhost:8080/estore</value>
+            </Parameter>
+            <Parameter id="2" isshow="true">
+                <name>真实路径前半部分</name>
+                <value>E:/eclipsespace/tomcat/tomcat7-8081/webapps/estore</value>
+            </Parameter>
+		</module>
+	</modules>
+</zm>

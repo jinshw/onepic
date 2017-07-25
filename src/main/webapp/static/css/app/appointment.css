@@ -1,0 +1,122 @@
+body{
+    background-color: #f2f2f2;
+    font-family: 微软雅黑;
+}
+.header{
+    background-color: #2ed0bb;
+    height: 127px;
+    width: 100%;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    position: relative;
+}
+.main {
+    width:100%;
+}
+.container {
+    width:100%;
+    background-color: #FFFFFF;
+}
+.content {
+    /*width:100%;*/
+    height: 259px;
+    border-bottom: 1px solid #dfdfdf;
+    margin-left: 36px;
+    margin-right: 36px;
+    position: relative;
+}
+.container-bottom {
+    box-shadow: 0 2px 10px #e0dfdf;
+}
+.header .back {
+    position: absolute;
+    top: 34px;
+    left: 28px;
+    z-index: 2;
+}
+.header .area {
+    position: relative;
+    /*background-color: #fff;*/
+    font-size: 46px;
+    text-align: center;
+    line-height: 136px;
+}
+.header .search {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.header-img {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 43px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 5px #d4d4d4;
+}
+.header-img img{
+    height: 160px;
+    width: 160px;
+}
+.center-content {
+    position: absolute;
+    left: 225px;
+    top: 26px;
+}
+.center-content .title {
+    font-size: 43px;
+    color: #1a1a1a;
+}
+.center-content .level,.center-content .address {
+    font-size: 40px;
+    color: #656565;
+}
+
+/*搜索*/
+.weui_search_bar {
+    margin-bottom: 20px;
+}
+.weui_search_bar:before {
+    border-top: 0px solid #C7C7C7;
+}
+/*搜索框样式自定义*/
+.weui_search_text {
+    line-height: 115px;
+}
+
+.weui_search_text span {
+    font-size: 44px;
+}
+
+.weui_icon_search:before {
+    font-size: 44px;
+}
+
+.weui_search_inner .weui_search_input {
+    height: 115px;
+    line-height: 115px;
+    font-size: 44px;
+}
+
+.weui_search_inner {
+    padding-left: 60px;
+    padding-right: 30px;
+}
+
+.weui_search_inner .weui_icon_search {
+    top: 20px;
+    left: 10px;
+}
+
+.weui_icon_clear:before {
+    font-size: 28px;
+}
+
+.weui_search_inner .weui_icon_clear {
+    top: 26px;
+    right: 0;
+    padding: 0 10px;
+    line-height: 28px;
+}

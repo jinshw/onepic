@@ -1,0 +1,740 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+img {
+  border: none;
+  max-width: 100%;
+}
+body {
+  font-size: .2rem;
+}
+.container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 312.5%;
+  }
+}
+@media screen and (min-width: 350px) {
+  html {
+    font-size: 342%;
+  }
+}
+@media screen and (min-width: 360px) {
+  html {
+    font-size: 351.5625%;
+  }
+}
+@media screen and (min-width: 375px) {
+  html {
+    font-size: 366.2%;
+  }
+}
+@media screen and (min-width: 384px) {
+  html {
+    font-size: 375%;
+  }
+}
+@media screen and (min-width: 390px) {
+  html {
+    font-size: 380.859%;
+  }
+}
+@media screen and (min-width: 410px) {
+  html {
+    font-size: 400%;
+  }
+}
+@media screen and (min-width: 432px) {
+  /* ����3 */
+  html {
+    font-size: 421.875%;
+  }
+}
+@media screen and (min-width: 480px) {
+  html {
+    font-size: 469%;
+  }
+}
+@media screen and (min-width: 540px) {
+  html {
+    font-size: 527.34%;
+  }
+}
+@media screen and (min-width: 640px) {
+  html {
+    font-size: 625%;
+  }
+}
+.body-nav {
+  width: 5.5rem;
+  height: 0.59rem;
+  margin: .2rem auto;
+}
+.body-nav ul {
+  height: 0.59rem;
+  width: 5.5rem;
+}
+.body-nav ul li {
+  float: left;
+  width: 2.75rem;
+  text-align: center;
+  line-height: 0.59rem;
+  font-size: 0.3rem;
+  color: #939393;
+  background: #E0DFDF;
+}
+.body-nav ul li.bg {
+  background: #2ed0bb;
+  color: #fff;
+}
+.body-nav ul .body-nav-one {
+  border-radius: .1rem 0 0 .1rem;
+}
+.body-nav ul .body-nav-two {
+  border-radius: 0 .1rem .1rem 0;
+}
+.person {
+  width: 3.74rem;
+  height: 8.2rem;
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.body-nav-list {
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: auto;
+}
+.body-nav-list ul {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 1.2rem;
+}
+.body-nav-list ul li {
+  margin-left: .3rem;
+  border-bottom: 1px solid #dcdcdc;
+  line-height: 0.75rem;
+  font-size: 0.3rem;
+  color: #1a1a1a;
+}
+.body-nav-list ul li span {
+  display: inline-block;
+  float: right;
+  width: 0.3rem;
+  height: 0.4rem;
+  background: url(../img/right.png) no-repeat right;
+  background-size: 0.15rem 0.23rem;
+  margin: 0.12rem;
+}
+.sex {
+  width: 1.84rem;
+  height: 0.6rem;
+  position: absolute;
+  top: 0rem;
+  left: -0.9rem;
+}
+.sex #sex-change {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  width: 1.84rem;
+  height: 0.6rem;
+  opacity: 0;
+}
+.sex #sex-change + label {
+  width: 1.84rem;
+  height: 0.6rem;
+  display: inline-block;
+  background: url(../img/icon-boy.png) no-repeat;
+  background-size: 100%;
+}
+.sex #sex-change + label.bg {
+  background: url(../img/icon-girl.png) no-repeat;
+  background-size: 100%;
+}
+.age {
+  width: 1.88rem;
+  height: 0.6rem;
+  position: absolute;
+  top: 0rem;
+  right: -0.9rem;
+}
+.age #age-change {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  width: 1.84rem;
+  height: 0.6rem;
+  opacity: 0;
+}
+.age #age-change + label {
+  width: 1.84rem;
+  height: 0.6rem;
+  display: inline-block;
+  background: url(../img/icon-adult.png) no-repeat;
+  background-size: 100%;
+}
+.age #age-change + label.bg {
+  background: url(../img/icon-child.png) no-repeat;
+  background-size: 100%;
+}
+.turn {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: url(../img/turn.png) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0.1rem;
+  right: -0.8rem;
+}
+.big-head {
+  width: 1.29rem;
+  height: 1.27rem;
+  position: absolute;
+  left: 1.19rem;
+  z-index: 2;
+}
+.head {
+  width: 1rem;
+  height: 1.2rem;
+  position: absolute;
+  left: 1.35rem;
+  z-index: 2;
+}
+.shead {
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  left: 1.04rem;
+  top: 0.48rem;
+  z-index: 2;
+}
+.sshead {
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  left: 0.95rem;
+  top: 0.48rem;
+  z-index: 2;
+}
+.ssbhead {
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  left: 0.988rem;
+  top: 0.45rem;
+  z-index: 5;
+}
+.big-neck {
+  width: 1.1rem;
+  height: 0.54rem;
+  position: absolute;
+  left: 1.3rem;
+  top: 1.2rem;
+  z-index: 2;
+}
+.neck {
+  width: 1.73rem;
+  height: 0.62rem;
+  position: absolute;
+  left: 0.99rem;
+  top: 1.19rem;
+  z-index: 2;
+}
+.bneck {
+  width: 1.53rem;
+  height: 0.59rem;
+  position: absolute;
+  left: 1.09rem;
+  top: 1.17rem;
+  z-index: 2;
+}
+.sneck {
+  width: 1.389rem;
+  height: 0.6rem;
+  position: absolute;
+  left: 1.22rem;
+  top: 2.22rem;
+  z-index: 3;
+}
+.ssneck {
+  width: 1.29rem;
+  height: 0.6rem;
+  position: absolute;
+  left: 1.22rem;
+  top: 2.22rem;
+  z-index: 3;
+}
+.boyneck {
+    width: 1.51rem;
+    height: 0.54rem;
+    position: absolute;
+    left: 1.2rem;
+    top: 2.23rem;
+    z-index: 2;
+}
+.girlneck {
+  width: 0.99rem;
+  height: 0.5rem;
+  position: absolute;
+  left: 1.48rem;
+  top: 2.05rem;
+  z-index: 4;
+}
+.big-chest1 {
+  width: 1.13rem;
+  height: 0.73rem;
+  position: absolute;
+  left: 1.278rem;
+  top: 1.66rem;
+  z-index: 2;
+}
+.schest {
+  width: 1.59rem;
+  height: 0.85rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 2.62rem;
+  z-index: 3;
+}
+.bchest {
+  width: 1.5rem;
+  height: 0.85rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 2.62rem;
+  z-index: 3;
+}
+.big-chest {
+  width: 1.49rem;
+  height: 1.012rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 1.58rem;
+  z-index: 2;
+}
+.chest {
+  width: 1.5rem;
+  height: 1.012rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 1.68rem;
+  z-index: 2;
+}
+.big-up-limb {
+  width: 3rem;
+  height: 2.94rem;
+  position: absolute;
+  left: 0.352rem;
+  top: 1.6rem;
+  z-index: 1;
+}
+.big-upper-limb {
+  width: 3.2rem;
+  height: 2.94rem;
+  position: absolute;
+  left: 0.21rem;
+  top: 1.68rem;
+  z-index: 1;
+}
+.uplimb {
+  width: 2.88rem;
+  height: 3.4rem;
+  position: absolute;
+  left: 0.41rem;
+  top: 1.63rem;
+  z-index: 1;
+}
+.suplimb {
+      width: 3.73rem;
+      height: 2.04rem;
+      position: absolute;
+      left: -0.03rem;
+      top: 2.33rem;
+      z-index: 1;
+}
+.girluplimb {
+  width: 3.68rem;
+  height: 2.04rem;
+  position: absolute;
+  left: 0rem;
+  top: 2.4rem;
+  z-index: 1;
+}
+.guplimb {
+  width: 3.46rem;
+  height: 2.04rem;
+  position: absolute;
+  left: 0.16rem;
+  top: 2.39rem;
+  z-index: 2;
+}
+.bbuplimb {
+  width: 3.54rem;
+  height: 2.04rem;
+  position: absolute;
+  left: 0.03rem;
+  top: 2.32rem;
+  z-index: 1;
+}
+.big-belly {
+  width: 1.6rem;
+  height: 1.55rem;
+  position: absolute;
+  left: 1.05rem;
+  top: 2.43rem;
+  z-index: 2;
+}
+.belly {
+  width: 1.69rem;
+  height: 1.21rem;
+  position: absolute;
+  left: 1.04rem;
+  top: 2.67rem;
+  z-index: 2;
+}
+.sbelly {
+  width: 1.68rem;
+  height: 1.3rem;
+  position: absolute;
+  left: 1.055rem;
+  top: 3.27rem;
+  z-index: 4;
+}
+.ssbelly {
+  width: 1.635rem;
+  height: 1.3rem;
+  position: absolute;
+  left: 1.05rem;
+  top: 3.27rem;
+  z-index: 4;
+}
+.big-genitals {
+  width: 1.65rem;
+  height: 0.6rem;
+  position: absolute;
+  left: 1.01rem;
+  top: 3.89rem;
+  z-index: 3;
+}
+.big-arse {
+  width: 1.75rem;
+  height: 0.49rem;
+  position: absolute;
+  left: 0.93rem;
+  top: 3.89rem;
+  z-index: 3;
+}
+.arse {
+  width: 1.7rem;
+  height: 0.78rem;
+  position: absolute;
+  left: 1.038rem;
+  top: 3.8rem;
+  z-index: 2;
+}
+.barse {
+  width: 1.58rem;
+  height: 0.78rem;
+  position: absolute;
+  left: 1.088rem;
+  top: 3.87rem;
+  z-index: 2;
+}
+.sarse {
+  width: 1.8rem;
+  height: 1rem;
+  position: absolute;
+  left: 1rem;
+  top: 4.2rem;
+  z-index: 3;
+}
+.ssarse {
+  width: 1.8rem;
+  height: 1rem;
+  position: absolute;
+  left: 0.97rem;
+  top: 4.2rem;
+  z-index: 4;
+}
+.girlarse {
+  width: 1.8rem;
+  height: 1rem;
+  position: absolute;
+  left: 1rem;
+  top: 4.29rem;
+  z-index: 3;
+}
+.big-low-limb {
+  width: 1.64rem;
+  height: 4.15rem;
+  position: absolute;
+  left: 1.02rem;
+  top: 4.095rem;
+  z-index: 2;
+}
+.big-lower-limb {
+  width: 1.76rem;
+  height: 4.1rem;
+  position: absolute;
+  left: 0.95rem;
+  top: 4.1rem;
+  z-index: 2;
+}
+.limb {
+  width: 1.7rem;
+  height: 3.68rem;
+  position: absolute;
+  left: 1.04rem;
+  top: 4.48rem;
+  z-index: 2;
+}
+.slowlimb {
+  width: 1.9rem;
+  height: 3rem;
+  position: absolute;
+  left: 0.9rem;
+  top: 4.68rem;
+  z-index: 2;
+}
+.slowerlimb {
+  width: 1.83rem;
+  height: 3rem;
+  position: absolute;
+  left: 0.89rem;
+  top: 4.55rem;
+  z-index: 2;
+}
+.glowlimb {
+  width: 1.83rem;
+  height: 3rem;
+  position: absolute;
+  left: 1rem;
+  top: 4.78rem;
+  z-index: 2;
+}
+.big-backside {
+  width: 1.6rem;
+  height: 2.28rem;
+  position: absolute;
+  left: 1.02rem;
+  top: 1.65rem;
+  z-index: 2;
+}
+.bbk {
+  width: 1.58rem;
+  height: 2.28rem;
+  position: absolute;
+  left: 1.08rem;
+  top: 1.65rem;
+  z-index: 2;
+}
+.sback {
+  width: 1.59rem;
+  height: 2.35rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 2.52rem;
+  z-index: 2;
+}
+.girlback {
+  width: 1.59rem;
+  height: 2.35rem;
+  position: absolute;
+  left: 1.1rem;
+  top: 2.289rem;
+  z-index: 3;
+}
+.big-girl-backside,
+.big-boy-backside,
+.big-girl-front,
+.big-boy-front,
+.small-girl-backside,
+.small-boy-backside,
+.small-girl-front,
+.small-boy-front {
+  position: relative;
+  width: 100%;
+  display: none;
+}
+.big-boy-front {
+  display: block;
+}
+.mark {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.info {
+  width: 4.5rem;
+  height: 100%;
+  background: #fff;
+  line-height: 2.6rem;
+  -webkit-transform: translate3d(100%, 0, 0);
+  -webkit-transition: translate 1s;
+  -moz-transform: translate3d(100%, 0, 0);
+  -moz-transition: translate 1s;
+  -o-transform: translate3d(100%, 0, 0);
+  -o-transition: translate 1s;
+  -ms-transform: translate3d(100%, 0, 0);
+  -ms-transition: translate 1s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 29999;
+}
+.info p {
+  text-align: center;
+  color: #2ed0bb;
+  font-size: 0.35rem;
+  line-height: 0.55rem;
+  border-bottom: 1px solid #dcdcdc;
+}
+.info ul {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 0.7rem;
+}
+.info ul li {
+  margin-left: .5rem;
+  line-height: 0.75rem;
+  font-size: 0.3rem;
+  color: #1a1a1a;
+  border-bottom: 1px solid #dcdcdc;
+}
+.info ul li span {
+  display: inline-block;
+  float: right;
+  width: 0.3rem;
+  height: 0.4rem;
+  background: url(../img/right.png) no-repeat right;
+  background-size: 0.15rem 0.23rem;
+  margin: 0.15rem;
+}
+.ask {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 0.2rem;
+}
+.question {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  -webkit-transform: translate3d(100%, 0, 0);
+  -webkit-transition: translate 1s;
+  -moz-transform: translate3d(100%, 0, 0);
+  -moz-transition: translate 1s;
+  -o-transform: translate3d(100%, 0, 0);
+  -o-transition: translate 1s;
+  -ms-transform: translate3d(100%, 0, 0);
+  -ms-transition: translate 1s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.question:nth-of-type(1) {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.question p {
+  padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+  width: 85%;
+  text-align: left;
+  color: #fff;
+  font-size: 0.35rem;
+  margin: 1.2rem 0 0 7.5%;
+  line-height: 0.5rem;
+  background: url(../img/chart.png) no-repeat;
+  background-size: 100% 100%;
+}
+.question .aff {
+  width: 100%;
+  height: 0.5rem;
+  margin-top: 1rem;
+}
+.question .aff li {
+  width: 30%;
+  float: left;
+  font-size: 0.35rem;
+  line-height: 0.6rem;
+  text-align: center;
+  height: 0.6rem;
+  color: #1a1a1a;
+  border: 1px solid #2ed0bb;
+  border-radius: .3rem;
+}
+.question .aff li.bgr{
+  background:#2ed0bb;
+}
+.question .aff li.yes {
+  margin: 0 13%;
+}
+.question .aff li.yyes {
+  width: 60%;
+  margin: 0 18%;
+}
+.question .aff li.no {
+  margin-right: 13%;
+}
+.off-list {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.off-list p {
+  margin: 0 .2rem;
+  height: 1.2rem;
+  padding-top: .19rem;
+  line-height: 0.45rem;
+  border-bottom: 1px solid #dcdcdc;
+  background: url(../img/right.png) no-repeat right;
+  background-size: 0.2rem 0.25rem;
+}
+.off-list p a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.off-list p span {
+  font-size: 0.3rem;
+  color: #1a1a1a;
+}
+.off-list p small {
+  display: block;
+  font-size: 0.28rem;
+  color: #656565;
+}
+.case{
+      width:100%;
+      height: 1.2rem;
+}
+.case.bgcolor{
+  background: #f2f2f2;
+}

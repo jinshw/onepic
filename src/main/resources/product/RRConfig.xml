@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zm>
+	<modules>
+		<module id="1" name="mongodb数据库连接">
+			<Parameter id="1" isshow="true">
+                <name>ip</name>
+                <value>127.0.0.1</value>
+            </Parameter>
+            <Parameter id="2" isshow="true">
+                <name>port</name>
+                <value>27017</value>
+            </Parameter>
+            <Parameter id="3" isshow="true">
+                <name>db数据库</name>
+                <value>repository</value>
+            </Parameter>
+            <Parameter id="4" isshow="true">
+                <name>user</name>
+                <value>res</value>
+            </Parameter>
+            <Parameter id="5" isshow="true">
+                <name>passwod</name>
+                <value>res</value>
+            </Parameter>
+		</module>
+		
+		<module id="2" name="本地资源路径">
+			<Parameter id="1" isshow="true">
+                <name>访问路径前半部分</name>
+                <!-- 测试环境 -->
+                <!-- <value>http://192.168.70.103:8180/pics</value> -->
+                <!-- 本机 -->
+                <value>http://localhost:8080/repository</value>
+            </Parameter>
+            <Parameter id="2" isshow="true">
+                <name>真实路径前半部分</name>
+                <!-- 模拟 -->
+                <!-- <value>D:/jjrb/tomcat7_jjrb_8180/webapps/pics</value> -->
+                <!-- 本机 -->
+                <value>D:/Work/cmepub/wz/jjrb/visual-products-repository-web/src/main/webapp</value>
+            </Parameter>
+		</module>
+	</modules>
+</zm>

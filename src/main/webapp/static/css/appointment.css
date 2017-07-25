@@ -1,0 +1,121 @@
+body{
+    background-color: #f2f2f2;
+    font-family: 微软雅黑;
+}
+.header{
+    background-color: #2ed0bb;
+    height: 0.88rem;;
+    width: 100%;
+    margin-bottom: 0.2rem;
+    color: #FFFFFF;
+    position: relative;
+}
+.main {
+    width:100%;
+}
+.container {
+    width:100%;
+    background-color: #FFFFFF;
+}
+.content {
+    /*width:100%;*/
+    height:1.80rem;
+    border-bottom: 1px solid #dfdfdf;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    position: relative;
+}
+.container-bottom {
+    box-shadow: 0 2px 10px #e0dfdf;
+}
+.header .back {
+    position: absolute;
+    top: 0.15rem;
+    left: 0.20rem;
+}
+.header .area {
+    position: relative;
+    /*background-color: #fff;*/
+    font-size: 0.32rem;
+    text-align: center;
+    line-height:0.95rem;
+}
+.header .search {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.20rem;
+}
+.header-img {
+    height: 1.1rem;
+    width: 1.1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 0.3rem;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 5px #d4d4d4;
+}
+.header-img img{
+    height: 1.1rem;
+    width: 1.1rem;
+}
+.center-content {
+    position: absolute;
+    left:1.45rem;
+    top: 0.2rem;
+}
+.center-content .title {
+    font-size: 0.3rem;
+    color: #1a1a1a;
+}
+.center-content .level,.center-content .address {
+    font-size: 0.28rem;
+    color: #656565;
+}
+
+/*搜索*/
+.weui_search_bar {
+    margin-bottom: 0.2rem;
+}
+.weui_search_bar:before {
+    border-top: 0px solid #C7C7C7;
+}
+/*搜索框样式自定义*/
+.weui_search_text {
+    line-height: 0.8rem;
+}
+
+.weui_search_text span {
+    font-size: 0.28rem;
+}
+
+.weui_icon_search:before {
+    font-size: 0.28rem;
+}
+
+.weui_search_inner .weui_search_input {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.28rem;
+}
+
+.weui_search_inner {
+    padding-left: 0.6rem;
+    padding-right: 0.3rem;
+}
+
+.weui_search_inner .weui_icon_search {
+    top: 0.2rem;
+    left: 0.1rem;
+}
+
+.weui_icon_clear:before {
+    font-size: 0.28rem;
+}
+
+.weui_search_inner .weui_icon_clear {
+    top: 0.26rem;
+    right: 0;
+    padding: 0 10px;
+    line-height: 0.28rem;
+}

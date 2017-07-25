@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新疆公路建设指挥平台</title>
+    <link href="../../static/lib/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="../../static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <script type="text/javascript"
+            src="../../static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script type="text/javascript"
+            src="../../static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!--zTree-->
+    <link rel="stylesheet" href="../../static/lib/zTree-v3/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="../../static/lib/zTree-v3/myZtreeCss.css">
+    <link rel="stylesheet" href="../../static/css/xjroud/xjroud.css">
+    <script src="../../static/lib/zTree-v3/js/jquery.ztree.all.min.js"></script>
+    <script src="../../static/lib/layer-v2.3/layer.js"></script>
+    <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+
+
+</head>
+<body class="container-fluid" style="min-width: 1200px; overflow: hidden" onLoad="init()">
+<!--header-->
+<div class="headerWrap" style="height: 50px; margin: 0 -15px; padding-right:30px; background: #0B61A4;">
+    <!--logo-->
+    <a class="navbar-brand pl0 mainMenu" href="#">新疆公路建设指挥平台</a>
+    <!--导航-->
+    <ul class="nav navbar-nav navbar-right my-nav mianNav">
+        <li class="dropdown">
+            <a href="#" onclick="infoQuery()">基本建设信息查询</span></a>
+            <!--
+
+             <ul class="dropdown-menu">
+                <li class="js_drop"><a href="#" data-id="asset-roadLine-lxxz"><strong>路线</strong></a>
+                    <p>
+                        <a href="#" data-id="asset-roadLine-lxxz">路线现状</a>
+                        <a href="#" data-id="asset-roadLine-ld">路段</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+                <li class="js_drop"><a href="#" data-id="asset-subgrade-ljxz"><strong>路基</strong></a>
+                    <p>
+                        <a href="#" data-id="asset-subgrade-ljxz">路基现状</a>
+                        <a href="#" data-id="asset-subgrade-ljfh">路基防护</a>
+                        <a href="#" data-id="asset-subgrade-ljps">路基排水</a>
+                        <a href="#" data-id="asset-subgrade-ljbp">路基边坡</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+                <li><a href="#" data-id="asset-roadBed-lm"><strong>路面</strong></a>
+                    <a href="#" data-id="asset-bridge-ql"><strong>桥梁</strong></a>
+                    <a href="#" data-id="asset-culvert-hd"><strong>涵洞</strong></a>
+                    <a href="#" data-id="asset-tollStation-sfz"><strong>收费站</strong></a>
+                </li>
+            </ul>
+
+            -->
+
+        </li>
+        <li class="dropdown">
+
+            <a href="#" id="yxBT">遥感监测</a>
+            <!--
+<ul class="dropdown-menu">
+                <li><a href="#"><strong>GIS分类展示</strong></a></li>
+                <li><a href="#"><strong>全路线查询</strong></a></li>
+                <li><a href="#"><strong>公里桩号查询</strong></a></li>
+            </ul>
+            -->
+
+        </li>
+        <li class="dropdown">
+            <a href="#" id="jdhcId">进度核查</span></a>
+            <!--
+
+             <ul class="dropdown-menu">
+                <li class="js_drop"><a href="#"><strong>路面巡查</strong></a>
+                    <p>
+                        <a href="#">路面巡查计划</a>
+                        <a href="#">路面巡查记录</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+                <li class="js_drop"><a href="#"><strong>路基巡查</strong></a>
+                    <p>
+                        <a href="#">路基巡查计划</a>
+                        <a href="#">路基巡查记录</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+                <li class="js_drop"><a href="#"><strong>桥梁巡查</strong></a>
+                    <p>
+                        <a href="#">桥梁巡查计划</a>
+                        <a href="#">桥梁巡查记录</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+                <li class="js_drop"><a href="#"><strong>涵洞巡查</strong></a>
+                    <p>
+                        <a href="#">涵洞巡查计划</a>
+                        <a href="#">涵洞巡查记录</a>
+                    </p>
+                    <span class="caret"></span>
+                </li>
+            </ul>
+
+            -->
+
+
+        </li>
+
+    </ul>
+</div>
+<!--map-->
+<div class="row mapWrap">
+    <div id="leftSider" class="col-md-2 col-sm-2"
+         style="display:none; height: 100%;background: #293033; min-width: 200px">
+        <div style="height: 100%; width: 100%; position: absolute; left:10px; overflow: auto;zTreeDemoBackground left">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div>
+    <div id="MainId" class="col-md-12 col-sm-12" style="height: 100%; min-width: 880px ">
+        <div id="map">
+            <div id="handle" title="通过拖动查看图层" onmousedown="drag(event)" style="display: none;">
+                <div id="handleCenter"></div>
+            </div>
+        </div>
+
+        <section class="mymap-toolbar-container" style="display: none">
+            <!-- <section class="item active" onclick="clickToolBarBT(this,'sl')">矢量图</section> -->
+            <section class="item active" onclick="clickToolBarBT(this,'yx')">卫星影像图</section>
+            <!-- <section class="item"
+            onclick="clickToolBarBT(this,'d03f8723017342db80c25d8d354845f8')">影像时间轴</section> -->
+            <section class="time-bar">
+                <section class="angle-left-bt" onclick="preTimeEvent()">
+                    <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                </section>
+                <section class="time-show">
+                    <input type="text" value="" readonly class="form_datetime date-input" id="mapTime">
+                    <!-- <span id="mapTime" class="date-input"></span> -->
+                </section>
+                <section class="angle-right-bt" onclick="nextTimeEvent()">
+                    <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+                </section>
+            </section>
+        </section>
+
+        <section class="time-list" id="timeListId" style="display: none;">
+            <!--<div class="list-group">-->
+            <!--&lt;!&ndash;<a href="#" class="list-group-item active">&ndash;&gt;-->
+            <!--&lt;!&ndash;Cras justo odio&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--<a href="#" class="list-group-item">2015影像</a>-->
+            <!--<a href="#" class="list-group-item">2016影像</a>-->
+            <!--<a href="#" class="list-group-item">2017影像</a>-->
+            <!--</div>-->
+            <div>
+                <input id="box2015" class="yx-time" type="checkbox" onchange="changeYXTime()" checked>2015
+            </div>
+            <div>
+                <input id="box2016" class="yx-time" type="checkbox" onchange="changeYXTime()" checked>2016
+            </div>
+            <div>
+                <input id="box2017" class="yx-time" type="checkbox" onchange="changeYXTime()">2017
+            </div>
+            <div>
+                <input id="2017SAR" class="yx-time" type="checkbox" onchange="changeYXTime()">2017SAR
+            </div>
+            <div>
+                <input id="isScanPicInfo" class="yx-time" type="checkbox">查看影像信息
+            </div>
+
+        </section>
+        <section class="jdhc-bar" id="jdhcBar" style="display: none;">
+            <div>
+                <input id="jdhcCloseBt" type="checkbox" checked>开关
+            </div>
+        </section>
+        <div class="yx-time-line" style="display: none;">
+            <div class="time-line"></div>
+            <div class="time-line-year">
+                <div class="time-line-year-area">
+                    <i class="fa fa-caret-left" aria-hidden="true"></i>
+                    2015
+                </div>
+            </div>
+            <div class="time-line-date">
+                <div class="time-item">
+                    <div class="dsk-circle">05/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">05/20</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">05/30</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">06/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">06/20</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">06/30</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">07/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">07/20</div>
+                </div>
+                <div class="time-item active">
+                    <div class="dsk-circle">07/30</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/20</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/30</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/20</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">08/30</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">09/10</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">09/20</div>
+                </div>
+                <div class="time-item">
+                    <div class="dsk-circle">09/30</div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--footer-->
+<div class="row footerWrap">
+    <div class="footer"
+         style="height: 280px; display: none; padding-left: 240px; padding-right:10px; position: relative">
+        <div style="height: 100%; width: 220px; position: absolute; left:10px; overflow: auto">
+            <ul id="treeDemo1" class="ztree"></ul>
+        </div>
+        <!--<div  style="height: 100%; width:100%">-->
+        <!--<iframe id='gridIframe' name="gridIframe" src="asset/roadLine/lxxz.html" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>-->
+        <!--</div>-->
+    </div>
+</div>
+<script src='../../static/js/ajaxRequest.js'></script>
+<script src='../../static/js/xjroud/xjroud.js'></script>
+</body>
+</html>

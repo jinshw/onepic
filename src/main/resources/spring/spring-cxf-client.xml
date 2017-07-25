@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- START SNIPPET: beans -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+     http://cxf.apache.org/transports/http/configuration
+     http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+    <!--<bean id="client" class="com.ykkj.weiyi.webservice.server.HelloWorldInf"-->
+          <!--factory-bean="clientFactory" factory-method="create"/>-->
+    <!--<bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">-->
+        <!--<property name="serviceClass" value="com.ykkj.weiyi.webservice.server.HelloWorldInf"/>-->
+        <!--<property name="address" value="http://localhost:8080/core/webservice/helloWorld"/>-->
+    <!--</bean>-->
+    <http-conf:conduit name="*.http-conduit">       
+      <http-conf:client ConnectionTimeout="60000" ReceiveTimeout="120000"/>      
+   </http-conf:conduit>
+</beans>

@@ -1,0 +1,113 @@
+[{
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.6118, 43.9222
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5644, 44.2908
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5287, 44.8893
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5917, 45.4157
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.665, 45.8954
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.7345, 46.4811
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.6131, 46.8381
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5382, 47.0522
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }]

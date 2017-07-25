@@ -1,0 +1,305 @@
+* {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.headerWrap a {
+    color: #fff;
+}
+
+/*.nav>li:hover>a{ background: rgba(0,0,0,.2)}*/
+.nav > li:hover > a {
+    color: #0B61A4;
+    background: #f5f5f5
+}
+
+.mianNav {
+    position: relative;
+}
+
+.mianNav p {
+    margin: 0;
+    display: none;
+}
+
+.mianNav .caret {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    color: #666;
+}
+
+.mianNav .dropdown-menu {
+    left: 0;
+    z-index: 1;
+    border: none;
+    right: auto
+}
+
+.mianNav .dropdown-menu li {
+    position: relative;
+}
+
+.mianNav .dropdown-menu a {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #666
+}
+
+.mianNav ul li:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+.mianNav span {
+    font-size: 12px;
+}
+
+/*line bar*/
+.mymap-toolbar-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background-color: transparent;
+}
+
+.mymap-toolbar-container .item {
+    height: 34px;
+    width: 87px;
+    padding-left: 14px;
+    padding-right: 14px;
+    cursor: pointer;
+    background-color: #313d4f;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 34px;
+    text-align: center;
+    white-space: nowrap;
+    color: #abacae;
+    position: relative;
+    float: right;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+}
+
+.mymap-toolbar-container .active {
+    color: #ffffff;
+}
+
+.mymap-toolbar-container .item:hover {
+    color: #ffffff;
+}
+
+.time-bar {
+    height: 34px;
+    width: 130px;
+    padding-left: 14px;
+    padding-right: 14px;
+    cursor: pointer;
+    background-color: #313d4f;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 34px;
+    text-align: center;
+    white-space: nowrap;
+    color: #abacae;
+    position: relative;
+    float: right;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+}
+
+.angle-left-bt {
+    position: absolute;
+    left: 0;
+    padding: 0 10px;
+    top: 3px;
+}
+
+.angle-right-bt {
+    position: absolute;
+    right: 0;
+    padding: 0 10px;
+    top: 3px;
+}
+
+.angle-left-bt:hover,
+.angle-right-bt:hover {
+    color: #ffffff;
+}
+
+.time-show {
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    position: absolute;
+    right: 16px;
+}
+
+.time-show .date-input {
+    background-color: #313d4f;
+    border: 0;
+    width: 80px;
+    height: 34px;
+}
+
+.time-list {
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    z-index: 10000;
+    background-color: #313d4f;
+    color: #ffffff;
+    height: auto;
+    width: 172px;
+    padding: 10px;
+}
+
+.jdhc-bar {
+    position: absolute;
+    top: 0px;
+    right: 16px;
+    z-index: 10000;
+    background-color: #313d4f;
+    color: #ffffff;
+    height: auto;
+    width: 85px;
+    padding: 10px;
+}
+
+/*ztree 个性化定制*/
+.ztree {
+    color: #ffffff;
+}
+
+.ztree li a.level0 span.node_name {
+    color: #ffffff;
+}
+
+.ztree li a {
+    color: #ffffff;
+}
+
+.ztree li span.button.noline_close {
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+}
+
+.ztree li span.button.noline_open {
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+}
+
+.ztree li a.curSelectedNode {
+    background: #444f54;
+    color: #ffffff;
+}
+
+/*end ztree*/
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #0d75c5;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    color: #FFFFFF;
+}
+
+#handle {
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    left: 50%;
+    background: rgb(205, 205, 205);
+    border: 1px solid rgb(112, 107, 107);
+    z-index: 2000;
+    cursor: col-resize;
+}
+
+#handleCenter {
+    position: absolute;
+    height: 32px;
+    width: 15px;
+    top: 50%;
+    left: -7px;
+    background: rgb(205, 205, 205);
+    border: 1px solid rgb(112, 107, 107);
+    z-index: 2000;
+    /*background-image: url(images/drag.png);*/
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.yx-time-line {
+    width: 100%;
+    height: 42px;
+    background-color: #313d4f;
+    position: absolute;
+    top: 0;;
+    left: 60px;
+    z-index: 9999;
+    border-radius: 4px;
+}
+
+.time-line {
+    width: 100%;
+    height: 3px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 23px;
+    /*display: none;*/
+}
+
+.time-item {
+    /*position: absolute;*/
+    /*top:-20px;*/
+    float: left;
+    margin-right: 10px;
+}
+
+.dsk-circle {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    background: #444;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+    -webkit-transition: all .5s ease-in;
+    -moz-transition: all .5s ease-in;
+    -ms-transition: all .5s ease-in;
+    -o-transition: all .5s ease-in;
+    transition: all .5s ease-in;
+    position: relative;
+}
+
+.active .dsk-circle {
+    background-color: #F60;
+}
+
+.time-line-year {
+    float: left;
+    margin-right: 11px;
+    cursor: pointer;
+}
+
+.time-line-year-area {
+    width: 70px;
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #313d4f;
+    position: relative;
+}
+

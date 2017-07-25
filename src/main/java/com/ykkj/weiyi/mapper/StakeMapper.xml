@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.StakeDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.Stake">
+        <result column="stake_id" property="stakeId"/>
+        <result column="stake_name" property="stakeName"/>
+        <result column="stake_type" property="stakeType"/>
+        <result column="stake_num" property="stakeNum"/>
+        <result column="stake_length" property="stakeLength"/>
+        <result column="lon" property="lon"/>
+        <result column="lat" property="lat"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `stake_id`,
+        `stake_name`,
+        `stake_type`,
+        `stake_num`,
+        `stake_length`,
+        `lon`,
+        `lat`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.stakeId">
+        INSERT INTO stake (
+            `stake_id`,
+            `stake_name`,
+            `stake_type`,
+            `stake_num`,
+            `stake_length`,
+            `lon`,
+            `lat`
+        ) VALUES (
+            #{pojo.stakeId},
+            #{pojo.stakeName},
+            #{pojo.stakeType},
+            #{pojo.stakeNum},
+            #{pojo.stakeLength},
+            #{pojo.lon},
+            #{pojo.lat}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.stakeId">
+        INSERT INTO stake
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.stakeId!=null"> `stake_id`,</if>
+            <if test="pojo.stakeName!=null"> `stake_name`,</if>
+            <if test="pojo.stakeType!=null"> `stake_type`,</if>
+            <if test="pojo.stakeNum!=null"> `stake_num`,</if>
+            <if test="pojo.stakeLength!=null"> `stake_length`,</if>
+            <if test="pojo.lon!=null"> `lon`,</if>
+            <if test="pojo.lat!=null"> `lat`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.stakeId!=null">#{pojo.stakeId},</if>
+            <if test="pojo.stakeName!=null">#{pojo.stakeName},</if>
+            <if test="pojo.stakeType!=null">#{pojo.stakeType},</if>
+            <if test="pojo.stakeNum!=null">#{pojo.stakeNum},</if>
+            <if test="pojo.stakeLength!=null">#{pojo.stakeLength},</if>
+            <if test="pojo.lon!=null">#{pojo.lon},</if>
+            <if test="pojo.lat!=null">#{pojo.lat},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO stake (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.stakeId},
+            #{pojo.stakeName},
+            #{pojo.stakeType},
+            #{pojo.stakeNum},
+            #{pojo.stakeLength},
+            #{pojo.lon},
+            #{pojo.lat}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE stake
+        <set>
+            <if test="pojo.stakeId != null"> `stake_id` = #{pojo.stakeId}, </if>
+            <if test="pojo.stakeName != null"> `stake_name` = #{pojo.stakeName}, </if>
+            <if test="pojo.stakeType != null"> `stake_type` = #{pojo.stakeType}, </if>
+            <if test="pojo.stakeNum != null"> `stake_num` = #{pojo.stakeNum}, </if>
+            <if test="pojo.stakeLength != null"> `stake_length` = #{pojo.stakeLength}, </if>
+            <if test="pojo.lon != null"> `lon` = #{pojo.lon}, </if>
+            <if test="pojo.lat != null"> `lat` = #{pojo.lat} </if>
+        </set>
+        WHERE stake_id = #{pojo.stakeId}
+    </update>
+
+    <select id="queryStakeByLocation" parameterType="java.util.Map" resultType="com.ykkj.weiyi.pojo.Stake">
+        <![CDATA[
+        (SELECT * from stake t
+        where t.stake_name like CONCAT('%', #{stakeName}, '%')
+        and t.stake_length >= #{location}
+        ORDER BY stake_num ASC
+        LIMIT 1)
+
+        UNION ALL
+        (
+        SELECT * from stake t
+        where t.stake_name like CONCAT('%', #{stakeName}, '%')
+        and t.stake_length <= #{location}
+        ORDER BY stake_num DESC
+        LIMIT 1
+        )
+        ]]>
+
+    </select>
+</mapper>
+

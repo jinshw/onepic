@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新疆公路建设指挥平台</title>
+    <link href="../../static/lib/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="../../static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <script type="text/javascript"
+            src="../../static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script type="text/javascript"
+            src="../../static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!--zTree-->
+    <link rel="stylesheet" href="../../static/lib/zTree-v3/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="../../static/lib/zTree-v3/myZtreeCss.css">
+    <script src="../../static/lib/zTree-v3/js/jquery.ztree.all.min.js"></script>
+    <script src="../../static/lib/layer-v2.3/layer.js"></script>
+    <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+    <script type="text/javascript">
+        var infowin = null;
+        var map, layerT, layerRoad, layerYXALL, layerZJRoad, layerJSJD, layerJSJDTWD,
+                layer20150913, layer20161210, layer20170101, layerGF2016WUYU, layerGJ2017WUYU,
+                vectorLayer, layerPublic, layerSar2017, ponitLayer, drawPoint,
+//                host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
+                host = "http://localhost:8090";
+        var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu2/rest/maps/GLZJ"
+
+
+        function init() {
+            var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "高速@交通#3#2"
+            });
+
+//            if (treeNode.gljb == 'GS') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "高速@交通#3#2"
+//                });
+//            } else if (treeNode.gljb == 'GD') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "一般国道@交通#2#4",
+//                    attributeFilter: "SmID = " + treeNode.smId
+//                });
+//            } else if (treeNode.gljb == 'SD') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "一般省道@交通#3",
+//                    attributeFilter: "SmID = " + treeNode.smId
+//                });
+//            }
+
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(ZJ_ROAD, {
+                eventListeners: {
+                    "processCompleted": function (queryEventArgs) {
+                        let _tempcomps, _comps = [];
+                        console.log("-----------")
+                        feature = queryEventArgs.result.recordsets[0].features[0]
+
+                        _tempcomps = feature.geometry.components
+                        console.log(queryEventArgs)
+                        for (var obj of _tempcomps) {
+                            _comps = _comps.concat(obj.components)
+
+                            /*$.ajax({
+                                url: "/onepic/main/getStake",
+                                type: "post",
+                                data:{comps:_comps},
+                                dataTpe: "json",
+                                success: function (d) {
+                                    console.log(d)
+                                }
+                            })*/
+                        }
+                        console.log(_comps.length)
+                        console.log(_comps)
+
+                        console.log("-----------")
+                    },
+                    "processFailed": processFailed
+                }
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+        $(document).ready(function () {
+//            onClick()
+        });
+    </script>
+
+</head>
+<body onLoad="init()">
+<script>
+    function onClick(event, treeId, treeNode) {
+
+        var feature;
+        var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
+
+        queryParam = new SuperMap.REST.FilterParameter({
+            name: "高速@交通#3#2"
+        });
+//            if (treeNode.gljb == 'GS') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "高速@交通#3#2"
+//                });
+//            } else if (treeNode.gljb == 'GD') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "一般国道@交通#2#4",
+//                    attributeFilter: "SmID = " + treeNode.smId
+//                });
+//            } else if (treeNode.gljb == 'SD') {
+//                queryParam = new SuperMap.REST.FilterParameter({
+//                    name: "一般省道@交通#3",
+//                    attributeFilter: "SmID = " + treeNode.smId
+//                });
+//            }
+
+        queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+            queryParams: [queryParam]
+        });
+        queryBySQLService = new SuperMap.REST.QueryBySQLService(ZJ_ROAD, {
+            eventListeners: {
+                "processCompleted": function (queryEventArgs) {
+                    console.log("---######--------")
+                    console.log(queryEventArgs)
+                    console.log("------########-----")
+                    feature = queryEventArgs.result.recordsets[0].features[0]
+
+                },
+                "processFailed": processFailed
+            }
+        });
+        queryBySQLService.processAsync(queryBySQLParams);
+
+    }
+    function processFailed(e) {
+        alert(e.error.errorMsg);
+    }
+
+</script>
+</body>
+</html>

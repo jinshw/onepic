@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edeg,chorme=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/doct-home.css" />
+	<title>医生主页</title>
+	<script src="lib/jquery.js"></script>
+	<script>
+		//rem适配
+		var _cssText = document.querySelector("html").style.cssText;
+		document.querySelector("html").style.cssText = _cssText + "font-size:" + 100 * ($(window).width()) / 750 + "px !important";
+	</script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<span class="back"></span>
+			<p>医生主页</p>
+			<!-- <span class="atten">关注</span> -->
+		</header>
+		<section>
+			<div class="doct-info">
+				
+			</div>
+			<div class="doct-service">
+				<div class="doct-tit">医生服务</div>
+				<p class="fam-doct">
+					家庭医生
+					<button class="app-sign" disabled="disabled">申请签约</button>
+				</p>
+				<p class="con-inqu">
+					咨询问诊
+					<button class="now-con" disabled="disabled">现在咨询</button>
+				</p>
+				<p class="book-reg">
+					预约挂号
+					<button class="now-order">现在预约</button>
+				</p>
+			</div>
+		</section>
+	</div>
+	<script src="lib/fastclick.js"></script>
+	<script src="js/doct-home.js"></script>
+	<script src="../../static/js/app/common-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新疆交通建设道路规划专题图</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://101.200.188.26:8080/onepic/static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="http://101.200.188.26:8080/onepic/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://101.200.188.26:8080/onepic/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    <link rel="stylesheet" href="http://101.200.188.26:8080/onepic/static/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <script src="http://101.200.188.26:8080/onepic/static/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="http://101.200.188.26:8080/onepic/static/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- minemap -->
+    <link rel="stylesheet" href="http://minedata.cn/minemapapi/v1.2/minemap.css">
+    <script src="http://minedata.cn/minemapapi/v1.2/minemap.js"></script>
+    <style>
+    html,
+    body,
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .marker {
+        background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495204191549&di=a0cb94cddd1eee83ddaf63713a1cbbb6&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20160114%2F1452754812563122.jpg');
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .minemap-popup {
+        max-width: 200px;
+    }
+    
+    .mymap-toolbar-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        background-color: transparent;
+    }
+    
+    .mymap-toolbar-container .item {
+        height: 34px;
+        width: 80px;
+        padding-left: 14px;
+        padding-right: 14px;
+        cursor: pointer;
+        background-color: #313d4f;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 34px;
+        text-align: center;
+        white-space: nowrap;
+        color: #abacae;
+        position: relative;
+        float: right;
+        box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+    }
+    
+    .mymap-toolbar-container .active {
+        color: #ffffff;
+    }
+    
+    .mymap-toolbar-container .item:hover {
+        color: #ffffff;
+    }
+    
+    .time-bar {
+        height: 34px;
+        width: 130px;
+        padding-left: 14px;
+        padding-right: 14px;
+        cursor: pointer;
+        background-color: #313d4f;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 34px;
+        text-align: center;
+        white-space: nowrap;
+        color: #abacae;
+        position: relative;
+        float: right;
+        box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
+    }
+    
+    .angle-left-bt {
+        position: absolute;
+        left: 0;
+        padding: 0 10px;
+        top: 3px;
+    }
+    
+    .angle-right-bt {
+        position: absolute;
+        right: 0;
+        padding: 0 10px;
+        top: 3px;
+    }
+    
+    .angle-left-bt:hover,
+    .angle-right-bt:hover {
+        color: #ffffff;
+    }
+    
+    .time-show {
+        text-align: center;
+        font-size: 12px;
+        color: #ffffff;
+        position: absolute;
+        right: 16px;
+    }
+    
+    .time-show .date-input {
+        background-color: #313d4f;
+        border: 0;
+        width: 80px;
+        height: 34px;
+    }
+    .zoom-bar {
+        z-index: 10000;
+        position: absolute;
+        bottom: 0;
+    }
+    .xy {
+
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="popup" style="color: #000000;font-size: 14px;">
+        <section>
+            项目名称：新修高速公路18号
+        </section>
+        <section>
+            里程：1000公里
+        </section>
+        <section>
+            设计单位：中铁XX局
+        </section>
+        <section>
+            计划进度：5公里/月
+        </section>
+        <section>
+            实际进度：4公里/月
+        </section>
+    </div> -->
+    <section class="mymap-toolbar-container">
+        <section class="item active" onclick="clickToolBarBT(this,'hillshade22')">DEM图</section>
+        <section class="item active" onclick="clickToolBarBT(this,'0a93dfe5c1ca4f59ad03aca20fadb17b')">卫星影像图</section>
+        <!-- <section class="item" 
+        onclick="clickToolBarBT(this,'d03f8723017342db80c25d8d354845f8')">影像时间轴</section> -->
+        <section class="time-bar">
+            <section class="angle-left-bt" onclick="preTimeEvent()">
+                <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+            </section>
+            <section class="time-show">
+                <input type="text" value="" readonly class="form_datetime date-input" id="mapTime">
+                <!-- <span id="mapTime" class="date-input"></span> -->
+            </section>
+            <section class="angle-right-bt" onclick="nextTimeEvent()">
+                <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+            </section>
+        </section>
+    </section>
+    <div id="map"></div>
+    <section class="zoom-bar">
+        <span class="zoom-show" id="zoomShowId">层级:8.5</span>
+        <span type="text" class="xy" id="xy" ></span>
+    </section>
+    <script>
+    // 时间空间
+    $(function() {
+        var _oneTime = _layerImageList[0].time
+        $('#mapTime').val(_oneTime); 
+        $('#mapTime').data("layerindex",0)
+
+        map.on("click", function (e) {
+
+            var lngLat = e.lngLat;
+            var point = e.point;
+            /**
+             * 这个获取经纬度有两种方式，lngLat是我们的基本返回对象，用户可以用
+             * 1 lngLat.lng 获取经度     lngLat.lat 获取纬度
+             * 2 lngLat.toArray()   获取一个数组 [经度，纬度]
+             */
+
+           $("#xy").html("经纬度坐标：" + lngLat.toArray() + "  像素点坐标：x-" + point.x + ",y-" + point.y);
+        })
+
+    });
+
+
+    minemap.accessToken = '93eabb6f17a245c691d65cb8750cf4a9';
+    minemap.solution = 2112;
+    // minemap.domainUrl = 'http://minedata.cn:8085'
+    var map = new minemap.Map({
+        container: 'map',
+        style: "http://minedata.cn/service/solu/style/id/2112",
+        center: [87.6165422,43.8243248],
+        minZoom:5,
+        maxZoom:17,
+        zoom:8.5,
+        pitch: 0,
+        bearing: 0
+    });
+
+
+    map.on("load", function() {
+
+        // 获取数据
+        var features = map.querySourceFeatures('upload_339',{'sourceLayer':'upload_339'});
+        console.log(features)
+
+        var _features = ''
+        var _tempArr = []
+        for(var i in features){
+            _tempArr.push(JSON.stringify(features[i]))
+        }
+        _features = _tempArr.join(',')
+        console.log(_features)
+
+
+        // 一、添加DEM图
+        map.addSource("hillshade", {
+            "type": "raster",
+            "tileSize": 256,
+            /**
+             * 确保数据源可以访问，
+             */
+            // "tiles": ["minemapdatao://hillshade/{z}/{x}/{y}"]
+            "tiles": ["http://minedata.cn:8085/otherdata/hillshade/{z}/{x}/{y}?token=25cc55a69ea7422182d00d6b7c0ffa93&solu=716"]
+        });
+        map.addLayer({
+            "id": "hillshade22",
+            "type": "raster",
+            "source": "hillshade",
+            "minzoom": 5,
+            "maxzoom": 17.5,
+            "layout": {
+                "visibility": "visible"
+            }
+        })
+
+        var _visibility = "none"
+        for (var index in _layerImageList) {
+            if(index == 0){
+                _visibility = "visible"
+            }else{
+                _visibility = "none"
+            }
+
+            // 添加数据源
+            map.addSource(_layerImageList[index].id, {
+                "type": "raster",
+                "tileSize": 256,
+                "tiles": ["http://minedata.cn:8085/otherdata/raster/satellite_time/{z}/{x}/{y}/"+ _layerImageList[index].time +"?token=25cc55a69ea7422182d00d6b7c0ffa93&solu=716"]
+            })
+            // 添加图层
+            map.addLayer({
+                "id": "layer"+_layerImageList[index].time,
+                "type": "raster",
+                "source": _layerImageList[index].id,
+                "minzoom": 5,
+                "maxzoom": 17.5,
+                "layout": {
+                    "visibility": _visibility
+                }
+            }, _layerImageList[index].preLayerId)
+
+        }
+
+        // 二、添加道路marker标识
+        var _popupStr = ""
+        for (var i = 0; i < _markerList.length; i++) {
+
+            _popupStr = getPopupMsg(_markerList[i].properties)
+
+            var popup = new minemap.Popup({
+                offset: [0, 0]
+            }).setHTML(_popupStr);
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            new minemap.Marker(el, {
+                    offset: [0, 0]
+                })
+                .setLngLat(_markerList[i].geometry.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+
+        }
+        map.on("zoomend", function () {
+            document.getElementById("zoomShowId").innerHTML = "层级:" + map.getZoom();
+        })
+
+
+
+
+        console.log(map.getLayer("2c04c69cae2446649c5f5c3c254a6240"))
+        var _paint = map.getLayer("2c04c69cae2446649c5f5c3c254a6240").paint
+        console.log(_paint)
+        console.log(_paint["line-color"])
+        _paint["line-color"] = "green"
+        var pt = {
+            // "line-color": "#BBC0C4",
+            "line-color":"#ff9903",
+            "line-width": 10,
+            "line-translate":_paint["line-translate"],
+//            "line-dasharray":_paint["line-dasharray"],
+            "line-gap-width":_paint["line-gap-width"],
+            "line-offset":_paint["line-offset"],
+            "line-opacity":_paint["line-opacity"],
+//            "line-pattern":_paint["line-pattern"],
+            "line-translate-anchor":_paint["line-translate-anchor"]
+
+        }
+        // 添加道路设置
+        map.addSource("pointSource", {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": _lineArr
+            }
+        });
+       /* map.addLayer({
+            "id": "lines",
+            "type": "line",
+            "source": "pointSource",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                // "line-color": "#BBC0C4",
+                "line-color": "red",
+                "line-width": 8,
+                "line-pattern":"point-name-15-10"
+            },
+            filter: ['in', '$type', 'LineString']
+        });*/
+        map.addLayer({
+            "id": "lines",
+            "type": "line",
+            "source": "pointSource",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": pt,
+            filter: ['in', '$type', 'LineString']
+        });
+
+        var popup = new minemap.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        // 设置Line点击事件\
+        var _layerId ="";
+        map.on('click', function (e) {
+//            var features = map.queryRenderedFeatures([[e.point.x - 4 / 2, e.point.y - 4 / 2],[e.point.x + 4 / 2, e.point.y + 4 / 2]], {layers: ['points', 'lines']});
+//            var features = map.queryRenderedFeatures(e.point,{layers:['2c04c69cae2446649c5f5c3c254a6240']});
+            var features = map.queryRenderedFeatures(e.point,{layers:['d03f8723017342db80c25d8d354845f8']});
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+            var _date = new Date()
+
+
+            if (!features.length) {
+                popup.remove();
+                if(_layerId != '' && map.getLayer("layer_"+_layerId) != undefined ){
+                    map.removeLayer("layer_"+_layerId)
+                }
+                if(_layerId != '' && map.getSource ("source_"+_layerId) != null){
+                    map.removeSource("source_"+_layerId)
+                }
+                return;
+            }
+            console.log(features)
+            /**
+             * 如果在点击的位置有多个响应类型的点或者线，会获取一个feature的数组
+             */
+            var feature = features[0];
+            popup.setLngLat(e.lngLat)
+                    .setHTML( "<div>起点：" + feature.geometry.coordinates[0] +"</div>" +
+                            "<div>终点："+ feature.geometry.coordinates[feature.geometry.coordinates.length -1 ] +"</div>")
+                    .addTo(map);
+
+            if(_layerId != '' && map.getLayer("layer_"+_layerId) != undefined){
+                map.removeLayer("layer_"+_layerId)
+            }
+            if(_layerId != '' && map.getSource ("source_"+_layerId) != null){
+                map.removeSource("source_"+_layerId)
+            }
+
+            _layerId = _date.getTime() + (Math.random()*1000).toFixed()
+            map.addSource("source_"+_layerId, {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": features
+                }
+            });
+
+            map.addLayer({
+                "id": "layer_"+ _layerId,
+                "type": "line",
+                "source": "source_"+_layerId,
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "green",
+                    "line-width": 12
+                },
+                filter: ['in', '$type', 'LineString']
+            });
+
+
+//
+//            if (feature.layer.id == "points") {
+//                popup.setLngLat(feature.geometry.coordinates)
+//                        .setHTML(feature.properties.title + "经纬度为：" + feature.geometry.coordinates)
+//                        .addTo(map);
+//            } else if (feature.layer.id == "lines") {
+//                popup.setLngLat(e.lngLat)
+//                        .setHTML(feature.properties.title + "经纬度为：" + feature.geometry.coordinates[0])
+//                        .addTo(map);
+//            }
+        });
+
+    })
+
+    function preTimeEvent() {
+        var _index = parseInt($('#mapTime').data('layerindex'))
+        var _oldObj = _layerImageList[_index]
+        var _oldLayerId = "layer"+_oldObj.time
+        map.setLayoutProperty(_oldLayerId, 'visibility', 'none');
+
+        var _tempIndex = _index - 1
+        if(_tempIndex < 0){
+            _tempIndex = 0
+        }
+        var _obj = _layerImageList[_tempIndex]
+        var _activeLayerId = "layer"+_obj.time
+        map.setLayoutProperty(_activeLayerId, 'visibility', 'visible');
+        $('#mapTime').val(_obj.time);
+        $('#mapTime').data('layerindex',_tempIndex)
+    }
+
+    function nextTimeEvent() {
+        var _index = parseInt($('#mapTime').data('layerindex'))
+        var _oldObj = _layerImageList[_index]
+        var _oldLayerId = "layer"+_oldObj.time
+        map.setLayoutProperty(_oldLayerId, 'visibility', 'none');
+
+        var _tempIndex = _index + 1
+        if(_tempIndex >= _layerImageList.length){
+            _tempIndex = _layerImageList.length - 1
+        }
+        var _obj = _layerImageList[_tempIndex]
+        var _activeLayerId = "layer"+_obj.time
+        map.setLayoutProperty(_activeLayerId, 'visibility', 'visible');
+        $('#mapTime').val(_obj.time);
+        $('#mapTime').data('layerindex',_tempIndex)
+    }
+
+
+    // 图层显示和隐藏
+    function clickToolBarBT(e, id) {
+        var _classNames = e.className
+        if (_classNames.indexOf("active") == -1) { //不包含active
+            e.className = 'item active'
+            map.setLayoutProperty(id, 'visibility', 'visible');
+        } else {
+            e.className = 'item'
+            map.setLayoutProperty(id, 'visibility', 'none');
+        }
+
+    }
+
+    /**
+     * [获取提示内容]
+     * @param  {[type]} obj [properties属性]
+     * @return {[type]}     [string]
+     */
+    function getPopupMsg(obj) {
+        var _tempTepl = _markerTepl
+        _tempTepl = _tempTepl.replace("##name##", obj.name)
+            .replace("##mileage##", obj.mileage)
+            .replace("##design##", obj.design)
+            .replace("##plan##", obj.mileage)
+            .replace("##actual##", obj.mileage)
+        return _tempTepl
+    }
+
+    // 对Date的扩展，将 Date 转化为指定格式的String  
+    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，   
+    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)   
+    // 例子：   
+    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423   
+    // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18   
+    Date.prototype.Format = function(fmt) { //author: meizz   
+            var o = {
+                "M+": this.getMonth() + 1, //月份   
+                "d+": this.getDate(), //日   
+                "h+": this.getHours(), //小时   
+                "m+": this.getMinutes(), //分   
+                "s+": this.getSeconds(), //秒   
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+                "S": this.getMilliseconds() //毫秒   
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        // 加减日、月、年
+    Date.prototype.add = function(part, value) {
+        value *= 1;
+        if (isNaN(value)) {
+            value = 0;
+        }
+        switch (part) {
+            case "y":
+                this.setFullYear(this.getFullYear() + value);
+                break;
+            case "m":
+                this.setMonth(this.getMonth() + value);
+                break;
+            case "d":
+                this.setDate(this.getDate() + value);
+                break;
+            case "h":
+                this.setHours(this.getHours() + value);
+                break;
+            case "n":
+                this.setMinutes(this.getMinutes() + value);
+                break;
+            case "s":
+                this.setSeconds(this.getSeconds() + value);
+                break;
+            default:
+
+        }
+    }
+
+    // 卫星影像数组
+    var _layerImageList = [{
+        id: "image-20150102",
+        time: "20150102",
+        preLayerId:"ebdddcf1922d4f04b11182412ec8cfbb"
+    }, {
+        id: "image-20160101",
+        time: "20160101",
+        preLayerId:"ebdddcf1922d4f04b11182412ec8cfbb"
+    },{
+        id: "image-20170101",
+        time: "20170101",
+        preLayerId:"ebdddcf1922d4f04b11182412ec8cfbb"
+    }]
+
+    // marker 模板数据
+    var _markerTepl = '<div class="popup" style="color: #000000;font-size: 14px;">  ' +
+        '   <section> ' +
+        '       公路名：##name##' +
+        '   </section>' +
+        '   <section> ' +
+        '       全长：##mileage##KM' +
+        '   </section> ' +
+        '   <section>' +
+        '       设计单位：##design##' +
+        '   </section>' +
+        '   <section>' +
+        // '       计划进度：##plan##公里/月' +
+        // '   </section>' +
+        // '   <section>' +
+        // '       实际进度：##actual##公里/月' +
+        // '   </section>' +
+        '</div>'
+
+    // marker数据集
+    var _markerList = [{
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.6118, 43.9222
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5644, 44.2908
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5287, 44.8893
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5917, 45.4157
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.665, 45.8954
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.7345, 46.4811
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.6131, 46.8381
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }, {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                87.5382, 47.0522
+            ]
+        },
+        "properties": {
+            "name": "S251线福海-五家渠-乌鲁木齐",
+            "mileage": "380",
+            "design": "中交XXXX",
+            "plan": "5",
+            "actual": "6"
+        }
+    }]
+
+        var _lineArr = [
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            87.06493377685547,
+                            44.062919801560156
+                        ],
+                        [
+                            87.0340347290039,
+                            44.07550035175359
+                        ],
+                        [
+                            86.98974609375,
+                            44.08832482620684
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号1"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            86.98974609375,
+                            44.08832482620684
+                        ],
+                        [
+                            86.94957733154297,
+                            44.11174697584434
+                        ],
+                        [
+                            86.89979553222656,
+                            44.14969580090781
+                        ],
+                        [
+                            86.80538177490234,
+                            44.16742974366932
+                        ],
+                        [
+                            86.72264099121094,
+                            44.183188773710356
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号2"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            86.80538177490234,
+                            44.16742974366932
+                        ],
+                        [
+                            86.72264099121094,
+                            44.183188773710356
+                        ],
+                        [
+                            86.65534973144531,
+                            44.18737405815466
+                        ],
+                        [
+                            86.5671157836914,
+                            44.197466756928776
+                        ],
+                        [
+                            86.50703430175781,
+                            44.20165102756235
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号3"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            86.50703430175781,
+                            44.20165102756235
+                        ],
+                        [
+                            86.45278930664062,
+                            44.22035354490174
+                        ],
+                        [
+                            86.32987976074219,
+                            44.22601234661562
+                        ],
+                        [
+                            86.2701416015625,
+                            44.24175571484554
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号4"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            86.2701416015625,
+                            44.24175571484554
+                        ],
+                        [
+                            86.19426727294922,
+                            44.26462529002012
+                        ],
+                        [
+                            86.1214828491211,
+                            44.26732970536543
+                        ],
+                        [
+                            86.04011535644531,
+                            44.25036358790018
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号5"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+            {
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            86.04011535644531,
+                            44.25036358790018
+                        ],
+                        [
+                            85.93883514404297,
+                            44.25159318122485
+                        ],
+                        [
+                            85.83412170410156,
+                            44.272000675175235
+                        ],
+                        [
+                            85.75275421142578,
+                            44.28330780164046
+                        ],
+                        [
+                            85.74691772460938,
+                            44.28429092719978
+                        ]
+                    ]
+                },
+                "type": "Feature",
+                "properties": {
+                    "name": 0,
+                    "Id": 9,
+                    "uploadid": 339,
+                    "title":"G2312 桩号6"
+                },
+                "tile": {
+                    "z": 8,
+                    "x": 189,
+                    "y": 92
+                }
+            },
+
+        ]
+    </script>
+</body>

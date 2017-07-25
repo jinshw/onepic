@@ -1,0 +1,175 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+body {
+  background: #f5f5f5;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+header {
+  width: 100%;
+  height: 1rem;
+  background: #2ed0bb;
+}
+header .back {
+  float: left;
+  width: 1.5rem;
+  height: 1rem;
+  background: url(../img/back.png) no-repeat 0.24rem center;
+  background-size: 12% 30%;
+}
+header p {
+  width: 4.5rem;
+  height: 1rem;
+  float: left;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1rem;
+  font-size: 0.36rem;
+}
+header .atten {
+  float: right;
+  color: #fff;
+  width: 1.5rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  font-size: 0.28rem;
+}
+section {
+  width: 100%;
+  margin-top: 0.18rem;
+  overflow: auto;
+}
+section .doct-info {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 3px 1px #e5e5e5;
+}
+section .doct-info dl {
+  border-bottom: 1px solid #dfdfdf;
+  width: 93.5%;
+  margin: 0 0.24rem 0.2rem 0.24rem;
+  zoom: 1;
+}
+section .doct-info dl:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+section .doct-info dl dt {
+  width: 18%;
+  float: left;
+  padding-top: 0.25rem;
+}
+section .doct-info dl dt img {
+  width: 1.14rem;
+  height: 1.14rem;
+  border-radius: 50%;
+}
+section .doct-info dl dd {
+  width: 77%;
+  height: 100%;
+  float: right;
+  padding-top: 0.1rem;
+}
+section .doct-info dl dd p {
+  color: #656565;
+  font-size: 0.28rem;
+  line-height: 0.44rem;
+}
+section .doct-info dl dd p.doc-name {
+  color: #1a1a1a;
+  font-size: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+section .doct-info dl dd p.doc-name span {
+  font-size: 0.28rem;
+  padding-left: 0.44rem;
+}
+section .favarite {
+  font-size: 0.3rem;
+  line-height: 0.5rem;
+  margin-left: 0.24rem;
+}
+section .favarite small {
+  display: block;
+  color: #656565;
+  font-size: 0.28rem;
+}
+.star {
+  display: inline-block;
+  width: 1.14rem;
+  height: 0.18rem;
+  margin-top: 0.1rem;
+  margin-left: 0.3rem;
+}
+.doct-service {
+  width: 100%;
+  height: 3.85rem;
+  background: #fff;
+  margin-top: 0.18rem;
+  box-shadow: 0 2px 3px 1px #e5e5e5;
+}
+.doct-service .doct-tit {
+  width: 93.5%;
+  height: 0.65rem;
+  color: #1a1a1a;
+  line-height: 0.65rem;
+  margin: 0 0.24rem;
+  padding-left: 0.16rem;
+  font-size: 0.3rem;
+  background: url(../img/doct-line.png) no-repeat left;
+}
+.doct-service p {
+  width: 93.5%;
+  height: 1.08rem;
+  color: #1a1a1a;
+  margin: 0 0.24rem;
+  font-size: 0.3rem;
+  padding-left: 0.7rem;
+  border-top: 1px solid #dfdfdf;
+  line-height: 1.08rem;
+}
+.doct-service p.fam-doct {
+  background: url(../img/fam-doct.png) no-repeat left;
+  background-size: 7% 50%;
+}
+.doct-service p.con-inqu {
+  background: url(../img/con-inqu.png) no-repeat left;
+  background-size: 7% 50%;
+}
+.doct-service p.book-reg {
+  background: url(../img/book-reg.png) no-repeat left;
+  background-size: 7% 50%;
+}
+.doct-service p button {
+  width: 1.39rem;
+  height: 0.56rem;
+  color: #fff;
+  float: right;
+  border: none;
+  border-radius: 0.1rem;
+  margin-top: 0.26rem;
+  line-height: 0.56rem;
+  background: #2ed0bb;
+  font-size: 0.24rem;
+}
+.doct-service p button.app-sign,
+.doct-service p button.now-con {
+  background: #a1a2a2;
+}
