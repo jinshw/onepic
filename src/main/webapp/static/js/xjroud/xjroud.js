@@ -8,12 +8,12 @@ var map, layerT, layerRoad, layerYXALL, layerZJRoad, layerJSJD, layerJSJDTWD,
 //                host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
     host = "http://localhost:8090";
 //        本地测试地址
-url = host + "/iserver/services/map-xjsl3/rest/maps/新疆交通一张图";
-var ROAD_URL = host + "/iserver/services/map-xjsl3/rest/maps/新疆交通道路"
+url = host + "/iserver/services/map-xjsl/rest/maps/新疆交通一张图";
+var ROAD_URL = host + "/iserver/services/map-xjsl/rest/maps/新疆交通道路"
 //        var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu/rest/maps/GS_1_UTM45_1@test"
-var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu2/rest/maps/GLZJ"
-var XJ_YX_ALL = host + "/iserver/services/map-11jiyingxiang6102/rest/maps/新疆维吾尔自治区谷歌卫星_170609225420@11jiyingxiang610"
-var YX_2015 = host + "/iserver/services/map-twd20163/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu/rest/maps/GLZJ"
+var XJ_YX_ALL = host + "/iserver/services/map-11jiyingxiang610/rest/maps/新疆维吾尔自治区谷歌卫星_170609225420@11jiyingxiang610"
+var YX_2015 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
 var YX_2016 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
 var YX_2017 = host + "/iserver/services/map-twd20162/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
 var JSJD_URL = host + "/iserver/services/map-jsjd/rest/maps/T500@jsjd"

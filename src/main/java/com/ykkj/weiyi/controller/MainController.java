@@ -268,12 +268,16 @@ public class MainController {
 
 
     @RequestMapping("uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file,HttpServletRequest request) {
+    public void uploadFile(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response) throws Exception {
+        String filePath = "";
+        JSONObject json = new JSONObject();
+        json.put("status",200);
+        json.put("messages","success");
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
                 // 文件保存路径
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "fileuploader/"
+                filePath = request.getSession().getServletContext().getRealPath("/") + "fileuploader/"
                         + file.getOriginalFilename();
                 // 转存文件
                 file.transferTo(new File(filePath));
@@ -281,6 +285,9 @@ public class MainController {
                 e.printStackTrace();
             }
         }
-        return "";
+        List<List<String>> result = new ExcelUtil().readXlsx(filePath);
+
+        response.setContentType("application/json;charset=utf-8");
+        response.getWriter().print(json.toString());
     }
 }

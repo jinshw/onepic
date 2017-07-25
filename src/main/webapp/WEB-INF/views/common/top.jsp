@@ -9,6 +9,8 @@
 <link href="${ctx}/static/assets/css/custom-styles.css" rel="stylesheet"/>
 <!-- Google Fonts-->
 <link rel="stylesheet" href="${ctx}/static/assets/js/Lightweight-Chart/cssCharts.css">
+<%--fileinput--%>
+<link rel="stylesheet" href="${ctx}/static/lib/krajee/fileinput/css/fileinput.min.css">
 <%-- init css --%>
 <link rel="stylesheet" href="${ctx}/static/assets/css/init.css">
 <!-- JS Scripts-->
@@ -30,6 +32,8 @@
 <script src="${ctx}/static/assets/js/dataTables/jquery.dataTables.js"></script>
 <script src="${ctx}/static/assets/js/dataTables/dataTables.bootstrap.js"></script>
 <script src="${ctx}/static/lib/layer-v2.3/layer.js"></script>
+
+<script src="${ctx}/static/lib/krajee/fileinput/js/fileinput.min.js"></script>
 <!--ajaxRequest-->
 <script src="${ctx}/static/js/ajaxRequest.js"></script>
 

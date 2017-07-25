@@ -46,9 +46,14 @@
                 </div>
                 <div>
                     <form action="${ctx}/main/uploadFile" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" value="提交">
+                        <%--<input type="file" name="file">--%>
+                        <%--<input type="submit" value="提交">--%>
+                        <div>
+                            <label class="control-label">Select File</label>
+                            <input id="input-1" type="file" name="file" class="file">
+                        </div>
                     </form>
+                    <input id="input-700" name="file" type="file"  class="file-loading">
                 </div>
             </div>
             <div class="row">
@@ -490,6 +495,12 @@
 </div>
 <!-- /. WRAPPER  -->
 <script>
+    $("#input-700").fileinput({
+        uploadUrl: "${ctx}/main/uploadFile", // server upload action
+        uploadAsync: true,
+        maxFileCount: 5
+    });
+
     $(document).ready(function () {
 //        $('#dataTables-example').dataTable();
 
