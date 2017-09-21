@@ -279,13 +279,14 @@ public class MainController {
                 // 文件保存路径
                 filePath = request.getSession().getServletContext().getRealPath("/") + "fileuploader/"
                         + file.getOriginalFilename();
+                System.out.println(filePath);
                 // 转存文件
                 file.transferTo(new File(filePath));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        List<List<String>> result = new ExcelUtil().readXlsx(filePath);
+//        List<List<String>> result = new ExcelUtil().readXlsx(filePath);
 
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().print(json.toString());
