@@ -8,6 +8,7 @@ public class LocationUtils {
 
     /**
      * 求两个坐标点距离
+     *
      * @param lon1
      * @param lat1
      * @param lon2
@@ -88,7 +89,37 @@ public class LocationUtils {
                 Double.valueOf("43.746520995947378"),
                 Double.valueOf("90.893676757976152"),
                 Double.valueOf("43.751525878716507"));
+        double qq2 = LocationUtils.getQM(Double.valueOf("90.914306640938889"),
+                Double.valueOf("43.746520995947378"),
+                Double.valueOf("90.893676757976152"),
+                Double.valueOf("43.751525878716507"));
+        System.out.println(dd2 + "====" + qq2);
+    }
 
-        System.out.println(dd2);
+    /**
+     * 假设地球是个完美球体
+     *
+     * @param lon1
+     * @param lat1
+     * @param lon2
+     * @param lat2
+     * @return
+     */
+    public static double getQM(double lon1, double lat1, double lon2, double lat2) {
+
+        double a = 6378137, b = 6356752.314245, f = 1 / 298.257223563; // WGS-84
+        double R = b / 1000;
+        //L8 =π·q(1 + 3h/(10 + √(4-3h)))·(1 +mn)
+        //(q=a+b，h=((a-b)/(a+b))^2，m=22/7π-1，n=((a-b)/a)^33.697)
+        double q = a + b;
+        double h = Math.pow((a - b) / (a + b), 2);
+        double m = 22 / (7 * Math.PI) - 1;
+        double n = Math.pow(((a - b) / a), 33.697);
+
+//        double L8 = π·q(1 + 3h / (10 + √ (4 - 3 h)))·(1 + mn);
+//       double L8 = Math.PI * q * (1 + 3* h / (10 + Math.sqrt((4 - 3*h)))*(1 + m * n));
+        //L6= π√[2(a^2+b^2)] (较近似)
+        double L8 = Math.PI * Math.sqrt(2 * (Math.pow(a, 2) + Math.pow(b, 2)));
+        return L8;
     }
 }
