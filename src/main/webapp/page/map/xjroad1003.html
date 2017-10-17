@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../../static/lib/zTree-v3/css/zTreeStyle/zTreeStyle.css">
     <link rel="stylesheet" href="../../static/lib/zTree-v3/myZtreeCss.css">
     <link rel="stylesheet" href="../../static/lib/timelinev-0.0.1/css/timeline.css">
+    <link rel="stylesheet" href="../../static/js/mytimeline/css/jtimeline-default.css">
     <!--<link rel="stylesheet" href="../../static/lib/timelinev-0.0.1/demo.css">-->
 
     <script src="../../static/lib/zTree-v3/js/jquery.ztree.all.min.js"></script>
@@ -28,6 +29,7 @@
     <script src="../../static/lib/echarts-3.7/theme/macarons.js"></script>
     <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
     <script src="../../static/lib/timelinev-0.0.1/js/timeline.min.js"></script>
+    <script src="../../static/js/mytimeline/js/jtimeline.js"></script>
     <script src="../../static/js/ajaxRequest.js"></script>
 
     <style>
@@ -268,14 +270,16 @@
         }
 
         .yx-time-line {
-            width: 85%;
-            height: 36px;
-            background-color: #313d4f;
+            /*width: 85%;*/
+            height: 78px;
+            background-color: #ffffff;
+            /*background-color: #313d4f;*/
             position: absolute;
             top: 0;;
             left: 60px;
             z-index: 9999;
             border-radius: 4px;
+            padding: 0 10px;
         }
 
         .time-line {
@@ -526,33 +530,105 @@
         }
 
         /*==设置页面*/
+        /*mytimeline*/
+        .event_box {
+            margin: 0;
+        }
+
+        .parHd li {
+            /*color:#FFF;*/
+        }
+
+        /*==mytimeline*/
+        .show-item {
+            border:1px solid #ffffff;
+            padding: 5px 0;
+        }
     </style>
     <script type="text/javascript">
         var infowin = null;
         var map, layerT, layerRoad, layerYXALL, layerZJRoad, layerJSJD, layerJSJDTWD,
             layer20150913, layer20161210, layer20170101, layerGF2016WUYU, layerGJ2017WUYU,
             vectorLayer, layerPublic, layerSar2017, ponitLayer, drawPoint, mousePosition,
-            marker, markers
+            marker, markers;
+        var layerYX20162, layerYX201705, layerYX201706, layerYX201707,
+            layerYX2017081, layerYX2017082, layerYX201709, layerChangeArea;
+
         //                host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
         host = "http://localhost:8090";
         //        本地测试地址
-        //        url = host + "/iserver/services/map-xjsl/rest/maps/新疆交通一张图";
-        var url = host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GL"
-        var ROAD_URL = host + "/iserver/services/map-xjsl/rest/maps/新疆交通道路"
-        //        var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu/rest/maps/GS_1_UTM45_1@test"
-        var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu/rest/maps/GLZJ"
-        var XJ_YX_ALL = host + "/iserver/services/map-11jiyingxiang610/rest/maps/新疆维吾尔自治区谷歌卫星_170609225420@11jiyingxiang610"
-        var YX_2015 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
-        var YX_2016 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
-        var YX_2017 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
-        var JSJD_URL = host + "/iserver/services/map-jsjd/rest/maps/T500@jsjd"
-        var JSJD_URL_TWD = host + "/iserver/services/map-jsjdwukui/rest/maps/T500m@jsjdwukui"
-        var GF2016_WUYU_URL = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
-        var GJ2017_WUYU_URL = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
-        var YX_SL_2017 = host + "/iserver/services/map-yxsx2017/rest/maps/Export_Output_14@yxsx2017"
-        var SAR_2017 = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
+        var url = host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GL";
+        var ROAD_URL = host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GS"
+        var ZJ_ROAD = host + "/iserver/services/map-zaijiandaoluxin/rest/maps/GLZJ"
+        var XJ_YX_ALL = host + "/iserver/services/map-XJ_level11/rest/maps/XJ_11"
 
-        var DATA_URL = host + "/iserver/services/data-yxsx2017/rest/data"
+        var YX_2015 = [
+            host + "/iserver/services/map-WK20171011/rest/maps/WK2015"
+        ]
+
+        var YX_2016_1 = host + "/iserver/services/map-TWD20171012/rest/maps/TWD2016"
+        var YX_2016_2 = host + "/iserver/services/map-WK20171011/rest/maps/WK2016"
+
+
+        // var YX_2016 = [
+        //     host + "/iserver/services/map-TWD20171012/rest/maps/TWD2016",
+        //     host + "/iserver/services/map-WK20171011/rest/maps/WK2016",
+        //     ]
+        var YX_2017 = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707"
+
+        var YX_2017_05 = [
+            host + "/iserver/services/map-G216_20171012/rest/maps/G216_201705GJ",
+            host + "/iserver/services/map-TWD20171012/rest/maps/TWD201705"
+        ]
+        var YX_2017_06 = [
+            host + "/iserver/services/map-G216_20171012/rest/maps/G216_201706GF2",
+        ]
+        var YX_2017_07 = [
+            host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707",
+        ]
+        var YX_2017_08_1 = host + "/iserver/services/map-TWD20171012/rest/maps/TWD201708"
+        var YX_2017_08_2 = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201708"
+
+        // var YX_2017_08 = [
+        //     host + "/iserver/services/map-TWD20171012/rest/maps/TWD201708",
+        //     host + "/iserver/services/map-G575_20171010/rest/maps/G575_201708",
+        // ]
+        var YX_2017_09 = [
+            host + "/iserver/services/map-G575_20171010/rest/maps/G575_201709",
+        ]
+        var JSJD_URL = host + "/iserver/services/map-jsjd/rest/maps/T500@jsjd"
+        // var JSJD_URL = host + "/iserver/services/map-jsjd/rest/maps/T500@jsjd"
+        var JSJD_URL_TWD = host + "/iserver/services/map-jsjdwukui/rest/maps/T500m@jsjdwukui"
+
+        var CHANGE_AREA_MAP = host + "/iserver/services/map-G575ChangeArea/rest/maps/G575ChangeArea"
+        var CHANGE_AREA_DATA = host + "/iserver/services/data-G575ChangeArea/rest/data"
+
+        var GF2016_WUYU_URL = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707"
+        var GJ2017_WUYU_URL = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707"
+        var YX_SL_2017 = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707"
+        var SAR_2017 = host + "/iserver/services/map-G575_20171010/rest/maps/G575_201707"
+
+
+        // var DATA_URL = host + "/iserver/services/data-yxsx2017/rest/data"
+
+
+        // 本机测试地址
+        // var url = host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GL"
+        // var ROAD_URL = host + "/iserver/services/map-xjsl/rest/maps/新疆交通道路"
+        // var ZJ_ROAD = host + "/iserver/services/map-zaijiandaolu/rest/maps/GLZJ"
+        // var XJ_YX_ALL = host + "/iserver/services/map-11jiyingxiang610/rest/maps/新疆维吾尔自治区谷歌卫星_170609225420@11jiyingxiang610"
+        // var YX_2015 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+        // var YX_2016 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+        // var YX_2017 = host + "/iserver/services/map-twd2016/rest/maps/GF2_PMS2_E87_9_N43_6_20160620_@tuwuda20161"
+        // var JSJD_URL = host + "/iserver/services/map-jsjd/rest/maps/T500@jsjd"
+        // var JSJD_URL_TWD = host + "/iserver/services/map-jsjdwukui/rest/maps/T500m@jsjdwukui"
+        // var GF2016_WUYU_URL = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
+        // var GJ2017_WUYU_URL = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
+        // var YX_SL_2017 = host + "/iserver/services/map-yxsx2017/rest/maps/Export_Output_14@yxsx2017"
+        // var SAR_2017 = host + "/iserver/services/map-G216_GJ/rest/maps/SV1_20170505_L1B0000071309_SV2@G216_GJ_1"
+
+        // var DATA_URL = host + "/iserver/services/data-yxsx2017/rest/data"
+
 
         //        服务器地址
         //        url = host + "/iserver/services/map-WS_JSJT/rest/maps/JSGIST-GL";
@@ -594,8 +670,8 @@
 
             //初始化地图
             map = new SuperMap.Map("map", {
-                minZoom: 2,
-                maxZoom: 18,
+                minZoom: 0,
+                maxZoom: 11,
                 allOverlays: true,
                 controls: [
                     new SuperMap.Control.Navigation(),
@@ -628,6 +704,7 @@
             // 选择要素
             var callbacks = {
                 click: function (currentFeature) {
+                    console.log(currentFeature)
                     var _html = getPopupMsg(currentFeature.attributes)
                     layer.msg(_html);
                 }
@@ -771,21 +848,33 @@
             ponitLayer.addFeatures(feature);
 
             var getFeatureParameter, getFeatureService;
+
             getFeatureParameter = new SuperMap.REST.GetFeaturesByBufferParameters({
-                bufferDistance: 30,
+                bufferDistance: 0.0001,
                 //attributeFilter: "SMID > 0",
                 datasetNames: [
-                    "yxsx2017:Export_Output", "yxsx2017:Export_Output_2", "yxsx2017:Export_Output_3", "yxsx2017:Export_Output_4",
-                    "yxsx2017:Export_Output_5", "yxsx2017:Export_Output_6", "yxsx2017:Export_Output_7", "yxsx2017:Export_Output_8",
-                    "yxsx2017:Export_Output_9", "yxsx2017:Export_Output_10", "yxsx2017:Export_Output_11", "yxsx2017:Export_Output_12",
-                    "yxsx2017:Export_Output_13", "yxsx2017:Export_Output_14", "yxsx2017:Export_Output_15", "yxsx2017:Export_Output_16",
-                    "yxsx2017:Export_Output_17", "yxsx2017:Export_Output_18", "yxsx2017:Export_Output_19", "yxsx2017:Export_Output_20",
-                    "yxsx2017:Export_Output_21", "yxsx2017:Export_Output_22"
+                    "G575ChangeArea:变化线"
                 ],
                 returnContent: true,
                 geometry: drawGeometryArgs.feature.geometry
             });
-            getFeatureService = new SuperMap.REST.GetFeaturesByBufferService(DATA_URL, {
+
+            // getFeatureParameter = new SuperMap.REST.GetFeaturesByBufferParameters({
+            //     bufferDistance: 30,
+            //     //attributeFilter: "SMID > 0",
+            //     datasetNames: [
+            //         "yxsx2017:Export_Output", "yxsx2017:Export_Output_2", "yxsx2017:Export_Output_3", "yxsx2017:Export_Output_4",
+            //         "yxsx2017:Export_Output_5", "yxsx2017:Export_Output_6", "yxsx2017:Export_Output_7", "yxsx2017:Export_Output_8",
+            //         "yxsx2017:Export_Output_9", "yxsx2017:Export_Output_10", "yxsx2017:Export_Output_11", "yxsx2017:Export_Output_12",
+            //         "yxsx2017:Export_Output_13", "yxsx2017:Export_Output_14", "yxsx2017:Export_Output_15", "yxsx2017:Export_Output_16",
+            //         "yxsx2017:Export_Output_17", "yxsx2017:Export_Output_18", "yxsx2017:Export_Output_19", "yxsx2017:Export_Output_20",
+            //         "yxsx2017:Export_Output_21", "yxsx2017:Export_Output_22"
+            //     ],
+            //     returnContent: true,
+            //     geometry: drawGeometryArgs.feature.geometry
+            // });
+            // getFeatureService = new SuperMap.REST.GetFeaturesByBufferService(DATA_URL, {
+            getFeatureService = new SuperMap.REST.GetFeaturesByBufferService(CHANGE_AREA_DATA, {
                 eventListeners: {
                     "processCompleted": processCompletedPoint,
                     "processFailed": processFailed
@@ -795,15 +884,30 @@
         }
 
         function processCompletedPoint(getFeaturesEventArgs) {
+            console.log("******************0088")
+            console.log(getFeaturesEventArgs)
             var _feature = getFeaturesEventArgs.result.features[0]
-            if (_feature != undefined) {
-                var _attr = _feature.attributes
-                var _label = "名称：" + _attr.IMG_NAME + "<br>"
-                    + "类型：" + _attr.LEIXING + "<br>"
-                    + "拍摄时间：" + _attr.TIME
-                layer.msg(_label)
-            }
+            var _attr = _feature.attributes
+            layer.msg(_attr.NOTE)
+            // if (_feature != undefined) {
+            //     var _attr = _feature.attributes
+            //     var _label = "名称：" + _attr.IMG_NAME + "<br>"
+            //         + "类型：" + _attr.LEIXING + "<br>"
+            //         + "拍摄时间：" + _attr.TIME
+            //     layer.msg(_label)
+            // }
         }
+
+        // function processCompletedPoint(getFeaturesEventArgs) {
+        //     var _feature = getFeaturesEventArgs.result.features[0]
+        //     if (_feature != undefined) {
+        //         var _attr = _feature.attributes
+        //         var _label = "名称：" + _attr.IMG_NAME + "<br>"
+        //             + "类型：" + _attr.LEIXING + "<br>"
+        //             + "拍摄时间：" + _attr.TIME
+        //         layer.msg(_label)
+        //     }
+        // }
 
 
         function removeVectorLayer() {
@@ -813,12 +917,18 @@
 
         //异步加载图层
         function addLayer() {
-            map.addLayers([layerT, layerYXALL, layer20150913, layer20161210, layer20170101,
-                layerGF2016WUYU, layerGJ2017WUYU, layerSar2017, layerRoad, layerZJRoad,
+            // map.addLayers([layerT, layerYXALL, layer20150913, layer20161210, layer20170101,
+            //     layerGF2016WUYU, layerGJ2017WUYU, layerSar2017, layerRoad, layerZJRoad,
+            //     layerJSJD, layerJSJDTWD, ponitLayer, vectorLayer, markers]);
+
+            map.addLayers([layerT, layerYXALL,
+                layer20150913, layer20161210, layerYX20162,
+                layerYX201705, layerYX201706, layerYX201707, layerYX2017081, layerYX2017082, layerYX201709, layerChangeArea,
+                layerRoad, layerZJRoad,
                 layerJSJD, layerJSJDTWD, ponitLayer, vectorLayer, markers]);
 
-            //显示地图范围9732011.83931, 5440449.31251
-            map.setCenter(new SuperMap.LonLat(597829.62986, 4794549.56123), 2.5);
+            //显示地图范围9732011.83931, 5440449.31251    85.782, 41.344
+            map.setCenter(new SuperMap.LonLat(87.64226, 43.79469), 1);
 
             setLayerVisibility({
                 layerT: true,
@@ -872,37 +982,122 @@
         }
 
         function addlayer20150913() {
-            layer20150913 = new SuperMap.Layer.TiledDynamicRESTLayer("20150913", YX_2015, {
+            layer20150913 = new SuperMap.Layer.TiledDynamicRESTLayer("2015年影像", YX_2015, {
                 transparent: true,
                 cacheEnabled: true
             });
 
             layer20150913.events.on({
-                "layerInitialized": addlayer20161210
+                "layerInitialized": addlayer20161
             });
         }
 
-        function addlayer20161210() {
-            layerPublic = layer20161210 = new SuperMap.Layer.TiledDynamicRESTLayer("20161210", YX_2016, {
+        function addlayer20161() {
+            layerPublic = layer20161210 = new SuperMap.Layer.TiledDynamicRESTLayer("2016年影像_1", YX_2016_1, {
                 transparent: true,
                 cacheEnabled: true
             });
 
             layer20161210.events.on({
-                "layerInitialized": addlayer20170101
+                "layerInitialized": addlayer20162
             });
         }
 
-        function addlayer20170101() {
-            layer20170101 = new SuperMap.Layer.TiledDynamicRESTLayer("20170101", YX_2017, {
+        function addlayer20162() {
+            layerYX20162 = new SuperMap.Layer.TiledDynamicRESTLayer("2016年影像_2", YX_2016_2, {
                 transparent: true,
                 cacheEnabled: true
             });
 
-            layer20170101.events.on({
+            layerYX20162.events.on({
+                "layerInitialized": addlayerYX201705
+            });
+        }
+
+        // function addlayer20170101() {
+        //     layer20170101 = new SuperMap.Layer.TiledDynamicRESTLayer("20170101", YX_2017, {
+        //         transparent: true,
+        //         cacheEnabled: true
+        //     });
+
+        //     layer20170101.events.on({
+        //         "layerInitialized": addlayerJSJD
+        //     });
+        // }
+
+        function addlayerYX201705() {
+            layerYX201705 = new SuperMap.Layer.TiledDynamicRESTLayer("201705影像", YX_2017_05, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layerYX201705.events.on({
+                "layerInitialized": addlayerYX201706
+            });
+        }
+
+        function addlayerYX201706() {
+            layerYX201706 = new SuperMap.Layer.TiledDynamicRESTLayer("201706影像", YX_2017_06, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layerYX201706.events.on({
+                "layerInitialized": addlayerYX201707
+            });
+        }
+
+        function addlayerYX201707() {
+            layerYX201707 = new SuperMap.Layer.TiledDynamicRESTLayer("201707影像", YX_2017_07, {
+                transparent: true,
+                cacheEnabled: true
+            });
+
+            layerYX201707.events.on({
+                "layerInitialized": addlayerYX2017081
+            });
+        }
+
+        function addlayerYX2017081() {
+            layerYX2017081 = new SuperMap.Layer.TiledDynamicRESTLayer("201708影像_1", YX_2017_08_1, {
+                transparent: true,
+                cacheEnabled: true
+            });
+            layerYX2017081.events.on({
+                "layerInitialized": addlayerYX2017082
+            });
+        }
+
+        function addlayerYX2017082() {
+            layerYX2017082 = new SuperMap.Layer.TiledDynamicRESTLayer("201708影像_2", YX_2017_08_2, {
+                transparent: true,
+                cacheEnabled: true
+            });
+            layerYX2017082.events.on({
+                "layerInitialized": addlayerYX201709
+            });
+        }
+
+        function addlayerYX201709() {
+            layerYX201709 = new SuperMap.Layer.TiledDynamicRESTLayer("201709影像", YX_2017_09, {
+                transparent: true,
+                cacheEnabled: true
+            });
+            layerYX201709.events.on({
+                "layerInitialized": addlayerChangeArea
+            });
+        }
+
+        function addlayerChangeArea() {
+            layerChangeArea = new SuperMap.Layer.TiledDynamicRESTLayer("变化线路", CHANGE_AREA_MAP, {
+                transparent: true,
+                cacheEnabled: true
+            });
+            layerChangeArea.events.on({
                 "layerInitialized": addlayerJSJD
             });
         }
+
 
         function addlayerJSJD() {
             layerJSJD = new SuperMap.Layer.TiledDynamicRESTLayer("jsjd", JSJD_URL, {
@@ -969,52 +1164,52 @@
             isZoom = false;
 
 
-        function changeLayerYXTime(id, isVisib) {
-            if (id == 'layer20150913') {
-                layer20150913.setVisibility(isVisib)
-                layer20161210.setVisibility(!isVisib)
-                layer20170101.setVisibility(!isVisib)
-            } else if (id == 'layer20161210') {
-                layer20150913.setVisibility(!isVisib)
-                layer20161210.setVisibility(isVisib)
-                layer20170101.setVisibility(!isVisib)
-            } else if (id == 'layer20170101') {
-                layer20150913.setVisibility(!isVisib)
-                layer20161210.setVisibility(!isVisib)
-                layer20170101.setVisibility(isVisib)
-            }
+        // function changeLayerYXTime(id, isVisib) {
+        //     if (id == 'layer20150913') {
+        //         layer20150913.setVisibility(isVisib)
+        //         layer20161210.setVisibility(!isVisib)
+        //         layer20170101.setVisibility(!isVisib)
+        //     } else if (id == 'layer20161210') {
+        //         layer20150913.setVisibility(!isVisib)
+        //         layer20161210.setVisibility(isVisib)
+        //         layer20170101.setVisibility(!isVisib)
+        //     } else if (id == 'layer20170101') {
+        //         layer20150913.setVisibility(!isVisib)
+        //         layer20161210.setVisibility(!isVisib)
+        //         layer20170101.setVisibility(isVisib)
+        //     }
 
-        }
+        // }
 
         // 图层显示和隐藏
-        function clickToolBarBT(e, id) {
-            var _classNames = e.className
-            if (_classNames.indexOf("active") == -1) { //不包含active
-                e.className = 'item active'
-                layerChange(id, true)
-            } else {
-                e.className = 'item'
-                layerChange(id, false)
-            }
+        // function clickToolBarBT(e, id) {
+        //     var _classNames = e.className
+        //     if (_classNames.indexOf("active") == -1) { //不包含active
+        //         e.className = 'item active'
+        //         layerChange(id, true)
+        //     } else {
+        //         e.className = 'item'
+        //         layerChange(id, false)
+        //     }
 
-        }
+        // }
 
-        function layerChange(id, isVisib) {
-            if (id == 'yx') {
-                layerYXALL.setVisibility(isVisib)
+        // function layerChange(id, isVisib) {
+        //     if (id == 'yx') {
+        //         layerYXALL.setVisibility(isVisib)
 
-                layerT.setVisibility(!isVisib)
-            } else {
-                // layerYXALL.setVisibility(false)
-                layerT.setVisibility(isVisib)
-            }
+        //         layerT.setVisibility(!isVisib)
+        //     } else {
+        //         // layerYXALL.setVisibility(false)
+        //         layerT.setVisibility(isVisib)
+        //     }
 
-        }
+        // }
 
         //影像切换
-        function yxToggle() {
-            $("#timeListId").toggle()
-        }
+        // function yxToggle() {
+        //     $("#timeListId").toggle()
+        // }
 
         // 查询影像信息
         function queryYXInfo() {
@@ -1154,51 +1349,51 @@
 
         }
 
-        function changeYXTime(e) {
-            var _selectBoxs = $("input[class='yx-time']:checked")
-            setLayerVisibility({
-                layerYXALL: true,
-                layer20150913: false,
-                layer20161210: false,
-                layer20170101: false,
-                layerGF2016WUYU: false,
-                layerGJ2017WUYU: false
-            })
-            if ($("#box2017").prop("checked")) {
-                queryYXInfo();// 查询影像数据
-            }
+        // function changeYXTime(e) {
+        //     var _selectBoxs = $("input[class='yx-time']:checked")
+        //     setLayerVisibility({
+        //         layerYXALL: true,
+        //         layer20150913: false,
+        //         layer20161210: false,
+        //         layer20170101: false,
+        //         layerGF2016WUYU: false,
+        //         layerGJ2017WUYU: false
+        //     })
+        //     if ($("#box2017").prop("checked")) {
+        //         queryYXInfo();// 查询影像数据
+        //     }
 
-            for (var i = 0; i < _selectBoxs.length; i++) {
-                var _selId = $(_selectBoxs[i]).attr("id")
-                if (_selId == 'box2015') {
-                    layer20150913.setVisibility(true)
-                } else if (_selId == 'box2016') {
-                    layer20161210.setVisibility(true)
-                    layerGF2016WUYU.setVisibility(true)
-                } else if (_selId == 'box2017') {
-                    layer20170101.setVisibility(true)
-                    layerGJ2017WUYU.setVisibility(true)
-                } else if (_selId == '2017SAR') {
-                    layerSar2017.setVisibility(true)
-                }
-            }
-
-
-            if (_selectBoxs.length >= 2) {
-                var _id = $(_selectBoxs[_selectBoxs.length - 1]).attr("id")
-                if (_id == "box2015") {
-                } else if (_id == "box2016") {
-                    layerPublic = layer20161210
-                } else if (_id == "box2017") {
-                    layerPublic = layer20170101
-                } else if (_id == "2017SAR") {
-                    layerPublic = layerSar2017
-                }
+        //     for (var i = 0; i < _selectBoxs.length; i++) {
+        //         var _selId = $(_selectBoxs[i]).attr("id")
+        //         if (_selId == 'box2015') {
+        //             layer20150913.setVisibility(true)
+        //         } else if (_selId == 'box2016') {
+        //             layer20161210.setVisibility(true)
+        //             layerGF2016WUYU.setVisibility(true)
+        //         } else if (_selId == 'box2017') {
+        //             layer20170101.setVisibility(true)
+        //             layerGJ2017WUYU.setVisibility(true)
+        //         } else if (_selId == '2017SAR') {
+        //             layerSar2017.setVisibility(true)
+        //         }
+        //     }
 
 
-            } else {
-            }
-        }
+        //     if (_selectBoxs.length >= 2) {
+        //         var _id = $(_selectBoxs[_selectBoxs.length - 1]).attr("id")
+        //         if (_id == "box2015") {
+        //         } else if (_id == "box2016") {
+        //             layerPublic = layer20161210
+        //         } else if (_id == "box2017") {
+        //             layerPublic = layer20170101
+        //         } else if (_id == "2017SAR") {
+        //             layerPublic = layerSar2017
+        //         }
+
+
+        //     } else {
+        //     }
+        // }
 
         // 注销点控件
         function deactiveAll() {
@@ -1251,15 +1446,31 @@
             layerRoad.setVisibility(obj["layerRoad"] || true)
             layerYXALL.setVisibility(obj["layerYXALL"] || false)
             layerZJRoad.setVisibility(obj["layerZJRoad"] || true)
+
+            // layer20150913.setVisibility(obj["layer20150913"] || false)
+            // layer20161210.setVisibility(obj["layer20161210"] || false)
+            // layer20170101.setVisibility(obj["layer20170101"] || false)
             layer20150913.setVisibility(obj["layer20150913"] || false)
             layer20161210.setVisibility(obj["layer20161210"] || false)
-            layer20170101.setVisibility(obj["layer20170101"] || false)
+
+            layerYX20162.setVisibility(obj["layerYX20162"] || false)
+
+            layerYX201705.setVisibility(obj["layerYX201705"] || false)
+            layerYX201706.setVisibility(obj["layerYX201706"] || false)
+            layerYX201707.setVisibility(obj["layerYX201707"] || false)
+            layerYX2017081.setVisibility(obj["layerYX2017081"] || false)
+            layerYX2017082.setVisibility(obj["layerYX2017082"] || false)
+
+            layerYX201709.setVisibility(obj["layerYX201709"] || false)
+
             vectorLayer.setVisibility(obj["vectorLayer"] || false)
             layerJSJD.setVisibility(obj["layerJSJD"] || false)
             layerJSJDTWD.setVisibility(obj["layerJSJDTWD"] || false)
-            layerGF2016WUYU.setVisibility(obj["layerGF2016WUYU"] || false)
-            layerGJ2017WUYU.setVisibility(obj["layerGJ2017WUYU"] || false)
-            layerSar2017.setVisibility(obj["layerSar2017"] || false)
+
+            // layerGF2016WUYU.setVisibility(obj["layerGF2016WUYU"] || false)
+            // layerGJ2017WUYU.setVisibility(obj["layerGJ2017WUYU"] || false)
+            // layerSar2017.setVisibility(obj["layerSar2017"] || false)
+
             ponitLayer.setVisibility(obj["ponitLayer"] || false)
             markers.setVisibility(obj["markers"] || false)
 
@@ -1285,41 +1496,49 @@
             $("#projectInfoAreaId").css('display', obj.echartsArea || 'none')
             $("#zjGLChartArea").css('display', obj.zjGLChart || 'none')
             $("#projectInfoBt").prop("checked", obj.projectInfo || false)
+
+            $("#yxhcInfoBt").prop("checked", obj.yxhcInfoBt || false)
+            $("#yxhcInfoArea").css("display", "none")
+
         }
 
 
         function timeLineLayer() {
             var checkDate = $("#timeLine div[class='time-item active']").data("layer")
+
             setLayerVisibility({
                 layerYXALL: true,
                 layer20150913: false,
                 layer20161210: false,
-                layer20170101: false,
-                layerGF2016WUYU: false,
-                layerGJ2017WUYU: false
+                layerYX20162: false,
+                layerYX201705: false,
+                layerYX201706: false,
+                layerYX201707: false,
+                layerYX2017081: false,
+                layerYX2017082: false,
+                layerYX201709: false,
             })
             if ($("#box2017").prop("checked")) {
                 queryYXInfo();// 查询影像数据
             }
 
-            if (checkDate == '20170930') {
+
+            if (checkDate == '2015') {
                 layer20150913.setVisibility(true)
-            } else if (checkDate == '20170920') {
-                layerGF2016WUYU.setVisibility(true)
-            } else if (checkDate == '20170910') {
-                layerGJ2017WUYU.setVisibility(true)
-            } else if (checkDate == '20170830') {
-                layerSar2017.setVisibility(true)
-            } else if (checkDate == '20170820') {
+            } else if (checkDate == '2016') {
                 layer20161210.setVisibility(true)
-            } else if (checkDate == '20170810') {
-                layer20170101.setVisibility(true)
-            } else if (checkDate == '20170730') {
-                layerSar2017.setVisibility(true)
-            } else if (checkDate == '20170720') {
-                layerSar2017.setVisibility(true)
-            } else if (checkDate == '20170710') {
-                layerSar2017.setVisibility(true)
+                layerYX20162.setVisibility(true)
+            } else if (checkDate == '201705') {
+                layerYX201705.setVisibility(true)
+            } else if (checkDate == '201706') {
+                layerYX201706.setVisibility(true)
+            } else if (checkDate == '201707') {
+                layerYX201707.setVisibility(true)
+            } else if (checkDate == '201708') {
+                layerYX2017081.setVisibility(true)
+                layerYX2017082.setVisibility(true)
+            } else if (checkDate == '201709') {
+                layerYX201709.setVisibility(true)
             }
         }
 
@@ -1376,7 +1595,8 @@
                     jdjdTable: "none",
                     jcxxList: "none",
                     timeLine: "block",
-                    toolbar: "block"
+                    toolbar: "block",
+                    yxhcInfoBt: true
                 })
 
                 $("#isShowMarker").prop("checked", false)
@@ -1400,16 +1620,26 @@
                     queryYXInfo();// 查询影像数据
                 }
 
-                map.setCenter(new SuperMap.LonLat(597829.62986, 4794549.56123), 5);
+                map.setCenter(new SuperMap.LonLat(87.40448, 43.87231), 5);
 
                 setLayerVisibility({
                     layerT: false,
                     layerRoad: true,
                     layerYXALL: true,
                     layerZJRoad: true,
-                    layer20150913: true,
-                    layer20161210: true,
-                    layer20170101: false,
+                    // layer20150913: true,
+                    // layer20161210: true,
+                    // layer20170101: false,
+                    layer20150913: false,
+                    layer20161210: false,
+                    layerYX20162: false,
+                    layerYX201705: false,
+                    layerYX201706: false,
+                    layerYX201707: false,
+                    layerYX2017081: false,
+                    layerYX2017082: false,
+                    layerYX201709: true,
+
                     vectorLayer: true,
                     layerGF2016WUYU: true,
                     layerGJ2017WUYU: false
@@ -1440,7 +1670,7 @@
                 $("#leftSider").css("display", "block")
                 $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
                 vectorLayer.removeAllFeatures();// 去除高亮
-                map.setCenter(new SuperMap.LonLat(520677, 4866758.56123), 7);
+                map.setCenter(new SuperMap.LonLat(87.40448, 43.87231), 5);
                 if ($("#box2017").prop("checked")) {
                     queryYXInfo();// 查询影像数据
                 }
@@ -1527,13 +1757,63 @@
                     $(".time-line-year-area i").addClass("fa-caret-left")
                 }
             });
+            $("#timeLine").initTimeLine({
+                times: [
+                    "2015年",
+                    "2016年",
+                    "201705",
+                    "201706",
+                    "201707",
+                    "201708",
+                    "201709"
+                ]
+            }, function (item) {
+                console.log($(item).text())
+
+                var checkDate = $(item).text().trim()
+
+                setLayerVisibility({
+                    layerYXALL: true,
+                    layer20150913: false,
+                    layer20161210: false,
+                    layerYX20162: false,
+                    layerYX201705: false,
+                    layerYX201706: false,
+                    layerYX201707: false,
+                    layerYX2017081: false,
+                    layerYX2017082: false,
+                    layerYX201709: false,
+                })
+                if ($("#box2017").prop("checked")) {
+                    queryYXInfo();// 查询影像数据
+                }
+                if (checkDate == '2015年') {
+                    layer20150913.setVisibility(true)
+                } else if (checkDate == '2016年') {
+                    layer20161210.setVisibility(true)
+                    layerYX20162.setVisibility(true)
+                } else if (checkDate == '201705') {
+                    layerYX201705.setVisibility(true)
+                } else if (checkDate == '201706') {
+                    layerYX201706.setVisibility(true)
+                } else if (checkDate == '201707') {
+                    layerYX201707.setVisibility(true)
+                } else if (checkDate == '201708') {
+                    layerYX2017081.setVisibility(true)
+                    layerYX2017082.setVisibility(true)
+                } else if (checkDate == '201709') {
+                    layerYX201709.setVisibility(true)
+                }
 
 
-            $('.timeline-2').Timeline({
+            })
+
+
+            /*$('.timeline-2').Timeline({
                 itemClass: 'box-item',
                 dotsPosition: 'top',
                 startItem: 'last'
-            });
+            });*/
 
 
         });
@@ -1637,7 +1917,7 @@
              </div>
          </section>-->
         <div class="yx-time-line" id="timeLine" style="display: none;">
-            <div class="time-line"></div>
+            <!--<div class="time-line"></div>
             <div class="time-line-year">
                 <div class="time-line-year-area">
                     <i class="fa fa-caret-left" aria-hidden="true"></i>
@@ -1645,6 +1925,28 @@
                 </div>
             </div>
             <div class="time-line-date">
+                <div class="time-item" data-layer="2015">
+                    <div class="dsk-circle">15年</div>
+                </div>
+                <div class="time-item" data-layer="2016">
+                    <div class="dsk-circle">16年</div>
+                </div>
+                <div class="time-item" data-layer="201705">
+                    <div class="dsk-circle">17/05</div>
+                </div>
+                <div class="time-item" data-layer="201706">
+                    <div class="dsk-circle">17/06</div>
+                </div>
+                <div class="time-item" data-layer="201707">
+                    <div class="dsk-circle">17/07</div>
+                </div>
+                <div class="time-item" data-layer="201708">
+                    <div class="dsk-circle">17/08</div>
+                </div>
+                <div class="time-item active" data-layer="201709">
+                    <div class="dsk-circle">17/09</div>
+                </div>
+                &lt;!&ndash;
                 <div class="time-item" data-layer="20170510">
                     <div class="dsk-circle">05/10</div>
                 </div>
@@ -1689,8 +1991,8 @@
                 </div>
                 <div class="time-item active" data-layer="20170930">
                     <div class="dsk-circle">09/30</div>
-                </div>
-            </div>
+                </div> &ndash;&gt;
+            </div>-->
             <!--  <div class="timeline-container timeline-theme-2">
                   <div class="timeline timeline-small-box timeline-2">
                       <div class="theme-1" data-time="20170110"></div>
@@ -1828,8 +2130,40 @@
                                 </div>
                                 <div id="zhXMJL" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/zh-xmjl.png"
-                                             alt="" style="width: 100%;">
+                                        <!--<img src="../../static/images/onepic-home-img/zh-xmjl.png"-->
+                                        <!--alt="" style="width: 100%;">-->
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>姓名</th>
+                                                <th>单位</th>
+                                                <th>备注</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>张三</td>
+                                                <td>驻办地</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>李四</td>
+                                                <td>施工单位</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>王五</td>
+                                                <td>施工单位</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>赵六</td>
+                                                <td>总监</td>
+                                                <td></td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -1842,8 +2176,80 @@
                                 </div>
                                 <div id="zhXMXX" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/zh-xm-xinxi.png"
-                                             alt="" style="width: 100%;">
+                                        <!--<img src="../../static/images/onepic-home-img/zh-xm-xinxi.png"-->
+                                             <!--alt="" style="width: 100%;">-->
+                                        <div class="container-fluid" style="margin: 0 5px;">
+                                            <div class="row show-row-line">
+                                                <div class="col-md-3 show-item">
+                                                    项目编号：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    XJ-2017-10001
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    项目名称：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    G575
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 show-item">
+                                                    项目负责人：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    张三
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    全长（KM）：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    2000
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 show-item">
+                                                    批准概算（元）：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    330000000
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    开工日期：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    2017-05-23
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 show-item">
+                                                    交工日期：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    2019-08-23
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    竣工日期：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    2019-10-23
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 show-item">
+                                                    计划工期（月）：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    40
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    项目联系电话：
+                                                </div>
+                                                <div class="col-md-3 show-item">
+                                                    6188897
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2301,12 +2707,17 @@
                         </li>
                         <li class="list-group-item">
                             <label>
-                                <input type="checkbox" id="isScanPicInfo"> 查看影像信息
+                                <input type="checkbox" id="isScanPicInfo"> 查看影像变化信息
                             </label>
                         </li>
                         <li class="list-group-item">
                             <label>
                                 <input type="checkbox" id="projectInfoBt" checked> 项目基本信息
+                            </label>
+                        </li>
+                        <li class="list-group-item">
+                            <label>
+                                <input type="checkbox" id="yxhcInfoBt"> 影像核查信息
                             </label>
                         </li>
                     </ul>
@@ -2325,6 +2736,11 @@
                  position: absolute;bottom: 2px;left: 520px;">
 
             </div>
+        </div>
+        <!-- 影像核查信息显示 -->
+        <div class="yxhc-info-area" id="yxhcInfoArea" style="width:1060px;height:60px;background-color:#313d4f;
+            z-index:10002;position:absolute;top:76px;left:60px;display:none;color:#fff;padding:10px;">
+            G575巴里坤-哈密段，2017 年9月动工八处，施工里程为16公里，施工主要为桥梁桩基础施工、便道施工、清表施工。
         </div>
     </div>
 
@@ -2384,7 +2800,8 @@
                 });
             } else if (treeNode.gljb == 'GD') {
                 queryParam = new SuperMap.REST.FilterParameter({
-                    name: "一般国道@交通#2#4",
+                    //name: "一般国道@交通#2#4",
+                    name: "GLGD_1@xj#4",
                     attributeFilter: "SmID = " + treeNode.smId
                 });
             } else if (treeNode.gljb == 'SD') {
@@ -2411,6 +2828,10 @@
                         // 显示项目信息
                         if ($("#projectInfoBt").prop("checked")) {
                             $("#projectInfoAreaId").css("display", "block")
+                        }
+                        // 显示影像核查信息
+                        if ($("#yxhcInfoBt").prop("checked")) {
+                            $("#yxhcInfoArea").css("display", "block")
                         }
                     },
                     "processFailed": processFailed
@@ -2464,7 +2885,8 @@
             name: "高速@交通#3#2"
         });
         queryParamGD = new SuperMap.REST.FilterParameter({
-            name: "一般国道@交通#2#4"
+            // name: "一般国道@交通#2#4"
+            name: "GLGD_1@xj#4"
         });
         queryParamSD = new SuperMap.REST.FilterParameter({
             name: "一般省道@交通#3"
@@ -2522,6 +2944,7 @@
     }
 
     function processFailed(e) {
+        console.log(e)
         alert(e.error.errorMsg);
     }
 
@@ -2700,11 +3123,19 @@
     function getPopupMsg(obj) {
         var _tempTepl = _markerTepl
         _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
-            .replace("##mileage##", parseInt(obj.length))
-            .replace("##startTime##", obj.begin_User)
-            .replace("##endTime##", obj.end_User)
-            .replace("##jianjie##", obj.jianjie)
+            .replace("##mileage##", "70")
+            .replace("##startTime##", "2017-5")
+            .replace("##endTime##", "2019-10")
+            .replace("##jianjie##", "G575巴里坤-哈密段")
             .replace("##actual##", obj.mileage)
+
+        // _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
+        //     .replace("##mileage##", parseInt(obj.length))
+        //     .replace("##startTime##", obj.begin_User)
+        //     .replace("##endTime##", obj.end_User)
+        //     .replace("##jianjie##", obj.jianjie)
+        //     .replace("##actual##", obj.mileage)
+
         return _tempTepl
     }
 
@@ -2913,7 +3344,7 @@
             trigger: 'axis'
         },
         legend: {
-            data:['计划投资','实际投资']
+            data: ['计划投资', '实际投资']
         },
         toolbox: {
             show: true,
@@ -2927,10 +3358,10 @@
                 saveAsImage: {}
             }
         },
-        xAxis:  {
+        xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['201701','201702','201703','201704','201705','201706','201707','201708','201709','201710']
+            data: ['201701', '201702', '201703', '201704', '201705', '201706', '201707', '201708', '201709', '201710']
         },
         yAxis: {
             type: 'value',
@@ -2940,25 +3371,25 @@
         },
         series: [
             {
-                name:'计划投资',
-                type:'line',
-                data:[10000, 21000, 40020, 53000, 66000, 72000, 82000,91000,80000,72000,61000,30000],
+                name: '计划投资',
+                type: 'line',
+                data: [10000, 21000, 40020, 53000, 66000, 72000, 82000, 91000, 80000, 72000, 61000, 30000],
                 markPoint: {
                     data: [
                         {type: 'max', name: '最大值'},
                         {type: 'min', name: '最小值'}
                     ]
                 },
-               /* markLine: {
-                    data: [
-                        {type: 'average', name: '平均值'}
-                    ]
-                }*/
+                /* markLine: {
+                     data: [
+                         {type: 'average', name: '平均值'}
+                     ]
+                 }*/
             },
             {
-                name:'实际投资',
-                type:'line',
-                data:[15000, 26000, 43000, 49000, 60000, 79000, 87200,94000,76000,69000,58000,25000],
+                name: '实际投资',
+                type: 'line',
+                data: [15000, 26000, 43000, 49000, 60000, 79000, 87200, 94000, 76000, 69000, 58000, 25000],
                 markPoint: {
                     data: [
                         {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
@@ -3005,6 +3436,13 @@
                 $("#projectInfoAreaId").css("display", "block")
             } else {
                 $("#projectInfoAreaId").css("display", "none")
+            }
+        })
+        $("#yxhcInfoBt").change(function () {
+            if ($(this).prop("checked")) {
+                $("#yxhcInfoArea").css("display", "block")
+            } else {
+                $("#yxhcInfoArea").css("display", "none")
             }
         })
     })
