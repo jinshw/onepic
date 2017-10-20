@@ -9,7 +9,6 @@
           href="../../static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
           href="../../static/lib/bootstrap-table/dist/bootstrap-table.css">
-
     <script type="text/javascript"
             src="../../static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
     <script type="text/javascript"
@@ -21,1401 +20,16 @@
     <link rel="stylesheet" href="../../static/lib/zTree-v3/myZtreeCss.css">
     <link rel="stylesheet" href="../../static/lib/timelinev-0.0.1/css/timeline.css">
     <link rel="stylesheet" href="../../static/js/mytimeline/css/jtimeline-default.css">
-    <!--<link rel="stylesheet" href="../../static/lib/timelinev-0.0.1/demo.css">-->
+    <link rel="stylesheet" href="../../static/css/xjroud/xjroud.css">
 
     <script src="../../static/lib/zTree-v3/js/jquery.ztree.all.min.js"></script>
     <script src="../../static/lib/layer-v2.3/layer.js"></script>
     <script src="../../static/lib/echarts-3.7/echarts.min.js"></script>
     <script src="../../static/lib/echarts-3.7/theme/macarons.js"></script>
     <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
-    <script src="../../static/js/xjroud/config.js"></script>
     <script src="../../static/lib/timelinev-0.0.1/js/timeline.min.js"></script>
     <script src="../../static/js/mytimeline/js/jtimeline.js"></script>
     <script src="../../static/js/ajaxRequest.js"></script>
-
-    <style>
-        * {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .headerWrap a {
-            color: #fff;
-        }
-
-        /*.nav>li:hover>a{ background: rgba(0,0,0,.2)}*/
-        .nav > li:hover > a {
-            color: #0B61A4;
-            background: #f5f5f5
-        }
-
-        .mianNav {
-            position: relative;
-        }
-
-        .mianNav p {
-            margin: 0;
-            display: none;
-        }
-
-        .mianNav .caret {
-            position: absolute;
-            top: 8px;
-            right: 15px;
-            color: #666;
-        }
-
-        .dropdown-menu {
-            z-index: 10003;
-        }
-
-        .mianNav .dropdown-menu {
-            left: 0;
-            z-index: 1;
-            border: none;
-            right: auto
-        }
-
-        .mianNav .dropdown-menu li {
-            position: relative;
-        }
-
-        .mianNav .dropdown-menu a {
-            display: inline-block;
-            padding: 3px 10px;
-            font-size: 12px;
-            color: #666
-        }
-
-        .mianNav ul li:last-child {
-            border-radius: 0 0 4px 4px;
-        }
-
-        .mianNav span {
-            font-size: 12px;
-        }
-
-        /*line bar*/
-        .mymap-toolbar-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            background-color: transparent;
-        }
-
-        .mymap-toolbar-container .item {
-            height: 34px;
-            width: 87px;
-            padding-left: 14px;
-            padding-right: 14px;
-            cursor: pointer;
-            background-color: #313d4f;
-            display: inline-block;
-            font-size: 12px;
-            line-height: 34px;
-            text-align: center;
-            white-space: nowrap;
-            color: #abacae;
-            position: relative;
-            float: right;
-            box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
-        }
-
-        .mymap-toolbar-container .active {
-            color: #ffffff;
-        }
-
-        .mymap-toolbar-container .item:hover {
-            color: #ffffff;
-        }
-
-        .time-bar {
-            height: 34px;
-            width: 130px;
-            padding-left: 14px;
-            padding-right: 14px;
-            cursor: pointer;
-            background-color: #313d4f;
-            display: inline-block;
-            font-size: 12px;
-            line-height: 34px;
-            text-align: center;
-            white-space: nowrap;
-            color: #abacae;
-            position: relative;
-            float: right;
-            box-shadow: 1px 2px 1px rgba(0, 0, 0, .15);
-        }
-
-        .angle-left-bt {
-            position: absolute;
-            left: 0;
-            padding: 0 10px;
-            top: 3px;
-        }
-
-        .angle-right-bt {
-            position: absolute;
-            right: 0;
-            padding: 0 10px;
-            top: 3px;
-        }
-
-        .angle-left-bt:hover,
-        .angle-right-bt:hover {
-            color: #ffffff;
-        }
-
-        .time-show {
-            text-align: center;
-            font-size: 12px;
-            color: #ffffff;
-            position: absolute;
-            right: 16px;
-        }
-
-        .time-show .date-input {
-            background-color: #313d4f;
-            border: 0;
-            width: 80px;
-            height: 34px;
-        }
-
-        .time-list {
-            position: absolute;
-            top: 75px;
-            left: 30px;
-            z-index: 10000;
-            background-color: #313d4f;
-            color: #ffffff;
-            height: auto;
-            width: 172px;
-            padding: 10px;
-        }
-
-        .jdhc-bar {
-            position: absolute;
-            top: 0px;
-            right: 16px;
-            z-index: 10000;
-            background-color: #313d4f;
-            color: #ffffff;
-            height: auto;
-            width: 85px;
-            padding: 10px;
-        }
-
-        /*ztree 个性化定制*/
-        .ztree {
-            color: #ffffff;
-        }
-
-        .ztree li a.level0 span.node_name {
-            color: #ffffff;
-        }
-
-        .ztree li a {
-            color: #ffffff;
-        }
-
-        .ztree li span.button.noline_close {
-            border-left: 2px solid #fff;
-            border-top: 2px solid #fff;
-        }
-
-        .ztree li span.button.noline_open {
-            border-left: 2px solid #fff;
-            border-top: 2px solid #fff;
-        }
-
-        .ztree li a.curSelectedNode {
-            background: #444f54;
-            color: #ffffff;
-        }
-
-        /*end ztree*/
-        .nav > li > a:focus, .nav > li > a:hover {
-            text-decoration: none;
-            background-color: #0d75c5;
-        }
-
-        .nav > li > a:focus, .nav > li > a:hover {
-            color: #FFFFFF;
-        }
-
-        #handle {
-            position: absolute;
-            height: 100%;
-            width: 3px;
-            left: 50%;
-            background: rgb(205, 205, 205);
-            border: 1px solid rgb(112, 107, 107);
-            z-index: 2000;
-            cursor: col-resize;
-        }
-
-        #handleCenter {
-            position: absolute;
-            height: 32px;
-            width: 15px;
-            top: 50%;
-            left: -7px;
-            background: rgb(205, 205, 205);
-            border: 1px solid rgb(112, 107, 107);
-            z-index: 2000;
-            /*background-image: url(images/drag.png);*/
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .yx-time-line {
-            /*width: 85%;*/
-            height: 78px;
-            background-color: #ffffff;
-            /*background-color: #313d4f;*/
-            position: absolute;
-            top: 0;;
-            left: 60px;
-            z-index: 9999;
-            border-radius: 4px;
-            padding: 0 10px;
-        }
-
-        .time-line {
-            width: 100%;
-            height: 3px;
-            background-color: rgb(255, 255, 255);
-            position: absolute;
-            top: 18px;
-            /*display: none;*/
-        }
-
-        .time-item {
-            /*position: absolute;*/
-            /*top:-20px;*/
-            /*float: left;*/
-            /*margin-right: 10px;*/
-        }
-
-        .dsk-circle {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: pointer;
-            width: 35px;
-            height: 35px;
-            border: 2px solid rgba(255, 255, 255, 1);
-            background: #444;
-            border-radius: 50%;
-            line-height: 35px;
-            text-align: center;
-            font-size: 12px;
-            color: #fff;
-            box-shadow: 0 0 2px rgba(0, 0, 0, .1);
-            -webkit-transition: all .5s ease-in;
-            -moz-transition: all .5s ease-in;
-            -ms-transition: all .5s ease-in;
-            -o-transition: all .5s ease-in;
-            transition: all .5s ease-in;
-            position: relative;
-        }
-
-        .active .dsk-circle {
-            background-color: #F60;
-        }
-
-        .time-line-year {
-            float: left;
-            margin-right: 11px;
-            cursor: pointer;
-        }
-
-        .time-line-year-area {
-            width: 70px;
-            height: 32px;
-            color: #fff;
-            line-height: 35px;
-            font-size: 14px;
-            text-align: center;
-            margin: 0 auto;
-            background-color: #313d4f;
-            position: relative;
-        }
-
-        .time-line-date {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-            background-color: #337ab7;
-        }
-
-        .mapWrap {
-            margin-left: 0;
-        }
-
-        .navbar {
-            margin-bottom: 1px;
-        }
-
-        .container-fluid {
-            padding-right: 0px;
-            padding-left: 0px;
-        }
-
-        .base-left-list {
-            position: absolute;
-            top: 75px;
-            left: 30px;
-            z-index: 10000;
-            background-color: #f5f5f5;
-            color: #ffffff;
-            height: auto;
-            width: 172px;
-        }
-
-        .base-left-list li label {
-            width: 100%;
-        }
-
-        .table-top {
-            position: absolute;
-            top: 15px;
-            left: 210px;
-            z-index: 10000;
-            background-color: #f5f5f5;
-            color: #000000;
-        }
-
-        .table-top .table {
-            margin-bottom: 0;
-        }
-
-        .red {
-            background: red;
-        }
-
-        /*timeline reset*/
-        .timeline-container {
-            width: 100%;
-        }
-
-        .timeline-dots-wrap.top {
-            top: 0px;
-        }
-
-        .timeline-dots li.slide-active button {
-            color: #ffffff;
-        }
-
-        .timeline-dots li {
-            width: 70px;
-        }
-
-        .timeline-dots button {
-            color: #cacaca;
-        }
-
-        .drawplot-container {
-            width: auto;
-            /*height:500px;*/
-            position: absolute;
-            top: 100px;
-            right: 25px;
-            z-index: 10000;
-            background-color: #313d4f;
-            color: #fff;
-            display: none;
-        }
-
-        .drawplot-opt-bar {
-            margin: 5px;
-        }
-
-        .drawplot-content {
-            display: none;
-        }
-
-        .drawplot-content-area {
-
-        }
-
-        .drawplot-content-area textarea {
-            width: 100%;
-            height: 136px;
-            margin-top: 10px;
-            resize: none;
-        }
-
-        .drawplot-bt-bar {
-            display: flex;
-            justify-content: center;
-        }
-
-        .drawplot-bt-bar input {
-            margin: 5px;
-        }
-
-        .btn.focus, .btn:focus, .btn:hover {
-            color: #ffffff;
-        }
-
-        /*echarts */
-        .echarts-area {
-            display: none;
-        }
-
-        /*==echarts*/
-        .home-charts img {
-            height: 100%;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        /*项目基本信息*/
-        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-            color: #fff;
-            cursor: default;
-            background-color: #313d4f;
-            border: 1px solid #ddd;
-            border-bottom-color: transparent;
-        }
-
-        .project-info {
-            position: absolute;
-            top: 0;
-            right: 20px;
-            z-index: 10002;
-            background-color: #313d4f;
-            color: #fff;
-            width: 530px;
-            display: none;
-        }
-
-        .tab-pane {
-            overflow-y: scroll;
-            height: 100%;
-        }
-
-        .tab-content {
-            height: 500px;
-        }
-
-        a {
-            color: #FFF;
-            text-decoration: none;
-        }
-
-        a:focus, a:hover {
-            color: #fbfbfb;
-            text-decoration: underline;
-        }
-
-        /*==项目基本信息*/
-        /*设置页面*/
-        .list-group-item {
-            background-color: #313d4f;
-            border: 1px solid #494b4e;
-        }
-
-        .list-group-item label {
-            cursor: pointer;
-        }
-
-        .config-page-container {
-            display: none;
-        }
-
-        /*==设置页面*/
-        /*mytimeline*/
-        .event_box {
-            margin: 0;
-        }
-
-        .parHd li {
-            /*color:#FFF;*/
-        }
-
-        /*==mytimeline*/
-        .show-item {
-            border:1px solid #ffffff;
-            padding: 5px 0;
-        }
-    </style>
-    <script type="text/javascript">
-
-        function init() {
-            /*
-             * 不支持canvas的浏览器不能运行该范例
-             * android 设备也不能运行该范例*/
-            var broz = SuperMap.Util.getBrowser();
-
-            if (!document.createElement('canvas').getContext) {
-                alert('您的浏览器不支持 canvas，请升级');
-                return;
-            } else if (broz.device === 'android') {
-                alert('您的设备不支持，请使用pc或其他设备');
-                return;
-            }
-
-            document.getElementById('map').style.height = (document.documentElement.clientHeight - 50 ) + 'px'
-
-            var _oneTime = _layerImageList[0].time
-            $('#mapTime').val(_oneTime);
-            $('#mapTime').data("layerindex", 0)
-
-            ponitLayer = new SuperMap.Layer.Vector("ponitLayer");
-            drawPoint = new SuperMap.Control.DrawFeature(ponitLayer, SuperMap.Handler.Point);
-            drawPoint.events.on({
-                "featureadded": drawCompleted
-            });
-
-            //初始化地图
-            map = new SuperMap.Map("map", {
-                minZoom: 0,
-                maxZoom: 11,
-                allOverlays: true,
-                controls: [
-                    new SuperMap.Control.Navigation(),
-                    new SuperMap.Control.Zoom(),
-                    new SuperMap.Control.LayerSwitcher(),
-                    drawPoint
-                ]
-            });
-//            map.addControl(new SuperMap.Control.MousePosition());
-            mousePosition = new SuperMap.Control.MousePosition({
-                id: "mousePositionId",
-                autoActivate: true,
-                separator: ','
-            })
-            map.addControl(mousePosition)
-            mousePosition.activate()
-
-            //初始化图层
-            layerT = new SuperMap.Layer.TiledDynamicRESTLayer("ditu", MAPURL.URL, {
-                transparent: true,
-                cacheEnabled: true
-            });
-
-            layerRoad = new SuperMap.Layer.TiledDynamicRESTLayer("road", MAPURL.ROAD_URL, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerZJRoad = new SuperMap.Layer.TiledDynamicRESTLayer("zjroad", MAPURL.ZJ_ROAD, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYXALL = new SuperMap.Layer.TiledDynamicRESTLayer("yxall", MAPURL.XJ_YX_ALL, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layer20150913 = new SuperMap.Layer.TiledDynamicRESTLayer("2015年影像", MAPURL.YX_2015, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layer20161210 = new SuperMap.Layer.TiledDynamicRESTLayer("2016年影像_1", MAPURL.YX_2016_1, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX20162 = new SuperMap.Layer.TiledDynamicRESTLayer("2016年影像_2", MAPURL.YX_2016_2, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX201705G216 = new SuperMap.Layer.TiledDynamicRESTLayer("201705G216影像", MAPURL.YX_2017_05_G216, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX201705TWD = new SuperMap.Layer.TiledDynamicRESTLayer("201705TWD影像", MAPURL.YX_2017_05_TWD, {
-                transparent: true,
-                cacheEnabled: true
-            });
-
-            layerYX201706 = new SuperMap.Layer.TiledDynamicRESTLayer("201706影像", MAPURL.YX_2017_06, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX201707 = new SuperMap.Layer.TiledDynamicRESTLayer("201707影像", MAPURL.YX_2017_07, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX2017081 = new SuperMap.Layer.TiledDynamicRESTLayer("201708影像_1", MAPURL.YX_2017_08_1, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX2017082 = new SuperMap.Layer.TiledDynamicRESTLayer("201708影像_2", MAPURL.YX_2017_08_2, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerYX201709 = new SuperMap.Layer.TiledDynamicRESTLayer("201709影像", MAPURL.YX_2017_09, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerChangeArea = new SuperMap.Layer.TiledDynamicRESTLayer("变化线路", MAPURL.CHANGE_AREA_MAP, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerJSJD = new SuperMap.Layer.TiledDynamicRESTLayer("jsjd", MAPURL.JSJD_URL, {
-                transparent: true,
-                cacheEnabled: true
-            });
-            layerJSJDTWD = new SuperMap.Layer.TiledDynamicRESTLayer("layerJSJDTWD", MAPURL.JSJD_URL_TWD, {
-                transparent: true,
-                cacheEnabled: true
-            });
-
-            layerJSJDTWD.events.on({
-                "layerInitialized": addLayer
-            });
-
-            //监听图层信息加载完成事件
-//            layerT.events.on({
-//                "layerInitialized": addLayer1
-//            });
-
-            // 选择要素
-            var callbacks = {
-                click: function (currentFeature) {
-                    console.log(currentFeature)
-                    var _html = getPopupMsg(currentFeature.attributes)
-                    layer.msg(_html);
-                }
-            }
-            vectorLayer = new SuperMap.Layer.Vector("vectorLayer");
-            var selectFeature = new SuperMap.Control.SelectFeature(vectorLayer, {
-                callbacks: callbacks
-            })
-            map.addControl(selectFeature);
-            selectFeature.activate();
-            markers = new SuperMap.Layer.Markers("Markers");
-        }
-
-        function mapLayerClick(obj, ele) {
-            var pxystr = mousePosition.div.textContent
-            var pxys = pxystr.split(',')
-            if (pxys.length == 2) {
-                addMarker(pxys[0], pxys[1])
-            } else {
-                alert("获取坐标点失败")
-            }
-
-        }
-
-        /**
-         * 添加标注
-         */
-        var pointx = null, pointy = null, size, offset, icon;
-
-        function addMarker(px, py) {
-            size = new SuperMap.Size(21, 25);
-            offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
-            icon = new SuperMap.Icon('../../static/images/marker.gif', size, offset);
-            //初始化标记覆盖物类
-            marker = new SuperMap.Marker(new SuperMap.LonLat(px, py), icon);
-            //添加覆盖物到标记图层
-            markers.addMarker(marker);
-            //注册 click 事件,触发 mouseClickHandler()方法
-            marker.events.on({
-                "click": function (event) {
-                    pointx = event.object.lonlat.lon
-                    pointy = event.object.lonlat.lat
-                    $(".drawplot-content").css("display", "block")
-                    $("#plotContent").val("")
-                    ajaxRequest.findPlot({pointx: pointx, pointy: pointy}).then(function (data) {
-                        if (data.status == 200 && data.list.length > 0) {
-                            $("#plotContent").val(data.list[0].content)
-                        }
-                    })
-                }
-            });
-        }
-
-        // 标注内容保存
-        function plotSaveBt() {
-            var keycode = "plotcontent";
-            var content = $("#plotContent").val()
-            if (content.trim() == '') {
-                layer.msg("请填写标注的内容")
-                return;
-            }
-            console.log(pointx, pointy)
-            // 保存到数据库中
-            ajaxRequest.insertPlot({
-                pointx: pointx,
-                pointy: pointy,
-                content: content,
-                keycode: keycode
-            }).then(function (data) {
-                console.log(data)
-                if (data.status == 200) {
-                    layer.msg("保存成功")
-                }
-            });
-
-
-        }
-
-        // 标注内容取消
-        function plotCancelBt() {
-            px = null
-            py = null
-            $(".drawplot-content").css("display", "none")
-            $("#plotContent").val('')
-        }
-
-        function removePlotById() {
-            //获取选中的对象
-            if (pointx == null || pointy == null) {
-                layer.msg("请选择一个标号")
-                return;
-            }
-
-            layer.confirm('您确定要删除(不可恢复)该标注吗？ ', {
-                btn: ['确定', '取消'] //按钮
-            }, function () {
-
-                ajaxRequest.deletePlot({pointx: pointx, pointy: pointy}).then(function (data) {
-                    markers.removeMarker(marker)
-                    if (data.rint == 0) {
-                        layer.msg("删除失败")
-                        return;
-                    }
-
-                    layer.msg("删除成功")
-                    $("#plotContent").val("")
-                    $(".drawplot-content").css("display", "none")
-
-                })
-            }, function () {
-            });
-
-
-        }
-
-        function initDatas() {
-
-            var keycode = "plotcontent";
-            ajaxRequest.findPlot({}).then(function (data) {
-                console.log(data)
-                if (data.status == 200) {
-                    var list = data.list;
-                    for (var i = 0; i < list.length; i++) {
-                        let polygonPs = new Array();
-                        console.log(list[i].pointx, list[i].pointy)
-                        addMarker(list[i].pointx, list[i].pointy)
-                    }
-                }
-
-            });
-        }
-        //== 添加标注
-
-
-        // 点控件查询
-        function drawCompleted(drawGeometryArgs) {
-            var feature = new SuperMap.Feature.Vector();
-            feature.geometry = drawGeometryArgs.feature.geometry,
-                feature.style = style;
-            ponitLayer.addFeatures(feature);
-
-            var getFeatureParameter, getFeatureService;
-
-            getFeatureParameter = new SuperMap.REST.GetFeaturesByBufferParameters({
-                bufferDistance: 0.0001,
-                //attributeFilter: "SMID > 0",
-                datasetNames: [
-                    "G575ChangeArea:变化线"
-                ],
-                returnContent: true,
-                geometry: drawGeometryArgs.feature.geometry
-            });
-
-            // getFeatureParameter = new SuperMap.REST.GetFeaturesByBufferParameters({
-            //     bufferDistance: 30,
-            //     //attributeFilter: "SMID > 0",
-            //     datasetNames: [
-            //         "yxsx2017:Export_Output", "yxsx2017:Export_Output_2", "yxsx2017:Export_Output_3", "yxsx2017:Export_Output_4",
-            //         "yxsx2017:Export_Output_5", "yxsx2017:Export_Output_6", "yxsx2017:Export_Output_7", "yxsx2017:Export_Output_8",
-            //         "yxsx2017:Export_Output_9", "yxsx2017:Export_Output_10", "yxsx2017:Export_Output_11", "yxsx2017:Export_Output_12",
-            //         "yxsx2017:Export_Output_13", "yxsx2017:Export_Output_14", "yxsx2017:Export_Output_15", "yxsx2017:Export_Output_16",
-            //         "yxsx2017:Export_Output_17", "yxsx2017:Export_Output_18", "yxsx2017:Export_Output_19", "yxsx2017:Export_Output_20",
-            //         "yxsx2017:Export_Output_21", "yxsx2017:Export_Output_22"
-            //     ],
-            //     returnContent: true,
-            //     geometry: drawGeometryArgs.feature.geometry
-            // });
-            // getFeatureService = new SuperMap.REST.GetFeaturesByBufferService(DATA_URL, {
-            getFeatureService = new SuperMap.REST.GetFeaturesByBufferService(MAPURL.CHANGE_AREA_DATA, {
-                eventListeners: {
-                    "processCompleted": processCompletedPoint,
-                    "processFailed": processFailed
-                }
-            });
-            getFeatureService.processAsync(getFeatureParameter);
-        }
-
-        function processCompletedPoint(getFeaturesEventArgs) {
-            console.log("******************0088")
-            console.log(getFeaturesEventArgs)
-            var _feature = getFeaturesEventArgs.result.features[0]
-            var _attr = _feature.attributes
-            layer.msg(_attr.NOTE)
-            // if (_feature != undefined) {
-            //     var _attr = _feature.attributes
-            //     var _label = "名称：" + _attr.IMG_NAME + "<br>"
-            //         + "类型：" + _attr.LEIXING + "<br>"
-            //         + "拍摄时间：" + _attr.TIME
-            //     layer.msg(_label)
-            // }
-        }
-
-        // function processCompletedPoint(getFeaturesEventArgs) {
-        //     var _feature = getFeaturesEventArgs.result.features[0]
-        //     if (_feature != undefined) {
-        //         var _attr = _feature.attributes
-        //         var _label = "名称：" + _attr.IMG_NAME + "<br>"
-        //             + "类型：" + _attr.LEIXING + "<br>"
-        //             + "拍摄时间：" + _attr.TIME
-        //         layer.msg(_label)
-        //     }
-        // }
-
-
-        function removeVectorLayer() {
-            vectorLayer.removeAllFeatures();// 去除高亮
-        }
-
-
-        //异步加载图层
-        function addLayer() {
-            map.addLayers([layerT, layerYXALL,
-                layer20150913, layer20161210, layerYX20162,
-                layerYX201705G216,layerYX201705TWD, layerYX201706, layerYX201707, layerYX2017081, layerYX2017082, layerYX201709, layerChangeArea,
-                layerRoad, layerZJRoad,
-                layerJSJD, layerJSJDTWD, ponitLayer, vectorLayer, markers]);
-
-            //显示地图范围9732011.83931, 5440449.31251    85.782, 41.344
-            map.setCenter(new SuperMap.LonLat(87.64226, 43.79469), 1);
-
-            setLayerVisibility({
-                layerT: true,
-                layerRoad: false,
-                layerYXALL: false,
-                layerZJRoad: false,
-                layer20150913: false,
-                layer20161210: false,
-                layer20170101: false,
-                vectorLayer: false,
-                layerGF2016WUYU: false,
-                layerGJ2017WUYU: false,
-                layerSar2017: false,
-                ponitLayer: false,
-            })
-
-        }
-
-
-        // 查询影像信息
-        function queryYXInfo() {
-            // 查询影像面数据
-            var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
-            var queryParam1, queryParam2, queryParam3, queryParam4, queryParam5,
-                queryParam6, queryParam7, queryParam8, queryParam9, queryParam10,
-                queryParam11, queryParam12, queryParam13, queryParam14, queryParam15,
-                queryParam16, queryParam17, queryParam18, queryParam19, queryParam20,
-                queryParam21, queryParam22;
-            queryParam1 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output@yxsx2017"
-            });
-            queryParam2 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_19@yxsx2017"
-            });
-            queryParam3 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_22@yxsx2017"
-            });
-            queryParam4 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_5@yxsx2017"
-            });
-            queryParam5 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_3@yxsx2017"
-            });
-            queryParam6 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_7@yxsx2017"
-            });
-            queryParam7 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_9@yxsx2017"
-            });
-            queryParam8 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_11@yxsx2017"
-            });
-            queryParam9 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_10@yxsx2017"
-            });
-            queryParam10 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_13@yxsx2017"
-            });
-            queryParam11 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_12@yxsx2017"
-            });
-            queryParam12 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_14@yxsx2017"
-            });
-            queryParam13 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_8@yxsx2017"
-            });
-            queryParam14 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_6@yxsx2017"
-            });
-            queryParam15 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_16@yxsx2017"
-            });
-            queryParam16 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_2@yxsx2017"
-            });
-            queryParam17 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_4@yxsx2017"
-            });
-            queryParam18 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_15@yxsx2017"
-            });
-            queryParam19 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_18@yxsx2017"
-            });
-            queryParam20 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_17@yxsx2017"
-            });
-            queryParam21 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_21@yxsx2017"
-            });
-            queryParam22 = new SuperMap.REST.FilterParameter({
-                name: "Export_Output_20@yxsx2017"
-            });
-
-            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
-                queryParams: [
-                    queryParam1, queryParam2, queryParam3, queryParam4, queryParam5,
-                    queryParam6, queryParam7, queryParam8, queryParam9, queryParam10,
-                    queryParam11, queryParam12, queryParam13, queryParam14, queryParam15,
-                    queryParam16, queryParam17, queryParam18, queryParam19, queryParam20, queryParam21, queryParam22
-                ]
-            });
-            queryBySQLService = new SuperMap.REST.QueryBySQLService(MAPURL.YX_SL_2017, {
-                eventListeners: {
-                    "processCompleted": function (queryEventArgs) {
-                        console.log(queryEventArgs)
-                        var _recordsets = queryEventArgs.result.recordsets
-                        var _feature;
-                        for (var i = 0; i < _recordsets.length; i++) {
-                            _feature = _recordsets[i].features[0]
-                            _feature.style = {
-                                strokeColor: "#304DBE",
-                                strokeWidth: 1,
-                                strokeOpacity: "0",
-                                fillColor: "#304DBE",
-                                fillOpacity: "0"
-
-                            }
-                        }
-
-                    },
-                    "processFailed": processFailed
-                }
-            });
-            queryBySQLService.processAsync(queryBySQLParams);
-        }
-
-        // 基本建设信息查询
-        function infoQuery() {
-            pageAreaDisplayOption({
-                zjjdTable: "none",
-                jdjdTable: "none",
-                jcxxList: "block",
-                timeLine: "none",
-                projectInfo: true,
-            })
-            $("#leftSider").css("display", "block")
-            $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
-            vectorLayer.setVisibility(true)
-
-            setLayerVisibility({
-                layerT: true,
-                layerRoad: true,
-                layerYXALL: false,
-                layerZJRoad: true,
-                layer20150913: false,
-                layer20161210: false,
-                layer20170101: false,
-                vectorLayer: true
-            })
-
-        }
-
-
-        // 注销点控件
-        function deactiveAll() {
-            drawPoint.deactivate();
-            $("#isScanPicInfo").prop("checked", false);
-        }
-
-        // 设置图层显示
-        function setLayerVisibility(obj) {
-
-            $("#timeListId").css('display', 'none')
-
-            layerT.setVisibility(obj["layerT"] || true)
-            layerRoad.setVisibility(obj["layerRoad"] || true)
-            layerYXALL.setVisibility(obj["layerYXALL"] || false)
-            layerZJRoad.setVisibility(obj["layerZJRoad"] || true)
-
-            layer20150913.setVisibility(obj["layer20150913"] || false)
-            layer20161210.setVisibility(obj["layer20161210"] || false)
-
-            layerYX20162.setVisibility(obj["layerYX20162"] || false)
-
-            layerYX201705G216.setVisibility(obj["layerYX201705"] || false)
-            layerYX201705TWD.setVisibility(obj["layerYX201705"] || false)
-            layerYX201706.setVisibility(obj["layerYX201706"] || false)
-            layerYX201707.setVisibility(obj["layerYX201707"] || false)
-            layerYX2017081.setVisibility(obj["layerYX2017081"] || false)
-            layerYX2017082.setVisibility(obj["layerYX2017082"] || false)
-
-            layerYX201709.setVisibility(obj["layerYX201709"] || false)
-
-            vectorLayer.setVisibility(obj["vectorLayer"] || false)
-            layerJSJD.setVisibility(obj["layerJSJD"] || false)
-            layerJSJDTWD.setVisibility(obj["layerJSJDTWD"] || false)
-
-            ponitLayer.setVisibility(obj["ponitLayer"] || false)
-            markers.setVisibility(obj["markers"] || false)
-        }
-
-        /**
-         * 页面显示区域配置
-         * obj = {zjjdTable:"block",jdjdTable:"none"}
-         * block 显示，none 隐藏
-         * @param obj
-         */
-        function pageAreaDisplayOption(obj) {
-            $("#zjjdTable").css('display', obj.zjjdTable || 'none')
-            $("#jdjdTable").css('display', obj.jdjdTable || 'none')
-            $("#jcxxList").css("display", obj.jcxxList || 'none')
-            $("#timeLine").css('display', obj.timeLine || 'none')
-            $("#toolbar").css('display', obj.toolbar || 'none')
-            $(".echarts-area").css('display', obj.echartsArea || 'none')
-            $("#homeCharts").css('display', obj.echartsArea || 'none')
-            $("#projectInfoAreaId").css('display', obj.echartsArea || 'none')
-            $("#zjGLChartArea").css('display', obj.zjGLChart || 'none')
-            $("#projectInfoBt").prop("checked", obj.projectInfo || false)
-
-            $("#yxhcInfoBt").prop("checked", obj.yxhcInfoBt || false)
-            $("#yxhcInfoArea").css("display", "none")
-
-        }
-
-
-        function timeLineLayer() {
-            var checkDate = $("#timeLine div[class='time-item active']").data("layer")
-
-            setLayerVisibility({
-                layerYXALL: true,
-                layer20150913: false,
-                layer20161210: false,
-                layerYX20162: false,
-                layerYX201705: false,
-                layerYX201706: false,
-                layerYX201707: false,
-                layerYX2017081: false,
-                layerYX2017082: false,
-                layerYX201709: false,
-            })
-            if ($("#box2017").prop("checked")) {
-                queryYXInfo();// 查询影像数据
-            }
-
-
-            if (checkDate == '2015') {
-                layer20150913.setVisibility(true)
-            } else if (checkDate == '2016') {
-                layer20161210.setVisibility(true)
-                layerYX20162.setVisibility(true)
-            } else if (checkDate == '201705') {
-                layerYX201705G216.setVisibility(true)
-                layerYX201705TWD.setVisibility(true)
-            } else if (checkDate == '201706') {
-                layerYX201706.setVisibility(true)
-            } else if (checkDate == '201707') {
-                layerYX201707.setVisibility(true)
-            } else if (checkDate == '201708') {
-                layerYX2017081.setVisibility(true)
-                layerYX2017082.setVisibility(true)
-            } else if (checkDate == '201709') {
-                layerYX201709.setVisibility(true)
-            }
-        }
-
-
-        $(document).ready(function () {
-            // 资金进度
-            $("#zjjdBt").click(function () {
-
-                var nodes = zTreeObj.getSelectedNodes()
-                if (nodes.length > 0 && nodes[0].id != 1 && nodes[0].id != 11 && nodes[0].id != 12 && nodes[0].id != 13) {
-                    $("#leftSider").css("display", "block")
-                    $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
-                    vectorLayer.setVisibility(true)
-                    pageAreaDisplayOption({
-                        zjjdTable: "block",
-                        jdjdTable: "none",
-                        jcxxList: "none",
-                        timeLine: "none",
-                        zjGLChart: "block"
-                    })
-                    setLayerVisibility({
-                        layerYXALL: true,
-                        vectorLayer: true
-                    })
-                } else {
-                    layer.msg("请选择一条公路后再点击")
-                }
-
-            });
-            // 节点进度
-            $("#jdjdBt").click(function () {
-                var nodes = zTreeObj.getSelectedNodes()
-                if (nodes.length > 0 && nodes[0].id != 1 && nodes[0].id != 11 && nodes[0].id != 12 && nodes[0].id != 13) {
-                    $("#leftSider").css("display", "block")
-                    $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
-                    vectorLayer.setVisibility(true)
-                    pageAreaDisplayOption({zjjdTable: "none", jdjdTable: "block", jcxxList: "none", timeLine: "none"})
-                    setLayerVisibility({
-                        layerYXALL: true,
-                        vectorLayer: true
-                    })
-                } else {
-                    layer.msg("请选择一条公路后再点击")
-                }
-            });
-            // 统计功能
-            $("#tjgnBT").click(function () {
-                $(".echarts-area").css("display", "block");
-            });
-
-            $("#yxBT").click(function () {
-                pageAreaDisplayOption({
-                    zjjdTable: "none",
-                    jdjdTable: "none",
-                    jcxxList: "none",
-                    timeLine: "block",
-                    toolbar: "block",
-                    yxhcInfoBt: true
-                })
-
-                $("#isShowMarker").prop("checked", false)
-                $("#isShowMarker").attr("disabled", false)
-                $("#delMarkerBT").attr("disabled", false)
-                $("#saveMarkerBT").attr("disabled", false)
-                $("#cancelMarkerBT").attr("disabled", false)
-                $("#plotContent").attr("disabled", false)
-                initDatas()
-
-                $("#box2015").prop("checked", true);
-                $("#box2016").prop("checked", true);
-                $("#box2017").prop("checked", false);
-
-                $("#leftSider").css("display", "block")
-                $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
-                vectorLayer.removeAllFeatures();// 去除高亮
-                vectorLayer.setVisibility(false)
-
-                if ($("#box2017").prop("checked")) {
-                    queryYXInfo();// 查询影像数据
-                }
-
-                map.setCenter(new SuperMap.LonLat(87.40448, 43.87231), 5);
-
-                setLayerVisibility({
-                    layerT: false,
-                    layerRoad: true,
-                    layerYXALL: true,
-                    layerZJRoad: true,
-                    layer20150913: false,
-                    layer20161210: false,
-                    layerYX20162: false,
-                    layerYX201705: false,
-                    layerYX201706: false,
-                    layerYX201707: false,
-                    layerYX2017081: false,
-                    layerYX2017082: false,
-                    layerYX201709: true,
-
-                    vectorLayer: true,
-                    layerGF2016WUYU: true,
-                    layerGJ2017WUYU: false
-                })
-
-                // 设置“查看影像信息”开关，必须在setLayerVisibility()方法后执行
-                $("#timeListId").css('display', 'block')
-            })
-            $("#timeListId").mouseleave(function () {
-//                $("#timeListId").css('display', 'none')
-            })
-            $("#yxBT").mouseenter(function () {
-//                $("#timeListId").css('display', 'block')
-            })
-
-            //进度审核
-            $("#jdhcId").click(function () {
-                pageAreaDisplayOption({
-                    zjjdTable: "none",
-                    jdjdTable: "none",
-                    jcxxList: "none",
-                    timeLine: "none",
-                    toolbar: "display"
-                });
-
-
-                $("#jdhcCloseBt").prop("checked", true)
-                $("#leftSider").css("display", "block")
-                $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
-                vectorLayer.removeAllFeatures();// 去除高亮
-                map.setCenter(new SuperMap.LonLat(87.40448, 43.87231), 5);
-                if ($("#box2017").prop("checked")) {
-                    queryYXInfo();// 查询影像数据
-                }
-                setLayerVisibility({
-                    layerT: false,
-                    layerRoad: true,
-                    layerYXALL: true,
-                    layerZJRoad: false,
-                    layer20150913: false,
-                    layer20161210: false,
-                    layer20170101: true,
-                    vectorLayer: true,
-                    layerJSJD: true,
-                    layerSar2017: false,
-                    layerJSJDTWD: true,
-                    markers: true,
-                })
-                $("#isShowMarker").attr("disabled", true)
-                $("#isShowMarker").attr("disabled", true)
-                $("#delMarkerBT").attr("disabled", true)
-                $("#saveMarkerBT").attr("disabled", true)
-                $("#cancelMarkerBT").attr("disabled", false)
-                $("#plotContent").attr("disabled", true)
-                map.events.unregister('click', layer, mapLayerClick);
-            })
-            $("#jdhcCloseBt").change(function () {
-                if ($("#jdhcCloseBt").prop("checked")) {
-                    layerJSJD.setVisibility(true)
-                    layerJSJDTWD.setVisibility(true)
-                } else {
-                    layerJSJD.setVisibility(false)
-                    layerJSJDTWD.setVisibility(false)
-                }
-            })
-            $("#isScanPicInfo").change(function () {
-                if ($(this).prop("checked")) {
-                    drawPoint.activate();
-                } else {
-                    deactiveAll()
-                }
-            })
-            $("#isShowMarker").change(function () {
-                if ($(this).prop("checked")) {
-                    map.events.register('click', layer, mapLayerClick);// 注册标注点击事件
-                    markers.setVisibility(true)
-                } else {
-                    map.events.unregister('click', layer, mapLayerClick);
-                    markers.setVisibility(false)
-                    $(this).prop("checked", false);
-                }
-            })
-
-
-            //点击时间轴上时间点
-            $(".time-item").click(function () {
-                console.log(this)
-                $(".time-item").removeClass("active")
-                $(this).addClass("time-item active")
-
-                timeLineLayer()
-
-            })
-
-            // 点击时间轴
-            $(".time-line-year").click(function () {
-                var _re = $(".time-line-date").css("display")
-                if (_re == undefined || _re == 'block' || _re == 'flex') {
-                    $(".time-line-date").css("display", "none")
-                    $(".yx-time-line").css("width", "auto")
-                    $(".time-line").hide()
-                    $(".time-line-year-area i").removeClass("fa-caret-left")
-                    $(".time-line-year-area i").addClass("fa-caret-right")
-                } else {
-                    $(".time-line-date").css("display", "flex")
-                    $(".yx-time-line").css("width", "85%")
-                    $(".time-line").show()
-                    $(".time-line-year-area i").removeClass("fa-caret-right")
-                    $(".time-line-year-area i").addClass("fa-caret-left")
-                }
-            });
-            $("#timeLine").initTimeLine({
-                times: [
-                    "2015年",
-                    "2016年",
-                    "201705",
-                    "201706",
-                    "201707",
-                    "201708",
-                    "201709"
-                ]
-            }, function (item) {
-                console.log($(item).text())
-
-                var checkDate = $(item).text().trim()
-
-                setLayerVisibility({
-                    layerYXALL: true,
-                    layer20150913: false,
-                    layer20161210: false,
-                    layerYX20162: false,
-                    layerYX201705: false,
-                    layerYX201706: false,
-                    layerYX201707: false,
-                    layerYX2017081: false,
-                    layerYX2017082: false,
-                    layerYX201709: false,
-                })
-                if ($("#box2017").prop("checked")) {
-                    queryYXInfo();// 查询影像数据
-                }
-                if (checkDate == '2015年') {
-                    layer20150913.setVisibility(true)
-                } else if (checkDate == '2016年') {
-                    layer20161210.setVisibility(true)
-                    layerYX20162.setVisibility(true)
-                } else if (checkDate == '201705') {
-                    layerYX201705G216.setVisibility(true)
-                    layerYX201705TWD.setVisibility(true)
-                } else if (checkDate == '201706') {
-                    layerYX201706.setVisibility(true)
-                } else if (checkDate == '201707') {
-                    layerYX201707.setVisibility(true)
-                } else if (checkDate == '201708') {
-                    layerYX2017081.setVisibility(true)
-                    layerYX2017082.setVisibility(true)
-                } else if (checkDate == '201709') {
-                    layerYX201709.setVisibility(true)
-                }
-
-
-            })
-
-        });
-    </script>
 
 </head>
 <body class="container-fluid" style="min-width: 1200px; overflow: hidden" onLoad="init()">
@@ -1451,7 +65,7 @@
                         预警管理
                     </a>
                 </li>
-                <li class="dropdown" style="display: none;">
+                <li class="dropdown">
                     <a href="#" id="tjgnBT" class="dropdown-toggle" data-toggle="dropdown">
                         统计功能
                     </a>
@@ -1467,774 +81,829 @@
          style="display:none; height: 100%;background: #293033; min-width: 200px">
         <div style="height: 100%; width: 100%; position: absolute; left:10px; overflow: auto;">
             <ul id="treeDemo" class="ztree"></ul>
+            <ul id="treeDemoDZ" class="ztree"></ul>
+            <ul id="treeDemoJS" class="ztree"></ul>
         </div>
     </div>
     <div id="MainId" class="col-md-12 col-sm-12" style="height: 100%; min-width: 880px ">
-        <div id="map">
-        </div>
+        <div class="row">
+            <div id="mapArea" class="col-md-12 col-sm-12">
 
-        <section class="base-left-list" id="jcxxList" style="display: none;">
-            <div class="panel panel-default" style="margin-bottom: 0;">
-                <div class="panel-heading">重点工程信息</div>
-                <div class="panel-body" style="color: #0f0f0f">
-                    <ul>
-                        <li>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> 桥梁
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> 涵洞
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> 隧道
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
+                <div id="map">
                 </div>
-            </div>
-        </section>
-        <div class="yx-time-line" id="timeLine" style="display: none;">
-        </div>
-        <div class="table-top" id="zjjdTable" style="display: none;">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>1月</th>
-                    <th>2月</th>
-                    <th>3月</th>
-                    <th>4月</th>
-                    <th>5月</th>
-                    <th>6月</th>
-                    <th>7月</th>
-                    <th>8月</th>
-                    <th>9月</th>
-                    <th>10月</th>
-                    <th>11月</th>
-                    <th>12月</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-        <div class="table-top" id="jdjdTable" style="display: none;">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>路基</th>
-                    <th>路面</th>
-                    <th>桥梁、涵洞工程</th>
-                    <th>交叉工程</th>
-                    <th>隧道</th>
-                    <th>交通工程</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
 
-        <div class="drawplot-container" id="toolbar">
-            <div class="drawplot-opt-bar">
-                <input type="checkbox" id="isShowMarker"> 开始标注
-                <input type="button" id="delMarkerBT" style="background-color: #313d4f;" class="btn" value="删除标注"
-                       onclick="removePlotById()"/>
-            </div>
-            <div class="drawplot-content">
-                <div class="drawplot-content-area">
+                <section class="base-left-list" id="jcxxList" style="display: none;">
+                    <div class="panel panel-default" style="margin-bottom: 0;">
+                        <div class="panel-heading">重点工程信息</div>
+                        <div class="panel-body" style="color: #0f0f0f">
+                            <ul>
+                                <li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 桥梁
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 涵洞
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 隧道
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div class="yx-time-line" id="timeLine" style="display: none;">
+                </div>
+                <div class="table-top" id="zjjdTable" style="display: none;">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>1月</th>
+                            <th>2月</th>
+                            <th>3月</th>
+                            <th>4月</th>
+                            <th>5月</th>
+                            <th>6月</th>
+                            <th>7月</th>
+                            <th>8月</th>
+                            <th>9月</th>
+                            <th>10月</th>
+                            <th>11月</th>
+                            <th>12月</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-top" id="jdjdTable" style="display: none;">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>路基</th>
+                            <th>路面</th>
+                            <th>桥梁、涵洞工程</th>
+                            <th>交叉工程</th>
+                            <th>隧道</th>
+                            <th>交通工程</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="drawplot-container" id="toolbar">
+                    <div class="drawplot-opt-bar">
+                        <input type="checkbox" id="isShowMarker"> 开始标注
+                        <input type="button" id="delMarkerBT" style="background-color: #313d4f;" class="btn"
+                               value="删除标注"
+                               onclick="removePlotById()"/>
+                    </div>
+                    <div class="drawplot-content">
+                        <div class="drawplot-content-area">
                     <textarea name="" id="plotContent" cols="" rows=""
                               style="color: #000000;border:1px solid #000000;"></textarea>
+                        </div>
+                        <div class="drawplot-bt-bar">
+                            <input type="button" id="saveMarkerBT" style="background-color: #313d4f;" class="btn"
+                                   value="保存"
+                                   onclick="plotSaveBt()"/>
+                            <input type="button" id="cancelMarkerBT" style="background-color: #313d4f;" class="btn"
+                                   value="取消"
+                                   onclick="plotCancelBt()"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="drawplot-bt-bar">
-                    <input type="button" id="saveMarkerBT" style="background-color: #313d4f;" class="btn" value="保存"
-                           onclick="plotSaveBt()"/>
-                    <input type="button" id="cancelMarkerBT" style="background-color: #313d4f;" class="btn" value="取消"
-                           onclick="plotCancelBt()"/>
-                </div>
-            </div>
-        </div>
 
-        <!--统计功能图表-->
-        <div class="echarts-area">
-            <div class="pie-chart" id="pieOne"
-                 style="width: 600px;height: 400px;z-index: 10005;
+                <!--统计功能图表-->
+                <div class="echarts-area">
+                    <div class="pie-chart" id="pieOne"
+                         style="width: 600px;height: 400px;z-index: 10005;
                  position: absolute;top: 10px;left: 20px;">
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <!--首页图表-->
-        <div id="homeCharts"
-             style="position: absolute;z-index: 10002;top: 5px;right: 20px;height: 350px;width: 33%;">
-            <div class="home-charts home-charts-1">
-                <img src="../../static/images/onepic-home-img/home-charts-1.png">
-            </div>
-            <div class="home-charts home-charts-2">
-                <img src="../../static/images/onepic-home-img/home-charts-2.png">
-            </div>
-            <div class="home-charts home-charts-3">
-                <img src="../../static/images/onepic-home-img/home-charts-3.png">
-            </div>
-        </div>
+                <!--首页图表-->
+                <div id="homeCharts"
+                     style="position: absolute;z-index: 10002;top: 5px;right: 20px;height: 350px;width: 33%;">
+                    <div class="home-charts home-charts-1">
+                        <img src="../../static/images/onepic-home-img/home-charts-1.png">
+                    </div>
+                    <div class="home-charts home-charts-2">
+                        <img src="../../static/images/onepic-home-img/home-charts-2.png">
+                    </div>
+                    <div class="home-charts home-charts-3">
+                        <img src="../../static/images/onepic-home-img/home-charts-3.png">
+                    </div>
+                </div>
 
-        <!--项目基本信息-->
-        <div class="project-info" id="projectInfoAreaId">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#commandList" data-toggle="tab">指挥部</a>
-                </li>
-                <li>
-                    <a href="#constructionList" data-toggle="tab">施工单位</a>
-                </li>
-                <li>
-                    <a href="#supervisoryList" data-toggle="tab">监管单位</a>
-                </li>
-                <li>
-                    <a href="#agreementList" data-toggle="tab">合同信息</a>
-                </li>
-                <li>
-                    <a href="#jlbgList" data-toggle="tab">计量变更</a>
-                </li>
-                <li>
-                    <a href="#preWorkList" data-toggle="tab">前期工作</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fad in active" id="commandList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="zhihuiCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#zhihuiCollapse"
-                                       href="#zhXMJL">
-                                        项目计量软件使用人员
-                                    </a>
-                                </div>
-                                <div id="zhXMJL" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <!--<img src="../../static/images/onepic-home-img/zh-xmjl.png"-->
-                                        <!--alt="" style="width: 100%;">-->
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>单位</th>
-                                                <th>备注</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>张三</td>
-                                                <td>驻办地</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>李四</td>
-                                                <td>施工单位</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>王五</td>
-                                                <td>施工单位</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>赵六</td>
-                                                <td>总监</td>
-                                                <td></td>
-                                            </tr>
-                                            </tbody>
+                <!--项目基本信息-->
+                <div class="project-info" id="projectInfoAreaId">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#commandList" data-toggle="tab">指挥部</a>
+                        </li>
+                        <li>
+                            <a href="#constructionList" data-toggle="tab">施工单位</a>
+                        </li>
+                        <li>
+                            <a href="#supervisoryList" data-toggle="tab">监管单位</a>
+                        </li>
+                        <li>
+                            <a href="#agreementList" data-toggle="tab">合同信息</a>
+                        </li>
+                        <li>
+                            <a href="#jlbgList" data-toggle="tab">计量变更</a>
+                        </li>
+                        <li>
+                            <a href="#preWorkList" data-toggle="tab">前期工作</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fad in active" id="commandList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="zhihuiCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#zhihuiCollapse"
+                                               href="#zhXMJL">
+                                                项目计量软件使用人员
+                                            </a>
+                                        </div>
+                                        <div id="zhXMJL" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <!--<img src="../../static/images/onepic-home-img/zh-xmjl.png"-->
+                                                <!--alt="" style="width: 100%;">-->
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>姓名</th>
+                                                        <th>单位</th>
+                                                        <th>备注</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>张三</td>
+                                                        <td>驻办地</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>李四</td>
+                                                        <td>施工单位</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>王五</td>
+                                                        <td>施工单位</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>赵六</td>
+                                                        <td>总监</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    </tbody>
 
-                                        </table>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#zhihuiCollapse"
-                                       href="#zhXMXX">
-                                        项目基本信息
-                                    </a>
-                                </div>
-                                <div id="zhXMXX" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <!--<img src="../../static/images/onepic-home-img/zh-xm-xinxi.png"-->
-                                             <!--alt="" style="width: 100%;">-->
-                                        <div class="container-fluid" style="margin: 0 5px;">
-                                            <div class="row show-row-line">
-                                                <div class="col-md-3 show-item">
-                                                    项目编号：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    XJ-2017-10001
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    项目名称：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    G575
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#zhihuiCollapse"
+                                               href="#zhXMXX">
+                                                项目基本信息
+                                            </a>
+                                        </div>
+                                        <div id="zhXMXX" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <!--<img src="../../static/images/onepic-home-img/zh-xm-xinxi.png"-->
+                                                <!--alt="" style="width: 100%;">-->
+                                                <div class="container-fluid" style="margin: 0 5px;">
+                                                    <div class="row show-row-line">
+                                                        <div class="col-md-3 show-item">
+                                                            项目编号：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            XJ-2017-10001
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            项目名称：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            G575
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 show-item">
+                                                            项目负责人：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            张三
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            全长（KM）：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            2000
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 show-item">
+                                                            批准概算（元）：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            330000000
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            开工日期：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            2017-05-23
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 show-item">
+                                                            交工日期：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            2019-08-23
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            竣工日期：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            2019-10-23
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 show-item">
+                                                            计划工期（月）：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            40
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            项目联系电话：
+                                                        </div>
+                                                        <div class="col-md-3 show-item">
+                                                            6188897
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-3 show-item">
-                                                    项目负责人：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    张三
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    全长（KM）：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    2000
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#zhihuiCollapse"
+                                               href="#zhXinXi">
+                                                指挥部信息
+                                            </a>
+                                        </div>
+                                        <div id="zhXinXi" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/zh-zhb-xinxi.png"
+                                                     alt="" style="width: 100%;">
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-3 show-item">
-                                                    批准概算（元）：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    330000000
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    开工日期：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    2017-05-23
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3 show-item">
-                                                    交工日期：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    2019-08-23
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    竣工日期：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    2019-10-23
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3 show-item">
-                                                    计划工期（月）：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    40
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    项目联系电话：
-                                                </div>
-                                                <div class="col-md-3 show-item">
-                                                    6188897
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#zhihuiCollapse"
+                                               href="#zhXMZZJG">
+                                                指挥部信息
+                                            </a>
+                                        </div>
+                                        <div id="zhXMZZJG" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/zh-xm-zzjg.png"
+                                                     alt="" style="width: 100%;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#zhihuiCollapse"
-                                       href="#zhXinXi">
-                                        指挥部信息
-                                    </a>
-                                </div>
-                                <div id="zhXinXi" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/zh-zhb-xinxi.png"
-                                             alt="" style="width: 100%;">
+                        </div>
+                        <div class="tab-pane fad" id="constructionList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="shigongCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#shigongCollapse"
+                                               href="#sgBiaoDuan">
+                                                标段基本信息
+                                            </a>
+                                        </div>
+                                        <div id="sgBiaoDuan" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/sg-biaoduan.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#zhihuiCollapse"
-                                       href="#zhXMZZJG">
-                                        指挥部信息
-                                    </a>
-                                </div>
-                                <div id="zhXMZZJG" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/zh-xm-zzjg.png"
-                                             alt="" style="width: 100%;">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#shigongCollapse"
+                                               href="#sgRen">
+                                                人员到位信息
+                                            </a>
+                                        </div>
+                                        <div id="sgRen" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/sg-ren.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#shigongCollapse"
+                                               href="#sgSheBei">
+                                                设备在场统计信息
+                                            </a>
+                                        </div>
+                                        <div id="sgSheBei" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/sg-shebei.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="tab-pane fad" id="constructionList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="shigongCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#shigongCollapse"
-                                       href="#sgBiaoDuan">
-                                        标段基本信息
-                                    </a>
-                                </div>
-                                <div id="sgBiaoDuan" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/sg-biaoduan.png"
-                                             alt="" style="width: 100%;">
+                        <div class="tab-pane fad" id="supervisoryList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="jianguanCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jianguanCollapse"
+                                               href="#jgHeTong">
+                                                合同信息
+                                            </a>
+                                        </div>
+                                        <div id="jgHeTong" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/p-info-1.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#shigongCollapse"
-                                       href="#sgRen">
-                                        人员到位信息
-                                    </a>
-                                </div>
-                                <div id="sgRen" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/sg-ren.png"
-                                             alt="" style="width: 100%;">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jianguanCollapse"
+                                               href="#jgJianGuan">
+                                                监理单位基本信息
+                                            </a>
+                                        </div>
+                                        <div id="jgJianGuan" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/p-info-jianguan.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#shigongCollapse"
-                                       href="#sgSheBei">
-                                        设备在场统计信息
-                                    </a>
-                                </div>
-                                <div id="sgSheBei" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/sg-shebei.png"
-                                             alt="" style="width: 100%;">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jianguanCollapse"
+                                               href="#jgJianGuanRen">
+                                                监理单位人员到位信息
+                                            </a>
+                                        </div>
+                                        <div id="jgJianGuanRen" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/p-info-jgren.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fad" id="supervisoryList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="jianguanCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jianguanCollapse"
-                                       href="#jgHeTong">
-                                        合同信息
-                                    </a>
-                                </div>
-                                <div id="jgHeTong" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/p-info-1.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jianguanCollapse"
-                                       href="#jgJianGuan">
-                                        监理单位基本信息
-                                    </a>
-                                </div>
-                                <div id="jgJianGuan" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/p-info-jianguan.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jianguanCollapse"
-                                       href="#jgJianGuanRen">
-                                        监理单位人员到位信息
-                                    </a>
-                                </div>
-                                <div id="jgJianGuanRen" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/p-info-jgren.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="tab-pane fad" id="agreementList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="agreementCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#agreementCollapse"
-                                       href="#htRen">
-                                        人员到位计划信息
-                                    </a>
-                                </div>
-                                <div id="htRen" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/ht-ren.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#agreementCollapse"
-                                       href="#htSB">
-                                        设备管理列表
-                                    </a>
-                                </div>
-                                <div id="htSB" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/ht-sb.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="tab-pane fad" id="jlbgList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="jlbgCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="#jlbgYLB">
-                                        变更令一览表
-                                    </a>
-                                </div>
-                                <div id="jlbgYLB" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/jlbg-ylb.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="#bgtz">
-                                        变更台账
-                                    </a>
-                                </div>
-                                <div id="bgtz" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/jlbg-bgtz.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="#sgjd">
-                                        施工进度
-                                    </a>
-                                </div>
-                                <div id="sgjd" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/jlbg-sgjd.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        合同价格调整表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        回扣动员预付款一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        计量支付数量汇总表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        价格调整汇总表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        扣回材料垫付款一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        扣回及退还农民工工资保证金一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        扣回质量保证金一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        清单单价变更一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        清单工程量变更一览表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        清单信息
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        清单中期支付报表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        永久性工程材料到达现场计量表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        支付申请表
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        支付证书
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        中间计量单
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#jlbgCollapse"
-                                       href="">
-                                        中期财务支付证书
-                                    </a>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
+                        <div class="tab-pane fad" id="agreementList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="agreementCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#agreementCollapse"
+                                               href="#htRen">
+                                                人员到位计划信息
+                                            </a>
+                                        </div>
+                                        <div id="htRen" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/ht-ren.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#agreementCollapse"
+                                               href="#htSB">
+                                                设备管理列表
+                                            </a>
+                                        </div>
+                                        <div id="htSB" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/ht-sb.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="tab-pane fad" id="preWorkList">
-                    <div class="container-fluid">
-                        <div class="accordion" id="preWorkCollapse">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#preAQZR">
-                                        安全责任体系
-                                    </a>
-                                </div>
-                                <div id="preAQZR" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-anquanzenren.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#prework">
-                                        前期工作一栏表
-                                    </a>
-                                </div>
-                                <div id="prework" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-work.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#preTZ">
-                                        项目投资完成情况表
-                                    </a>
-                                </div>
-                                <div id="preTZ" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-tz.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#preYK">
-                                        用款计划
-                                    </a>
-                                </div>
-                                <div id="preYK" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-yk.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#preYKSQ">
-                                        用款申请
-                                    </a>
-                                </div>
-                                <div id="preYKSQ" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-yksq.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#preWorkCollapse"
-                                       href="#preZLTX">
-                                        质量责任体系
-                                    </a>
-                                </div>
-                                <div id="preZLTX" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <img src="../../static/images/onepic-home-img/pre-zltx.png"
-                                             alt="" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                        <div class="tab-pane fad" id="jlbgList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="jlbgCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="#jlbgYLB">
+                                                变更令一览表
+                                            </a>
+                                        </div>
+                                        <div id="jlbgYLB" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/jlbg-ylb.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="#bgtz">
+                                                变更台账
+                                            </a>
+                                        </div>
+                                        <div id="bgtz" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/jlbg-bgtz.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="#sgjd">
+                                                施工进度
+                                            </a>
+                                        </div>
+                                        <div id="sgjd" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/jlbg-sgjd.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                合同价格调整表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                回扣动员预付款一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                计量支付数量汇总表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                价格调整汇总表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                扣回材料垫付款一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                扣回及退还农民工工资保证金一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                扣回质量保证金一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                清单单价变更一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                清单工程量变更一览表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                清单信息
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                清单中期支付报表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                永久性工程材料到达现场计量表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                支付申请表
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                支付证书
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                中间计量单
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#jlbgCollapse"
+                                               href="">
+                                                中期财务支付证书
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fad" id="preWorkList">
+                            <div class="container-fluid">
+                                <div class="accordion" id="preWorkCollapse">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#preAQZR">
+                                                安全责任体系
+                                            </a>
+                                        </div>
+                                        <div id="preAQZR" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-anquanzenren.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#prework">
+                                                前期工作一栏表
+                                            </a>
+                                        </div>
+                                        <div id="prework" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-work.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#preTZ">
+                                                项目投资完成情况表
+                                            </a>
+                                        </div>
+                                        <div id="preTZ" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-tz.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#preYK">
+                                                用款计划
+                                            </a>
+                                        </div>
+                                        <div id="preYK" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-yk.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#preYKSQ">
+                                                用款申请
+                                            </a>
+                                        </div>
+                                        <div id="preYKSQ" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-yksq.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#preWorkCollapse"
+                                               href="#preZLTX">
+                                                质量责任体系
+                                            </a>
+                                        </div>
+                                        <div id="preZLTX" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <img src="../../static/images/onepic-home-img/pre-zltx.png"
+                                                     alt="" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-
                 </div>
-
-            </div>
-        </div>
-        <!--设置页面-->
-        <div class="config-page">
-            <div class="config-bt" id="configBT"
-                 style="position: absolute;z-index: 10002;bottom: 20px;right: 30px;font-size: 36px;cursor: pointer;">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-            </div>
-            <div class="config-page-container">
-                <div class="config-page-content"
-                     style="width: 240px;height: 340px;
+                <!--设置页面-->
+                <div class="config-page">
+                    <div class="config-bt" id="configBT"
+                         style="position: absolute;z-index: 10002;bottom: 20px;right: 30px;font-size: 36px;cursor: pointer;">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                    </div>
+                    <div class="config-page-container">
+                        <div class="config-page-content"
+                             style="width: 240px;height: 340px;
                      position: absolute;bottom: 20px;right: 30px;
                      z-index: 10002;background-color: #313d4f;color: #ffffff;">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <label>
-                                <input type="checkbox" id="jdhcCloseBt" checked> 预警标注线路开关
-                            </label>
-                        </li>
-                        <li class="list-group-item">
-                            <label>
-                                <input type="checkbox" id="isScanPicInfo"> 查看影像变化信息
-                            </label>
-                        </li>
-                        <li class="list-group-item">
-                            <label>
-                                <input type="checkbox" id="projectInfoBt" checked> 项目基本信息
-                            </label>
-                        </li>
-                        <li class="list-group-item">
-                            <label>
-                                <input type="checkbox" id="yxhcInfoBt"> 影像核查信息
-                            </label>
-                        </li>
-                    </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label>
+                                        <input type="checkbox" id="jdhcCloseBt" checked> 预警标注线路开关
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    <label>
+                                        <input type="checkbox" id="isScanPicInfo"> 查看影像变化信息
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    <label>
+                                        <input type="checkbox" id="projectInfoBt" checked> 项目基本信息
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    <label>
+                                        <input type="checkbox" id="yxhcInfoBt"> 影像核查信息
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!--资金管理图表-->
-        <div class="zjgl-echarts-area" id="zjGLChartArea" style="display: none;">
-            <div class="pie-chart" id="pieZJGL"
-                 style="width: 500px;height: 300px;z-index: 10005;
+                <!--资金管理图表-->
+                <div class="zjgl-echarts-area" id="zjGLChartArea" style="display: none;">
+                    <div class="pie-chart" id="pieZJGL"
+                         style="width: 500px;height: 300px;z-index: 10005;
                  position: absolute;bottom: 2px;left: 15px;">
 
-            </div>
-            <div class="line-chart" id="lineZJGL"
-                 style="width: 800px;height: 300px;z-index: 10005;
+                    </div>
+                    <div class="line-chart" id="lineZJGL"
+                         style="width: 800px;height: 300px;z-index: 10005;
                  position: absolute;bottom: 2px;left: 520px;">
 
-            </div>
-        </div>
-        <!-- 影像核查信息显示 -->
-        <div class="yxhc-info-area" id="yxhcInfoArea" style="width:1060px;height:60px;background-color:#313d4f;
+                    </div>
+                </div>
+                <!-- 影像核查信息显示 -->
+                <div class="yxhc-info-area" id="yxhcInfoArea" style="width:1060px;height:60px;background-color:#313d4f;
             z-index:10002;position:absolute;top:76px;left:60px;display:none;color:#fff;padding:10px;">
-            G575巴里坤-哈密段，2017 年9月动工八处，施工里程为16公里，施工主要为桥梁桩基础施工、便道施工、清表施工。
+                    G575巴里坤-哈密段，2017 年9月动工八处，施工里程为16公里，施工主要为桥梁桩基础施工、便道施工、清表施工。
+                </div>
+            </div>
+            <div id="echartArea" class="col-md-4 col-sm-4" style="display: none;">
+                <div id="xmslEcharts" style="width: 100%; height: 300px; z-index: 10005;
+                    position: absolute; -webkit-tap-highlight-color: transparent;
+                    user-select: none; background: rgb(225, 225, 225);"></div>
+                <div id="xmtzEcharts" style="width: 100%; height: 300px; z-index: 10005;
+                    position: absolute;top:302px; -webkit-tap-highlight-color: transparent;
+                    user-select: none; background: rgb(225, 225, 225);"></div>
+            </div>
         </div>
     </div>
 
@@ -2248,667 +917,13 @@
         </div>
     </div>
 </div>
-<!--ztree-->
-<script>
-    var zTreeObj;
-    var style = {
-        strokeColor: "red",
-        strokeWidth: 5,
-        fillOpacity: "1"
-    }
-    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-    var setting = {
-        view: {
-            showLine: false,
-            selectedMulti: false
-        },
-        data: {
-            simpleData: {
-                enable: true,
-                idKey: "id",
-                pIdKey: "pId",
-                rootPId: ""
-            }
-        },
-        callback: {
-            onClick: onClick
-        }
-    };
 
-    function onClick(event, treeId, treeNode) {
-//        vectorLayer.removeAllFeatures();// 去除高亮
-        vectorLayer.setVisibility(true)
-        removeVectorLayer()
-        deactiveAll();//注销点控件
+<script src="../../static/js/xjroud/xjroud-config.js"></script>
+<script src="../../static/js/xjroud/xjroud-main.js"></script>
+<script src="../../static/js/xjroud/xjroud-ztree.js"></script>
+<script src="../../static/js/xjroud/xjroud-initdata.js"></script>
+<script src="../../static/js/xjroud/xjroud-echarts.js"></script>
+<script src="../../static/js/xjroud/xjroud-setpage.js"></script>
 
-        var feature;
-        if (treeNode.gljb != undefined) {
-            var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
-            if (treeNode.gljb == 'GS') {
-                queryParam = new SuperMap.REST.FilterParameter({
-                    name: "高速@交通#3#2"
-                });
-            } else if (treeNode.gljb == 'GD') {
-                queryParam = new SuperMap.REST.FilterParameter({
-                    //name: "一般国道@交通#2#4",
-                    name: "GLGD_1@xj#4",
-                    attributeFilter: "SmID = " + treeNode.smId
-                });
-            } else if (treeNode.gljb == 'SD') {
-                queryParam = new SuperMap.REST.FilterParameter({
-                    name: "一般省道@交通#3",
-                    attributeFilter: "SmID = " + treeNode.smId
-                });
-            }
-
-            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
-                queryParams: [queryParam]
-            });
-            queryBySQLService = new SuperMap.REST.QueryBySQLService(MAPURL.ZJ_ROAD, {
-                eventListeners: {
-                    "processCompleted": function (queryEventArgs) {
-                        console.log("-----------")
-//                        console.log(queryEventArgs)
-                        console.log("-----------")
-                        feature = queryEventArgs.result.recordsets[0].features[0]
-                        feature.style = style;
-                        vectorLayer.addFeatures(feature);
-                        map.zoomToExtent(feature.geometry.getBounds())
-
-                        // 显示项目信息
-                        if ($("#projectInfoBt").prop("checked")) {
-                            $("#projectInfoAreaId").css("display", "block")
-                        }
-                        // 显示影像核查信息
-                        if ($("#yxhcInfoBt").prop("checked")) {
-                            $("#yxhcInfoArea").css("display", "block")
-                        }
-                    },
-                    "processFailed": processFailed
-                }
-            });
-            queryBySQLService.processAsync(queryBySQLParams);
-        }
-
-    }
-
-    vectorLayer = new SuperMap.Layer.Vector("Vector Layer");
-
-    var treeNodes = [
-        {id: 1, pId: 0, name: "全部公路", open: true},
-        {id: 11, pId: 1, name: "高速"},
-        {id: 12, pId: 1, name: "国道"},
-        {id: 13, pId: 1, name: "省道"}
-    ];
-
-    var gsFeatures = null;
-    var gdFeatures = null;
-    var sdFeatures = null;
-
-    $(function () {
-        function autoHeight() {
-            var winH = $(window).height();
-            var footerH = $('.footerWrap').height();
-            var headerH = $('.headerWrap').height();
-            return winH - footerH - headerH;
-        }
-
-        $('.mapWrap').height(autoHeight());
-        $(window).resize(function () {
-            $('.mapWrap').height(autoHeight());
-        });
-
-
-        $('.mianNav>li').hover(function () {
-            $(this).find('ul').show().parent().siblings().find('ul').hide();
-        }, function () {
-            $(this).find('ul').hide();
-        });
-
-        $('.js_drop').click(function () {
-            $(this).find('p').toggle();
-        });
-
-
-        var queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
-        queryParamGS = new SuperMap.REST.FilterParameter({
-            name: "高速@交通#3#2"
-        });
-        queryParamGD = new SuperMap.REST.FilterParameter({
-            // name: "一般国道@交通#2#4"
-            name: "GLGD_1@xj#4"
-        });
-        queryParamSD = new SuperMap.REST.FilterParameter({
-            name: "一般省道@交通#3"
-        });
-        queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
-            queryParams: [queryParamGS, queryParamGD, queryParamSD],
-            queryOption: "ATTRIBUTE"
-        });
-        queryBySQLService = new SuperMap.REST.QueryBySQLService(MAPURL.ZJ_ROAD, {
-            eventListeners: {
-                "processCompleted": processCompleted,
-                "processFailed": processFailed
-            }
-        });
-        queryBySQLService.processAsync(queryBySQLParams);
-
-    })
-
-
-    // 查询数据集处理
-    function processCompleted(queryEventArgs) {
-        gsFeatures = queryEventArgs.result.recordsets[0].features
-        gdFeatures = queryEventArgs.result.recordsets[1].features
-        sdFeatures = queryEventArgs.result.recordsets[2].features
-
-        console.log(">>>>>>>>>>>>>>>>>")
-//        console.log(gsFeatures)
-//        console.log(gdFeatures)
-//        console.log(sdFeatures)
-        console.log(">>>>>>>>>>>>>>>>>")
-
-        var _obj = null;
-        var _count = 0;
-        for (var i = 0; i < gsFeatures.length; i++) {
-            _obj = gsFeatures[i].attributes
-            if (_obj.XMMC == 'G7大黄山至乌鲁木齐段改扩建工程') {
-                if (_count == 0) {
-                    treeNodes.push({id: i + 2, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
-                }
-                _count = _count + 1;
-            } else {
-                treeNodes.push({id: i + 2, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
-            }
-
-        }
-        for (var i = 0; i < gdFeatures.length; i++) {
-            _obj = gdFeatures[i].attributes
-            treeNodes.push({id: i + 200, pId: 12, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
-        }
-        for (var i = 0; i < sdFeatures.length; i++) {
-            _obj = sdFeatures[i].attributes
-            treeNodes.push({id: i + 300, pId: 13, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
-        }
-        zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, treeNodes);
-    }
-
-    function processFailed(e) {
-        console.log(e)
-        alert(e.error.errorMsg);
-    }
-
-</script>
-<!--初始化数据-->
-<script type="text/javascript">
-    // 资金进度数据
-    var zjjdTableDatas = [
-        {
-            "id": 0,
-            "name": "计划投资(万元)",
-            "january": "351",
-            "february": "362",
-            "march": "453",
-            "april": "454",
-            "may": "355",
-            "june": "436",
-            "july": "357",
-            "august": "448",
-            "september": "369",
-            "october": "510",
-            "november": "311",
-            "december": "412"
-        },
-        {
-            "id": 1,
-            "name": "实际投资(万元)",
-            "january": "351",
-            "february": "362",
-            "march": "453",
-            "april": "454",
-            "may": "355",
-            "june": "420",
-            "july": "357",
-            "august": "448",
-            "september": "369",
-            "october": "510",
-            "november": "311",
-            "december": "414"
-        }
-    ];
-    var jdjdTableDatas = [
-        {
-            "id": 0,
-            "name": "计划投资(万元)",
-            "january": "351",
-            "february": "362",
-            "march": "453",
-            "april": "454",
-            "may": "355",
-            "june": "436",
-        },
-        {
-            "id": 1,
-            "name": "实际投资(万元)",
-            "january": "351",
-            "february": "362",
-            "march": "453",
-            "april": "454",
-            "may": "355",
-            "june": "420",
-        }
-    ];
-
-    function initZjjdTable() {
-        var _zjjdTbody = ""
-        var _zjjdBFB = '<th scope="row">完成百分比(%)</th>'
-        for (var i in zjjdTableDatas) {
-            _zjjdTbody = _zjjdTbody + '<tr><th scope="row">' + zjjdTableDatas[i].name + '</th>' +
-                '<td>' + zjjdTableDatas[i].january + '</td>' +
-                '<td>' + zjjdTableDatas[i].february + '</td>' +
-                '<td>' + zjjdTableDatas[i].march + '</td>' +
-                '<td>' + zjjdTableDatas[i].april + '</td>' +
-                '<td>' + zjjdTableDatas[i].may + '</td>' +
-                '<td>' + zjjdTableDatas[i].june + '</td>' +
-                '<td>' + zjjdTableDatas[i].july + '</td>' +
-                '<td>' + zjjdTableDatas[i].august + '</td>' +
-                '<td>' + zjjdTableDatas[i].september + '</td>' +
-                '<td>' + zjjdTableDatas[i].october + '</td>' +
-                '<td>' + zjjdTableDatas[i].november + '</td>' +
-                '<td>' + zjjdTableDatas[i].december + '</td>' +
-                '</tr>'
-        }
-        _zjjdBFB = '<tr>' + _zjjdBFB +
-            '<td>' + (zjjdTableDatas[1].january / zjjdTableDatas[0].january ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].february / zjjdTableDatas[0].february ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].march / zjjdTableDatas[0].march ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].april / zjjdTableDatas[0].april ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].may / zjjdTableDatas[0].may ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].june / zjjdTableDatas[0].june ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].july / zjjdTableDatas[0].july ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].august / zjjdTableDatas[0].august ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].september / zjjdTableDatas[0].september ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].october / zjjdTableDatas[0].october ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].november / zjjdTableDatas[0].november ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (zjjdTableDatas[1].december / zjjdTableDatas[0].december ).toFixed(4) * 100 + '%</td>' +
-            '</tr>';
-        _zjjdTbody = _zjjdTbody + _zjjdBFB
-        $("#zjjdTable tbody").html(_zjjdTbody)
-        var trs = $("#zjjdTable tr")
-        var coefficients = trs[trs.length - 1]
-        var tds = $(coefficients).find('td')
-        for (var i = 0; i < tds.length; i++) {
-            var str = $(tds[i]).text().trim();
-            var coeff = Number(str.substr(0, str.length - 1))
-            if (coeff != 100) {
-                var _th = $(trs[0]).find("th")[i + 1]
-                var _trOne = $(trs[1]).find("td")[i]
-                var _trTwo = $(trs[2]).find("td")[i]
-                var _trThree = $(trs[3]).find("td")[i]
-                $(_th).addClass("danger")
-                $(_trOne).addClass("danger")
-                $(_trTwo).addClass("danger")
-                $(_trThree).addClass("danger")
-            }
-        }
-
-    }
-
-    function initjdjdTable() {
-        var _jdjdTbody = ""
-        var _jdjdBFB = '<th scope="row">完成百分比(%)</th>'
-        for (var i in jdjdTableDatas) {
-            _jdjdTbody = _jdjdTbody + '<tr><th scope="row">' + jdjdTableDatas[i].name + '</th>' +
-                '<td>' + jdjdTableDatas[i].january + '</td>' +
-                '<td>' + jdjdTableDatas[i].february + '</td>' +
-                '<td>' + jdjdTableDatas[i].march + '</td>' +
-                '<td>' + jdjdTableDatas[i].april + '</td>' +
-                '<td>' + jdjdTableDatas[i].may + '</td>' +
-                '<td>' + jdjdTableDatas[i].june + '</td>' +
-                '</tr>'
-        }
-        _jdjdBFB = '<tr>' + _jdjdBFB +
-            '<td>' + (jdjdTableDatas[1].january / jdjdTableDatas[0].january ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (jdjdTableDatas[1].february / jdjdTableDatas[0].february ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (jdjdTableDatas[1].march / jdjdTableDatas[0].march ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (jdjdTableDatas[1].april / jdjdTableDatas[0].april ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (jdjdTableDatas[1].may / jdjdTableDatas[0].may ).toFixed(4) * 100 + '%</td>' +
-            '<td>' + (jdjdTableDatas[1].june / jdjdTableDatas[0].june ).toFixed(4) * 100 + '%</td>' +
-            '</tr>';
-        _jdjdTbody = _jdjdTbody + _jdjdBFB
-        $("#jdjdTable tbody").html(_jdjdTbody)
-        var trs = $("#jdjdTable tr")
-        var coefficients = trs[trs.length - 1]
-        var tds = $(coefficients).find('td')
-        for (var i = 0; i < tds.length; i++) {
-            var str = $(tds[i]).text().trim();
-            var coeff = Number(str.substr(0, str.length - 1))
-            if (coeff != 100) {
-                var _th = $(trs[0]).find("th")[i + 1]
-                var _trOne = $(trs[1]).find("td")[i]
-                var _trTwo = $(trs[2]).find("td")[i]
-                var _trThree = $(trs[3]).find("td")[i]
-                $(_th).addClass("danger")
-                $(_trOne).addClass("danger")
-                $(_trTwo).addClass("danger")
-                $(_trThree).addClass("danger")
-
-            }
-        }
-
-    }
-
-    $(function () {
-        initZjjdTable()
-        initjdjdTable()
-    })
-
-    /**
-     * [获取提示内容]
-     * @param  {[type]} obj [properties属性]
-     * @return {[type]}     [string]
-     */
-    function getPopupMsg(obj) {
-        var _tempTepl = _markerTepl
-        _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
-            .replace("##mileage##", "70")
-            .replace("##startTime##", "2017-5")
-            .replace("##endTime##", "2019-10")
-            .replace("##jianjie##", "G575巴里坤-哈密段")
-            .replace("##actual##", obj.mileage)
-
-        // _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
-        //     .replace("##mileage##", parseInt(obj.length))
-        //     .replace("##startTime##", obj.begin_User)
-        //     .replace("##endTime##", obj.end_User)
-        //     .replace("##jianjie##", obj.jianjie)
-        //     .replace("##actual##", obj.mileage)
-
-        return _tempTepl
-    }
-
-    // 卫星影像数组
-    var _layerImageList = [{
-        id: "layer20150913",
-        time: "20150913",
-
-    }, {
-        id: "layer20161210",
-        time: "20161210",
-    }, {
-        id: "layer20170101",
-        time: "20170101",
-    }]
-
-    // marker 模板数据
-    var _markerTepl = '<div class="popup" style="color: #FFFFFF;font-size: 14px;">  ' +
-        '   <section> ' +
-        '       公路名：##name##' +
-        '   </section>' +
-        '   <section> ' +
-        '       全长：##mileage##公里' +
-        '   </section> ' +
-        '   <section>' +
-        '       开工时间：##startTime##' +
-        '   </section>' +
-        '   <section>' +
-        '       竣工时间：##endTime##' +
-        '   </section>' +
-        '   <section>' +
-        '       简介：##jianjie##' +
-        '   </section>' +
-        '   <section>' +
-        '</div>'
-
-    // marker数据集
-    var _markerList = [{
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                623865.51010, 4772555.12113
-            ]
-        },
-        "properties": {
-            "name": "G30小草湖至乌鲁木齐段改扩建工程",
-            "mileage": "380",
-            "design": "中交XXXX",
-            "plan": "5",
-            "actual": "6"
-        }
-    }, {
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                622867.43265, 4774969.16099
-            ]
-        },
-        "properties": {
-            "name": "G30小草湖至乌鲁木齐段改扩建工程",
-            "mileage": "381",
-            "design": "中交XXXX",
-            "plan": "5",
-            "actual": "6"
-        }
-    }, {
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                620879.68869, 4779458.34025
-            ]
-        },
-        "properties": {
-            "name": "G30小草湖至乌鲁木齐段改扩建工程",
-            "mileage": "382",
-            "design": "中交XXXX",
-            "plan": "5",
-            "actual": "6"
-        }
-    }, {
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                614764.72642, 4787675.32079
-            ]
-        },
-        "properties": {
-            "name": "G30小草湖至乌鲁木齐段改扩建工程",
-            "mileage": "383",
-            "design": "中交XXXX",
-            "plan": "5",
-            "actual": "6"
-        }
-    }, {
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                609223.04187, 4793446.31642
-            ]
-        },
-        "properties": {
-            "name": "G30小草湖至乌鲁木齐段改扩建工程",
-            "mileage": "384",
-            "design": "中交XXXX",
-            "plan": "5",
-            "actual": "6"
-        }
-    }]
-
-
-</script>
-<!--图表-->
-<script type="text/javascript" id="echartScript">
-    var myChart = echarts.init(document.getElementById('pieOne'));
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: '某站点用户访问来源',
-            subtext: '纯属虚构',
-            x: 'center'
-        },
-        backgroundColor: "#e1e1e1",
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-        },
-        series: [{
-            name: '访问来源',
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: [
-                {value: 335, name: '直接访问'},
-                {value: 310, name: '邮件营销'},
-                {value: 234, name: '联盟广告'},
-                {value: 135, name: '视频广告'},
-                {value: 1548, name: '搜索引擎'}
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            }
-        }]
-    };
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-
-    var pieZJGLChart = echarts.init(document.getElementById('pieZJGL'));
-    // 指定图表的配置项和数据
-    var optionPieZJGL = {
-        title: {
-            text: '项目投资完成情况',
-            subtext: '纯属虚构',
-            x: 'center'
-        },
-        backgroundColor: "#e1e1e1",
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['已完成', '未完成']
-        },
-        series: [{
-            name: '投资情况(元)',
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: [
-                {value: 25723034, name: '已完成'},
-                {value: 20000135, name: '未完成'},
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            }
-        }]
-    };
-    // 使用刚指定的配置项和数据显示图表。
-    pieZJGLChart.setOption(optionPieZJGL);
-
-    // 资金管理折线图
-    var lineZJGLChart = echarts.init(document.getElementById('lineZJGL'));
-    var colors = ['#5793f3', '#d14a61', '#675bba'];
-    // 指定图表的配置项和数据
-    var optionLineZJGL = {
-        title: {
-            text: '资金投资',
-            subtext: '纯属虚构'
-        },
-        backgroundColor: "#e1e1e1",
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: ['计划投资', '实际投资']
-        },
-        toolbox: {
-            show: true,
-            feature: {
-                dataZoom: {
-                    yAxisIndex: 'none'
-                },
-                dataView: {readOnly: false},
-                magicType: {type: ['line', 'bar']},
-                restore: {},
-                saveAsImage: {}
-            }
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['201701', '201702', '201703', '201704', '201705', '201706', '201707', '201708', '201709', '201710']
-        },
-        yAxis: {
-            type: 'value',
-            axisLabel: {
-                formatter: '{value} 万元'
-            }
-        },
-        series: [
-            {
-                name: '计划投资',
-                type: 'line',
-                data: [10000, 21000, 40020, 53000, 66000, 72000, 82000, 91000, 80000, 72000, 61000, 30000],
-                markPoint: {
-                    data: [
-                        {type: 'max', name: '最大值'},
-                        {type: 'min', name: '最小值'}
-                    ]
-                },
-            },
-            {
-                name: '实际投资',
-                type: 'line',
-                data: [15000, 26000, 43000, 49000, 60000, 79000, 87200, 94000, 76000, 69000, 58000, 25000],
-                markPoint: {
-                    data: [
-                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
-                    ]
-                },
-            }
-        ]
-    };
-    lineZJGLChart.setOption(optionLineZJGL);
-
-
-</script>
-<!--设置页面-->
-<script type="text/javascript" id="">
-    $(function () {
-        $("#configBT").click(function () {
-            $(".config-page-container").css("display", "block")
-        })
-        $(".config-page-container").mouseleave(function () {
-            $(".config-page-container").css("display", "none")
-        })
-        $("#projectInfoBt").change(function () {
-            if ($(this).prop("checked")) {
-                $("#projectInfoAreaId").css("display", "block")
-            } else {
-                $("#projectInfoAreaId").css("display", "none")
-            }
-        })
-        $("#yxhcInfoBt").change(function () {
-            if ($(this).prop("checked")) {
-                $("#yxhcInfoArea").css("display", "block")
-            } else {
-                $("#yxhcInfoArea").css("display", "none")
-            }
-        })
-    })
-</script>
 </body>
 </html>

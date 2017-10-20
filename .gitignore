@@ -21,3 +21,4 @@ target/
 # 忽略 文件
 onepic.iml
 *.iml
+*test*.html

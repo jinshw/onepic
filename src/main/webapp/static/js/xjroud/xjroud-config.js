@@ -1,7 +1,13 @@
+/**
+ * 模块：配置信息
+ * 注意：需要在文件中第一个加载
+ */
+
 // host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
 var host = "http://localhost:8090";
 var MAPURL = {
     URL: host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GL",
+    URL_DATA: host + "/iserver/services/data-xjsl_Final/rest/data",
     ROAD_URL: host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GS",
     ZJ_ROAD: host + "/iserver/services/map-zaijiandaoluxin/rest/maps/GLZJ",
     XJ_YX_ALL: host + "/iserver/services/map-XJ_level11/rest/maps/XJ_11",
