@@ -44,13 +44,13 @@ function init() {
         ]
     });
 //            map.addControl(new SuperMap.Control.MousePosition());
-    mousePosition = new SuperMap.Control.MousePosition({
+    /*mousePosition = new SuperMap.Control.MousePosition({
         id: "mousePositionId",
         autoActivate: true,
         separator: ','
     })
     map.addControl(mousePosition)
-    mousePosition.activate()
+    mousePosition.activate()*/
 
     //初始化图层
     layerT = new SuperMap.Layer.TiledDynamicRESTLayer("ditu", MAPURL.URL, {
@@ -542,6 +542,8 @@ function infoQuery() {
     $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
     vectorLayer.setVisibility(true)
 
+    echartsToggle('none')
+
     setLayerVisibility({
         layerT: true,
         layerRoad: true,
@@ -592,6 +594,8 @@ function setLayerVisibility(obj) {
 
     ponitLayer.setVisibility(obj["ponitLayer"] || false)
     markers.setVisibility(obj["markers"] || false)
+    areaLayer.setVisibility(obj["areaLayer"] || false)
+
 }
 
 /**
@@ -682,7 +686,7 @@ $(document).ready(function () {
         } else {
             layer.msg("请选择一条公路后再点击")
         }
-
+        echartsToggle('none')
     });
     // 节点进度
     $("#jdjdBt").click(function () {
@@ -699,6 +703,7 @@ $(document).ready(function () {
         } else {
             layer.msg("请选择一条公路后再点击")
         }
+        echartsToggle('none')
     });
     // 统计功能
     $("#tjgnBT").click(function () {
@@ -710,16 +715,19 @@ $(document).ready(function () {
             toolbar: "none",
             yxhcInfoBt: false
         })
+        echartsToggle('block')
 
-        $("#leftSider").css("display","none")
+        /*$("#leftSider").css("display","none")
         $("#MainId").removeClass("col-md-10 col-sm-10").addClass("col-md-12 col-sm-12")
 
         $("#mapArea").removeClass("col-md-12 col-sm-12").addClass("col-md-8 col-sm-8")
-        $("#echartArea").css("display","block")
-        xmslChart.resize()
-        xmtzEcharts.resize()
+        $("#echartArea").css("display","block")*/
+        echartsResize()
         map.setCenter(new SuperMap.LonLat(87.40448, 43.87231), 0);
         $(".echarts-area").css("display", "none");
+        setLayerVisibility({
+            areaLayer:true
+        })
     });
 
     $("#yxBT").click(function () {
@@ -777,6 +785,7 @@ $(document).ready(function () {
 
         // 设置“查看影像信息”开关，必须在setLayerVisibility()方法后执行
         $("#timeListId").css('display', 'block')
+        echartsToggle('none')
     })
     $("#timeListId").mouseleave(function () {
 //                $("#timeListId").css('display', 'none')
@@ -825,6 +834,7 @@ $(document).ready(function () {
         $("#cancelMarkerBT").attr("disabled", false)
         $("#plotContent").attr("disabled", true)
         map.events.unregister('click', layer, mapLayerClick);
+        echartsToggle('none')
     })
     $("#jdhcCloseBt").change(function () {
         if ($("#jdhcCloseBt").prop("checked")) {
@@ -890,7 +900,8 @@ $(document).ready(function () {
             "201707",
             "201708",
             "201709"
-        ]
+        ],
+        activeIndex:6
     }, function (item) {
         console.log($(item).text())
 

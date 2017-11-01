@@ -13,6 +13,11 @@
     color: #fff;
 }
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 /*.nav>li:hover>a{ background: rgba(0,0,0,.2)}*/
 .nav > li:hover > a {
     color: #0B61A4;
@@ -394,7 +399,7 @@
     /*height:500px;*/
     position: absolute;
     top: 100px;
-    right: 25px;
+    right: 2px;
     z-index: 10000;
     background-color: #313d4f;
     color: #fff;
@@ -457,7 +462,7 @@
 .project-info {
     position: absolute;
     top: 0;
-    right: 20px;
+    right: 0px;
     z-index: 10002;
     background-color: #313d4f;
     color: #fff;
@@ -517,4 +522,35 @@ a:focus, a:hover {
 
 .mapWrap .ztree {
     height: auto;
+}
+
+/*统计功能*/
+.tongji-echarts {
+    background-color: #cecece;
+    z-index: 10000;
+}
+
+.tongji-echarts > .nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    color: #313d4f;
+}
+
+.tongji-echarts > .nav-tabs > li.active > a,
+.tongji-echarts > .nav-tabs > li.active > a:focus,
+.tongji-echarts > .nav-tabs > li.active > a:hover {
+    color: #000;
+    cursor: default;
+    background-color: #cecece;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    font-weight: bold;
+}
+
+.tab-content .echarts-container {
+    height: 300px;
+    z-index: 10005;
+    margin-top: 5px;
 }

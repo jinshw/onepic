@@ -199,7 +199,7 @@
 
                 <!--首页图表-->
                 <div id="homeCharts"
-                     style="position: absolute;z-index: 10002;top: 5px;right: 20px;height: 350px;width: 33%;">
+                     style="position: absolute;z-index: 10002;top: 5px;right: 0px;height: 350px;width: 33%;">
                     <div class="home-charts home-charts-1">
                         <img src="../../static/images/onepic-home-img/home-charts-1.png">
                     </div>
@@ -259,22 +259,22 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td>张三</td>
+                                                        <td>杨明</td>
                                                         <td>驻办地</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>李四</td>
+                                                        <td>李玉英</td>
                                                         <td>施工单位</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>王五</td>
+                                                        <td>韩军</td>
                                                         <td>施工单位</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>赵六</td>
+                                                        <td>纪超</td>
                                                         <td>总监</td>
                                                         <td></td>
                                                     </tr>
@@ -302,13 +302,13 @@
                                                             项目编号：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            XJ-2017-10001
+                                                            S19-G575
                                                         </div>
                                                         <div class="col-md-3 show-item">
                                                             项目名称：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            G575
+                                                            老爷庙口岸-巴里坤
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -316,7 +316,7 @@
                                                             项目负责人：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            张三
+                                                            热普凯提·卡哈尔
                                                         </div>
                                                         <div class="col-md-3 show-item">
                                                             全长（KM）：
@@ -327,16 +327,16 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3 show-item">
-                                                            批准概算（元）：
+                                                            批准概算（万元）：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            330000000
+                                                            371300
                                                         </div>
                                                         <div class="col-md-3 show-item">
                                                             开工日期：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            2017-05-23
+                                                            2017-01
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -344,13 +344,13 @@
                                                             交工日期：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            2019-08-23
+                                                            2019-04
                                                         </div>
                                                         <div class="col-md-3 show-item">
                                                             竣工日期：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            2019-10-23
+                                                            2019-5
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -358,13 +358,13 @@
                                                             计划工期（月）：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            40
+                                                            30
                                                         </div>
                                                         <div class="col-md-3 show-item">
                                                             项目联系电话：
                                                         </div>
                                                         <div class="col-md-3 show-item">
-                                                            6188897
+                                                            13899359424
                                                         </div>
                                                     </div>
                                                 </div>
@@ -844,7 +844,7 @@
                 <!--设置页面-->
                 <div class="config-page">
                     <div class="config-bt" id="configBT"
-                         style="position: absolute;z-index: 10002;bottom: 20px;right: 30px;font-size: 36px;cursor: pointer;">
+                         style="position: absolute;z-index: 10002;bottom: 20px;right: 20px;font-size: 36px;cursor: pointer;">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                     </div>
                     <div class="config-page-container">
@@ -896,13 +896,44 @@
                     G575巴里坤-哈密段，2017 年9月动工八处，施工里程为16公里，施工主要为桥梁桩基础施工、便道施工、清表施工。
                 </div>
             </div>
-            <div id="echartArea" class="col-md-4 col-sm-4" style="display: none;">
-                <div id="xmslEcharts" style="width: 100%; height: 300px; z-index: 10005;
-                    position: absolute; -webkit-tap-highlight-color: transparent;
-                    user-select: none; background: rgb(225, 225, 225);"></div>
-                <div id="xmtzEcharts" style="width: 100%; height: 300px; z-index: 10005;
-                    position: absolute;top:302px; -webkit-tap-highlight-color: transparent;
-                    user-select: none; background: rgb(225, 225, 225);"></div>
+            <div id="echartArea" class="col-md-4 col-sm-4 tongji-echarts" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#echartBasic" data-toggle="tab">概况</a>
+                    </li>
+                    <li>
+                        <a href="#echartAll" data-toggle="tab">全区</a>
+                    </li>
+                    <li>
+                        <a href="#echartTB" data-toggle="tab">厅本</a>
+                    </li>
+                    <li>
+                        <a href="#echartDZ" data-toggle="tab">地州</a>
+                    </li>
+                </ul>
+                <div id="tjTabContent" class="tab-content" style="height: auto;width: 100%;height: 899px;">
+                    <div class="tab-pane fad in active" id="echartBasic">
+                        <div id="xmslEcharts" class="echarts-container"></div>
+                        <div id="xmtzEcharts" class="echarts-container"></div>
+                        <!--<div id="qqwcEcharts" class="echarts-container"></div>-->
+                    </div>
+                    <div class="tab-pane fad" id="echartAll">
+                        <div id="qqwcAllEcharts" class="echarts-container"></div>
+                        <div id="xmtzAllEcharts" class="echarts-container"></div>
+                        <div id="xxjdAllEcharts" class="echarts-container" style="height: 500px;"></div>
+                    </div>
+                    <div class="tab-pane fad" id="echartTB">
+                        <div id="qqwcTBEcharts" class="echarts-container"></div>
+                        <div id="xmtzTBEcharts" class="echarts-container"></div>
+                        <div id="xxjdTBEcharts" class="echarts-container" style="height: 500px;"></div>
+                    </div>
+                    <div class="tab-pane fad" id="echartDZ">
+                        <div id="qqwcDZEcharts" class="echarts-container"></div>
+                        <div id="xmtzDZEcharts" class="echarts-container"></div>
+                        <div id="xxjdDZEcharts" class="echarts-container" style="height: 500px;"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -916,6 +947,10 @@
             <ul id="treeDemo1" class="ztree"></ul>
         </div>
     </div>
+</div>
+
+<div class="echart-only-container">
+    <div id="onlyEchart" style="height: 800px;width: 800px;"></div>
 </div>
 
 <script src="../../static/js/xjroud/xjroud-config.js"></script>
