@@ -1,0 +1,622 @@
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.headerWrap a {
+  color: #fff;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/*.nav>li:hover>a{ background: rgba(0,0,0,.2)}*/
+.nav > li:hover > a {
+  color: #0b61a4;
+  background: #f5f5f5;
+}
+
+.mianNav {
+  position: relative;
+}
+
+.mianNav p {
+  margin: 0;
+  display: none;
+}
+
+.mianNav .caret {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  color: #666;
+}
+
+.dropdown-menu {
+  z-index: 10003;
+}
+
+.mianNav .dropdown-menu {
+  left: 0;
+  z-index: 1;
+  border: none;
+  right: auto;
+}
+
+.mianNav .dropdown-menu li {
+  position: relative;
+}
+
+.mianNav .dropdown-menu a {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.mianNav ul li:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+.mianNav span {
+  font-size: 12px;
+}
+
+/*line bar*/
+.mymap-toolbar-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background-color: transparent;
+}
+
+.mymap-toolbar-container .item {
+  height: 34px;
+  width: 87px;
+  padding-left: 14px;
+  padding-right: 14px;
+  cursor: pointer;
+  background-color: #313d4f;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  white-space: nowrap;
+  color: #abacae;
+  position: relative;
+  float: right;
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+.mymap-toolbar-container .active {
+  color: #ffffff;
+}
+
+.mymap-toolbar-container .item:hover {
+  color: #ffffff;
+}
+
+.time-bar {
+  height: 34px;
+  width: 130px;
+  padding-left: 14px;
+  padding-right: 14px;
+  cursor: pointer;
+  background-color: #313d4f;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  white-space: nowrap;
+  color: #abacae;
+  position: relative;
+  float: right;
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+.angle-left-bt {
+  position: absolute;
+  left: 0;
+  padding: 0 10px;
+  top: 3px;
+}
+
+.angle-right-bt {
+  position: absolute;
+  right: 0;
+  padding: 0 10px;
+  top: 3px;
+}
+
+.angle-left-bt:hover,
+.angle-right-bt:hover {
+  color: #ffffff;
+}
+
+.time-show {
+  text-align: center;
+  font-size: 12px;
+  color: #ffffff;
+  position: absolute;
+  right: 16px;
+}
+
+.time-show .date-input {
+  background-color: #313d4f;
+  border: 0;
+  width: 80px;
+  height: 34px;
+}
+
+.time-list {
+  position: absolute;
+  top: 75px;
+  left: 30px;
+  z-index: 10000;
+  background-color: #313d4f;
+  color: #ffffff;
+  height: auto;
+  width: 172px;
+  padding: 10px;
+}
+
+.jdhc-bar {
+  position: absolute;
+  top: 0px;
+  right: 16px;
+  z-index: 10000;
+  background-color: #313d4f;
+  color: #ffffff;
+  height: auto;
+  width: 85px;
+  padding: 10px;
+}
+
+/*ztree 个性化定制*/
+.ztree {
+  color: #ffffff;
+}
+
+.ztree li a.level0 span.node_name {
+  color: #ffffff;
+}
+
+.ztree li a {
+  color: #ffffff;
+}
+
+.ztree li span.button.noline_close {
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+}
+
+.ztree li span.button.noline_open {
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+}
+
+.ztree li a.curSelectedNode {
+  background: #444f54;
+  color: #ffffff;
+}
+
+/*end ztree*/
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #0d75c5;
+}
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+  color: #ffffff;
+}
+
+#handle {
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  left: 50%;
+  background: rgb(205, 205, 205);
+  border: 1px solid rgb(112, 107, 107);
+  z-index: 2000;
+  cursor: col-resize;
+}
+
+#handleCenter {
+  position: absolute;
+  height: 32px;
+  width: 15px;
+  top: 50%;
+  left: -7px;
+  background: rgb(205, 205, 205);
+  border: 1px solid rgb(112, 107, 107);
+  z-index: 2000;
+  /*background-image: url(images/drag.png);*/
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.yx-time-line {
+  /*width: 85%;*/
+  height: 78px;
+  background-color: #ffffff;
+  /*background-color: #313d4f;*/
+  position: absolute;
+  top: 0;
+  left: 60px;
+  z-index: 9999;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.time-line {
+  width: 100%;
+  height: 3px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 18px;
+  /*display: none;*/
+}
+
+.time-item {
+  /*position: absolute;*/
+  /*top:-20px;*/
+  /*float: left;*/
+  /*margin-right: 10px;*/
+}
+
+.dsk-circle {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  background: #444;
+  border-radius: 50%;
+  line-height: 35px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  position: relative;
+}
+
+.active .dsk-circle {
+  background-color: #f60;
+}
+
+.time-line-year {
+  float: left;
+  margin-right: 11px;
+  cursor: pointer;
+}
+
+.time-line-year-area {
+  width: 70px;
+  height: 32px;
+  color: #fff;
+  line-height: 35px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #313d4f;
+  position: relative;
+}
+
+.time-line-date {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav .open > a,
+.nav .open > a:focus,
+.nav .open > a:hover {
+  background-color: #337ab7;
+}
+
+.mapWrap {
+  margin-left: 0;
+}
+
+.navbar {
+  margin-bottom: 1px;
+}
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.base-left-list {
+  position: absolute;
+  top: 75px;
+  left: 30px;
+  z-index: 10000;
+  background-color: #f5f5f5;
+  color: #ffffff;
+  height: auto;
+  width: 172px;
+}
+
+.base-left-list li label {
+  width: 100%;
+}
+
+.table-top {
+  position: absolute;
+  top: 15px;
+  left: 210px;
+  z-index: 10000;
+  background-color: #f5f5f5;
+  color: #000000;
+}
+
+.table-top .table {
+  margin-bottom: 0;
+}
+
+.red {
+  background: red;
+}
+
+/*timeline reset*/
+.timeline-container {
+  width: 100%;
+}
+
+.timeline-dots-wrap.top {
+  top: 0px;
+}
+
+.timeline-dots li.slide-active button {
+  color: #ffffff;
+}
+
+.timeline-dots li {
+  width: 70px;
+}
+
+.timeline-dots button {
+  color: #cacaca;
+}
+
+.drawplot-container {
+  width: auto;
+  /*height:500px;*/
+  position: absolute;
+  top: 100px;
+  right: 2px;
+  z-index: 10000;
+  background-color: #313d4f;
+  color: #fff;
+  /* display: none; */
+}
+
+.drawplot-opt-bar {
+  margin: 5px;
+}
+
+.drawplot-content {
+  display: none;
+}
+
+.drawplot-content-area {
+}
+
+.drawplot-content-area textarea {
+  width: 100%;
+  height: 136px;
+  margin-top: 10px;
+  resize: none;
+}
+
+.drawplot-bt-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.drawplot-bt-bar input {
+  margin: 5px;
+}
+
+.btn.focus,
+.btn:focus,
+.btn:hover {
+  color: #ffffff;
+}
+
+/*echarts */
+.echarts-area {
+  display: none;
+}
+
+/*==echarts*/
+.home-charts img {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/*项目基本信息*/
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  color: #fff;
+  cursor: default;
+  background-color: #313d4f;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.project-info {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: 10002;
+  background-color: #313d4f;
+  color: #fff;
+  width: 530px;
+}
+
+.tab-pane {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.tab-content {
+  height: 500px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #fbfbfb;
+  text-decoration: underline;
+}
+
+/*==项目基本信息*/
+/*设置页面*/
+.list-group-item {
+  background-color: #313d4f;
+  border: 1px solid #494b4e;
+}
+
+.list-group-item label {
+  cursor: pointer;
+}
+
+.config-page-container {
+  display: none;
+}
+
+/*==设置页面*/
+/*mytimeline*/
+.event_box {
+  margin: 0;
+}
+
+.parHd li {
+  /*color:#FFF;*/
+}
+
+/*==mytimeline*/
+.show-item {
+  border: 1px solid #ffffff;
+  padding: 5px 0;
+}
+
+.mapWrap .ztree {
+  height: auto;
+}
+
+/*统计功能*/
+.tongji-echarts {
+  background-color: #cecece;
+  z-index: 10000;
+}
+
+.tongji-echarts > .nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  color: #313d4f;
+}
+
+.tongji-echarts > .nav-tabs > li.active > a,
+.tongji-echarts > .nav-tabs > li.active > a:focus,
+.tongji-echarts > .nav-tabs > li.active > a:hover {
+  color: #000;
+  cursor: default;
+  background-color: #cecece;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  font-weight: bold;
+}
+
+.tab-content .echarts-container {
+  height: 300px;
+  z-index: 10005;
+  margin-top: 5px;
+}
+
+.yxhc-info-area {
+  width: 1060px;
+  height: 60px;
+  background-color: rgb(49, 61, 79);
+  z-index: 10002;
+  position: absolute;
+  top: 76px;
+  left: 60px;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
