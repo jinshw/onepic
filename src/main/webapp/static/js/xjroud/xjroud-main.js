@@ -43,14 +43,14 @@ function init() {
             drawPoint
         ]
     });
-//            map.addControl(new SuperMap.Control.MousePosition());
-    /*mousePosition = new SuperMap.Control.MousePosition({
+           map.addControl(new SuperMap.Control.MousePosition());
+    mousePosition = new SuperMap.Control.MousePosition({
         id: "mousePositionId",
         autoActivate: true,
         separator: ','
     })
     map.addControl(mousePosition)
-    mousePosition.activate()*/
+    mousePosition.activate()
 
     //初始化图层
     layerT = new SuperMap.Layer.TiledDynamicRESTLayer("ditu", MAPURL.URL, {

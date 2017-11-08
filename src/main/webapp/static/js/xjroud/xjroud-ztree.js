@@ -37,12 +37,12 @@ function onClick(event, treeId, treeNode) {
         var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
         if (treeNode.gljb == 'GS') {
             queryParam = new SuperMap.REST.FilterParameter({
-                name: "高速@交通#3#2"
+                name: "GLGS_1@xj"
             });
         } else if (treeNode.gljb == 'GD') {
             queryParam = new SuperMap.REST.FilterParameter({
                 //name: "一般国道@交通#2#4",
-                name: "GLGD_1@xj#4",
+                name: "GLGD_3@xj",
                 attributeFilter: "SmID = " + treeNode.smId
             });
         } else if (treeNode.gljb == 'SD') {
@@ -135,11 +135,11 @@ $(function () {
 
     var queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
     queryParamGS = new SuperMap.REST.FilterParameter({
-        name: "高速@交通#3#2"
+        name: "GLGS_1@xj"
     });
     queryParamGD = new SuperMap.REST.FilterParameter({
         // name: "一般国道@交通#2#4"
-        name: "GLGD_1@xj#4"
+        name: "GLGD_3@xj"
     });
     queryParamSD = new SuperMap.REST.FilterParameter({
         name: "一般省道@交通#3"
@@ -177,21 +177,21 @@ function processCompleted(queryEventArgs) {
         _obj = gsFeatures[i].attributes
         if (_obj.XMMC == 'G7大黄山至乌鲁木齐段改扩建工程') {
             if (_count == 0) {
-                treeNodes.push({id: i + 2, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+                treeNodes.push({id: i + 2000, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
             }
             _count = _count + 1;
         } else {
-            treeNodes.push({id: i + 2, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+            treeNodes.push({id: i + 2000, pId: 11, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
         }
 
     }
     for (var i = 0; i < gdFeatures.length; i++) {
         _obj = gdFeatures[i].attributes
-        treeNodes.push({id: i + 200, pId: 12, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+        treeNodes.push({id: i + 3000, pId: 12, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
     }
     for (var i = 0; i < sdFeatures.length; i++) {
         _obj = sdFeatures[i].attributes
-        treeNodes.push({id: i + 300, pId: 13, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+        treeNodes.push({id: i + 4000, pId: 13, name: _obj.XMMC, smId: _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
     }
     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, treeNodes);
     $.fn.zTree.init($("#treeDemoDZ"), setting, treeNodesDZ);

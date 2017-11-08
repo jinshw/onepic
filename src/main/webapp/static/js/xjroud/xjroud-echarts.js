@@ -1096,11 +1096,11 @@ function querySelectData(obj) {
     var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
     if (obj.gljb == 'GS') {
         queryParam = new SuperMap.REST.FilterParameter({
-            name: "高速@交通#3#2"
+            name: "GLGS_1@xj"
         });
     } else if (obj.gljb == 'GD') {
         queryParam = new SuperMap.REST.FilterParameter({
-            name: "GLGD_1@xj#4",
+            name: "GLGD_3@xj",
             // attributeFilter: "SmID = " + treeNode.smId
         });
     } else if (obj.gljb == 'SD') {
@@ -1110,11 +1110,11 @@ function querySelectData(obj) {
         });
     } else {
         queryParamGS = new SuperMap.REST.FilterParameter({
-            name: "高速@交通#3#2",
+            name: "GLGS_1@xj",
             attributeFilter: "SmID <= " + '5'
         });
         queryParamGD = new SuperMap.REST.FilterParameter({
-            name: "GLGD_1@xj#4",
+            name: "GLGD_3@xj",
             attributeFilter: "SmID <= " + '5'
         });
         queryParamSD = new SuperMap.REST.FilterParameter({
