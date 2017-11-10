@@ -1,6 +1,7 @@
 package com.ykkj.weiyi.controller;
 
 import com.ykkj.weiyi.pojo.ProjectInfo;
+import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
 import com.ykkj.weiyi.service.HdService;
 import com.ykkj.weiyi.util.JSONFormat;
 import net.sf.json.JSONArray;
@@ -30,7 +31,7 @@ public class HdDataController {
         result.put("message", "成功");
 
         try {
-            List<ProjectInfo> list = hdService.find("0");
+            List<ProjectInfoWithBLOBs> list = hdService.find("0");
             JSONArray jsonArray = JSONFormat.formatDate(list,"yyyy-MM-dd HH:mm:ss",Date.class,null);
             result.put("returnData",jsonArray.toString());
             response.setContentType("application/json;charset=utf-8");

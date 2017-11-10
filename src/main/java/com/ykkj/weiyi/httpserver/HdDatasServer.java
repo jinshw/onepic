@@ -1,6 +1,7 @@
 package com.ykkj.weiyi.httpserver;
 
 import com.ykkj.weiyi.pojo.ProjectInfo;
+import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
 import com.ykkj.weiyi.service.impl.HdServiceImpl;
 import com.ykkj.weiyi.util.HttpUtils;
 import com.ykkj.weiyi.util.SpringContextUtil;
@@ -20,26 +21,30 @@ import java.util.List;
 public class HdDatasServer {
 
     public static void main(String[] args) {
-     /*   String datas = HttpUtils.URLGet("http://localhost:8081/onepic/hd/getProjectInfo", null, "UTF-8");
+        String datas = HttpUtils.URLGet("http://localhost:8081/onepic/hd/getProjectInfo", null, "UTF-8");
         System.out.println(datas);
         JSONObject res = JSONObject.fromObject(datas);
         JSONArray jsonArray = res.getJSONArray("returnData");
         JSONObject jsonObject = (JSONObject) jsonArray.get(0);
         System.out.println(jsonObject.getDouble("projectTotalinversted"));
 
-        ProjectInfo projectInfo = new ProjectInfo();
+        ProjectInfoWithBLOBs pwb = new ProjectInfoWithBLOBs();
 
-        jsonToObj(projectInfo, jsonObject);
-        System.out.println(projectInfo);
-*/
+        jsonToObj(pwb, jsonObject);
+        System.out.println(pwb);
+
+
+
         // 手动加载spring
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/spring-core.xml"});
         BeanFactory factory = (BeanFactory) context;
         HdServiceImpl hdServiceImpl = (HdServiceImpl ) factory.getBean("hdServiceImpl");
 
         List list = hdServiceImpl.find("0");
-        ProjectInfo projectInfo = (ProjectInfo) list.get(0);
-        System.out.println(projectInfo);
+        ProjectInfoWithBLOBs projectInfoWithBLOBs = (ProjectInfoWithBLOBs) list.get(0);
+        System.out.println(projectInfoWithBLOBs);
+
+        hdServiceImpl.insert(pwb);
     }
 
     public static <T> void jsonToObj(T obj, JSONObject jsonObject) {
