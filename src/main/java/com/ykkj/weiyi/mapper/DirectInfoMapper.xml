@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.DirectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.DirectInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="direct_no" property="directNo" jdbcType="VARCHAR" />
+    <result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="direct_add" property="directAdd" jdbcType="VARCHAR" />
+    <result column="direct_tel" property="directTel" jdbcType="VARCHAR" />
+    <result column="begin_date" property="beginDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="project_money" property="projectMoney" jdbcType="REAL" />
+    <result column="project_add" property="projectAdd" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="leader_tel" property="leaderTel" jdbcType="VARCHAR" />
+    <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+    <result column="property_a" property="propertyA" jdbcType="REAL" />
+    <result column="property_b" property="propertyB" jdbcType="VARCHAR" />
+    <result column="property_c" property="propertyC" jdbcType="VARCHAR" />
+    <result column="sortorder" property="sortorder" jdbcType="INTEGER" />
+    <result column="role_type" property="roleType" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.DirectInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, project_id, direct_no, sys_dept_id, short_name, direct_add, direct_tel, begin_date, 
+    end_date, duration, project_money, project_add, leader, leader_tel, upload_id, property_a, 
+    property_b, property_c, sortorder, role_type, createtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    context, memo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.DirectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_direct_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.DirectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_direct_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_direct_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_direct_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.DirectInfoExample" >
+    delete from hd_direct_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.DirectInfoWithBLOBs" >
+    insert into hd_direct_info (id, project_id, direct_no, 
+      sys_dept_id, short_name, direct_add, 
+      direct_tel, begin_date, end_date, 
+      duration, project_money, project_add, 
+      leader, leader_tel, upload_id, 
+      property_a, property_b, property_c, 
+      sortorder, role_type, createtime, 
+      context, memo)
+    values (#{id,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{directNo,jdbcType=VARCHAR}, 
+      #{sysDeptId,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{directAdd,jdbcType=VARCHAR}, 
+      #{directTel,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{duration,jdbcType=INTEGER}, #{projectMoney,jdbcType=REAL}, #{projectAdd,jdbcType=VARCHAR}, 
+      #{leader,jdbcType=VARCHAR}, #{leaderTel,jdbcType=VARCHAR}, #{uploadId,jdbcType=VARCHAR}, 
+      #{propertyA,jdbcType=REAL}, #{propertyB,jdbcType=VARCHAR}, #{propertyC,jdbcType=VARCHAR}, 
+      #{sortorder,jdbcType=INTEGER}, #{roleType,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{context,jdbcType=LONGVARCHAR}, #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.DirectInfoWithBLOBs" >
+    insert into hd_direct_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="directNo != null" >
+        direct_no,
+      </if>
+      <if test="sysDeptId != null" >
+        sys_dept_id,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="directAdd != null" >
+        direct_add,
+      </if>
+      <if test="directTel != null" >
+        direct_tel,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="projectMoney != null" >
+        project_money,
+      </if>
+      <if test="projectAdd != null" >
+        project_add,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="leaderTel != null" >
+        leader_tel,
+      </if>
+      <if test="uploadId != null" >
+        upload_id,
+      </if>
+      <if test="propertyA != null" >
+        property_a,
+      </if>
+      <if test="propertyB != null" >
+        property_b,
+      </if>
+      <if test="propertyC != null" >
+        property_c,
+      </if>
+      <if test="sortorder != null" >
+        sortorder,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="directNo != null" >
+        #{directNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDeptId != null" >
+        #{sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="directAdd != null" >
+        #{directAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="directTel != null" >
+        #{directTel,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="projectMoney != null" >
+        #{projectMoney,jdbcType=REAL},
+      </if>
+      <if test="projectAdd != null" >
+        #{projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderTel != null" >
+        #{leaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadId != null" >
+        #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyA != null" >
+        #{propertyA,jdbcType=REAL},
+      </if>
+      <if test="propertyB != null" >
+        #{propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyC != null" >
+        #{propertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="sortorder != null" >
+        #{sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.DirectInfoExample" resultType="java.lang.Integer" >
+    select count(*) from hd_direct_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_direct_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directNo != null" >
+        direct_no = #{record.directNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDeptId != null" >
+        sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortName != null" >
+        short_name = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directAdd != null" >
+        direct_add = #{record.directAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directTel != null" >
+        direct_tel = #{record.directTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginDate != null" >
+        begin_date = #{record.beginDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=DATE},
+      </if>
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectMoney != null" >
+        project_money = #{record.projectMoney,jdbcType=REAL},
+      </if>
+      <if test="record.projectAdd != null" >
+        project_add = #{record.projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leader != null" >
+        leader = #{record.leader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaderTel != null" >
+        leader_tel = #{record.leaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadId != null" >
+        upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyA != null" >
+        property_a = #{record.propertyA,jdbcType=REAL},
+      </if>
+      <if test="record.propertyB != null" >
+        property_b = #{record.propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyC != null" >
+        property_c = #{record.propertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortorder != null" >
+        sortorder = #{record.sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.context != null" >
+        context = #{record.context,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hd_direct_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      direct_no = #{record.directNo,jdbcType=VARCHAR},
+      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      direct_add = #{record.directAdd,jdbcType=VARCHAR},
+      direct_tel = #{record.directTel,jdbcType=VARCHAR},
+      begin_date = #{record.beginDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE},
+      duration = #{record.duration,jdbcType=INTEGER},
+      project_money = #{record.projectMoney,jdbcType=REAL},
+      project_add = #{record.projectAdd,jdbcType=VARCHAR},
+      leader = #{record.leader,jdbcType=VARCHAR},
+      leader_tel = #{record.leaderTel,jdbcType=VARCHAR},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      property_a = #{record.propertyA,jdbcType=REAL},
+      property_b = #{record.propertyB,jdbcType=VARCHAR},
+      property_c = #{record.propertyC,jdbcType=VARCHAR},
+      sortorder = #{record.sortorder,jdbcType=INTEGER},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      context = #{record.context,jdbcType=LONGVARCHAR},
+      memo = #{record.memo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_direct_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      direct_no = #{record.directNo,jdbcType=VARCHAR},
+      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      direct_add = #{record.directAdd,jdbcType=VARCHAR},
+      direct_tel = #{record.directTel,jdbcType=VARCHAR},
+      begin_date = #{record.beginDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE},
+      duration = #{record.duration,jdbcType=INTEGER},
+      project_money = #{record.projectMoney,jdbcType=REAL},
+      project_add = #{record.projectAdd,jdbcType=VARCHAR},
+      leader = #{record.leader,jdbcType=VARCHAR},
+      leader_tel = #{record.leaderTel,jdbcType=VARCHAR},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      property_a = #{record.propertyA,jdbcType=REAL},
+      property_b = #{record.propertyB,jdbcType=VARCHAR},
+      property_c = #{record.propertyC,jdbcType=VARCHAR},
+      sortorder = #{record.sortorder,jdbcType=INTEGER},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.DirectInfoWithBLOBs" >
+    update hd_direct_info
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="directNo != null" >
+        direct_no = #{directNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDeptId != null" >
+        sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="directAdd != null" >
+        direct_add = #{directAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="directTel != null" >
+        direct_tel = #{directTel,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="projectMoney != null" >
+        project_money = #{projectMoney,jdbcType=REAL},
+      </if>
+      <if test="projectAdd != null" >
+        project_add = #{projectAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderTel != null" >
+        leader_tel = #{leaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadId != null" >
+        upload_id = #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyA != null" >
+        property_a = #{propertyA,jdbcType=REAL},
+      </if>
+      <if test="propertyB != null" >
+        property_b = #{propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyC != null" >
+        property_c = #{propertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="sortorder != null" >
+        sortorder = #{sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.DirectInfoWithBLOBs" >
+    update hd_direct_info
+    set project_id = #{projectId,jdbcType=VARCHAR},
+      direct_no = #{directNo,jdbcType=VARCHAR},
+      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      direct_add = #{directAdd,jdbcType=VARCHAR},
+      direct_tel = #{directTel,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      duration = #{duration,jdbcType=INTEGER},
+      project_money = #{projectMoney,jdbcType=REAL},
+      project_add = #{projectAdd,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      leader_tel = #{leaderTel,jdbcType=VARCHAR},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      property_a = #{propertyA,jdbcType=REAL},
+      property_b = #{propertyB,jdbcType=VARCHAR},
+      property_c = #{propertyC,jdbcType=VARCHAR},
+      sortorder = #{sortorder,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      context = #{context,jdbcType=LONGVARCHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.DirectInfo" >
+    update hd_direct_info
+    set project_id = #{projectId,jdbcType=VARCHAR},
+      direct_no = #{directNo,jdbcType=VARCHAR},
+      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      direct_add = #{directAdd,jdbcType=VARCHAR},
+      direct_tel = #{directTel,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      duration = #{duration,jdbcType=INTEGER},
+      project_money = #{projectMoney,jdbcType=REAL},
+      project_add = #{projectAdd,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      leader_tel = #{leaderTel,jdbcType=VARCHAR},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      property_a = #{propertyA,jdbcType=REAL},
+      property_b = #{propertyB,jdbcType=VARCHAR},
+      property_c = #{propertyC,jdbcType=VARCHAR},
+      sortorder = #{sortorder,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,1536 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.ProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.ProjectInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
+    <result column="project_no" property="projectNo" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="build_add" property="buildAdd" jdbcType="VARCHAR" />
+    <result column="project_type" property="projectType" jdbcType="VARCHAR" />
+    <result column="project_leader" property="projectLeader" jdbcType="VARCHAR" />
+    <result column="project_leader_tel" property="projectLeaderTel" jdbcType="VARCHAR" />
+    <result column="engineer" property="engineer" jdbcType="VARCHAR" />
+    <result column="engineer_tel" property="engineerTel" jdbcType="VARCHAR" />
+    <result column="conductor_name" property="conductorName" jdbcType="VARCHAR" />
+    <result column="conductor_add" property="conductorAdd" jdbcType="VARCHAR" />
+    <result column="conductor_tel" property="conductorTel" jdbcType="VARCHAR" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
+    <result column="owner_add" property="ownerAdd" jdbcType="VARCHAR" />
+    <result column="owner_tel" property="ownerTel" jdbcType="VARCHAR" />
+    <result column="zxbmc" property="zxbmc" jdbcType="VARCHAR" />
+    <result column="zxbdz" property="zxbdz" jdbcType="VARCHAR" />
+    <result column="zxbdh" property="zxbdh" jdbcType="VARCHAR" />
+    <result column="tender_name" property="tenderName" jdbcType="VARCHAR" />
+    <result column="tender_add" property="tenderAdd" jdbcType="VARCHAR" />
+    <result column="tender_tel" property="tenderTel" jdbcType="VARCHAR" />
+    <result column="design_name" property="designName" jdbcType="VARCHAR" />
+    <result column="design_add" property="designAdd" jdbcType="VARCHAR" />
+    <result column="design_tel" property="designTel" jdbcType="VARCHAR" />
+    <result column="project_totalInversted" property="projectTotalinversted" jdbcType="REAL" />
+    <result column="project_total_len" property="projectTotalLen" jdbcType="REAL" />
+    <result column="project_plan_duration" property="projectPlanDuration" jdbcType="INTEGER" />
+    <result column="lag_day" property="lagDay" jdbcType="INTEGER" />
+    <result column="begin_day" property="beginDay" jdbcType="DATE" />
+    <result column="end_day" property="endDay" jdbcType="DATE" />
+    <result column="completion_day" property="completionDay" jdbcType="DATE" />
+    <result column="approve_estimate" property="approveEstimate" jdbcType="REAL" />
+    <result column="budget" property="budget" jdbcType="REAL" />
+    <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+    <result column="project_property_a" property="projectPropertyA" jdbcType="VARCHAR" />
+    <result column="project_property_b" property="projectPropertyB" jdbcType="VARCHAR" />
+    <result column="project_property_c" property="projectPropertyC" jdbcType="VARCHAR" />
+    <result column="sortorder" property="sortorder" jdbcType="INTEGER" />
+    <result column="xmlxdzh" property="xmlxdzh" jdbcType="VARCHAR" />
+    <result column="xmlxrxm" property="xmlxrxm" jdbcType="VARCHAR" />
+    <result column="lxrdh" property="lxrdh" jdbcType="VARCHAR" />
+    <result column="xmzhgdwjfgld" property="xmzhgdwjfgld" jdbcType="VARCHAR" />
+    <result column="chbshjpfwh" property="chbshjpfwh" jdbcType="VARCHAR" />
+    <result column="shgtpfwh" property="shgtpfwh" jdbcType="VARCHAR" />
+    <result column="chbshjpfshj" property="chbshjpfshj" jdbcType="DATE" />
+    <result column="shgtpfrq" property="shgtpfrq" jdbcType="DATE" />
+    <result column="qdzhh" property="qdzhh" jdbcType="VARCHAR" />
+    <result column="jshzhh" property="jshzhh" jdbcType="VARCHAR" />
+    <result column="jshgm" property="jshgm" jdbcType="VARCHAR" />
+    <result column="zhyjshbzh" property="zhyjshbzh" jdbcType="VARCHAR" />
+    <result column="jshdw" property="jshdw" jdbcType="VARCHAR" />
+    <result column="jshdwdz" property="jshdwdz" jdbcType="VARCHAR" />
+    <result column="jshdwdh" property="jshdwdh" jdbcType="VARCHAR" />
+    <result column="gchgm" property="gchgm" jdbcType="VARCHAR" />
+    <result column="jshbzh" property="jshbzh" jdbcType="VARCHAR" />
+    <result column="role_type" property="roleType" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="qianqixmisbn" property="qianqixmisbn" jdbcType="VARCHAR" />
+    <result column="qianqixmmc" property="qianqixmmc" jdbcType="VARCHAR" />
+    <result column="bgxyqdshj" property="bgxyqdshj" jdbcType="DATE" />
+    <result column="zhdbcfhj" property="zhdbcfhj" jdbcType="REAL" />
+    <result column="zq_dzfzr" property="zqDzfzr" jdbcType="VARCHAR" />
+    <result column="zq_xsfzr" property="zqXsfzr" jdbcType="VARCHAR" />
+    <result column="zq_zhbld" property="zqZhbld" jdbcType="VARCHAR" />
+    <result column="zq_xmfzr" property="zqXmfzr" jdbcType="VARCHAR" />
+    <result column="belong_cities" property="belongCities" jdbcType="VARCHAR" />
+    <result column="issuance" property="issuance" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="project_descript" property="projectDescript" jdbcType="LONGVARCHAR" />
+    <result column="build_content" property="buildContent" jdbcType="LONGVARCHAR" />
+    <result column="money_composition" property="moneyComposition" jdbcType="LONGVARCHAR" />
+    <result column="availability_money" property="availabilityMoney" jdbcType="LONGVARCHAR" />
+    <result column="project_approval" property="projectApproval" jdbcType="LONGVARCHAR" />
+    <result column="project_memo" property="projectMemo" jdbcType="LONGVARCHAR" />
+    <result column="overview" property="overview" jdbcType="LONGVARCHAR" />
+    <result column="xmjshyyyzhyxy" property="xmjshyyyzhyxy" jdbcType="LONGVARCHAR" />
+    <result column="ztjdap" property="ztjdap" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sys_dept_id, project_no, project_name, build_add, project_type, project_leader, 
+    project_leader_tel, engineer, engineer_tel, conductor_name, conductor_add, conductor_tel, 
+    owner_name, owner_add, owner_tel, zxbmc, zxbdz, zxbdh, tender_name, tender_add, tender_tel, 
+    design_name, design_add, design_tel, project_totalInversted, project_total_len, project_plan_duration, 
+    lag_day, begin_day, end_day, completion_day, approve_estimate, budget, upload_id, 
+    project_property_a, project_property_b, project_property_c, sortorder, xmlxdzh, xmlxrxm, 
+    lxrdh, xmzhgdwjfgld, chbshjpfwh, shgtpfwh, chbshjpfshj, shgtpfrq, qdzhh, jshzhh, 
+    jshgm, zhyjshbzh, jshdw, jshdwdz, jshdwdh, gchgm, jshbzh, role_type, area, qianqixmisbn, 
+    qianqixmmc, bgxyqdshj, zhdbcfhj, zq_dzfzr, zq_xsfzr, zq_zhbld, zq_xmfzr, belong_cities, 
+    issuance, createtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    project_descript, build_content, money_composition, availability_money, project_approval, 
+    project_memo, overview, xmjshyyyzhyxy, ztjdap
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.ProjectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.ProjectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_project_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_project_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.ProjectInfoExample" >
+    delete from hd_project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" >
+    insert into hd_project_info (id, sys_dept_id, project_no, 
+      project_name, build_add, project_type, 
+      project_leader, project_leader_tel, engineer, 
+      engineer_tel, conductor_name, conductor_add, 
+      conductor_tel, owner_name, owner_add, 
+      owner_tel, zxbmc, zxbdz, 
+      zxbdh, tender_name, tender_add, 
+      tender_tel, design_name, design_add, 
+      design_tel, project_totalInversted, project_total_len, 
+      project_plan_duration, lag_day, begin_day, 
+      end_day, completion_day, approve_estimate, 
+      budget, upload_id, project_property_a, 
+      project_property_b, project_property_c, sortorder, 
+      xmlxdzh, xmlxrxm, lxrdh, 
+      xmzhgdwjfgld, chbshjpfwh, shgtpfwh, 
+      chbshjpfshj, shgtpfrq, qdzhh, 
+      jshzhh, jshgm, zhyjshbzh, 
+      jshdw, jshdwdz, jshdwdh, 
+      gchgm, jshbzh, role_type, 
+      area, qianqixmisbn, qianqixmmc, 
+      bgxyqdshj, zhdbcfhj, zq_dzfzr, 
+      zq_xsfzr, zq_zhbld, zq_xmfzr, 
+      belong_cities, issuance, createtime, 
+      project_descript, build_content, 
+      money_composition, availability_money, 
+      project_approval, project_memo, overview, 
+      xmjshyyyzhyxy, ztjdap)
+    values (#{id,jdbcType=VARCHAR}, #{sysDeptId,jdbcType=VARCHAR}, #{projectNo,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{buildAdd,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, 
+      #{projectLeader,jdbcType=VARCHAR}, #{projectLeaderTel,jdbcType=VARCHAR}, #{engineer,jdbcType=VARCHAR}, 
+      #{engineerTel,jdbcType=VARCHAR}, #{conductorName,jdbcType=VARCHAR}, #{conductorAdd,jdbcType=VARCHAR}, 
+      #{conductorTel,jdbcType=VARCHAR}, #{ownerName,jdbcType=VARCHAR}, #{ownerAdd,jdbcType=VARCHAR}, 
+      #{ownerTel,jdbcType=VARCHAR}, #{zxbmc,jdbcType=VARCHAR}, #{zxbdz,jdbcType=VARCHAR}, 
+      #{zxbdh,jdbcType=VARCHAR}, #{tenderName,jdbcType=VARCHAR}, #{tenderAdd,jdbcType=VARCHAR}, 
+      #{tenderTel,jdbcType=VARCHAR}, #{designName,jdbcType=VARCHAR}, #{designAdd,jdbcType=VARCHAR}, 
+      #{designTel,jdbcType=VARCHAR}, #{projectTotalinversted,jdbcType=REAL}, #{projectTotalLen,jdbcType=REAL}, 
+      #{projectPlanDuration,jdbcType=INTEGER}, #{lagDay,jdbcType=INTEGER}, #{beginDay,jdbcType=DATE}, 
+      #{endDay,jdbcType=DATE}, #{completionDay,jdbcType=DATE}, #{approveEstimate,jdbcType=REAL}, 
+      #{budget,jdbcType=REAL}, #{uploadId,jdbcType=VARCHAR}, #{projectPropertyA,jdbcType=VARCHAR}, 
+      #{projectPropertyB,jdbcType=VARCHAR}, #{projectPropertyC,jdbcType=VARCHAR}, #{sortorder,jdbcType=INTEGER}, 
+      #{xmlxdzh,jdbcType=VARCHAR}, #{xmlxrxm,jdbcType=VARCHAR}, #{lxrdh,jdbcType=VARCHAR}, 
+      #{xmzhgdwjfgld,jdbcType=VARCHAR}, #{chbshjpfwh,jdbcType=VARCHAR}, #{shgtpfwh,jdbcType=VARCHAR}, 
+      #{chbshjpfshj,jdbcType=DATE}, #{shgtpfrq,jdbcType=DATE}, #{qdzhh,jdbcType=VARCHAR}, 
+      #{jshzhh,jdbcType=VARCHAR}, #{jshgm,jdbcType=VARCHAR}, #{zhyjshbzh,jdbcType=VARCHAR}, 
+      #{jshdw,jdbcType=VARCHAR}, #{jshdwdz,jdbcType=VARCHAR}, #{jshdwdh,jdbcType=VARCHAR}, 
+      #{gchgm,jdbcType=VARCHAR}, #{jshbzh,jdbcType=VARCHAR}, #{roleType,jdbcType=INTEGER}, 
+      #{area,jdbcType=VARCHAR}, #{qianqixmisbn,jdbcType=VARCHAR}, #{qianqixmmc,jdbcType=VARCHAR}, 
+      #{bgxyqdshj,jdbcType=DATE}, #{zhdbcfhj,jdbcType=REAL}, #{zqDzfzr,jdbcType=VARCHAR}, 
+      #{zqXsfzr,jdbcType=VARCHAR}, #{zqZhbld,jdbcType=VARCHAR}, #{zqXmfzr,jdbcType=VARCHAR}, 
+      #{belongCities,jdbcType=VARCHAR}, #{issuance,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{projectDescript,jdbcType=LONGVARCHAR}, #{buildContent,jdbcType=LONGVARCHAR}, 
+      #{moneyComposition,jdbcType=LONGVARCHAR}, #{availabilityMoney,jdbcType=LONGVARCHAR}, 
+      #{projectApproval,jdbcType=LONGVARCHAR}, #{projectMemo,jdbcType=LONGVARCHAR}, #{overview,jdbcType=LONGVARCHAR}, 
+      #{xmjshyyyzhyxy,jdbcType=LONGVARCHAR}, #{ztjdap,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" >
+    insert into hd_project_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sysDeptId != null" >
+        sys_dept_id,
+      </if>
+      <if test="projectNo != null" >
+        project_no,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="buildAdd != null" >
+        build_add,
+      </if>
+      <if test="projectType != null" >
+        project_type,
+      </if>
+      <if test="projectLeader != null" >
+        project_leader,
+      </if>
+      <if test="projectLeaderTel != null" >
+        project_leader_tel,
+      </if>
+      <if test="engineer != null" >
+        engineer,
+      </if>
+      <if test="engineerTel != null" >
+        engineer_tel,
+      </if>
+      <if test="conductorName != null" >
+        conductor_name,
+      </if>
+      <if test="conductorAdd != null" >
+        conductor_add,
+      </if>
+      <if test="conductorTel != null" >
+        conductor_tel,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
+      <if test="ownerAdd != null" >
+        owner_add,
+      </if>
+      <if test="ownerTel != null" >
+        owner_tel,
+      </if>
+      <if test="zxbmc != null" >
+        zxbmc,
+      </if>
+      <if test="zxbdz != null" >
+        zxbdz,
+      </if>
+      <if test="zxbdh != null" >
+        zxbdh,
+      </if>
+      <if test="tenderName != null" >
+        tender_name,
+      </if>
+      <if test="tenderAdd != null" >
+        tender_add,
+      </if>
+      <if test="tenderTel != null" >
+        tender_tel,
+      </if>
+      <if test="designName != null" >
+        design_name,
+      </if>
+      <if test="designAdd != null" >
+        design_add,
+      </if>
+      <if test="designTel != null" >
+        design_tel,
+      </if>
+      <if test="projectTotalinversted != null" >
+        project_totalInversted,
+      </if>
+      <if test="projectTotalLen != null" >
+        project_total_len,
+      </if>
+      <if test="projectPlanDuration != null" >
+        project_plan_duration,
+      </if>
+      <if test="lagDay != null" >
+        lag_day,
+      </if>
+      <if test="beginDay != null" >
+        begin_day,
+      </if>
+      <if test="endDay != null" >
+        end_day,
+      </if>
+      <if test="completionDay != null" >
+        completion_day,
+      </if>
+      <if test="approveEstimate != null" >
+        approve_estimate,
+      </if>
+      <if test="budget != null" >
+        budget,
+      </if>
+      <if test="uploadId != null" >
+        upload_id,
+      </if>
+      <if test="projectPropertyA != null" >
+        project_property_a,
+      </if>
+      <if test="projectPropertyB != null" >
+        project_property_b,
+      </if>
+      <if test="projectPropertyC != null" >
+        project_property_c,
+      </if>
+      <if test="sortorder != null" >
+        sortorder,
+      </if>
+      <if test="xmlxdzh != null" >
+        xmlxdzh,
+      </if>
+      <if test="xmlxrxm != null" >
+        xmlxrxm,
+      </if>
+      <if test="lxrdh != null" >
+        lxrdh,
+      </if>
+      <if test="xmzhgdwjfgld != null" >
+        xmzhgdwjfgld,
+      </if>
+      <if test="chbshjpfwh != null" >
+        chbshjpfwh,
+      </if>
+      <if test="shgtpfwh != null" >
+        shgtpfwh,
+      </if>
+      <if test="chbshjpfshj != null" >
+        chbshjpfshj,
+      </if>
+      <if test="shgtpfrq != null" >
+        shgtpfrq,
+      </if>
+      <if test="qdzhh != null" >
+        qdzhh,
+      </if>
+      <if test="jshzhh != null" >
+        jshzhh,
+      </if>
+      <if test="jshgm != null" >
+        jshgm,
+      </if>
+      <if test="zhyjshbzh != null" >
+        zhyjshbzh,
+      </if>
+      <if test="jshdw != null" >
+        jshdw,
+      </if>
+      <if test="jshdwdz != null" >
+        jshdwdz,
+      </if>
+      <if test="jshdwdh != null" >
+        jshdwdh,
+      </if>
+      <if test="gchgm != null" >
+        gchgm,
+      </if>
+      <if test="jshbzh != null" >
+        jshbzh,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="qianqixmisbn != null" >
+        qianqixmisbn,
+      </if>
+      <if test="qianqixmmc != null" >
+        qianqixmmc,
+      </if>
+      <if test="bgxyqdshj != null" >
+        bgxyqdshj,
+      </if>
+      <if test="zhdbcfhj != null" >
+        zhdbcfhj,
+      </if>
+      <if test="zqDzfzr != null" >
+        zq_dzfzr,
+      </if>
+      <if test="zqXsfzr != null" >
+        zq_xsfzr,
+      </if>
+      <if test="zqZhbld != null" >
+        zq_zhbld,
+      </if>
+      <if test="zqXmfzr != null" >
+        zq_xmfzr,
+      </if>
+      <if test="belongCities != null" >
+        belong_cities,
+      </if>
+      <if test="issuance != null" >
+        issuance,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="projectDescript != null" >
+        project_descript,
+      </if>
+      <if test="buildContent != null" >
+        build_content,
+      </if>
+      <if test="moneyComposition != null" >
+        money_composition,
+      </if>
+      <if test="availabilityMoney != null" >
+        availability_money,
+      </if>
+      <if test="projectApproval != null" >
+        project_approval,
+      </if>
+      <if test="projectMemo != null" >
+        project_memo,
+      </if>
+      <if test="overview != null" >
+        overview,
+      </if>
+      <if test="xmjshyyyzhyxy != null" >
+        xmjshyyyzhyxy,
+      </if>
+      <if test="ztjdap != null" >
+        ztjdap,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDeptId != null" >
+        #{sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNo != null" >
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildAdd != null" >
+        #{buildAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLeader != null" >
+        #{projectLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLeaderTel != null" >
+        #{projectLeaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="engineer != null" >
+        #{engineer,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerTel != null" >
+        #{engineerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorName != null" >
+        #{conductorName,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorAdd != null" >
+        #{conductorAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorTel != null" >
+        #{conductorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerAdd != null" >
+        #{ownerAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTel != null" >
+        #{ownerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbmc != null" >
+        #{zxbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbdz != null" >
+        #{zxbdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbdh != null" >
+        #{zxbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderName != null" >
+        #{tenderName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderAdd != null" >
+        #{tenderAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderTel != null" >
+        #{tenderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="designName != null" >
+        #{designName,jdbcType=VARCHAR},
+      </if>
+      <if test="designAdd != null" >
+        #{designAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="designTel != null" >
+        #{designTel,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTotalinversted != null" >
+        #{projectTotalinversted,jdbcType=REAL},
+      </if>
+      <if test="projectTotalLen != null" >
+        #{projectTotalLen,jdbcType=REAL},
+      </if>
+      <if test="projectPlanDuration != null" >
+        #{projectPlanDuration,jdbcType=INTEGER},
+      </if>
+      <if test="lagDay != null" >
+        #{lagDay,jdbcType=INTEGER},
+      </if>
+      <if test="beginDay != null" >
+        #{beginDay,jdbcType=DATE},
+      </if>
+      <if test="endDay != null" >
+        #{endDay,jdbcType=DATE},
+      </if>
+      <if test="completionDay != null" >
+        #{completionDay,jdbcType=DATE},
+      </if>
+      <if test="approveEstimate != null" >
+        #{approveEstimate,jdbcType=REAL},
+      </if>
+      <if test="budget != null" >
+        #{budget,jdbcType=REAL},
+      </if>
+      <if test="uploadId != null" >
+        #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyA != null" >
+        #{projectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyB != null" >
+        #{projectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyC != null" >
+        #{projectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="sortorder != null" >
+        #{sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="xmlxdzh != null" >
+        #{xmlxdzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmlxrxm != null" >
+        #{xmlxrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="lxrdh != null" >
+        #{lxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhgdwjfgld != null" >
+        #{xmzhgdwjfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="chbshjpfwh != null" >
+        #{chbshjpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="shgtpfwh != null" >
+        #{shgtpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="chbshjpfshj != null" >
+        #{chbshjpfshj,jdbcType=DATE},
+      </if>
+      <if test="shgtpfrq != null" >
+        #{shgtpfrq,jdbcType=DATE},
+      </if>
+      <if test="qdzhh != null" >
+        #{qdzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshzhh != null" >
+        #{jshzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshgm != null" >
+        #{jshgm,jdbcType=VARCHAR},
+      </if>
+      <if test="zhyjshbzh != null" >
+        #{zhyjshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdw != null" >
+        #{jshdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdwdz != null" >
+        #{jshdwdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdwdh != null" >
+        #{jshdwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="gchgm != null" >
+        #{gchgm,jdbcType=VARCHAR},
+      </if>
+      <if test="jshbzh != null" >
+        #{jshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="qianqixmisbn != null" >
+        #{qianqixmisbn,jdbcType=VARCHAR},
+      </if>
+      <if test="qianqixmmc != null" >
+        #{qianqixmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bgxyqdshj != null" >
+        #{bgxyqdshj,jdbcType=DATE},
+      </if>
+      <if test="zhdbcfhj != null" >
+        #{zhdbcfhj,jdbcType=REAL},
+      </if>
+      <if test="zqDzfzr != null" >
+        #{zqDzfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zqXsfzr != null" >
+        #{zqXsfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zqZhbld != null" >
+        #{zqZhbld,jdbcType=VARCHAR},
+      </if>
+      <if test="zqXmfzr != null" >
+        #{zqXmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="belongCities != null" >
+        #{belongCities,jdbcType=VARCHAR},
+      </if>
+      <if test="issuance != null" >
+        #{issuance,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectDescript != null" >
+        #{projectDescript,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buildContent != null" >
+        #{buildContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moneyComposition != null" >
+        #{moneyComposition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="availabilityMoney != null" >
+        #{availabilityMoney,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectApproval != null" >
+        #{projectApproval,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectMemo != null" >
+        #{projectMemo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="overview != null" >
+        #{overview,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xmjshyyyzhyxy != null" >
+        #{xmjshyyyzhyxy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ztjdap != null" >
+        #{ztjdap,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.ProjectInfoExample" resultType="java.lang.Integer" >
+    select count(*) from hd_project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_project_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDeptId != null" >
+        sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectNo != null" >
+        project_no = #{record.projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildAdd != null" >
+        build_add = #{record.buildAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        project_type = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectLeader != null" >
+        project_leader = #{record.projectLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectLeaderTel != null" >
+        project_leader_tel = #{record.projectLeaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineer != null" >
+        engineer = #{record.engineer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineerTel != null" >
+        engineer_tel = #{record.engineerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conductorName != null" >
+        conductor_name = #{record.conductorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conductorAdd != null" >
+        conductor_add = #{record.conductorAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conductorTel != null" >
+        conductor_tel = #{record.conductorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerName != null" >
+        owner_name = #{record.ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerAdd != null" >
+        owner_add = #{record.ownerAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerTel != null" >
+        owner_tel = #{record.ownerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxbmc != null" >
+        zxbmc = #{record.zxbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxbdz != null" >
+        zxbdz = #{record.zxbdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxbdh != null" >
+        zxbdh = #{record.zxbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderName != null" >
+        tender_name = #{record.tenderName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderAdd != null" >
+        tender_add = #{record.tenderAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderTel != null" >
+        tender_tel = #{record.tenderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designName != null" >
+        design_name = #{record.designName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designAdd != null" >
+        design_add = #{record.designAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designTel != null" >
+        design_tel = #{record.designTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectTotalinversted != null" >
+        project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
+      </if>
+      <if test="record.projectTotalLen != null" >
+        project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+      </if>
+      <if test="record.projectPlanDuration != null" >
+        project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.lagDay != null" >
+        lag_day = #{record.lagDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.beginDay != null" >
+        begin_day = #{record.beginDay,jdbcType=DATE},
+      </if>
+      <if test="record.endDay != null" >
+        end_day = #{record.endDay,jdbcType=DATE},
+      </if>
+      <if test="record.completionDay != null" >
+        completion_day = #{record.completionDay,jdbcType=DATE},
+      </if>
+      <if test="record.approveEstimate != null" >
+        approve_estimate = #{record.approveEstimate,jdbcType=REAL},
+      </if>
+      <if test="record.budget != null" >
+        budget = #{record.budget,jdbcType=REAL},
+      </if>
+      <if test="record.uploadId != null" >
+        upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectPropertyA != null" >
+        project_property_a = #{record.projectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectPropertyB != null" >
+        project_property_b = #{record.projectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectPropertyC != null" >
+        project_property_c = #{record.projectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortorder != null" >
+        sortorder = #{record.sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.xmlxdzh != null" >
+        xmlxdzh = #{record.xmlxdzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmlxrxm != null" >
+        xmlxrxm = #{record.xmlxrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxrdh != null" >
+        lxrdh = #{record.lxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmzhgdwjfgld != null" >
+        xmzhgdwjfgld = #{record.xmzhgdwjfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chbshjpfwh != null" >
+        chbshjpfwh = #{record.chbshjpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shgtpfwh != null" >
+        shgtpfwh = #{record.shgtpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chbshjpfshj != null" >
+        chbshjpfshj = #{record.chbshjpfshj,jdbcType=DATE},
+      </if>
+      <if test="record.shgtpfrq != null" >
+        shgtpfrq = #{record.shgtpfrq,jdbcType=DATE},
+      </if>
+      <if test="record.qdzhh != null" >
+        qdzhh = #{record.qdzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshzhh != null" >
+        jshzhh = #{record.jshzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshgm != null" >
+        jshgm = #{record.jshgm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhyjshbzh != null" >
+        zhyjshbzh = #{record.zhyjshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshdw != null" >
+        jshdw = #{record.jshdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshdwdz != null" >
+        jshdwdz = #{record.jshdwdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshdwdh != null" >
+        jshdwdh = #{record.jshdwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gchgm != null" >
+        gchgm = #{record.gchgm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshbzh != null" >
+        jshbzh = #{record.jshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qianqixmisbn != null" >
+        qianqixmisbn = #{record.qianqixmisbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qianqixmmc != null" >
+        qianqixmmc = #{record.qianqixmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bgxyqdshj != null" >
+        bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
+      </if>
+      <if test="record.zhdbcfhj != null" >
+        zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+      </if>
+      <if test="record.zqDzfzr != null" >
+        zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zqXsfzr != null" >
+        zq_xsfzr = #{record.zqXsfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zqZhbld != null" >
+        zq_zhbld = #{record.zqZhbld,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zqXmfzr != null" >
+        zq_xmfzr = #{record.zqXmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongCities != null" >
+        belong_cities = #{record.belongCities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issuance != null" >
+        issuance = #{record.issuance,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.projectDescript != null" >
+        project_descript = #{record.projectDescript,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.buildContent != null" >
+        build_content = #{record.buildContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.moneyComposition != null" >
+        money_composition = #{record.moneyComposition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.availabilityMoney != null" >
+        availability_money = #{record.availabilityMoney,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.projectApproval != null" >
+        project_approval = #{record.projectApproval,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.projectMemo != null" >
+        project_memo = #{record.projectMemo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.overview != null" >
+        overview = #{record.overview,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.xmjshyyyzhyxy != null" >
+        xmjshyyyzhyxy = #{record.xmjshyyyzhyxy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.ztjdap != null" >
+        ztjdap = #{record.ztjdap,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hd_project_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      project_no = #{record.projectNo,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      build_add = #{record.buildAdd,jdbcType=VARCHAR},
+      project_type = #{record.projectType,jdbcType=VARCHAR},
+      project_leader = #{record.projectLeader,jdbcType=VARCHAR},
+      project_leader_tel = #{record.projectLeaderTel,jdbcType=VARCHAR},
+      engineer = #{record.engineer,jdbcType=VARCHAR},
+      engineer_tel = #{record.engineerTel,jdbcType=VARCHAR},
+      conductor_name = #{record.conductorName,jdbcType=VARCHAR},
+      conductor_add = #{record.conductorAdd,jdbcType=VARCHAR},
+      conductor_tel = #{record.conductorTel,jdbcType=VARCHAR},
+      owner_name = #{record.ownerName,jdbcType=VARCHAR},
+      owner_add = #{record.ownerAdd,jdbcType=VARCHAR},
+      owner_tel = #{record.ownerTel,jdbcType=VARCHAR},
+      zxbmc = #{record.zxbmc,jdbcType=VARCHAR},
+      zxbdz = #{record.zxbdz,jdbcType=VARCHAR},
+      zxbdh = #{record.zxbdh,jdbcType=VARCHAR},
+      tender_name = #{record.tenderName,jdbcType=VARCHAR},
+      tender_add = #{record.tenderAdd,jdbcType=VARCHAR},
+      tender_tel = #{record.tenderTel,jdbcType=VARCHAR},
+      design_name = #{record.designName,jdbcType=VARCHAR},
+      design_add = #{record.designAdd,jdbcType=VARCHAR},
+      design_tel = #{record.designTel,jdbcType=VARCHAR},
+      project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
+      project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+      project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
+      lag_day = #{record.lagDay,jdbcType=INTEGER},
+      begin_day = #{record.beginDay,jdbcType=DATE},
+      end_day = #{record.endDay,jdbcType=DATE},
+      completion_day = #{record.completionDay,jdbcType=DATE},
+      approve_estimate = #{record.approveEstimate,jdbcType=REAL},
+      budget = #{record.budget,jdbcType=REAL},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      project_property_a = #{record.projectPropertyA,jdbcType=VARCHAR},
+      project_property_b = #{record.projectPropertyB,jdbcType=VARCHAR},
+      project_property_c = #{record.projectPropertyC,jdbcType=VARCHAR},
+      sortorder = #{record.sortorder,jdbcType=INTEGER},
+      xmlxdzh = #{record.xmlxdzh,jdbcType=VARCHAR},
+      xmlxrxm = #{record.xmlxrxm,jdbcType=VARCHAR},
+      lxrdh = #{record.lxrdh,jdbcType=VARCHAR},
+      xmzhgdwjfgld = #{record.xmzhgdwjfgld,jdbcType=VARCHAR},
+      chbshjpfwh = #{record.chbshjpfwh,jdbcType=VARCHAR},
+      shgtpfwh = #{record.shgtpfwh,jdbcType=VARCHAR},
+      chbshjpfshj = #{record.chbshjpfshj,jdbcType=DATE},
+      shgtpfrq = #{record.shgtpfrq,jdbcType=DATE},
+      qdzhh = #{record.qdzhh,jdbcType=VARCHAR},
+      jshzhh = #{record.jshzhh,jdbcType=VARCHAR},
+      jshgm = #{record.jshgm,jdbcType=VARCHAR},
+      zhyjshbzh = #{record.zhyjshbzh,jdbcType=VARCHAR},
+      jshdw = #{record.jshdw,jdbcType=VARCHAR},
+      jshdwdz = #{record.jshdwdz,jdbcType=VARCHAR},
+      jshdwdh = #{record.jshdwdh,jdbcType=VARCHAR},
+      gchgm = #{record.gchgm,jdbcType=VARCHAR},
+      jshbzh = #{record.jshbzh,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      area = #{record.area,jdbcType=VARCHAR},
+      qianqixmisbn = #{record.qianqixmisbn,jdbcType=VARCHAR},
+      qianqixmmc = #{record.qianqixmmc,jdbcType=VARCHAR},
+      bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
+      zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+      zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
+      zq_xsfzr = #{record.zqXsfzr,jdbcType=VARCHAR},
+      zq_zhbld = #{record.zqZhbld,jdbcType=VARCHAR},
+      zq_xmfzr = #{record.zqXmfzr,jdbcType=VARCHAR},
+      belong_cities = #{record.belongCities,jdbcType=VARCHAR},
+      issuance = #{record.issuance,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      project_descript = #{record.projectDescript,jdbcType=LONGVARCHAR},
+      build_content = #{record.buildContent,jdbcType=LONGVARCHAR},
+      money_composition = #{record.moneyComposition,jdbcType=LONGVARCHAR},
+      availability_money = #{record.availabilityMoney,jdbcType=LONGVARCHAR},
+      project_approval = #{record.projectApproval,jdbcType=LONGVARCHAR},
+      project_memo = #{record.projectMemo,jdbcType=LONGVARCHAR},
+      overview = #{record.overview,jdbcType=LONGVARCHAR},
+      xmjshyyyzhyxy = #{record.xmjshyyyzhyxy,jdbcType=LONGVARCHAR},
+      ztjdap = #{record.ztjdap,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_project_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+      project_no = #{record.projectNo,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      build_add = #{record.buildAdd,jdbcType=VARCHAR},
+      project_type = #{record.projectType,jdbcType=VARCHAR},
+      project_leader = #{record.projectLeader,jdbcType=VARCHAR},
+      project_leader_tel = #{record.projectLeaderTel,jdbcType=VARCHAR},
+      engineer = #{record.engineer,jdbcType=VARCHAR},
+      engineer_tel = #{record.engineerTel,jdbcType=VARCHAR},
+      conductor_name = #{record.conductorName,jdbcType=VARCHAR},
+      conductor_add = #{record.conductorAdd,jdbcType=VARCHAR},
+      conductor_tel = #{record.conductorTel,jdbcType=VARCHAR},
+      owner_name = #{record.ownerName,jdbcType=VARCHAR},
+      owner_add = #{record.ownerAdd,jdbcType=VARCHAR},
+      owner_tel = #{record.ownerTel,jdbcType=VARCHAR},
+      zxbmc = #{record.zxbmc,jdbcType=VARCHAR},
+      zxbdz = #{record.zxbdz,jdbcType=VARCHAR},
+      zxbdh = #{record.zxbdh,jdbcType=VARCHAR},
+      tender_name = #{record.tenderName,jdbcType=VARCHAR},
+      tender_add = #{record.tenderAdd,jdbcType=VARCHAR},
+      tender_tel = #{record.tenderTel,jdbcType=VARCHAR},
+      design_name = #{record.designName,jdbcType=VARCHAR},
+      design_add = #{record.designAdd,jdbcType=VARCHAR},
+      design_tel = #{record.designTel,jdbcType=VARCHAR},
+      project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
+      project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+      project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
+      lag_day = #{record.lagDay,jdbcType=INTEGER},
+      begin_day = #{record.beginDay,jdbcType=DATE},
+      end_day = #{record.endDay,jdbcType=DATE},
+      completion_day = #{record.completionDay,jdbcType=DATE},
+      approve_estimate = #{record.approveEstimate,jdbcType=REAL},
+      budget = #{record.budget,jdbcType=REAL},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      project_property_a = #{record.projectPropertyA,jdbcType=VARCHAR},
+      project_property_b = #{record.projectPropertyB,jdbcType=VARCHAR},
+      project_property_c = #{record.projectPropertyC,jdbcType=VARCHAR},
+      sortorder = #{record.sortorder,jdbcType=INTEGER},
+      xmlxdzh = #{record.xmlxdzh,jdbcType=VARCHAR},
+      xmlxrxm = #{record.xmlxrxm,jdbcType=VARCHAR},
+      lxrdh = #{record.lxrdh,jdbcType=VARCHAR},
+      xmzhgdwjfgld = #{record.xmzhgdwjfgld,jdbcType=VARCHAR},
+      chbshjpfwh = #{record.chbshjpfwh,jdbcType=VARCHAR},
+      shgtpfwh = #{record.shgtpfwh,jdbcType=VARCHAR},
+      chbshjpfshj = #{record.chbshjpfshj,jdbcType=DATE},
+      shgtpfrq = #{record.shgtpfrq,jdbcType=DATE},
+      qdzhh = #{record.qdzhh,jdbcType=VARCHAR},
+      jshzhh = #{record.jshzhh,jdbcType=VARCHAR},
+      jshgm = #{record.jshgm,jdbcType=VARCHAR},
+      zhyjshbzh = #{record.zhyjshbzh,jdbcType=VARCHAR},
+      jshdw = #{record.jshdw,jdbcType=VARCHAR},
+      jshdwdz = #{record.jshdwdz,jdbcType=VARCHAR},
+      jshdwdh = #{record.jshdwdh,jdbcType=VARCHAR},
+      gchgm = #{record.gchgm,jdbcType=VARCHAR},
+      jshbzh = #{record.jshbzh,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      area = #{record.area,jdbcType=VARCHAR},
+      qianqixmisbn = #{record.qianqixmisbn,jdbcType=VARCHAR},
+      qianqixmmc = #{record.qianqixmmc,jdbcType=VARCHAR},
+      bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
+      zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+      zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
+      zq_xsfzr = #{record.zqXsfzr,jdbcType=VARCHAR},
+      zq_zhbld = #{record.zqZhbld,jdbcType=VARCHAR},
+      zq_xmfzr = #{record.zqXmfzr,jdbcType=VARCHAR},
+      belong_cities = #{record.belongCities,jdbcType=VARCHAR},
+      issuance = #{record.issuance,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" >
+    update hd_project_info
+    <set >
+      <if test="sysDeptId != null" >
+        sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNo != null" >
+        project_no = #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildAdd != null" >
+        build_add = #{buildAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        project_type = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLeader != null" >
+        project_leader = #{projectLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLeaderTel != null" >
+        project_leader_tel = #{projectLeaderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="engineer != null" >
+        engineer = #{engineer,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerTel != null" >
+        engineer_tel = #{engineerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorName != null" >
+        conductor_name = #{conductorName,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorAdd != null" >
+        conductor_add = #{conductorAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="conductorTel != null" >
+        conductor_tel = #{conductorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerAdd != null" >
+        owner_add = #{ownerAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTel != null" >
+        owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbmc != null" >
+        zxbmc = #{zxbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbdz != null" >
+        zxbdz = #{zxbdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zxbdh != null" >
+        zxbdh = #{zxbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderName != null" >
+        tender_name = #{tenderName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderAdd != null" >
+        tender_add = #{tenderAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderTel != null" >
+        tender_tel = #{tenderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="designName != null" >
+        design_name = #{designName,jdbcType=VARCHAR},
+      </if>
+      <if test="designAdd != null" >
+        design_add = #{designAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="designTel != null" >
+        design_tel = #{designTel,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTotalinversted != null" >
+        project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
+      </if>
+      <if test="projectTotalLen != null" >
+        project_total_len = #{projectTotalLen,jdbcType=REAL},
+      </if>
+      <if test="projectPlanDuration != null" >
+        project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
+      </if>
+      <if test="lagDay != null" >
+        lag_day = #{lagDay,jdbcType=INTEGER},
+      </if>
+      <if test="beginDay != null" >
+        begin_day = #{beginDay,jdbcType=DATE},
+      </if>
+      <if test="endDay != null" >
+        end_day = #{endDay,jdbcType=DATE},
+      </if>
+      <if test="completionDay != null" >
+        completion_day = #{completionDay,jdbcType=DATE},
+      </if>
+      <if test="approveEstimate != null" >
+        approve_estimate = #{approveEstimate,jdbcType=REAL},
+      </if>
+      <if test="budget != null" >
+        budget = #{budget,jdbcType=REAL},
+      </if>
+      <if test="uploadId != null" >
+        upload_id = #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyA != null" >
+        project_property_a = #{projectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyB != null" >
+        project_property_b = #{projectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPropertyC != null" >
+        project_property_c = #{projectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="sortorder != null" >
+        sortorder = #{sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="xmlxdzh != null" >
+        xmlxdzh = #{xmlxdzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmlxrxm != null" >
+        xmlxrxm = #{xmlxrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="lxrdh != null" >
+        lxrdh = #{lxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhgdwjfgld != null" >
+        xmzhgdwjfgld = #{xmzhgdwjfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="chbshjpfwh != null" >
+        chbshjpfwh = #{chbshjpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="shgtpfwh != null" >
+        shgtpfwh = #{shgtpfwh,jdbcType=VARCHAR},
+      </if>
+      <if test="chbshjpfshj != null" >
+        chbshjpfshj = #{chbshjpfshj,jdbcType=DATE},
+      </if>
+      <if test="shgtpfrq != null" >
+        shgtpfrq = #{shgtpfrq,jdbcType=DATE},
+      </if>
+      <if test="qdzhh != null" >
+        qdzhh = #{qdzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshzhh != null" >
+        jshzhh = #{jshzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshgm != null" >
+        jshgm = #{jshgm,jdbcType=VARCHAR},
+      </if>
+      <if test="zhyjshbzh != null" >
+        zhyjshbzh = #{zhyjshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdw != null" >
+        jshdw = #{jshdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdwdz != null" >
+        jshdwdz = #{jshdwdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jshdwdh != null" >
+        jshdwdh = #{jshdwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="gchgm != null" >
+        gchgm = #{gchgm,jdbcType=VARCHAR},
+      </if>
+      <if test="jshbzh != null" >
+        jshbzh = #{jshbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="qianqixmisbn != null" >
+        qianqixmisbn = #{qianqixmisbn,jdbcType=VARCHAR},
+      </if>
+      <if test="qianqixmmc != null" >
+        qianqixmmc = #{qianqixmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bgxyqdshj != null" >
+        bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
+      </if>
+      <if test="zhdbcfhj != null" >
+        zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+      </if>
+      <if test="zqDzfzr != null" >
+        zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zqXsfzr != null" >
+        zq_xsfzr = #{zqXsfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zqZhbld != null" >
+        zq_zhbld = #{zqZhbld,jdbcType=VARCHAR},
+      </if>
+      <if test="zqXmfzr != null" >
+        zq_xmfzr = #{zqXmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="belongCities != null" >
+        belong_cities = #{belongCities,jdbcType=VARCHAR},
+      </if>
+      <if test="issuance != null" >
+        issuance = #{issuance,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectDescript != null" >
+        project_descript = #{projectDescript,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buildContent != null" >
+        build_content = #{buildContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moneyComposition != null" >
+        money_composition = #{moneyComposition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="availabilityMoney != null" >
+        availability_money = #{availabilityMoney,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectApproval != null" >
+        project_approval = #{projectApproval,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="projectMemo != null" >
+        project_memo = #{projectMemo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="overview != null" >
+        overview = #{overview,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xmjshyyyzhyxy != null" >
+        xmjshyyyzhyxy = #{xmjshyyyzhyxy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ztjdap != null" >
+        ztjdap = #{ztjdap,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" >
+    update hd_project_info
+    set sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      project_no = #{projectNo,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      build_add = #{buildAdd,jdbcType=VARCHAR},
+      project_type = #{projectType,jdbcType=VARCHAR},
+      project_leader = #{projectLeader,jdbcType=VARCHAR},
+      project_leader_tel = #{projectLeaderTel,jdbcType=VARCHAR},
+      engineer = #{engineer,jdbcType=VARCHAR},
+      engineer_tel = #{engineerTel,jdbcType=VARCHAR},
+      conductor_name = #{conductorName,jdbcType=VARCHAR},
+      conductor_add = #{conductorAdd,jdbcType=VARCHAR},
+      conductor_tel = #{conductorTel,jdbcType=VARCHAR},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      owner_add = #{ownerAdd,jdbcType=VARCHAR},
+      owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      zxbmc = #{zxbmc,jdbcType=VARCHAR},
+      zxbdz = #{zxbdz,jdbcType=VARCHAR},
+      zxbdh = #{zxbdh,jdbcType=VARCHAR},
+      tender_name = #{tenderName,jdbcType=VARCHAR},
+      tender_add = #{tenderAdd,jdbcType=VARCHAR},
+      tender_tel = #{tenderTel,jdbcType=VARCHAR},
+      design_name = #{designName,jdbcType=VARCHAR},
+      design_add = #{designAdd,jdbcType=VARCHAR},
+      design_tel = #{designTel,jdbcType=VARCHAR},
+      project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
+      project_total_len = #{projectTotalLen,jdbcType=REAL},
+      project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
+      lag_day = #{lagDay,jdbcType=INTEGER},
+      begin_day = #{beginDay,jdbcType=DATE},
+      end_day = #{endDay,jdbcType=DATE},
+      completion_day = #{completionDay,jdbcType=DATE},
+      approve_estimate = #{approveEstimate,jdbcType=REAL},
+      budget = #{budget,jdbcType=REAL},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      project_property_a = #{projectPropertyA,jdbcType=VARCHAR},
+      project_property_b = #{projectPropertyB,jdbcType=VARCHAR},
+      project_property_c = #{projectPropertyC,jdbcType=VARCHAR},
+      sortorder = #{sortorder,jdbcType=INTEGER},
+      xmlxdzh = #{xmlxdzh,jdbcType=VARCHAR},
+      xmlxrxm = #{xmlxrxm,jdbcType=VARCHAR},
+      lxrdh = #{lxrdh,jdbcType=VARCHAR},
+      xmzhgdwjfgld = #{xmzhgdwjfgld,jdbcType=VARCHAR},
+      chbshjpfwh = #{chbshjpfwh,jdbcType=VARCHAR},
+      shgtpfwh = #{shgtpfwh,jdbcType=VARCHAR},
+      chbshjpfshj = #{chbshjpfshj,jdbcType=DATE},
+      shgtpfrq = #{shgtpfrq,jdbcType=DATE},
+      qdzhh = #{qdzhh,jdbcType=VARCHAR},
+      jshzhh = #{jshzhh,jdbcType=VARCHAR},
+      jshgm = #{jshgm,jdbcType=VARCHAR},
+      zhyjshbzh = #{zhyjshbzh,jdbcType=VARCHAR},
+      jshdw = #{jshdw,jdbcType=VARCHAR},
+      jshdwdz = #{jshdwdz,jdbcType=VARCHAR},
+      jshdwdh = #{jshdwdh,jdbcType=VARCHAR},
+      gchgm = #{gchgm,jdbcType=VARCHAR},
+      jshbzh = #{jshbzh,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=INTEGER},
+      area = #{area,jdbcType=VARCHAR},
+      qianqixmisbn = #{qianqixmisbn,jdbcType=VARCHAR},
+      qianqixmmc = #{qianqixmmc,jdbcType=VARCHAR},
+      bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
+      zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+      zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
+      zq_xsfzr = #{zqXsfzr,jdbcType=VARCHAR},
+      zq_zhbld = #{zqZhbld,jdbcType=VARCHAR},
+      zq_xmfzr = #{zqXmfzr,jdbcType=VARCHAR},
+      belong_cities = #{belongCities,jdbcType=VARCHAR},
+      issuance = #{issuance,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      project_descript = #{projectDescript,jdbcType=LONGVARCHAR},
+      build_content = #{buildContent,jdbcType=LONGVARCHAR},
+      money_composition = #{moneyComposition,jdbcType=LONGVARCHAR},
+      availability_money = #{availabilityMoney,jdbcType=LONGVARCHAR},
+      project_approval = #{projectApproval,jdbcType=LONGVARCHAR},
+      project_memo = #{projectMemo,jdbcType=LONGVARCHAR},
+      overview = #{overview,jdbcType=LONGVARCHAR},
+      xmjshyyyzhyxy = #{xmjshyyyzhyxy,jdbcType=LONGVARCHAR},
+      ztjdap = #{ztjdap,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.ProjectInfo" >
+    update hd_project_info
+    set sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+      project_no = #{projectNo,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      build_add = #{buildAdd,jdbcType=VARCHAR},
+      project_type = #{projectType,jdbcType=VARCHAR},
+      project_leader = #{projectLeader,jdbcType=VARCHAR},
+      project_leader_tel = #{projectLeaderTel,jdbcType=VARCHAR},
+      engineer = #{engineer,jdbcType=VARCHAR},
+      engineer_tel = #{engineerTel,jdbcType=VARCHAR},
+      conductor_name = #{conductorName,jdbcType=VARCHAR},
+      conductor_add = #{conductorAdd,jdbcType=VARCHAR},
+      conductor_tel = #{conductorTel,jdbcType=VARCHAR},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      owner_add = #{ownerAdd,jdbcType=VARCHAR},
+      owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      zxbmc = #{zxbmc,jdbcType=VARCHAR},
+      zxbdz = #{zxbdz,jdbcType=VARCHAR},
+      zxbdh = #{zxbdh,jdbcType=VARCHAR},
+      tender_name = #{tenderName,jdbcType=VARCHAR},
+      tender_add = #{tenderAdd,jdbcType=VARCHAR},
+      tender_tel = #{tenderTel,jdbcType=VARCHAR},
+      design_name = #{designName,jdbcType=VARCHAR},
+      design_add = #{designAdd,jdbcType=VARCHAR},
+      design_tel = #{designTel,jdbcType=VARCHAR},
+      project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
+      project_total_len = #{projectTotalLen,jdbcType=REAL},
+      project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
+      lag_day = #{lagDay,jdbcType=INTEGER},
+      begin_day = #{beginDay,jdbcType=DATE},
+      end_day = #{endDay,jdbcType=DATE},
+      completion_day = #{completionDay,jdbcType=DATE},
+      approve_estimate = #{approveEstimate,jdbcType=REAL},
+      budget = #{budget,jdbcType=REAL},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      project_property_a = #{projectPropertyA,jdbcType=VARCHAR},
+      project_property_b = #{projectPropertyB,jdbcType=VARCHAR},
+      project_property_c = #{projectPropertyC,jdbcType=VARCHAR},
+      sortorder = #{sortorder,jdbcType=INTEGER},
+      xmlxdzh = #{xmlxdzh,jdbcType=VARCHAR},
+      xmlxrxm = #{xmlxrxm,jdbcType=VARCHAR},
+      lxrdh = #{lxrdh,jdbcType=VARCHAR},
+      xmzhgdwjfgld = #{xmzhgdwjfgld,jdbcType=VARCHAR},
+      chbshjpfwh = #{chbshjpfwh,jdbcType=VARCHAR},
+      shgtpfwh = #{shgtpfwh,jdbcType=VARCHAR},
+      chbshjpfshj = #{chbshjpfshj,jdbcType=DATE},
+      shgtpfrq = #{shgtpfrq,jdbcType=DATE},
+      qdzhh = #{qdzhh,jdbcType=VARCHAR},
+      jshzhh = #{jshzhh,jdbcType=VARCHAR},
+      jshgm = #{jshgm,jdbcType=VARCHAR},
+      zhyjshbzh = #{zhyjshbzh,jdbcType=VARCHAR},
+      jshdw = #{jshdw,jdbcType=VARCHAR},
+      jshdwdz = #{jshdwdz,jdbcType=VARCHAR},
+      jshdwdh = #{jshdwdh,jdbcType=VARCHAR},
+      gchgm = #{gchgm,jdbcType=VARCHAR},
+      jshbzh = #{jshbzh,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=INTEGER},
+      area = #{area,jdbcType=VARCHAR},
+      qianqixmisbn = #{qianqixmisbn,jdbcType=VARCHAR},
+      qianqixmmc = #{qianqixmmc,jdbcType=VARCHAR},
+      bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
+      zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+      zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
+      zq_xsfzr = #{zqXsfzr,jdbcType=VARCHAR},
+      zq_zhbld = #{zqZhbld,jdbcType=VARCHAR},
+      zq_xmfzr = #{zqXmfzr,jdbcType=VARCHAR},
+      belong_cities = #{belongCities,jdbcType=VARCHAR},
+      issuance = #{issuance,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

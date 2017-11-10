@@ -31,6 +31,9 @@
         </div>
         <div id="page-inner">
             <div class="row">
+                <a href="${ctx}/hd/getProjectInfo" target="_blank" class="btn btn-primary">获取项目信息</a>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="card horizontal cardIcon waves-effect waves-dark">
                         <div class="card-image red">

@@ -63,7 +63,7 @@
 	<!-- services设置 -->
 	<import resource="spring-services.xml" />
 	<!-- 定时任务设置 -->
-	<!-- <import resource="spring-quartz.xml" /> -->
+	 <import resource="spring-quartz.xml" />
 	<!--cxf webservice 设置-->
 	<!--<import resource="spring-cxf-server.xml"/>-->
 
