@@ -17,6 +17,7 @@
 #忽略 文件夹
 target/
 .git/
+.svn
 .idea/
 **/**/vue/xjone/node_modules/
 **/vue/xjone/.vscode/
