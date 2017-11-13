@@ -1,9 +1,10 @@
 package com.ykkj.weiyi.service.impl;
 
+import com.ykkj.weiyi.dao.DirectInfoMapper;
 import com.ykkj.weiyi.dao.ProjectInfoMapper;
-import com.ykkj.weiyi.pojo.ProjectInfo;
-import com.ykkj.weiyi.pojo.ProjectInfoExample;
-import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
+import com.ykkj.weiyi.dao.SectInfoMapper;
+import com.ykkj.weiyi.dao.SupervisionInfoMapper;
+import com.ykkj.weiyi.pojo.*;
 import com.ykkj.weiyi.service.HdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,15 @@ import java.util.List;
 public class HdServiceImpl implements HdService {
     @Autowired
     private ProjectInfoMapper projectInfoMapper;
+
+    @Autowired
+    private DirectInfoMapper directInfoMapper;
+
+    @Autowired
+    private SupervisionInfoMapper supervisionInfoMapper;
+
+    @Autowired
+    private SectInfoMapper sectInfoMapper;
 
     public List<ProjectInfoWithBLOBs> find(String type) {
         return projectInfoMapper.selectByExampleWithBLOBs(new ProjectInfoExample());
@@ -41,4 +51,27 @@ public class HdServiceImpl implements HdService {
         return projectInfoMapper.insert(projectInfoWithBLOBs);
     }
 
+    public List<DirectInfoWithBLOBs> findDirectInfo(String type) {
+        return directInfoMapper.selectByExampleWithBLOBs(new DirectInfoExample());
+    }
+
+    public int insertDirectInfo(DirectInfoWithBLOBs directInfoWithBLOBs) {
+        return directInfoMapper.insert(directInfoWithBLOBs);
+    }
+
+    public List<SupervisionInfoWithBLOBs> findSupervisionInfo(String type) {
+        return supervisionInfoMapper.selectByExampleWithBLOBs(new SupervisionInfoExample());
+    }
+
+    public int insertSupervisionInfo(SupervisionInfoWithBLOBs supervisionInfoWithBLOBs) {
+        return supervisionInfoMapper.insert(supervisionInfoWithBLOBs);
+    }
+
+    public List<SectInfoWithBLOBs> findSectInfo(String type) {
+        return sectInfoMapper.selectByExampleWithBLOBs(new SectInfoExample());
+    }
+
+    public int insertSectInfo(SectInfoWithBLOBs sectInfoWithBLOBs) {
+        return sectInfoMapper.insert(sectInfoWithBLOBs);
+    }
 }

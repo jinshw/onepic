@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class SupervisionInfo {
@@ -163,7 +164,7 @@ public class SupervisionInfo {
 
     private Float moneyValue24;
 
-    private Date createtime;
+    private Timestamp createtime;
 
     public String getId() {
         return id;
@@ -805,11 +806,11 @@ public class SupervisionInfo {
         this.moneyValue24 = moneyValue24;
     }
 
-    public Date getCreatetime() {
+    public Timestamp getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
 }

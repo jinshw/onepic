@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ProjectInfo {
@@ -139,7 +140,7 @@ public class ProjectInfo {
 
     private Integer issuance;
 
-    private Date createtime;
+    private Timestamp createtime;
 
     public String getId() {
         return id;
@@ -685,11 +686,11 @@ public class ProjectInfo {
         this.issuance = issuance;
     }
 
-    public Date getCreatetime() {
+    public Timestamp getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
 }

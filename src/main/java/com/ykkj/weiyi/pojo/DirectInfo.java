@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class DirectInfo {
@@ -43,7 +44,7 @@ public class DirectInfo {
 
     private Integer roleType;
 
-    private Date createtime;
+    private Timestamp createtime;
 
     public String getId() {
         return id;
@@ -205,11 +206,11 @@ public class DirectInfo {
         this.roleType = roleType;
     }
 
-    public Date getCreatetime() {
+    public Timestamp getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
 }

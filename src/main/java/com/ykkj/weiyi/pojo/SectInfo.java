@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class SectInfo {
@@ -141,7 +142,7 @@ public class SectInfo {
 
     private Float moneyValue31;
 
-    private Date createtime;
+    private Timestamp createtime;
 
     public String getId() {
         return id;
@@ -699,7 +700,7 @@ public class SectInfo {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
 }
