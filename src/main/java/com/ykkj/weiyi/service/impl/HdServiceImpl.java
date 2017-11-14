@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +42,7 @@ public class HdServiceImpl implements HdService {
             projectInfoWithBLOBs = iterator.next();
             // 临时改变id值
             projectInfoWithBLOBs.setId(Math.random() * 10 + "");
-            projectInfoWithBLOBs.setCreatetime(new Date());
+            projectInfoWithBLOBs.setCreatetime(new Timestamp(new Date().getTime()));
             projectInfoMapper.insert(projectInfoWithBLOBs);
         }
         return result;
