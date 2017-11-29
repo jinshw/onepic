@@ -1,6 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
-import java.sql.Timestamp;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class SectInfo {
@@ -28,9 +28,9 @@ public class SectInfo {
 
     private String sectEndPoint;
 
-    private Float chainLength;
+    private BigDecimal chainLength;
 
-    private Float sectLength;
+    private BigDecimal sectLength;
 
     private String sectAdd;
 
@@ -50,59 +50,59 @@ public class SectInfo {
 
     private String sectPactNo;
 
-    private Float pactMoney;
+    private BigDecimal pactMoney;
 
     private String pactPeriod;
 
-    private Float moneyValue02;
+    private BigDecimal moneyValue02;
 
-    private Float moneyValue03;
+    private BigDecimal moneyValue03;
 
-    private Float moneyValue04;
+    private BigDecimal moneyValue04;
 
-    private Float moneyValue05;
+    private BigDecimal moneyValue05;
 
-    private Float moneyValue06;
+    private BigDecimal moneyValue06;
 
-    private Float moneyValue07;
+    private BigDecimal moneyValue07;
 
-    private Float moneyValue08;
+    private BigDecimal moneyValue08;
 
-    private Float moneyValue09;
+    private BigDecimal moneyValue09;
 
-    private Float moneyValue10;
+    private BigDecimal moneyValue10;
 
-    private Float moneyValue11;
+    private BigDecimal moneyValue11;
 
-    private Float moneyValue12;
+    private BigDecimal moneyValue12;
 
-    private Float moneyValue13;
+    private BigDecimal moneyValue13;
 
-    private Float moneyValue14;
+    private BigDecimal moneyValue14;
 
-    private Float moneyValue15;
+    private BigDecimal moneyValue15;
 
-    private Float moneyValue16;
+    private BigDecimal moneyValue16;
 
-    private Float moneyValue17;
+    private BigDecimal moneyValue17;
 
-    private Float moneyValue18;
+    private BigDecimal moneyValue18;
 
-    private Float moneyValue19;
+    private BigDecimal moneyValue19;
 
-    private Float moneyValue20;
+    private BigDecimal moneyValue20;
 
-    private Float moneyValue21;
+    private BigDecimal moneyValue21;
 
     private String bankName;
 
     private String bankNo;
 
-    private Float moneyValue22;
+    private BigDecimal moneyValue22;
 
-    private Float moneyValue23;
+    private BigDecimal moneyValue23;
 
-    private Float moneyValue24;
+    private Long moneyValue24;
 
     private String sectPropertyA;
 
@@ -118,9 +118,9 @@ public class SectInfo {
 
     private String pwd;
 
-    private Float moneyValue25;
+    private BigDecimal moneyValue25;
 
-    private Float moneyValue26;
+    private BigDecimal moneyValue26;
 
     private String projectId;
 
@@ -138,11 +138,13 @@ public class SectInfo {
 
     private Date bjrq;
 
-    private Float zygczgjhj;
+    private BigDecimal zygczgjhj;
 
-    private Float moneyValue31;
+    private BigDecimal moneyValue31;
 
-    private Timestamp createtime;
+    private Date createtime;
+
+    private Date inserttime;
 
     public String getId() {
         return id;
@@ -240,19 +242,19 @@ public class SectInfo {
         this.sectEndPoint = sectEndPoint == null ? null : sectEndPoint.trim();
     }
 
-    public Float getChainLength() {
+    public BigDecimal getChainLength() {
         return chainLength;
     }
 
-    public void setChainLength(Float chainLength) {
+    public void setChainLength(BigDecimal chainLength) {
         this.chainLength = chainLength;
     }
 
-    public Float getSectLength() {
+    public BigDecimal getSectLength() {
         return sectLength;
     }
 
-    public void setSectLength(Float sectLength) {
+    public void setSectLength(BigDecimal sectLength) {
         this.sectLength = sectLength;
     }
 
@@ -328,11 +330,11 @@ public class SectInfo {
         this.sectPactNo = sectPactNo == null ? null : sectPactNo.trim();
     }
 
-    public Float getPactMoney() {
+    public BigDecimal getPactMoney() {
         return pactMoney;
     }
 
-    public void setPactMoney(Float pactMoney) {
+    public void setPactMoney(BigDecimal pactMoney) {
         this.pactMoney = pactMoney;
     }
 
@@ -344,163 +346,163 @@ public class SectInfo {
         this.pactPeriod = pactPeriod == null ? null : pactPeriod.trim();
     }
 
-    public Float getMoneyValue02() {
+    public BigDecimal getMoneyValue02() {
         return moneyValue02;
     }
 
-    public void setMoneyValue02(Float moneyValue02) {
+    public void setMoneyValue02(BigDecimal moneyValue02) {
         this.moneyValue02 = moneyValue02;
     }
 
-    public Float getMoneyValue03() {
+    public BigDecimal getMoneyValue03() {
         return moneyValue03;
     }
 
-    public void setMoneyValue03(Float moneyValue03) {
+    public void setMoneyValue03(BigDecimal moneyValue03) {
         this.moneyValue03 = moneyValue03;
     }
 
-    public Float getMoneyValue04() {
+    public BigDecimal getMoneyValue04() {
         return moneyValue04;
     }
 
-    public void setMoneyValue04(Float moneyValue04) {
+    public void setMoneyValue04(BigDecimal moneyValue04) {
         this.moneyValue04 = moneyValue04;
     }
 
-    public Float getMoneyValue05() {
+    public BigDecimal getMoneyValue05() {
         return moneyValue05;
     }
 
-    public void setMoneyValue05(Float moneyValue05) {
+    public void setMoneyValue05(BigDecimal moneyValue05) {
         this.moneyValue05 = moneyValue05;
     }
 
-    public Float getMoneyValue06() {
+    public BigDecimal getMoneyValue06() {
         return moneyValue06;
     }
 
-    public void setMoneyValue06(Float moneyValue06) {
+    public void setMoneyValue06(BigDecimal moneyValue06) {
         this.moneyValue06 = moneyValue06;
     }
 
-    public Float getMoneyValue07() {
+    public BigDecimal getMoneyValue07() {
         return moneyValue07;
     }
 
-    public void setMoneyValue07(Float moneyValue07) {
+    public void setMoneyValue07(BigDecimal moneyValue07) {
         this.moneyValue07 = moneyValue07;
     }
 
-    public Float getMoneyValue08() {
+    public BigDecimal getMoneyValue08() {
         return moneyValue08;
     }
 
-    public void setMoneyValue08(Float moneyValue08) {
+    public void setMoneyValue08(BigDecimal moneyValue08) {
         this.moneyValue08 = moneyValue08;
     }
 
-    public Float getMoneyValue09() {
+    public BigDecimal getMoneyValue09() {
         return moneyValue09;
     }
 
-    public void setMoneyValue09(Float moneyValue09) {
+    public void setMoneyValue09(BigDecimal moneyValue09) {
         this.moneyValue09 = moneyValue09;
     }
 
-    public Float getMoneyValue10() {
+    public BigDecimal getMoneyValue10() {
         return moneyValue10;
     }
 
-    public void setMoneyValue10(Float moneyValue10) {
+    public void setMoneyValue10(BigDecimal moneyValue10) {
         this.moneyValue10 = moneyValue10;
     }
 
-    public Float getMoneyValue11() {
+    public BigDecimal getMoneyValue11() {
         return moneyValue11;
     }
 
-    public void setMoneyValue11(Float moneyValue11) {
+    public void setMoneyValue11(BigDecimal moneyValue11) {
         this.moneyValue11 = moneyValue11;
     }
 
-    public Float getMoneyValue12() {
+    public BigDecimal getMoneyValue12() {
         return moneyValue12;
     }
 
-    public void setMoneyValue12(Float moneyValue12) {
+    public void setMoneyValue12(BigDecimal moneyValue12) {
         this.moneyValue12 = moneyValue12;
     }
 
-    public Float getMoneyValue13() {
+    public BigDecimal getMoneyValue13() {
         return moneyValue13;
     }
 
-    public void setMoneyValue13(Float moneyValue13) {
+    public void setMoneyValue13(BigDecimal moneyValue13) {
         this.moneyValue13 = moneyValue13;
     }
 
-    public Float getMoneyValue14() {
+    public BigDecimal getMoneyValue14() {
         return moneyValue14;
     }
 
-    public void setMoneyValue14(Float moneyValue14) {
+    public void setMoneyValue14(BigDecimal moneyValue14) {
         this.moneyValue14 = moneyValue14;
     }
 
-    public Float getMoneyValue15() {
+    public BigDecimal getMoneyValue15() {
         return moneyValue15;
     }
 
-    public void setMoneyValue15(Float moneyValue15) {
+    public void setMoneyValue15(BigDecimal moneyValue15) {
         this.moneyValue15 = moneyValue15;
     }
 
-    public Float getMoneyValue16() {
+    public BigDecimal getMoneyValue16() {
         return moneyValue16;
     }
 
-    public void setMoneyValue16(Float moneyValue16) {
+    public void setMoneyValue16(BigDecimal moneyValue16) {
         this.moneyValue16 = moneyValue16;
     }
 
-    public Float getMoneyValue17() {
+    public BigDecimal getMoneyValue17() {
         return moneyValue17;
     }
 
-    public void setMoneyValue17(Float moneyValue17) {
+    public void setMoneyValue17(BigDecimal moneyValue17) {
         this.moneyValue17 = moneyValue17;
     }
 
-    public Float getMoneyValue18() {
+    public BigDecimal getMoneyValue18() {
         return moneyValue18;
     }
 
-    public void setMoneyValue18(Float moneyValue18) {
+    public void setMoneyValue18(BigDecimal moneyValue18) {
         this.moneyValue18 = moneyValue18;
     }
 
-    public Float getMoneyValue19() {
+    public BigDecimal getMoneyValue19() {
         return moneyValue19;
     }
 
-    public void setMoneyValue19(Float moneyValue19) {
+    public void setMoneyValue19(BigDecimal moneyValue19) {
         this.moneyValue19 = moneyValue19;
     }
 
-    public Float getMoneyValue20() {
+    public BigDecimal getMoneyValue20() {
         return moneyValue20;
     }
 
-    public void setMoneyValue20(Float moneyValue20) {
+    public void setMoneyValue20(BigDecimal moneyValue20) {
         this.moneyValue20 = moneyValue20;
     }
 
-    public Float getMoneyValue21() {
+    public BigDecimal getMoneyValue21() {
         return moneyValue21;
     }
 
-    public void setMoneyValue21(Float moneyValue21) {
+    public void setMoneyValue21(BigDecimal moneyValue21) {
         this.moneyValue21 = moneyValue21;
     }
 
@@ -520,27 +522,27 @@ public class SectInfo {
         this.bankNo = bankNo == null ? null : bankNo.trim();
     }
 
-    public Float getMoneyValue22() {
+    public BigDecimal getMoneyValue22() {
         return moneyValue22;
     }
 
-    public void setMoneyValue22(Float moneyValue22) {
+    public void setMoneyValue22(BigDecimal moneyValue22) {
         this.moneyValue22 = moneyValue22;
     }
 
-    public Float getMoneyValue23() {
+    public BigDecimal getMoneyValue23() {
         return moneyValue23;
     }
 
-    public void setMoneyValue23(Float moneyValue23) {
+    public void setMoneyValue23(BigDecimal moneyValue23) {
         this.moneyValue23 = moneyValue23;
     }
 
-    public Float getMoneyValue24() {
+    public Long getMoneyValue24() {
         return moneyValue24;
     }
 
-    public void setMoneyValue24(Float moneyValue24) {
+    public void setMoneyValue24(Long moneyValue24) {
         this.moneyValue24 = moneyValue24;
     }
 
@@ -600,19 +602,19 @@ public class SectInfo {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    public Float getMoneyValue25() {
+    public BigDecimal getMoneyValue25() {
         return moneyValue25;
     }
 
-    public void setMoneyValue25(Float moneyValue25) {
+    public void setMoneyValue25(BigDecimal moneyValue25) {
         this.moneyValue25 = moneyValue25;
     }
 
-    public Float getMoneyValue26() {
+    public BigDecimal getMoneyValue26() {
         return moneyValue26;
     }
 
-    public void setMoneyValue26(Float moneyValue26) {
+    public void setMoneyValue26(BigDecimal moneyValue26) {
         this.moneyValue26 = moneyValue26;
     }
 
@@ -680,19 +682,19 @@ public class SectInfo {
         this.bjrq = bjrq;
     }
 
-    public Float getZygczgjhj() {
+    public BigDecimal getZygczgjhj() {
         return zygczgjhj;
     }
 
-    public void setZygczgjhj(Float zygczgjhj) {
+    public void setZygczgjhj(BigDecimal zygczgjhj) {
         this.zygczgjhj = zygczgjhj;
     }
 
-    public Float getMoneyValue31() {
+    public BigDecimal getMoneyValue31() {
         return moneyValue31;
     }
 
-    public void setMoneyValue31(Float moneyValue31) {
+    public void setMoneyValue31(BigDecimal moneyValue31) {
         this.moneyValue31 = moneyValue31;
     }
 
@@ -700,7 +702,15 @@ public class SectInfo {
         return createtime;
     }
 
-    public void setCreatetime(Timestamp createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public Date getInserttime() {
+        return inserttime;
+    }
+
+    public void setInserttime(Date inserttime) {
+        this.inserttime = inserttime;
     }
 }

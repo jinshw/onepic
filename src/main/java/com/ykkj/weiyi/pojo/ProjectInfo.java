@@ -1,6 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
-import java.sql.Timestamp;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ProjectInfo {
@@ -54,9 +54,9 @@ public class ProjectInfo {
 
     private String designTel;
 
-    private Float projectTotalinversted;
+    private BigDecimal projectTotalinversted;
 
-    private Float projectTotalLen;
+    private BigDecimal projectTotalLen;
 
     private Integer projectPlanDuration;
 
@@ -68,9 +68,9 @@ public class ProjectInfo {
 
     private Date completionDay;
 
-    private Float approveEstimate;
+    private BigDecimal approveEstimate;
 
-    private Float budget;
+    private BigDecimal budget;
 
     private String uploadId;
 
@@ -126,7 +126,7 @@ public class ProjectInfo {
 
     private Date bgxyqdshj;
 
-    private Float zhdbcfhj;
+    private BigDecimal zhdbcfhj;
 
     private String zqDzfzr;
 
@@ -140,7 +140,9 @@ public class ProjectInfo {
 
     private Integer issuance;
 
-    private Timestamp createtime;
+    private Date createtime;
+
+    private Date inserttime;
 
     public String getId() {
         return id;
@@ -342,19 +344,19 @@ public class ProjectInfo {
         this.designTel = designTel == null ? null : designTel.trim();
     }
 
-    public Float getProjectTotalinversted() {
+    public BigDecimal getProjectTotalinversted() {
         return projectTotalinversted;
     }
 
-    public void setProjectTotalinversted(Float projectTotalinversted) {
+    public void setProjectTotalinversted(BigDecimal projectTotalinversted) {
         this.projectTotalinversted = projectTotalinversted;
     }
 
-    public Float getProjectTotalLen() {
+    public BigDecimal getProjectTotalLen() {
         return projectTotalLen;
     }
 
-    public void setProjectTotalLen(Float projectTotalLen) {
+    public void setProjectTotalLen(BigDecimal projectTotalLen) {
         this.projectTotalLen = projectTotalLen;
     }
 
@@ -398,19 +400,19 @@ public class ProjectInfo {
         this.completionDay = completionDay;
     }
 
-    public Float getApproveEstimate() {
+    public BigDecimal getApproveEstimate() {
         return approveEstimate;
     }
 
-    public void setApproveEstimate(Float approveEstimate) {
+    public void setApproveEstimate(BigDecimal approveEstimate) {
         this.approveEstimate = approveEstimate;
     }
 
-    public Float getBudget() {
+    public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(Float budget) {
+    public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
 
@@ -630,11 +632,11 @@ public class ProjectInfo {
         this.bgxyqdshj = bgxyqdshj;
     }
 
-    public Float getZhdbcfhj() {
+    public BigDecimal getZhdbcfhj() {
         return zhdbcfhj;
     }
 
-    public void setZhdbcfhj(Float zhdbcfhj) {
+    public void setZhdbcfhj(BigDecimal zhdbcfhj) {
         this.zhdbcfhj = zhdbcfhj;
     }
 
@@ -686,11 +688,19 @@ public class ProjectInfo {
         this.issuance = issuance;
     }
 
-    public Timestamp getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Timestamp createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public Date getInserttime() {
+        return inserttime;
+    }
+
+    public void setInserttime(Date inserttime) {
+        this.inserttime = inserttime;
     }
 }

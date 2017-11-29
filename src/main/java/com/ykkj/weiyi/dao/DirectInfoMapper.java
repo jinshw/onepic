@@ -1,12 +1,15 @@
 package com.ykkj.weiyi.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ykkj.weiyi.pojo.DirectInfo;
 import com.ykkj.weiyi.pojo.DirectInfoExample;
 import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface DirectInfoMapper {
+public interface DirectInfoMapper
+{
     int countByExample(DirectInfoExample example);
 
     int deleteByExample(DirectInfoExample example);
@@ -23,15 +26,22 @@ public interface DirectInfoMapper {
 
     DirectInfoWithBLOBs selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") DirectInfoWithBLOBs record, @Param("example") DirectInfoExample example);
+    int updateByExampleSelective(@Param("record") DirectInfoWithBLOBs record,
+            @Param("example") DirectInfoExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") DirectInfoWithBLOBs record, @Param("example") DirectInfoExample example);
+    int updateByExampleWithBLOBs(@Param("record") DirectInfoWithBLOBs record,
+            @Param("example") DirectInfoExample example);
 
-    int updateByExample(@Param("record") DirectInfo record, @Param("example") DirectInfoExample example);
+    int updateByExample(@Param("record") DirectInfo record,
+            @Param("example") DirectInfoExample example);
 
     int updateByPrimaryKeySelective(DirectInfoWithBLOBs record);
 
     int updateByPrimaryKeyWithBLOBs(DirectInfoWithBLOBs record);
 
     int updateByPrimaryKey(DirectInfo record);
+
+    String findDirectInfoMaxInserttime();
+
+    void deleteAll();
 }

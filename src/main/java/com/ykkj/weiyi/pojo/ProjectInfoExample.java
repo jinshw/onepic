@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -1892,52 +1893,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedEqualTo(Float value) {
+        public Criteria andProjectTotalinverstedEqualTo(BigDecimal value) {
             addCriterion("project_totalInversted =", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedNotEqualTo(Float value) {
+        public Criteria andProjectTotalinverstedNotEqualTo(BigDecimal value) {
             addCriterion("project_totalInversted <>", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedGreaterThan(Float value) {
+        public Criteria andProjectTotalinverstedGreaterThan(BigDecimal value) {
             addCriterion("project_totalInversted >", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedGreaterThanOrEqualTo(Float value) {
+        public Criteria andProjectTotalinverstedGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("project_totalInversted >=", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedLessThan(Float value) {
+        public Criteria andProjectTotalinverstedLessThan(BigDecimal value) {
             addCriterion("project_totalInversted <", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedLessThanOrEqualTo(Float value) {
+        public Criteria andProjectTotalinverstedLessThanOrEqualTo(BigDecimal value) {
             addCriterion("project_totalInversted <=", value, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedIn(List<Float> values) {
+        public Criteria andProjectTotalinverstedIn(List<BigDecimal> values) {
             addCriterion("project_totalInversted in", values, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedNotIn(List<Float> values) {
+        public Criteria andProjectTotalinverstedNotIn(List<BigDecimal> values) {
             addCriterion("project_totalInversted not in", values, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedBetween(Float value1, Float value2) {
+        public Criteria andProjectTotalinverstedBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_totalInversted between", value1, value2, "projectTotalinversted");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalinverstedNotBetween(Float value1, Float value2) {
+        public Criteria andProjectTotalinverstedNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_totalInversted not between", value1, value2, "projectTotalinversted");
             return (Criteria) this;
         }
@@ -1952,52 +1953,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenEqualTo(Float value) {
+        public Criteria andProjectTotalLenEqualTo(BigDecimal value) {
             addCriterion("project_total_len =", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenNotEqualTo(Float value) {
+        public Criteria andProjectTotalLenNotEqualTo(BigDecimal value) {
             addCriterion("project_total_len <>", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenGreaterThan(Float value) {
+        public Criteria andProjectTotalLenGreaterThan(BigDecimal value) {
             addCriterion("project_total_len >", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenGreaterThanOrEqualTo(Float value) {
+        public Criteria andProjectTotalLenGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("project_total_len >=", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenLessThan(Float value) {
+        public Criteria andProjectTotalLenLessThan(BigDecimal value) {
             addCriterion("project_total_len <", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenLessThanOrEqualTo(Float value) {
+        public Criteria andProjectTotalLenLessThanOrEqualTo(BigDecimal value) {
             addCriterion("project_total_len <=", value, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenIn(List<Float> values) {
+        public Criteria andProjectTotalLenIn(List<BigDecimal> values) {
             addCriterion("project_total_len in", values, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenNotIn(List<Float> values) {
+        public Criteria andProjectTotalLenNotIn(List<BigDecimal> values) {
             addCriterion("project_total_len not in", values, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenBetween(Float value1, Float value2) {
+        public Criteria andProjectTotalLenBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_total_len between", value1, value2, "projectTotalLen");
             return (Criteria) this;
         }
 
-        public Criteria andProjectTotalLenNotBetween(Float value1, Float value2) {
+        public Criteria andProjectTotalLenNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_total_len not between", value1, value2, "projectTotalLen");
             return (Criteria) this;
         }
@@ -2312,52 +2313,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateEqualTo(Float value) {
+        public Criteria andApproveEstimateEqualTo(BigDecimal value) {
             addCriterion("approve_estimate =", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateNotEqualTo(Float value) {
+        public Criteria andApproveEstimateNotEqualTo(BigDecimal value) {
             addCriterion("approve_estimate <>", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateGreaterThan(Float value) {
+        public Criteria andApproveEstimateGreaterThan(BigDecimal value) {
             addCriterion("approve_estimate >", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateGreaterThanOrEqualTo(Float value) {
+        public Criteria andApproveEstimateGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("approve_estimate >=", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateLessThan(Float value) {
+        public Criteria andApproveEstimateLessThan(BigDecimal value) {
             addCriterion("approve_estimate <", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateLessThanOrEqualTo(Float value) {
+        public Criteria andApproveEstimateLessThanOrEqualTo(BigDecimal value) {
             addCriterion("approve_estimate <=", value, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateIn(List<Float> values) {
+        public Criteria andApproveEstimateIn(List<BigDecimal> values) {
             addCriterion("approve_estimate in", values, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateNotIn(List<Float> values) {
+        public Criteria andApproveEstimateNotIn(List<BigDecimal> values) {
             addCriterion("approve_estimate not in", values, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateBetween(Float value1, Float value2) {
+        public Criteria andApproveEstimateBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("approve_estimate between", value1, value2, "approveEstimate");
             return (Criteria) this;
         }
 
-        public Criteria andApproveEstimateNotBetween(Float value1, Float value2) {
+        public Criteria andApproveEstimateNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("approve_estimate not between", value1, value2, "approveEstimate");
             return (Criteria) this;
         }
@@ -2372,52 +2373,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andBudgetEqualTo(Float value) {
+        public Criteria andBudgetEqualTo(BigDecimal value) {
             addCriterion("budget =", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotEqualTo(Float value) {
+        public Criteria andBudgetNotEqualTo(BigDecimal value) {
             addCriterion("budget <>", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetGreaterThan(Float value) {
+        public Criteria andBudgetGreaterThan(BigDecimal value) {
             addCriterion("budget >", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetGreaterThanOrEqualTo(Float value) {
+        public Criteria andBudgetGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("budget >=", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetLessThan(Float value) {
+        public Criteria andBudgetLessThan(BigDecimal value) {
             addCriterion("budget <", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetLessThanOrEqualTo(Float value) {
+        public Criteria andBudgetLessThanOrEqualTo(BigDecimal value) {
             addCriterion("budget <=", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetIn(List<Float> values) {
+        public Criteria andBudgetIn(List<BigDecimal> values) {
             addCriterion("budget in", values, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotIn(List<Float> values) {
+        public Criteria andBudgetNotIn(List<BigDecimal> values) {
             addCriterion("budget not in", values, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetBetween(Float value1, Float value2) {
+        public Criteria andBudgetBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("budget between", value1, value2, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotBetween(Float value1, Float value2) {
+        public Criteria andBudgetNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("budget not between", value1, value2, "budget");
             return (Criteria) this;
         }
@@ -4272,52 +4273,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjEqualTo(Float value) {
+        public Criteria andZhdbcfhjEqualTo(BigDecimal value) {
             addCriterion("zhdbcfhj =", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjNotEqualTo(Float value) {
+        public Criteria andZhdbcfhjNotEqualTo(BigDecimal value) {
             addCriterion("zhdbcfhj <>", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjGreaterThan(Float value) {
+        public Criteria andZhdbcfhjGreaterThan(BigDecimal value) {
             addCriterion("zhdbcfhj >", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjGreaterThanOrEqualTo(Float value) {
+        public Criteria andZhdbcfhjGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("zhdbcfhj >=", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjLessThan(Float value) {
+        public Criteria andZhdbcfhjLessThan(BigDecimal value) {
             addCriterion("zhdbcfhj <", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjLessThanOrEqualTo(Float value) {
+        public Criteria andZhdbcfhjLessThanOrEqualTo(BigDecimal value) {
             addCriterion("zhdbcfhj <=", value, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjIn(List<Float> values) {
+        public Criteria andZhdbcfhjIn(List<BigDecimal> values) {
             addCriterion("zhdbcfhj in", values, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjNotIn(List<Float> values) {
+        public Criteria andZhdbcfhjNotIn(List<BigDecimal> values) {
             addCriterion("zhdbcfhj not in", values, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjBetween(Float value1, Float value2) {
+        public Criteria andZhdbcfhjBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("zhdbcfhj between", value1, value2, "zhdbcfhj");
             return (Criteria) this;
         }
 
-        public Criteria andZhdbcfhjNotBetween(Float value1, Float value2) {
+        public Criteria andZhdbcfhjNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("zhdbcfhj not between", value1, value2, "zhdbcfhj");
             return (Criteria) this;
         }
@@ -4789,6 +4790,66 @@ public class ProjectInfoExample {
 
         public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
             addCriterion("createtime not between", value1, value2, "createtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNull() {
+            addCriterion("inserttime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNotNull() {
+            addCriterion("inserttime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeEqualTo(Date value) {
+            addCriterion("inserttime =", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotEqualTo(Date value) {
+            addCriterion("inserttime <>", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThan(Date value) {
+            addCriterion("inserttime >", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("inserttime >=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThan(Date value) {
+            addCriterion("inserttime <", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThanOrEqualTo(Date value) {
+            addCriterion("inserttime <=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIn(List<Date> values) {
+            addCriterion("inserttime in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotIn(List<Date> values) {
+            addCriterion("inserttime not in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeBetween(Date value1, Date value2) {
+            addCriterion("inserttime between", value1, value2, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotBetween(Date value1, Date value2) {
+            addCriterion("inserttime not between", value1, value2, "inserttime");
             return (Criteria) this;
         }
     }

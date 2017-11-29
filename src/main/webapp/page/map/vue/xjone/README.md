@@ -27,6 +27,33 @@ vue.js2.5、vue-router
         } 
     }
 ```
+## Vue 知识
+### 组件
+* 父组件向子组件传递数据
+```
+父组件中传递config参数
+<router-view class="view" v-bind:config="config"></router-view>
+
+子组件中获取数据
+props:{
+    config: {
+        type: Object,
+    }
+}
+```
+
+* 子组件调用父组件事件
+```
+父组件：
+<router-view class="view" v-on:refconfig="getConfig"></router-view>
+
+子组件：
+ this.$emit("refconfig");
+     
+```
+
+* vue中如果data数据时对象(object)
+修改object属性数据时，需要用object.name =‘张三’，不可以用object={name:"张三"}（这是不能触发vue中data的数据绑定的改变）
 
 
 

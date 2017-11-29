@@ -9,10 +9,18 @@ import java.util.ResourceBundle;
  *
  * @修改记录（修改时间、作者、原因）：
  */
-public class StaticUtils {
-	// 获取静态配置文件
-	static ResourceBundle bundle = ResourceBundle.getBundle("static");
-	// 访问路径前半部分
-	public static final String URL_PATH = bundle.getString("url_path");// http://localhost:8080/cms
+public class StaticUtils
+{
+    // 获取静态配置文件
+    static ResourceBundle rb = ResourceBundle.getBundle("static");
+    // 访问路径前半部分
+    public static final String URL_PATH = rb.getString("url_path");// http://localhost:8080/cms
+    public static final String HD_GETPROJECTINFO = rb
+            .getString("hd_getProjectInfo");
+    public static final String HD_GETDIRECTINFO = rb
+            .getString("hd_getDirectInfo");
+    public static final String HD_GETSUPERVISIONINFO = rb
+            .getString("hd_getSupervisionInfo");
+    public static final String HD_GETSECTINFO = rb.getString("hd_getSectInfo");
 
 }

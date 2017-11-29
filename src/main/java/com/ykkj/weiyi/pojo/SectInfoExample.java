@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -982,52 +983,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthEqualTo(Float value) {
+        public Criteria andChainLengthEqualTo(BigDecimal value) {
             addCriterion("chain_length =", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthNotEqualTo(Float value) {
+        public Criteria andChainLengthNotEqualTo(BigDecimal value) {
             addCriterion("chain_length <>", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthGreaterThan(Float value) {
+        public Criteria andChainLengthGreaterThan(BigDecimal value) {
             addCriterion("chain_length >", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthGreaterThanOrEqualTo(Float value) {
+        public Criteria andChainLengthGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("chain_length >=", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthLessThan(Float value) {
+        public Criteria andChainLengthLessThan(BigDecimal value) {
             addCriterion("chain_length <", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthLessThanOrEqualTo(Float value) {
+        public Criteria andChainLengthLessThanOrEqualTo(BigDecimal value) {
             addCriterion("chain_length <=", value, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthIn(List<Float> values) {
+        public Criteria andChainLengthIn(List<BigDecimal> values) {
             addCriterion("chain_length in", values, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthNotIn(List<Float> values) {
+        public Criteria andChainLengthNotIn(List<BigDecimal> values) {
             addCriterion("chain_length not in", values, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthBetween(Float value1, Float value2) {
+        public Criteria andChainLengthBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("chain_length between", value1, value2, "chainLength");
             return (Criteria) this;
         }
 
-        public Criteria andChainLengthNotBetween(Float value1, Float value2) {
+        public Criteria andChainLengthNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("chain_length not between", value1, value2, "chainLength");
             return (Criteria) this;
         }
@@ -1042,52 +1043,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthEqualTo(Float value) {
+        public Criteria andSectLengthEqualTo(BigDecimal value) {
             addCriterion("sect_length =", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthNotEqualTo(Float value) {
+        public Criteria andSectLengthNotEqualTo(BigDecimal value) {
             addCriterion("sect_length <>", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthGreaterThan(Float value) {
+        public Criteria andSectLengthGreaterThan(BigDecimal value) {
             addCriterion("sect_length >", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthGreaterThanOrEqualTo(Float value) {
+        public Criteria andSectLengthGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("sect_length >=", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthLessThan(Float value) {
+        public Criteria andSectLengthLessThan(BigDecimal value) {
             addCriterion("sect_length <", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthLessThanOrEqualTo(Float value) {
+        public Criteria andSectLengthLessThanOrEqualTo(BigDecimal value) {
             addCriterion("sect_length <=", value, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthIn(List<Float> values) {
+        public Criteria andSectLengthIn(List<BigDecimal> values) {
             addCriterion("sect_length in", values, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthNotIn(List<Float> values) {
+        public Criteria andSectLengthNotIn(List<BigDecimal> values) {
             addCriterion("sect_length not in", values, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthBetween(Float value1, Float value2) {
+        public Criteria andSectLengthBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("sect_length between", value1, value2, "sectLength");
             return (Criteria) this;
         }
 
-        public Criteria andSectLengthNotBetween(Float value1, Float value2) {
+        public Criteria andSectLengthNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("sect_length not between", value1, value2, "sectLength");
             return (Criteria) this;
         }
@@ -1702,52 +1703,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyEqualTo(Float value) {
+        public Criteria andPactMoneyEqualTo(BigDecimal value) {
             addCriterion("pact_money =", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyNotEqualTo(Float value) {
+        public Criteria andPactMoneyNotEqualTo(BigDecimal value) {
             addCriterion("pact_money <>", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyGreaterThan(Float value) {
+        public Criteria andPactMoneyGreaterThan(BigDecimal value) {
             addCriterion("pact_money >", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyGreaterThanOrEqualTo(Float value) {
+        public Criteria andPactMoneyGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("pact_money >=", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyLessThan(Float value) {
+        public Criteria andPactMoneyLessThan(BigDecimal value) {
             addCriterion("pact_money <", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyLessThanOrEqualTo(Float value) {
+        public Criteria andPactMoneyLessThanOrEqualTo(BigDecimal value) {
             addCriterion("pact_money <=", value, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyIn(List<Float> values) {
+        public Criteria andPactMoneyIn(List<BigDecimal> values) {
             addCriterion("pact_money in", values, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyNotIn(List<Float> values) {
+        public Criteria andPactMoneyNotIn(List<BigDecimal> values) {
             addCriterion("pact_money not in", values, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyBetween(Float value1, Float value2) {
+        public Criteria andPactMoneyBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("pact_money between", value1, value2, "pactMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPactMoneyNotBetween(Float value1, Float value2) {
+        public Criteria andPactMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("pact_money not between", value1, value2, "pactMoney");
             return (Criteria) this;
         }
@@ -1832,52 +1833,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02EqualTo(Float value) {
+        public Criteria andMoneyValue02EqualTo(BigDecimal value) {
             addCriterion("money_value02 =", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02NotEqualTo(Float value) {
+        public Criteria andMoneyValue02NotEqualTo(BigDecimal value) {
             addCriterion("money_value02 <>", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02GreaterThan(Float value) {
+        public Criteria andMoneyValue02GreaterThan(BigDecimal value) {
             addCriterion("money_value02 >", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue02GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value02 >=", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02LessThan(Float value) {
+        public Criteria andMoneyValue02LessThan(BigDecimal value) {
             addCriterion("money_value02 <", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue02LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value02 <=", value, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02In(List<Float> values) {
+        public Criteria andMoneyValue02In(List<BigDecimal> values) {
             addCriterion("money_value02 in", values, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02NotIn(List<Float> values) {
+        public Criteria andMoneyValue02NotIn(List<BigDecimal> values) {
             addCriterion("money_value02 not in", values, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02Between(Float value1, Float value2) {
+        public Criteria andMoneyValue02Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value02 between", value1, value2, "moneyValue02");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue02NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue02NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value02 not between", value1, value2, "moneyValue02");
             return (Criteria) this;
         }
@@ -1892,52 +1893,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03EqualTo(Float value) {
+        public Criteria andMoneyValue03EqualTo(BigDecimal value) {
             addCriterion("money_value03 =", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03NotEqualTo(Float value) {
+        public Criteria andMoneyValue03NotEqualTo(BigDecimal value) {
             addCriterion("money_value03 <>", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03GreaterThan(Float value) {
+        public Criteria andMoneyValue03GreaterThan(BigDecimal value) {
             addCriterion("money_value03 >", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue03GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value03 >=", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03LessThan(Float value) {
+        public Criteria andMoneyValue03LessThan(BigDecimal value) {
             addCriterion("money_value03 <", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue03LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value03 <=", value, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03In(List<Float> values) {
+        public Criteria andMoneyValue03In(List<BigDecimal> values) {
             addCriterion("money_value03 in", values, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03NotIn(List<Float> values) {
+        public Criteria andMoneyValue03NotIn(List<BigDecimal> values) {
             addCriterion("money_value03 not in", values, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03Between(Float value1, Float value2) {
+        public Criteria andMoneyValue03Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value03 between", value1, value2, "moneyValue03");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue03NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue03NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value03 not between", value1, value2, "moneyValue03");
             return (Criteria) this;
         }
@@ -1952,52 +1953,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04EqualTo(Float value) {
+        public Criteria andMoneyValue04EqualTo(BigDecimal value) {
             addCriterion("money_value04 =", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04NotEqualTo(Float value) {
+        public Criteria andMoneyValue04NotEqualTo(BigDecimal value) {
             addCriterion("money_value04 <>", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04GreaterThan(Float value) {
+        public Criteria andMoneyValue04GreaterThan(BigDecimal value) {
             addCriterion("money_value04 >", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue04GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value04 >=", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04LessThan(Float value) {
+        public Criteria andMoneyValue04LessThan(BigDecimal value) {
             addCriterion("money_value04 <", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue04LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value04 <=", value, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04In(List<Float> values) {
+        public Criteria andMoneyValue04In(List<BigDecimal> values) {
             addCriterion("money_value04 in", values, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04NotIn(List<Float> values) {
+        public Criteria andMoneyValue04NotIn(List<BigDecimal> values) {
             addCriterion("money_value04 not in", values, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04Between(Float value1, Float value2) {
+        public Criteria andMoneyValue04Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value04 between", value1, value2, "moneyValue04");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue04NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue04NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value04 not between", value1, value2, "moneyValue04");
             return (Criteria) this;
         }
@@ -2012,52 +2013,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05EqualTo(Float value) {
+        public Criteria andMoneyValue05EqualTo(BigDecimal value) {
             addCriterion("money_value05 =", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05NotEqualTo(Float value) {
+        public Criteria andMoneyValue05NotEqualTo(BigDecimal value) {
             addCriterion("money_value05 <>", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05GreaterThan(Float value) {
+        public Criteria andMoneyValue05GreaterThan(BigDecimal value) {
             addCriterion("money_value05 >", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue05GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value05 >=", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05LessThan(Float value) {
+        public Criteria andMoneyValue05LessThan(BigDecimal value) {
             addCriterion("money_value05 <", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue05LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value05 <=", value, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05In(List<Float> values) {
+        public Criteria andMoneyValue05In(List<BigDecimal> values) {
             addCriterion("money_value05 in", values, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05NotIn(List<Float> values) {
+        public Criteria andMoneyValue05NotIn(List<BigDecimal> values) {
             addCriterion("money_value05 not in", values, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05Between(Float value1, Float value2) {
+        public Criteria andMoneyValue05Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value05 between", value1, value2, "moneyValue05");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue05NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue05NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value05 not between", value1, value2, "moneyValue05");
             return (Criteria) this;
         }
@@ -2072,52 +2073,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06EqualTo(Float value) {
+        public Criteria andMoneyValue06EqualTo(BigDecimal value) {
             addCriterion("money_value06 =", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06NotEqualTo(Float value) {
+        public Criteria andMoneyValue06NotEqualTo(BigDecimal value) {
             addCriterion("money_value06 <>", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06GreaterThan(Float value) {
+        public Criteria andMoneyValue06GreaterThan(BigDecimal value) {
             addCriterion("money_value06 >", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue06GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value06 >=", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06LessThan(Float value) {
+        public Criteria andMoneyValue06LessThan(BigDecimal value) {
             addCriterion("money_value06 <", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue06LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value06 <=", value, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06In(List<Float> values) {
+        public Criteria andMoneyValue06In(List<BigDecimal> values) {
             addCriterion("money_value06 in", values, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06NotIn(List<Float> values) {
+        public Criteria andMoneyValue06NotIn(List<BigDecimal> values) {
             addCriterion("money_value06 not in", values, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06Between(Float value1, Float value2) {
+        public Criteria andMoneyValue06Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value06 between", value1, value2, "moneyValue06");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue06NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue06NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value06 not between", value1, value2, "moneyValue06");
             return (Criteria) this;
         }
@@ -2132,52 +2133,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07EqualTo(Float value) {
+        public Criteria andMoneyValue07EqualTo(BigDecimal value) {
             addCriterion("money_value07 =", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07NotEqualTo(Float value) {
+        public Criteria andMoneyValue07NotEqualTo(BigDecimal value) {
             addCriterion("money_value07 <>", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07GreaterThan(Float value) {
+        public Criteria andMoneyValue07GreaterThan(BigDecimal value) {
             addCriterion("money_value07 >", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue07GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value07 >=", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07LessThan(Float value) {
+        public Criteria andMoneyValue07LessThan(BigDecimal value) {
             addCriterion("money_value07 <", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue07LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value07 <=", value, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07In(List<Float> values) {
+        public Criteria andMoneyValue07In(List<BigDecimal> values) {
             addCriterion("money_value07 in", values, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07NotIn(List<Float> values) {
+        public Criteria andMoneyValue07NotIn(List<BigDecimal> values) {
             addCriterion("money_value07 not in", values, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07Between(Float value1, Float value2) {
+        public Criteria andMoneyValue07Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value07 between", value1, value2, "moneyValue07");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue07NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue07NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value07 not between", value1, value2, "moneyValue07");
             return (Criteria) this;
         }
@@ -2192,52 +2193,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08EqualTo(Float value) {
+        public Criteria andMoneyValue08EqualTo(BigDecimal value) {
             addCriterion("money_value08 =", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08NotEqualTo(Float value) {
+        public Criteria andMoneyValue08NotEqualTo(BigDecimal value) {
             addCriterion("money_value08 <>", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08GreaterThan(Float value) {
+        public Criteria andMoneyValue08GreaterThan(BigDecimal value) {
             addCriterion("money_value08 >", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue08GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value08 >=", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08LessThan(Float value) {
+        public Criteria andMoneyValue08LessThan(BigDecimal value) {
             addCriterion("money_value08 <", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue08LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value08 <=", value, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08In(List<Float> values) {
+        public Criteria andMoneyValue08In(List<BigDecimal> values) {
             addCriterion("money_value08 in", values, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08NotIn(List<Float> values) {
+        public Criteria andMoneyValue08NotIn(List<BigDecimal> values) {
             addCriterion("money_value08 not in", values, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08Between(Float value1, Float value2) {
+        public Criteria andMoneyValue08Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value08 between", value1, value2, "moneyValue08");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue08NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue08NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value08 not between", value1, value2, "moneyValue08");
             return (Criteria) this;
         }
@@ -2252,52 +2253,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09EqualTo(Float value) {
+        public Criteria andMoneyValue09EqualTo(BigDecimal value) {
             addCriterion("money_value09 =", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09NotEqualTo(Float value) {
+        public Criteria andMoneyValue09NotEqualTo(BigDecimal value) {
             addCriterion("money_value09 <>", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09GreaterThan(Float value) {
+        public Criteria andMoneyValue09GreaterThan(BigDecimal value) {
             addCriterion("money_value09 >", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue09GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value09 >=", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09LessThan(Float value) {
+        public Criteria andMoneyValue09LessThan(BigDecimal value) {
             addCriterion("money_value09 <", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue09LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value09 <=", value, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09In(List<Float> values) {
+        public Criteria andMoneyValue09In(List<BigDecimal> values) {
             addCriterion("money_value09 in", values, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09NotIn(List<Float> values) {
+        public Criteria andMoneyValue09NotIn(List<BigDecimal> values) {
             addCriterion("money_value09 not in", values, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09Between(Float value1, Float value2) {
+        public Criteria andMoneyValue09Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value09 between", value1, value2, "moneyValue09");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue09NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue09NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value09 not between", value1, value2, "moneyValue09");
             return (Criteria) this;
         }
@@ -2312,52 +2313,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10EqualTo(Float value) {
+        public Criteria andMoneyValue10EqualTo(BigDecimal value) {
             addCriterion("money_value10 =", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10NotEqualTo(Float value) {
+        public Criteria andMoneyValue10NotEqualTo(BigDecimal value) {
             addCriterion("money_value10 <>", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10GreaterThan(Float value) {
+        public Criteria andMoneyValue10GreaterThan(BigDecimal value) {
             addCriterion("money_value10 >", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue10GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value10 >=", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10LessThan(Float value) {
+        public Criteria andMoneyValue10LessThan(BigDecimal value) {
             addCriterion("money_value10 <", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue10LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value10 <=", value, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10In(List<Float> values) {
+        public Criteria andMoneyValue10In(List<BigDecimal> values) {
             addCriterion("money_value10 in", values, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10NotIn(List<Float> values) {
+        public Criteria andMoneyValue10NotIn(List<BigDecimal> values) {
             addCriterion("money_value10 not in", values, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10Between(Float value1, Float value2) {
+        public Criteria andMoneyValue10Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value10 between", value1, value2, "moneyValue10");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue10NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue10NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value10 not between", value1, value2, "moneyValue10");
             return (Criteria) this;
         }
@@ -2372,52 +2373,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11EqualTo(Float value) {
+        public Criteria andMoneyValue11EqualTo(BigDecimal value) {
             addCriterion("money_value11 =", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11NotEqualTo(Float value) {
+        public Criteria andMoneyValue11NotEqualTo(BigDecimal value) {
             addCriterion("money_value11 <>", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11GreaterThan(Float value) {
+        public Criteria andMoneyValue11GreaterThan(BigDecimal value) {
             addCriterion("money_value11 >", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue11GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value11 >=", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11LessThan(Float value) {
+        public Criteria andMoneyValue11LessThan(BigDecimal value) {
             addCriterion("money_value11 <", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue11LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value11 <=", value, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11In(List<Float> values) {
+        public Criteria andMoneyValue11In(List<BigDecimal> values) {
             addCriterion("money_value11 in", values, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11NotIn(List<Float> values) {
+        public Criteria andMoneyValue11NotIn(List<BigDecimal> values) {
             addCriterion("money_value11 not in", values, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11Between(Float value1, Float value2) {
+        public Criteria andMoneyValue11Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value11 between", value1, value2, "moneyValue11");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue11NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue11NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value11 not between", value1, value2, "moneyValue11");
             return (Criteria) this;
         }
@@ -2432,52 +2433,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12EqualTo(Float value) {
+        public Criteria andMoneyValue12EqualTo(BigDecimal value) {
             addCriterion("money_value12 =", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12NotEqualTo(Float value) {
+        public Criteria andMoneyValue12NotEqualTo(BigDecimal value) {
             addCriterion("money_value12 <>", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12GreaterThan(Float value) {
+        public Criteria andMoneyValue12GreaterThan(BigDecimal value) {
             addCriterion("money_value12 >", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue12GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value12 >=", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12LessThan(Float value) {
+        public Criteria andMoneyValue12LessThan(BigDecimal value) {
             addCriterion("money_value12 <", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue12LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value12 <=", value, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12In(List<Float> values) {
+        public Criteria andMoneyValue12In(List<BigDecimal> values) {
             addCriterion("money_value12 in", values, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12NotIn(List<Float> values) {
+        public Criteria andMoneyValue12NotIn(List<BigDecimal> values) {
             addCriterion("money_value12 not in", values, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12Between(Float value1, Float value2) {
+        public Criteria andMoneyValue12Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value12 between", value1, value2, "moneyValue12");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue12NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue12NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value12 not between", value1, value2, "moneyValue12");
             return (Criteria) this;
         }
@@ -2492,52 +2493,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13EqualTo(Float value) {
+        public Criteria andMoneyValue13EqualTo(BigDecimal value) {
             addCriterion("money_value13 =", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13NotEqualTo(Float value) {
+        public Criteria andMoneyValue13NotEqualTo(BigDecimal value) {
             addCriterion("money_value13 <>", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13GreaterThan(Float value) {
+        public Criteria andMoneyValue13GreaterThan(BigDecimal value) {
             addCriterion("money_value13 >", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue13GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value13 >=", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13LessThan(Float value) {
+        public Criteria andMoneyValue13LessThan(BigDecimal value) {
             addCriterion("money_value13 <", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue13LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value13 <=", value, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13In(List<Float> values) {
+        public Criteria andMoneyValue13In(List<BigDecimal> values) {
             addCriterion("money_value13 in", values, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13NotIn(List<Float> values) {
+        public Criteria andMoneyValue13NotIn(List<BigDecimal> values) {
             addCriterion("money_value13 not in", values, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13Between(Float value1, Float value2) {
+        public Criteria andMoneyValue13Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value13 between", value1, value2, "moneyValue13");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue13NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue13NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value13 not between", value1, value2, "moneyValue13");
             return (Criteria) this;
         }
@@ -2552,52 +2553,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14EqualTo(Float value) {
+        public Criteria andMoneyValue14EqualTo(BigDecimal value) {
             addCriterion("money_value14 =", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14NotEqualTo(Float value) {
+        public Criteria andMoneyValue14NotEqualTo(BigDecimal value) {
             addCriterion("money_value14 <>", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14GreaterThan(Float value) {
+        public Criteria andMoneyValue14GreaterThan(BigDecimal value) {
             addCriterion("money_value14 >", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue14GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value14 >=", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14LessThan(Float value) {
+        public Criteria andMoneyValue14LessThan(BigDecimal value) {
             addCriterion("money_value14 <", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue14LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value14 <=", value, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14In(List<Float> values) {
+        public Criteria andMoneyValue14In(List<BigDecimal> values) {
             addCriterion("money_value14 in", values, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14NotIn(List<Float> values) {
+        public Criteria andMoneyValue14NotIn(List<BigDecimal> values) {
             addCriterion("money_value14 not in", values, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14Between(Float value1, Float value2) {
+        public Criteria andMoneyValue14Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value14 between", value1, value2, "moneyValue14");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue14NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue14NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value14 not between", value1, value2, "moneyValue14");
             return (Criteria) this;
         }
@@ -2612,52 +2613,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15EqualTo(Float value) {
+        public Criteria andMoneyValue15EqualTo(BigDecimal value) {
             addCriterion("money_value15 =", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15NotEqualTo(Float value) {
+        public Criteria andMoneyValue15NotEqualTo(BigDecimal value) {
             addCriterion("money_value15 <>", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15GreaterThan(Float value) {
+        public Criteria andMoneyValue15GreaterThan(BigDecimal value) {
             addCriterion("money_value15 >", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue15GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value15 >=", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15LessThan(Float value) {
+        public Criteria andMoneyValue15LessThan(BigDecimal value) {
             addCriterion("money_value15 <", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue15LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value15 <=", value, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15In(List<Float> values) {
+        public Criteria andMoneyValue15In(List<BigDecimal> values) {
             addCriterion("money_value15 in", values, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15NotIn(List<Float> values) {
+        public Criteria andMoneyValue15NotIn(List<BigDecimal> values) {
             addCriterion("money_value15 not in", values, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15Between(Float value1, Float value2) {
+        public Criteria andMoneyValue15Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value15 between", value1, value2, "moneyValue15");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue15NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue15NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value15 not between", value1, value2, "moneyValue15");
             return (Criteria) this;
         }
@@ -2672,52 +2673,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16EqualTo(Float value) {
+        public Criteria andMoneyValue16EqualTo(BigDecimal value) {
             addCriterion("money_value16 =", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16NotEqualTo(Float value) {
+        public Criteria andMoneyValue16NotEqualTo(BigDecimal value) {
             addCriterion("money_value16 <>", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16GreaterThan(Float value) {
+        public Criteria andMoneyValue16GreaterThan(BigDecimal value) {
             addCriterion("money_value16 >", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue16GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value16 >=", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16LessThan(Float value) {
+        public Criteria andMoneyValue16LessThan(BigDecimal value) {
             addCriterion("money_value16 <", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue16LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value16 <=", value, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16In(List<Float> values) {
+        public Criteria andMoneyValue16In(List<BigDecimal> values) {
             addCriterion("money_value16 in", values, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16NotIn(List<Float> values) {
+        public Criteria andMoneyValue16NotIn(List<BigDecimal> values) {
             addCriterion("money_value16 not in", values, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16Between(Float value1, Float value2) {
+        public Criteria andMoneyValue16Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value16 between", value1, value2, "moneyValue16");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue16NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue16NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value16 not between", value1, value2, "moneyValue16");
             return (Criteria) this;
         }
@@ -2732,52 +2733,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17EqualTo(Float value) {
+        public Criteria andMoneyValue17EqualTo(BigDecimal value) {
             addCriterion("money_value17 =", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17NotEqualTo(Float value) {
+        public Criteria andMoneyValue17NotEqualTo(BigDecimal value) {
             addCriterion("money_value17 <>", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17GreaterThan(Float value) {
+        public Criteria andMoneyValue17GreaterThan(BigDecimal value) {
             addCriterion("money_value17 >", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue17GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value17 >=", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17LessThan(Float value) {
+        public Criteria andMoneyValue17LessThan(BigDecimal value) {
             addCriterion("money_value17 <", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue17LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value17 <=", value, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17In(List<Float> values) {
+        public Criteria andMoneyValue17In(List<BigDecimal> values) {
             addCriterion("money_value17 in", values, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17NotIn(List<Float> values) {
+        public Criteria andMoneyValue17NotIn(List<BigDecimal> values) {
             addCriterion("money_value17 not in", values, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17Between(Float value1, Float value2) {
+        public Criteria andMoneyValue17Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value17 between", value1, value2, "moneyValue17");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue17NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue17NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value17 not between", value1, value2, "moneyValue17");
             return (Criteria) this;
         }
@@ -2792,52 +2793,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18EqualTo(Float value) {
+        public Criteria andMoneyValue18EqualTo(BigDecimal value) {
             addCriterion("money_value18 =", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18NotEqualTo(Float value) {
+        public Criteria andMoneyValue18NotEqualTo(BigDecimal value) {
             addCriterion("money_value18 <>", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18GreaterThan(Float value) {
+        public Criteria andMoneyValue18GreaterThan(BigDecimal value) {
             addCriterion("money_value18 >", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue18GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value18 >=", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18LessThan(Float value) {
+        public Criteria andMoneyValue18LessThan(BigDecimal value) {
             addCriterion("money_value18 <", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue18LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value18 <=", value, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18In(List<Float> values) {
+        public Criteria andMoneyValue18In(List<BigDecimal> values) {
             addCriterion("money_value18 in", values, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18NotIn(List<Float> values) {
+        public Criteria andMoneyValue18NotIn(List<BigDecimal> values) {
             addCriterion("money_value18 not in", values, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18Between(Float value1, Float value2) {
+        public Criteria andMoneyValue18Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value18 between", value1, value2, "moneyValue18");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue18NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue18NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value18 not between", value1, value2, "moneyValue18");
             return (Criteria) this;
         }
@@ -2852,52 +2853,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19EqualTo(Float value) {
+        public Criteria andMoneyValue19EqualTo(BigDecimal value) {
             addCriterion("money_value19 =", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19NotEqualTo(Float value) {
+        public Criteria andMoneyValue19NotEqualTo(BigDecimal value) {
             addCriterion("money_value19 <>", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19GreaterThan(Float value) {
+        public Criteria andMoneyValue19GreaterThan(BigDecimal value) {
             addCriterion("money_value19 >", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue19GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value19 >=", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19LessThan(Float value) {
+        public Criteria andMoneyValue19LessThan(BigDecimal value) {
             addCriterion("money_value19 <", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue19LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value19 <=", value, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19In(List<Float> values) {
+        public Criteria andMoneyValue19In(List<BigDecimal> values) {
             addCriterion("money_value19 in", values, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19NotIn(List<Float> values) {
+        public Criteria andMoneyValue19NotIn(List<BigDecimal> values) {
             addCriterion("money_value19 not in", values, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19Between(Float value1, Float value2) {
+        public Criteria andMoneyValue19Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value19 between", value1, value2, "moneyValue19");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue19NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue19NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value19 not between", value1, value2, "moneyValue19");
             return (Criteria) this;
         }
@@ -2912,52 +2913,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20EqualTo(Float value) {
+        public Criteria andMoneyValue20EqualTo(BigDecimal value) {
             addCriterion("money_value20 =", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20NotEqualTo(Float value) {
+        public Criteria andMoneyValue20NotEqualTo(BigDecimal value) {
             addCriterion("money_value20 <>", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20GreaterThan(Float value) {
+        public Criteria andMoneyValue20GreaterThan(BigDecimal value) {
             addCriterion("money_value20 >", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue20GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value20 >=", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20LessThan(Float value) {
+        public Criteria andMoneyValue20LessThan(BigDecimal value) {
             addCriterion("money_value20 <", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue20LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value20 <=", value, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20In(List<Float> values) {
+        public Criteria andMoneyValue20In(List<BigDecimal> values) {
             addCriterion("money_value20 in", values, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20NotIn(List<Float> values) {
+        public Criteria andMoneyValue20NotIn(List<BigDecimal> values) {
             addCriterion("money_value20 not in", values, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20Between(Float value1, Float value2) {
+        public Criteria andMoneyValue20Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value20 between", value1, value2, "moneyValue20");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue20NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue20NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value20 not between", value1, value2, "moneyValue20");
             return (Criteria) this;
         }
@@ -2972,52 +2973,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21EqualTo(Float value) {
+        public Criteria andMoneyValue21EqualTo(BigDecimal value) {
             addCriterion("money_value21 =", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21NotEqualTo(Float value) {
+        public Criteria andMoneyValue21NotEqualTo(BigDecimal value) {
             addCriterion("money_value21 <>", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21GreaterThan(Float value) {
+        public Criteria andMoneyValue21GreaterThan(BigDecimal value) {
             addCriterion("money_value21 >", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue21GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value21 >=", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21LessThan(Float value) {
+        public Criteria andMoneyValue21LessThan(BigDecimal value) {
             addCriterion("money_value21 <", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue21LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value21 <=", value, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21In(List<Float> values) {
+        public Criteria andMoneyValue21In(List<BigDecimal> values) {
             addCriterion("money_value21 in", values, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21NotIn(List<Float> values) {
+        public Criteria andMoneyValue21NotIn(List<BigDecimal> values) {
             addCriterion("money_value21 not in", values, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21Between(Float value1, Float value2) {
+        public Criteria andMoneyValue21Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value21 between", value1, value2, "moneyValue21");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue21NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue21NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value21 not between", value1, value2, "moneyValue21");
             return (Criteria) this;
         }
@@ -3172,52 +3173,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22EqualTo(Float value) {
+        public Criteria andMoneyValue22EqualTo(BigDecimal value) {
             addCriterion("money_value22 =", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22NotEqualTo(Float value) {
+        public Criteria andMoneyValue22NotEqualTo(BigDecimal value) {
             addCriterion("money_value22 <>", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22GreaterThan(Float value) {
+        public Criteria andMoneyValue22GreaterThan(BigDecimal value) {
             addCriterion("money_value22 >", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue22GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value22 >=", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22LessThan(Float value) {
+        public Criteria andMoneyValue22LessThan(BigDecimal value) {
             addCriterion("money_value22 <", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue22LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value22 <=", value, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22In(List<Float> values) {
+        public Criteria andMoneyValue22In(List<BigDecimal> values) {
             addCriterion("money_value22 in", values, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22NotIn(List<Float> values) {
+        public Criteria andMoneyValue22NotIn(List<BigDecimal> values) {
             addCriterion("money_value22 not in", values, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22Between(Float value1, Float value2) {
+        public Criteria andMoneyValue22Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value22 between", value1, value2, "moneyValue22");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue22NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue22NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value22 not between", value1, value2, "moneyValue22");
             return (Criteria) this;
         }
@@ -3232,52 +3233,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23EqualTo(Float value) {
+        public Criteria andMoneyValue23EqualTo(BigDecimal value) {
             addCriterion("money_value23 =", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23NotEqualTo(Float value) {
+        public Criteria andMoneyValue23NotEqualTo(BigDecimal value) {
             addCriterion("money_value23 <>", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23GreaterThan(Float value) {
+        public Criteria andMoneyValue23GreaterThan(BigDecimal value) {
             addCriterion("money_value23 >", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue23GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value23 >=", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23LessThan(Float value) {
+        public Criteria andMoneyValue23LessThan(BigDecimal value) {
             addCriterion("money_value23 <", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue23LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value23 <=", value, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23In(List<Float> values) {
+        public Criteria andMoneyValue23In(List<BigDecimal> values) {
             addCriterion("money_value23 in", values, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23NotIn(List<Float> values) {
+        public Criteria andMoneyValue23NotIn(List<BigDecimal> values) {
             addCriterion("money_value23 not in", values, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23Between(Float value1, Float value2) {
+        public Criteria andMoneyValue23Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value23 between", value1, value2, "moneyValue23");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue23NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue23NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value23 not between", value1, value2, "moneyValue23");
             return (Criteria) this;
         }
@@ -3292,52 +3293,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24EqualTo(Float value) {
+        public Criteria andMoneyValue24EqualTo(Long value) {
             addCriterion("money_value24 =", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24NotEqualTo(Float value) {
+        public Criteria andMoneyValue24NotEqualTo(Long value) {
             addCriterion("money_value24 <>", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24GreaterThan(Float value) {
+        public Criteria andMoneyValue24GreaterThan(Long value) {
             addCriterion("money_value24 >", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue24GreaterThanOrEqualTo(Long value) {
             addCriterion("money_value24 >=", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24LessThan(Float value) {
+        public Criteria andMoneyValue24LessThan(Long value) {
             addCriterion("money_value24 <", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue24LessThanOrEqualTo(Long value) {
             addCriterion("money_value24 <=", value, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24In(List<Float> values) {
+        public Criteria andMoneyValue24In(List<Long> values) {
             addCriterion("money_value24 in", values, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24NotIn(List<Float> values) {
+        public Criteria andMoneyValue24NotIn(List<Long> values) {
             addCriterion("money_value24 not in", values, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24Between(Float value1, Float value2) {
+        public Criteria andMoneyValue24Between(Long value1, Long value2) {
             addCriterion("money_value24 between", value1, value2, "moneyValue24");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue24NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue24NotBetween(Long value1, Long value2) {
             addCriterion("money_value24 not between", value1, value2, "moneyValue24");
             return (Criteria) this;
         }
@@ -3832,52 +3833,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25EqualTo(Float value) {
+        public Criteria andMoneyValue25EqualTo(BigDecimal value) {
             addCriterion("money_value25 =", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25NotEqualTo(Float value) {
+        public Criteria andMoneyValue25NotEqualTo(BigDecimal value) {
             addCriterion("money_value25 <>", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25GreaterThan(Float value) {
+        public Criteria andMoneyValue25GreaterThan(BigDecimal value) {
             addCriterion("money_value25 >", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue25GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value25 >=", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25LessThan(Float value) {
+        public Criteria andMoneyValue25LessThan(BigDecimal value) {
             addCriterion("money_value25 <", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue25LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value25 <=", value, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25In(List<Float> values) {
+        public Criteria andMoneyValue25In(List<BigDecimal> values) {
             addCriterion("money_value25 in", values, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25NotIn(List<Float> values) {
+        public Criteria andMoneyValue25NotIn(List<BigDecimal> values) {
             addCriterion("money_value25 not in", values, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25Between(Float value1, Float value2) {
+        public Criteria andMoneyValue25Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value25 between", value1, value2, "moneyValue25");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue25NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue25NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value25 not between", value1, value2, "moneyValue25");
             return (Criteria) this;
         }
@@ -3892,52 +3893,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26EqualTo(Float value) {
+        public Criteria andMoneyValue26EqualTo(BigDecimal value) {
             addCriterion("money_value26 =", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26NotEqualTo(Float value) {
+        public Criteria andMoneyValue26NotEqualTo(BigDecimal value) {
             addCriterion("money_value26 <>", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26GreaterThan(Float value) {
+        public Criteria andMoneyValue26GreaterThan(BigDecimal value) {
             addCriterion("money_value26 >", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue26GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value26 >=", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26LessThan(Float value) {
+        public Criteria andMoneyValue26LessThan(BigDecimal value) {
             addCriterion("money_value26 <", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue26LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value26 <=", value, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26In(List<Float> values) {
+        public Criteria andMoneyValue26In(List<BigDecimal> values) {
             addCriterion("money_value26 in", values, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26NotIn(List<Float> values) {
+        public Criteria andMoneyValue26NotIn(List<BigDecimal> values) {
             addCriterion("money_value26 not in", values, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26Between(Float value1, Float value2) {
+        public Criteria andMoneyValue26Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value26 between", value1, value2, "moneyValue26");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue26NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue26NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value26 not between", value1, value2, "moneyValue26");
             return (Criteria) this;
         }
@@ -4492,52 +4493,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjEqualTo(Float value) {
+        public Criteria andZygczgjhjEqualTo(BigDecimal value) {
             addCriterion("zygczgjhj =", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjNotEqualTo(Float value) {
+        public Criteria andZygczgjhjNotEqualTo(BigDecimal value) {
             addCriterion("zygczgjhj <>", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjGreaterThan(Float value) {
+        public Criteria andZygczgjhjGreaterThan(BigDecimal value) {
             addCriterion("zygczgjhj >", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjGreaterThanOrEqualTo(Float value) {
+        public Criteria andZygczgjhjGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("zygczgjhj >=", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjLessThan(Float value) {
+        public Criteria andZygczgjhjLessThan(BigDecimal value) {
             addCriterion("zygczgjhj <", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjLessThanOrEqualTo(Float value) {
+        public Criteria andZygczgjhjLessThanOrEqualTo(BigDecimal value) {
             addCriterion("zygczgjhj <=", value, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjIn(List<Float> values) {
+        public Criteria andZygczgjhjIn(List<BigDecimal> values) {
             addCriterion("zygczgjhj in", values, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjNotIn(List<Float> values) {
+        public Criteria andZygczgjhjNotIn(List<BigDecimal> values) {
             addCriterion("zygczgjhj not in", values, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjBetween(Float value1, Float value2) {
+        public Criteria andZygczgjhjBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("zygczgjhj between", value1, value2, "zygczgjhj");
             return (Criteria) this;
         }
 
-        public Criteria andZygczgjhjNotBetween(Float value1, Float value2) {
+        public Criteria andZygczgjhjNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("zygczgjhj not between", value1, value2, "zygczgjhj");
             return (Criteria) this;
         }
@@ -4552,52 +4553,52 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31EqualTo(Float value) {
+        public Criteria andMoneyValue31EqualTo(BigDecimal value) {
             addCriterion("money_value31 =", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31NotEqualTo(Float value) {
+        public Criteria andMoneyValue31NotEqualTo(BigDecimal value) {
             addCriterion("money_value31 <>", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31GreaterThan(Float value) {
+        public Criteria andMoneyValue31GreaterThan(BigDecimal value) {
             addCriterion("money_value31 >", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31GreaterThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue31GreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value31 >=", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31LessThan(Float value) {
+        public Criteria andMoneyValue31LessThan(BigDecimal value) {
             addCriterion("money_value31 <", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31LessThanOrEqualTo(Float value) {
+        public Criteria andMoneyValue31LessThanOrEqualTo(BigDecimal value) {
             addCriterion("money_value31 <=", value, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31In(List<Float> values) {
+        public Criteria andMoneyValue31In(List<BigDecimal> values) {
             addCriterion("money_value31 in", values, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31NotIn(List<Float> values) {
+        public Criteria andMoneyValue31NotIn(List<BigDecimal> values) {
             addCriterion("money_value31 not in", values, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31Between(Float value1, Float value2) {
+        public Criteria andMoneyValue31Between(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value31 between", value1, value2, "moneyValue31");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyValue31NotBetween(Float value1, Float value2) {
+        public Criteria andMoneyValue31NotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("money_value31 not between", value1, value2, "moneyValue31");
             return (Criteria) this;
         }
@@ -4659,6 +4660,66 @@ public class SectInfoExample {
 
         public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
             addCriterion("createtime not between", value1, value2, "createtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNull() {
+            addCriterion("inserttime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNotNull() {
+            addCriterion("inserttime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeEqualTo(Date value) {
+            addCriterion("inserttime =", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotEqualTo(Date value) {
+            addCriterion("inserttime <>", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThan(Date value) {
+            addCriterion("inserttime >", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("inserttime >=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThan(Date value) {
+            addCriterion("inserttime <", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThanOrEqualTo(Date value) {
+            addCriterion("inserttime <=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIn(List<Date> values) {
+            addCriterion("inserttime in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotIn(List<Date> values) {
+            addCriterion("inserttime not in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeBetween(Date value1, Date value2) {
+            addCriterion("inserttime between", value1, value2, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotBetween(Date value1, Date value2) {
+            addCriterion("inserttime not between", value1, value2, "inserttime");
             return (Criteria) this;
         }
     }

@@ -56,7 +56,7 @@
 
 <script>
     import Vue from 'Vue';
-    import Header from "../header/main.vue";
+    import HomeHeader from "../header/homeheader.vue";
     import XJMap from "../map/main.vue";
     var ChartsMain = Vue.extend({
         name: "ChartsMain",
@@ -64,7 +64,7 @@
             return {}
         },
         components: {
-            "m-header": Header,
+            "m-header": HomeHeader,
             "m-map": XJMap,
         },
         methods: {},

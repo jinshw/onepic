@@ -42,7 +42,9 @@ function resolve(dir) {
 
 var webpackConfig = {
     entry: {
-        xjone: './src/js/app.js',
+        // xjone: './src/js/app.js',
+        "base":'./src/js/app.js',
+        "home":"./src/js/home.js",
         vendor: [
             pwd + '/src/js/library/' + aliasFile('vue'),
             pwd + '/src/js/library/' + aliasFile('jquery'),

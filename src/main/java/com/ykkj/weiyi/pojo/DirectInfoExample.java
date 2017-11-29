@@ -1,5 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -812,52 +813,52 @@ public class DirectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyEqualTo(Float value) {
+        public Criteria andProjectMoneyEqualTo(BigDecimal value) {
             addCriterion("project_money =", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyNotEqualTo(Float value) {
+        public Criteria andProjectMoneyNotEqualTo(BigDecimal value) {
             addCriterion("project_money <>", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyGreaterThan(Float value) {
+        public Criteria andProjectMoneyGreaterThan(BigDecimal value) {
             addCriterion("project_money >", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyGreaterThanOrEqualTo(Float value) {
+        public Criteria andProjectMoneyGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("project_money >=", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyLessThan(Float value) {
+        public Criteria andProjectMoneyLessThan(BigDecimal value) {
             addCriterion("project_money <", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyLessThanOrEqualTo(Float value) {
+        public Criteria andProjectMoneyLessThanOrEqualTo(BigDecimal value) {
             addCriterion("project_money <=", value, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyIn(List<Float> values) {
+        public Criteria andProjectMoneyIn(List<BigDecimal> values) {
             addCriterion("project_money in", values, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyNotIn(List<Float> values) {
+        public Criteria andProjectMoneyNotIn(List<BigDecimal> values) {
             addCriterion("project_money not in", values, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyBetween(Float value1, Float value2) {
+        public Criteria andProjectMoneyBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_money between", value1, value2, "projectMoney");
             return (Criteria) this;
         }
 
-        public Criteria andProjectMoneyNotBetween(Float value1, Float value2) {
+        public Criteria andProjectMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("project_money not between", value1, value2, "projectMoney");
             return (Criteria) this;
         }
@@ -1152,52 +1153,52 @@ public class DirectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPropertyAEqualTo(Float value) {
+        public Criteria andPropertyAEqualTo(BigDecimal value) {
             addCriterion("property_a =", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyANotEqualTo(Float value) {
+        public Criteria andPropertyANotEqualTo(BigDecimal value) {
             addCriterion("property_a <>", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyAGreaterThan(Float value) {
+        public Criteria andPropertyAGreaterThan(BigDecimal value) {
             addCriterion("property_a >", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyAGreaterThanOrEqualTo(Float value) {
+        public Criteria andPropertyAGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("property_a >=", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyALessThan(Float value) {
+        public Criteria andPropertyALessThan(BigDecimal value) {
             addCriterion("property_a <", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyALessThanOrEqualTo(Float value) {
+        public Criteria andPropertyALessThanOrEqualTo(BigDecimal value) {
             addCriterion("property_a <=", value, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyAIn(List<Float> values) {
+        public Criteria andPropertyAIn(List<BigDecimal> values) {
             addCriterion("property_a in", values, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyANotIn(List<Float> values) {
+        public Criteria andPropertyANotIn(List<BigDecimal> values) {
             addCriterion("property_a not in", values, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyABetween(Float value1, Float value2) {
+        public Criteria andPropertyABetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("property_a between", value1, value2, "propertyA");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyANotBetween(Float value1, Float value2) {
+        public Criteria andPropertyANotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("property_a not between", value1, value2, "propertyA");
             return (Criteria) this;
         }
@@ -1519,6 +1520,66 @@ public class DirectInfoExample {
 
         public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
             addCriterion("createtime not between", value1, value2, "createtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNull() {
+            addCriterion("inserttime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIsNotNull() {
+            addCriterion("inserttime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeEqualTo(Date value) {
+            addCriterion("inserttime =", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotEqualTo(Date value) {
+            addCriterion("inserttime <>", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThan(Date value) {
+            addCriterion("inserttime >", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("inserttime >=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThan(Date value) {
+            addCriterion("inserttime <", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeLessThanOrEqualTo(Date value) {
+            addCriterion("inserttime <=", value, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeIn(List<Date> values) {
+            addCriterion("inserttime in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotIn(List<Date> values) {
+            addCriterion("inserttime not in", values, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeBetween(Date value1, Date value2) {
+            addCriterion("inserttime between", value1, value2, "inserttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andInserttimeNotBetween(Date value1, Date value2) {
+            addCriterion("inserttime not between", value1, value2, "inserttime");
             return (Criteria) this;
         }
     }

@@ -474,8 +474,8 @@ function timeLineLayer() {
   );
 }
 
+var zTreeObj;
 function initTree(mycallback) {
-  var zTreeObj;
 
   // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
   var setting = {
@@ -1010,4 +1010,10 @@ function queryYXInfo(SmID) {
     }
   });
   queryBySQLService.processAsync(queryBySQLParams);
+}
+
+// 获取ztree选中节点nodes
+function getSelectedNodes(){
+  var nodes = zTreeObj.getSelectedNodes()
+  return nodes;
 }

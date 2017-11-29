@@ -1,1459 +1,1856 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ykkj.weiyi.dao.SectInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.SectInfo" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="supervision_id" property="supervisionId" jdbcType="VARCHAR" />
-    <result column="direct_id" property="directId" jdbcType="VARCHAR" />
-    <result column="sect_short_name" property="sectShortName" jdbcType="VARCHAR" />
-    <result column="sect_no" property="sectNo" jdbcType="VARCHAR" />
-    <result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
-    <result column="super_dept_name" property="superDeptName" jdbcType="VARCHAR" />
-    <result column="comp_add" property="compAdd" jdbcType="VARCHAR" />
-    <result column="comp_tel" property="compTel" jdbcType="VARCHAR" />
-    <result column="sect_type" property="sectType" jdbcType="VARCHAR" />
-    <result column="sect_begin_point" property="sectBeginPoint" jdbcType="VARCHAR" />
-    <result column="sect_end_point" property="sectEndPoint" jdbcType="VARCHAR" />
-    <result column="chain_length" property="chainLength" jdbcType="REAL" />
-    <result column="sect_length" property="sectLength" jdbcType="REAL" />
-    <result column="sect_add" property="sectAdd" jdbcType="VARCHAR" />
-    <result column="begin_day" property="beginDay" jdbcType="DATE" />
-    <result column="plan_end_day" property="planEndDay" jdbcType="DATE" />
-    <result column="begin_token_day" property="beginTokenDay" jdbcType="DATE" />
-    <result column="superv_people" property="supervPeople" jdbcType="VARCHAR" />
-    <result column="sect_leader" property="sectLeader" jdbcType="VARCHAR" />
-    <result column="sect_leader_tel" property="sectLeaderTel" jdbcType="VARCHAR" />
-    <result column="sect_engineer" property="sectEngineer" jdbcType="VARCHAR" />
-    <result column="sect_pact_no" property="sectPactNo" jdbcType="VARCHAR" />
-    <result column="pact_money" property="pactMoney" jdbcType="REAL" />
-    <result column="pact_period" property="pactPeriod" jdbcType="VARCHAR" />
-    <result column="money_value02" property="moneyValue02" jdbcType="REAL" />
-    <result column="money_value03" property="moneyValue03" jdbcType="REAL" />
-    <result column="money_value04" property="moneyValue04" jdbcType="REAL" />
-    <result column="money_value05" property="moneyValue05" jdbcType="REAL" />
-    <result column="money_value06" property="moneyValue06" jdbcType="REAL" />
-    <result column="money_value07" property="moneyValue07" jdbcType="REAL" />
-    <result column="money_value08" property="moneyValue08" jdbcType="REAL" />
-    <result column="money_value09" property="moneyValue09" jdbcType="REAL" />
-    <result column="money_value10" property="moneyValue10" jdbcType="REAL" />
-    <result column="money_value11" property="moneyValue11" jdbcType="REAL" />
-    <result column="money_value12" property="moneyValue12" jdbcType="REAL" />
-    <result column="money_value13" property="moneyValue13" jdbcType="REAL" />
-    <result column="money_value14" property="moneyValue14" jdbcType="REAL" />
-    <result column="money_value15" property="moneyValue15" jdbcType="REAL" />
-    <result column="money_value16" property="moneyValue16" jdbcType="REAL" />
-    <result column="money_value17" property="moneyValue17" jdbcType="REAL" />
-    <result column="money_value18" property="moneyValue18" jdbcType="REAL" />
-    <result column="money_value19" property="moneyValue19" jdbcType="REAL" />
-    <result column="money_value20" property="moneyValue20" jdbcType="REAL" />
-    <result column="money_value21" property="moneyValue21" jdbcType="REAL" />
-    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
-    <result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
-    <result column="money_value22" property="moneyValue22" jdbcType="REAL" />
-    <result column="money_value23" property="moneyValue23" jdbcType="REAL" />
-    <result column="money_value24" property="moneyValue24" jdbcType="REAL" />
-    <result column="sect_property_a" property="sectPropertyA" jdbcType="VARCHAR" />
-    <result column="sect_property_b" property="sectPropertyB" jdbcType="VARCHAR" />
-    <result column="sect_property_c" property="sectPropertyC" jdbcType="VARCHAR" />
-    <result column="sortorder" property="sortorder" jdbcType="INTEGER" />
-    <result column="complete_money" property="completeMoney" jdbcType="VARCHAR" />
-    <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
-    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
-    <result column="money_value25" property="moneyValue25" jdbcType="REAL" />
-    <result column="money_value26" property="moneyValue26" jdbcType="REAL" />
-    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
-    <result column="zzhdj" property="zzhdj" jdbcType="VARCHAR" />
-    <result column="zhshhm" property="zhshhm" jdbcType="VARCHAR" />
-    <result column="yyzhzh" property="yyzhzh" jdbcType="VARCHAR" />
-    <result column="dwfzr" property="dwfzr" jdbcType="VARCHAR" />
-    <result column="fzrdh" property="fzrdh" jdbcType="VARCHAR" />
-    <result column="chshyzhryrsh" property="chshyzhryrsh" jdbcType="INTEGER" />
-    <result column="bjrq" property="bjrq" jdbcType="DATE" />
-    <result column="zygczgjhj" property="zygczgjhj" jdbcType="REAL" />
-    <result column="money_value31" property="moneyValue31" jdbcType="REAL" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.SectInfoWithBLOBs" extends="BaseResultMap" >
-    <result column="sect_content" property="sectContent" jdbcType="LONGVARCHAR" />
-    <result column="zfbmc1" property="zfbmc1" jdbcType="LONGVARCHAR" />
-    <result column="zfbmc2" property="zfbmc2" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, supervision_id, direct_id, sect_short_name, sect_no, sys_dept_id, super_dept_name, 
-    comp_add, comp_tel, sect_type, sect_begin_point, sect_end_point, chain_length, sect_length, 
-    sect_add, begin_day, plan_end_day, begin_token_day, superv_people, sect_leader, sect_leader_tel, 
-    sect_engineer, sect_pact_no, pact_money, pact_period, money_value02, money_value03, 
-    money_value04, money_value05, money_value06, money_value07, money_value08, money_value09, 
-    money_value10, money_value11, money_value12, money_value13, money_value14, money_value15, 
-    money_value16, money_value17, money_value18, money_value19, money_value20, money_value21, 
-    bank_name, bank_no, money_value22, money_value23, money_value24, sect_property_a, 
-    sect_property_b, sect_property_c, sortorder, complete_money, upload_id, pwd, money_value25, 
-    money_value26, project_id, zzhdj, zhshhm, yyzhzh, dwfzr, fzrdh, chshyzhryrsh, bjrq, 
-    zygczgjhj, money_value31, createtime
-  </sql>
-  <sql id="Blob_Column_List" >
-    sect_content, zfbmc1, zfbmc2
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SectInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from hd_sect_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.SectInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from hd_sect_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from hd_sect_info
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from hd_sect_info
-    where id = #{id,jdbcType=VARCHAR}
+<mapper namespace="com.ykkj.weiyi.dao.SectInfoMapper">
+	<resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.SectInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="supervision_id" property="supervisionId"
+			jdbcType="VARCHAR" />
+		<result column="direct_id" property="directId" jdbcType="VARCHAR" />
+		<result column="sect_short_name" property="sectShortName"
+			jdbcType="VARCHAR" />
+		<result column="sect_no" property="sectNo" jdbcType="VARCHAR" />
+		<result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
+		<result column="super_dept_name" property="superDeptName"
+			jdbcType="VARCHAR" />
+		<result column="comp_add" property="compAdd" jdbcType="VARCHAR" />
+		<result column="comp_tel" property="compTel" jdbcType="VARCHAR" />
+		<result column="sect_type" property="sectType" jdbcType="VARCHAR" />
+		<result column="sect_begin_point" property="sectBeginPoint"
+			jdbcType="VARCHAR" />
+		<result column="sect_end_point" property="sectEndPoint"
+			jdbcType="VARCHAR" />
+		<result column="chain_length" property="chainLength" jdbcType="DECIMAL" />
+		<result column="sect_length" property="sectLength" jdbcType="DECIMAL" />
+		<result column="sect_add" property="sectAdd" jdbcType="VARCHAR" />
+		<result column="begin_day" property="beginDay" jdbcType="DATE" />
+		<result column="plan_end_day" property="planEndDay" jdbcType="DATE" />
+		<result column="begin_token_day" property="beginTokenDay"
+			jdbcType="DATE" />
+		<result column="superv_people" property="supervPeople"
+			jdbcType="VARCHAR" />
+		<result column="sect_leader" property="sectLeader" jdbcType="VARCHAR" />
+		<result column="sect_leader_tel" property="sectLeaderTel"
+			jdbcType="VARCHAR" />
+		<result column="sect_engineer" property="sectEngineer"
+			jdbcType="VARCHAR" />
+		<result column="sect_pact_no" property="sectPactNo" jdbcType="VARCHAR" />
+		<result column="pact_money" property="pactMoney" jdbcType="DECIMAL" />
+		<result column="pact_period" property="pactPeriod" jdbcType="VARCHAR" />
+		<result column="money_value02" property="moneyValue02"
+			jdbcType="DECIMAL" />
+		<result column="money_value03" property="moneyValue03"
+			jdbcType="DECIMAL" />
+		<result column="money_value04" property="moneyValue04"
+			jdbcType="DECIMAL" />
+		<result column="money_value05" property="moneyValue05"
+			jdbcType="DECIMAL" />
+		<result column="money_value06" property="moneyValue06"
+			jdbcType="DECIMAL" />
+		<result column="money_value07" property="moneyValue07"
+			jdbcType="DECIMAL" />
+		<result column="money_value08" property="moneyValue08"
+			jdbcType="DECIMAL" />
+		<result column="money_value09" property="moneyValue09"
+			jdbcType="DECIMAL" />
+		<result column="money_value10" property="moneyValue10"
+			jdbcType="DECIMAL" />
+		<result column="money_value11" property="moneyValue11"
+			jdbcType="DECIMAL" />
+		<result column="money_value12" property="moneyValue12"
+			jdbcType="DECIMAL" />
+		<result column="money_value13" property="moneyValue13"
+			jdbcType="DECIMAL" />
+		<result column="money_value14" property="moneyValue14"
+			jdbcType="DECIMAL" />
+		<result column="money_value15" property="moneyValue15"
+			jdbcType="DECIMAL" />
+		<result column="money_value16" property="moneyValue16"
+			jdbcType="DECIMAL" />
+		<result column="money_value17" property="moneyValue17"
+			jdbcType="DECIMAL" />
+		<result column="money_value18" property="moneyValue18"
+			jdbcType="DECIMAL" />
+		<result column="money_value19" property="moneyValue19"
+			jdbcType="DECIMAL" />
+		<result column="money_value20" property="moneyValue20"
+			jdbcType="DECIMAL" />
+		<result column="money_value21" property="moneyValue21"
+			jdbcType="DECIMAL" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
+		<result column="money_value22" property="moneyValue22"
+			jdbcType="DECIMAL" />
+		<result column="money_value23" property="moneyValue23"
+			jdbcType="DECIMAL" />
+		<result column="money_value24" property="moneyValue24"
+			jdbcType="DECIMAL" />
+		<result column="sect_property_a" property="sectPropertyA"
+			jdbcType="VARCHAR" />
+		<result column="sect_property_b" property="sectPropertyB"
+			jdbcType="VARCHAR" />
+		<result column="sect_property_c" property="sectPropertyC"
+			jdbcType="VARCHAR" />
+		<result column="sortorder" property="sortorder" jdbcType="INTEGER" />
+		<result column="complete_money" property="completeMoney"
+			jdbcType="VARCHAR" />
+		<result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="money_value25" property="moneyValue25"
+			jdbcType="DECIMAL" />
+		<result column="money_value26" property="moneyValue26"
+			jdbcType="DECIMAL" />
+		<result column="project_id" property="projectId" jdbcType="VARCHAR" />
+		<result column="zzhdj" property="zzhdj" jdbcType="VARCHAR" />
+		<result column="zhshhm" property="zhshhm" jdbcType="VARCHAR" />
+		<result column="yyzhzh" property="yyzhzh" jdbcType="VARCHAR" />
+		<result column="dwfzr" property="dwfzr" jdbcType="VARCHAR" />
+		<result column="fzrdh" property="fzrdh" jdbcType="VARCHAR" />
+		<result column="chshyzhryrsh" property="chshyzhryrsh" jdbcType="INTEGER" />
+		<result column="bjrq" property="bjrq" jdbcType="DATE" />
+		<result column="zygczgjhj" property="zygczgjhj" jdbcType="DECIMAL" />
+		<result column="money_value31" property="moneyValue31"
+			jdbcType="DECIMAL" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.SectInfoWithBLOBs"
+		extends="BaseResultMap">
+		<result column="sect_content" property="sectContent" jdbcType="LONGVARCHAR" />
+		<result column="zfbmc1" property="zfbmc1" jdbcType="LONGVARCHAR" />
+		<result column="zfbmc2" property="zfbmc2" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, supervision_id, direct_id, sect_short_name, sect_no,
+		sys_dept_id,
+		super_dept_name,
+		comp_add, comp_tel, sect_type,
+		sect_begin_point, sect_end_point, chain_length,
+		sect_length,
+		sect_add,
+		begin_day, plan_end_day, begin_token_day, superv_people, sect_leader,
+		sect_leader_tel,
+		sect_engineer, sect_pact_no, pact_money, pact_period,
+		money_value02, money_value03,
+		money_value04, money_value05,
+		money_value06, money_value07,
+		money_value08, money_value09,
+		money_value10, money_value11, money_value12, money_value13,
+		money_value14,
+		money_value15,
+		money_value16, money_value17,
+		money_value18, money_value19, money_value20,
+		money_value21,
+		bank_name,
+		bank_no, money_value22, money_value23, money_value24,
+		sect_property_a,
+		sect_property_b, sect_property_c, sortorder, complete_money,
+		upload_id, pwd,
+		money_value25,
+		money_value26, project_id, zzhdj, zhshhm,
+		yyzhzh, dwfzr, fzrdh, chshyzhryrsh, bjrq,
+		zygczgjhj, money_value31,
+		createtime, inserttime
+	</sql>
+	<sql id="Blob_Column_List">
+		sect_content, zfbmc1, zfbmc2
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.ykkj.weiyi.pojo.SectInfoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from hd_sect_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.ykkj.weiyi.pojo.SectInfoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from hd_sect_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from hd_sect_info
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		hd_sect_info
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.SectInfoExample">
+		delete from hd_sect_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs">
+		insert into hd_sect_info (id,
+		supervision_id, direct_id,
+		sect_short_name, sect_no, sys_dept_id,
+		super_dept_name, comp_add, comp_tel,
+		sect_type, sect_begin_point,
+		sect_end_point,
+		chain_length, sect_length, sect_add,
+		begin_day,
+		plan_end_day, begin_token_day,
+		superv_people, sect_leader,
+		sect_leader_tel,
+		sect_engineer, sect_pact_no, pact_money,
+		pact_period,
+		money_value02, money_value03,
+		money_value04, money_value05,
+		money_value06,
+		money_value07, money_value08, money_value09,
+		money_value10, money_value11, money_value12,
+		money_value13,
+		money_value14, money_value15,
+		money_value16, money_value17,
+		money_value18,
+		money_value19, money_value20, money_value21,
+		bank_name,
+		bank_no, money_value22,
+		money_value23, money_value24, sect_property_a,
+		sect_property_b, sect_property_c, sortorder,
+		complete_money, upload_id,
+		pwd,
+		money_value25, money_value26, project_id,
+		zzhdj, zhshhm, yyzhzh,
+		dwfzr, fzrdh, chshyzhryrsh,
+		bjrq, zygczgjhj, money_value31,
+		createtime,
+		inserttime, sect_content,
+		zfbmc1, zfbmc2)
+		values
+		(#{id,jdbcType=VARCHAR}, #{supervisionId,jdbcType=VARCHAR},
+		#{directId,jdbcType=VARCHAR},
+		#{sectShortName,jdbcType=VARCHAR},
+		#{sectNo,jdbcType=VARCHAR}, #{sysDeptId,jdbcType=VARCHAR},
+		#{superDeptName,jdbcType=VARCHAR}, #{compAdd,jdbcType=VARCHAR},
+		#{compTel,jdbcType=VARCHAR},
+		#{sectType,jdbcType=VARCHAR},
+		#{sectBeginPoint,jdbcType=VARCHAR}, #{sectEndPoint,jdbcType=VARCHAR},
+		#{chainLength,jdbcType=DECIMAL}, #{sectLength,jdbcType=DECIMAL},
+		#{sectAdd,jdbcType=VARCHAR},
+		#{beginDay,jdbcType=DATE},
+		#{planEndDay,jdbcType=DATE}, #{beginTokenDay,jdbcType=DATE},
+		#{supervPeople,jdbcType=VARCHAR}, #{sectLeader,jdbcType=VARCHAR},
+		#{sectLeaderTel,jdbcType=VARCHAR},
+		#{sectEngineer,jdbcType=VARCHAR},
+		#{sectPactNo,jdbcType=VARCHAR}, #{pactMoney,jdbcType=DECIMAL},
+		#{pactPeriod,jdbcType=VARCHAR}, #{moneyValue02,jdbcType=DECIMAL},
+		#{moneyValue03,jdbcType=DECIMAL},
+		#{moneyValue04,jdbcType=DECIMAL},
+		#{moneyValue05,jdbcType=DECIMAL}, #{moneyValue06,jdbcType=DECIMAL},
+		#{moneyValue07,jdbcType=DECIMAL}, #{moneyValue08,jdbcType=DECIMAL},
+		#{moneyValue09,jdbcType=DECIMAL},
+		#{moneyValue10,jdbcType=DECIMAL},
+		#{moneyValue11,jdbcType=DECIMAL}, #{moneyValue12,jdbcType=DECIMAL},
+		#{moneyValue13,jdbcType=DECIMAL}, #{moneyValue14,jdbcType=DECIMAL},
+		#{moneyValue15,jdbcType=DECIMAL},
+		#{moneyValue16,jdbcType=DECIMAL},
+		#{moneyValue17,jdbcType=DECIMAL}, #{moneyValue18,jdbcType=DECIMAL},
+		#{moneyValue19,jdbcType=DECIMAL}, #{moneyValue20,jdbcType=DECIMAL},
+		#{moneyValue21,jdbcType=DECIMAL},
+		#{bankName,jdbcType=VARCHAR},
+		#{bankNo,jdbcType=VARCHAR}, #{moneyValue22,jdbcType=DECIMAL},
+		#{moneyValue23,jdbcType=DECIMAL}, #{moneyValue24,jdbcType=DECIMAL},
+		#{sectPropertyA,jdbcType=VARCHAR},
+		#{sectPropertyB,jdbcType=VARCHAR},
+		#{sectPropertyC,jdbcType=VARCHAR}, #{sortorder,jdbcType=INTEGER},
+		#{completeMoney,jdbcType=VARCHAR}, #{uploadId,jdbcType=VARCHAR},
+		#{pwd,jdbcType=VARCHAR},
+		#{moneyValue25,jdbcType=DECIMAL},
+		#{moneyValue26,jdbcType=DECIMAL}, #{projectId,jdbcType=VARCHAR},
+		#{zzhdj,jdbcType=VARCHAR}, #{zhshhm,jdbcType=VARCHAR},
+		#{yyzhzh,jdbcType=VARCHAR},
+		#{dwfzr,jdbcType=VARCHAR},
+		#{fzrdh,jdbcType=VARCHAR}, #{chshyzhryrsh,jdbcType=INTEGER},
+		#{bjrq,jdbcType=DATE}, #{zygczgjhj,jdbcType=DECIMAL},
+		#{moneyValue31,jdbcType=DECIMAL},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{inserttime,jdbcType=TIMESTAMP},
+		#{sectContent,jdbcType=LONGVARCHAR},
+		#{zfbmc1,jdbcType=LONGVARCHAR}, #{zfbmc2,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs">
+		insert into hd_sect_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="supervisionId != null">
+				supervision_id,
+			</if>
+			<if test="directId != null">
+				direct_id,
+			</if>
+			<if test="sectShortName != null">
+				sect_short_name,
+			</if>
+			<if test="sectNo != null">
+				sect_no,
+			</if>
+			<if test="sysDeptId != null">
+				sys_dept_id,
+			</if>
+			<if test="superDeptName != null">
+				super_dept_name,
+			</if>
+			<if test="compAdd != null">
+				comp_add,
+			</if>
+			<if test="compTel != null">
+				comp_tel,
+			</if>
+			<if test="sectType != null">
+				sect_type,
+			</if>
+			<if test="sectBeginPoint != null">
+				sect_begin_point,
+			</if>
+			<if test="sectEndPoint != null">
+				sect_end_point,
+			</if>
+			<if test="chainLength != null">
+				chain_length,
+			</if>
+			<if test="sectLength != null">
+				sect_length,
+			</if>
+			<if test="sectAdd != null">
+				sect_add,
+			</if>
+			<if test="beginDay != null">
+				begin_day,
+			</if>
+			<if test="planEndDay != null">
+				plan_end_day,
+			</if>
+			<if test="beginTokenDay != null">
+				begin_token_day,
+			</if>
+			<if test="supervPeople != null">
+				superv_people,
+			</if>
+			<if test="sectLeader != null">
+				sect_leader,
+			</if>
+			<if test="sectLeaderTel != null">
+				sect_leader_tel,
+			</if>
+			<if test="sectEngineer != null">
+				sect_engineer,
+			</if>
+			<if test="sectPactNo != null">
+				sect_pact_no,
+			</if>
+			<if test="pactMoney != null">
+				pact_money,
+			</if>
+			<if test="pactPeriod != null">
+				pact_period,
+			</if>
+			<if test="moneyValue02 != null">
+				money_value02,
+			</if>
+			<if test="moneyValue03 != null">
+				money_value03,
+			</if>
+			<if test="moneyValue04 != null">
+				money_value04,
+			</if>
+			<if test="moneyValue05 != null">
+				money_value05,
+			</if>
+			<if test="moneyValue06 != null">
+				money_value06,
+			</if>
+			<if test="moneyValue07 != null">
+				money_value07,
+			</if>
+			<if test="moneyValue08 != null">
+				money_value08,
+			</if>
+			<if test="moneyValue09 != null">
+				money_value09,
+			</if>
+			<if test="moneyValue10 != null">
+				money_value10,
+			</if>
+			<if test="moneyValue11 != null">
+				money_value11,
+			</if>
+			<if test="moneyValue12 != null">
+				money_value12,
+			</if>
+			<if test="moneyValue13 != null">
+				money_value13,
+			</if>
+			<if test="moneyValue14 != null">
+				money_value14,
+			</if>
+			<if test="moneyValue15 != null">
+				money_value15,
+			</if>
+			<if test="moneyValue16 != null">
+				money_value16,
+			</if>
+			<if test="moneyValue17 != null">
+				money_value17,
+			</if>
+			<if test="moneyValue18 != null">
+				money_value18,
+			</if>
+			<if test="moneyValue19 != null">
+				money_value19,
+			</if>
+			<if test="moneyValue20 != null">
+				money_value20,
+			</if>
+			<if test="moneyValue21 != null">
+				money_value21,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankNo != null">
+				bank_no,
+			</if>
+			<if test="moneyValue22 != null">
+				money_value22,
+			</if>
+			<if test="moneyValue23 != null">
+				money_value23,
+			</if>
+			<if test="moneyValue24 != null">
+				money_value24,
+			</if>
+			<if test="sectPropertyA != null">
+				sect_property_a,
+			</if>
+			<if test="sectPropertyB != null">
+				sect_property_b,
+			</if>
+			<if test="sectPropertyC != null">
+				sect_property_c,
+			</if>
+			<if test="sortorder != null">
+				sortorder,
+			</if>
+			<if test="completeMoney != null">
+				complete_money,
+			</if>
+			<if test="uploadId != null">
+				upload_id,
+			</if>
+			<if test="pwd != null">
+				pwd,
+			</if>
+			<if test="moneyValue25 != null">
+				money_value25,
+			</if>
+			<if test="moneyValue26 != null">
+				money_value26,
+			</if>
+			<if test="projectId != null">
+				project_id,
+			</if>
+			<if test="zzhdj != null">
+				zzhdj,
+			</if>
+			<if test="zhshhm != null">
+				zhshhm,
+			</if>
+			<if test="yyzhzh != null">
+				yyzhzh,
+			</if>
+			<if test="dwfzr != null">
+				dwfzr,
+			</if>
+			<if test="fzrdh != null">
+				fzrdh,
+			</if>
+			<if test="chshyzhryrsh != null">
+				chshyzhryrsh,
+			</if>
+			<if test="bjrq != null">
+				bjrq,
+			</if>
+			<if test="zygczgjhj != null">
+				zygczgjhj,
+			</if>
+			<if test="moneyValue31 != null">
+				money_value31,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="inserttime != null">
+				inserttime,
+			</if>
+			<if test="sectContent != null">
+				sect_content,
+			</if>
+			<if test="zfbmc1 != null">
+				zfbmc1,
+			</if>
+			<if test="zfbmc2 != null">
+				zfbmc2,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionId != null">
+				#{supervisionId,jdbcType=VARCHAR},
+			</if>
+			<if test="directId != null">
+				#{directId,jdbcType=VARCHAR},
+			</if>
+			<if test="sectShortName != null">
+				#{sectShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="sectNo != null">
+				#{sectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sysDeptId != null">
+				#{sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="superDeptName != null">
+				#{superDeptName,jdbcType=VARCHAR},
+			</if>
+			<if test="compAdd != null">
+				#{compAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				#{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectType != null">
+				#{sectType,jdbcType=VARCHAR},
+			</if>
+			<if test="sectBeginPoint != null">
+				#{sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEndPoint != null">
+				#{sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="chainLength != null">
+				#{chainLength,jdbcType=DECIMAL},
+			</if>
+			<if test="sectLength != null">
+				#{sectLength,jdbcType=DECIMAL},
+			</if>
+			<if test="sectAdd != null">
+				#{sectAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="beginDay != null">
+				#{beginDay,jdbcType=DATE},
+			</if>
+			<if test="planEndDay != null">
+				#{planEndDay,jdbcType=DATE},
+			</if>
+			<if test="beginTokenDay != null">
+				#{beginTokenDay,jdbcType=DATE},
+			</if>
+			<if test="supervPeople != null">
+				#{supervPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="sectLeader != null">
+				#{sectLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="sectLeaderTel != null">
+				#{sectLeaderTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEngineer != null">
+				#{sectEngineer,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPactNo != null">
+				#{sectPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pactMoney != null">
+				#{pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="pactPeriod != null">
+				#{pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue02 != null">
+				#{moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue03 != null">
+				#{moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue04 != null">
+				#{moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue05 != null">
+				#{moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue06 != null">
+				#{moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue07 != null">
+				#{moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue08 != null">
+				#{moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue09 != null">
+				#{moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue10 != null">
+				#{moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue11 != null">
+				#{moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue12 != null">
+				#{moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue13 != null">
+				#{moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue14 != null">
+				#{moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue15 != null">
+				#{moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue16 != null">
+				#{moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue17 != null">
+				#{moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue18 != null">
+				#{moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue19 != null">
+				#{moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue20 != null">
+				#{moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue21 != null">
+				#{moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue22 != null">
+				#{moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue23 != null">
+				#{moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue24 != null">
+				#{moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="sectPropertyA != null">
+				#{sectPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPropertyB != null">
+				#{sectPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPropertyC != null">
+				#{sectPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="sortorder != null">
+				#{sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="completeMoney != null">
+				#{completeMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadId != null">
+				#{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue25 != null">
+				#{moneyValue25,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue26 != null">
+				#{moneyValue26,jdbcType=DECIMAL},
+			</if>
+			<if test="projectId != null">
+				#{projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="zzhdj != null">
+				#{zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="zhshhm != null">
+				#{zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="yyzhzh != null">
+				#{yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="dwfzr != null">
+				#{dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrdh != null">
+				#{fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="chshyzhryrsh != null">
+				#{chshyzhryrsh,jdbcType=INTEGER},
+			</if>
+			<if test="bjrq != null">
+				#{bjrq,jdbcType=DATE},
+			</if>
+			<if test="zygczgjhj != null">
+				#{zygczgjhj,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue31 != null">
+				#{moneyValue31,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inserttime != null">
+				#{inserttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sectContent != null">
+				#{sectContent,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="zfbmc1 != null">
+				#{zfbmc1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="zfbmc2 != null">
+				#{zfbmc2,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.ykkj.weiyi.pojo.SectInfoExample"
+		resultType="java.lang.Integer">
+		select count(*) from hd_sect_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update hd_sect_info
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionId != null">
+				supervision_id =
+				#{record.supervisionId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.directId != null">
+				direct_id = #{record.directId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectShortName != null">
+				sect_short_name =
+				#{record.sectShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectNo != null">
+				sect_no = #{record.sectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sysDeptId != null">
+				sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.superDeptName != null">
+				super_dept_name =
+				#{record.superDeptName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.compAdd != null">
+				comp_add = #{record.compAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.compTel != null">
+				comp_tel = #{record.compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectType != null">
+				sect_type = #{record.sectType,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectBeginPoint != null">
+				sect_begin_point =
+				#{record.sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectEndPoint != null">
+				sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="record.chainLength != null">
+				chain_length = #{record.chainLength,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sectLength != null">
+				sect_length = #{record.sectLength,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sectAdd != null">
+				sect_add = #{record.sectAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.beginDay != null">
+				begin_day = #{record.beginDay,jdbcType=DATE},
+			</if>
+			<if test="record.planEndDay != null">
+				plan_end_day = #{record.planEndDay,jdbcType=DATE},
+			</if>
+			<if test="record.beginTokenDay != null">
+				begin_token_day = #{record.beginTokenDay,jdbcType=DATE},
+			</if>
+			<if test="record.supervPeople != null">
+				superv_people = #{record.supervPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectLeader != null">
+				sect_leader = #{record.sectLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectLeaderTel != null">
+				sect_leader_tel =
+				#{record.sectLeaderTel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectEngineer != null">
+				sect_engineer = #{record.sectEngineer,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectPactNo != null">
+				sect_pact_no = #{record.sectPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pactMoney != null">
+				pact_money = #{record.pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="record.pactPeriod != null">
+				pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="record.moneyValue02 != null">
+				money_value02 = #{record.moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue03 != null">
+				money_value03 = #{record.moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue04 != null">
+				money_value04 = #{record.moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue05 != null">
+				money_value05 = #{record.moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue06 != null">
+				money_value06 = #{record.moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue07 != null">
+				money_value07 = #{record.moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue08 != null">
+				money_value08 = #{record.moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue09 != null">
+				money_value09 = #{record.moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue10 != null">
+				money_value10 = #{record.moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue11 != null">
+				money_value11 = #{record.moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue12 != null">
+				money_value12 = #{record.moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue13 != null">
+				money_value13 = #{record.moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue14 != null">
+				money_value14 = #{record.moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue15 != null">
+				money_value15 = #{record.moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue16 != null">
+				money_value16 = #{record.moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue17 != null">
+				money_value17 = #{record.moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue18 != null">
+				money_value18 = #{record.moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue19 != null">
+				money_value19 = #{record.moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue20 != null">
+				money_value20 = #{record.moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue21 != null">
+				money_value21 = #{record.moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="record.bankName != null">
+				bank_name = #{record.bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bankNo != null">
+				bank_no = #{record.bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.moneyValue22 != null">
+				money_value22 = #{record.moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue23 != null">
+				money_value23 = #{record.moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue24 != null">
+				money_value24 = #{record.moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sectPropertyA != null">
+				sect_property_a =
+				#{record.sectPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectPropertyB != null">
+				sect_property_b =
+				#{record.sectPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectPropertyC != null">
+				sect_property_c =
+				#{record.sectPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sortorder != null">
+				sortorder = #{record.sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="record.completeMoney != null">
+				complete_money =
+				#{record.completeMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="record.uploadId != null">
+				upload_id = #{record.uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pwd != null">
+				pwd = #{record.pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.moneyValue25 != null">
+				money_value25 = #{record.moneyValue25,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue26 != null">
+				money_value26 = #{record.moneyValue26,jdbcType=DECIMAL},
+			</if>
+			<if test="record.projectId != null">
+				project_id = #{record.projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zzhdj != null">
+				zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zhshhm != null">
+				zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.yyzhzh != null">
+				yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.dwfzr != null">
+				dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fzrdh != null">
+				fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.chshyzhryrsh != null">
+				chshyzhryrsh = #{record.chshyzhryrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.bjrq != null">
+				bjrq = #{record.bjrq,jdbcType=DATE},
+			</if>
+			<if test="record.zygczgjhj != null">
+				zygczgjhj = #{record.zygczgjhj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue31 != null">
+				money_value31 = #{record.moneyValue31,jdbcType=DECIMAL},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.inserttime != null">
+				inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.sectContent != null">
+				sect_content =
+				#{record.sectContent,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.zfbmc1 != null">
+				zfbmc1 = #{record.zfbmc1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.zfbmc2 != null">
+				zfbmc2 = #{record.zfbmc2,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update hd_sect_info
+		set id = #{record.id,jdbcType=VARCHAR},
+		supervision_id = #{record.supervisionId,jdbcType=VARCHAR},
+		direct_id =
+		#{record.directId,jdbcType=VARCHAR},
+		sect_short_name =
+		#{record.sectShortName,jdbcType=VARCHAR},
+		sect_no =
+		#{record.sectNo,jdbcType=VARCHAR},
+		sys_dept_id =
+		#{record.sysDeptId,jdbcType=VARCHAR},
+		super_dept_name =
+		#{record.superDeptName,jdbcType=VARCHAR},
+		comp_add =
+		#{record.compAdd,jdbcType=VARCHAR},
+		comp_tel =
+		#{record.compTel,jdbcType=VARCHAR},
+		sect_type =
+		#{record.sectType,jdbcType=VARCHAR},
+		sect_begin_point =
+		#{record.sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point =
+		#{record.sectEndPoint,jdbcType=VARCHAR},
+		chain_length =
+		#{record.chainLength,jdbcType=DECIMAL},
+		sect_length =
+		#{record.sectLength,jdbcType=DECIMAL},
+		sect_add =
+		#{record.sectAdd,jdbcType=VARCHAR},
+		begin_day =
+		#{record.beginDay,jdbcType=DATE},
+		plan_end_day =
+		#{record.planEndDay,jdbcType=DATE},
+		begin_token_day =
+		#{record.beginTokenDay,jdbcType=DATE},
+		superv_people =
+		#{record.supervPeople,jdbcType=VARCHAR},
+		sect_leader =
+		#{record.sectLeader,jdbcType=VARCHAR},
+		sect_leader_tel =
+		#{record.sectLeaderTel,jdbcType=VARCHAR},
+		sect_engineer =
+		#{record.sectEngineer,jdbcType=VARCHAR},
+		sect_pact_no =
+		#{record.sectPactNo,jdbcType=VARCHAR},
+		pact_money =
+		#{record.pactMoney,jdbcType=DECIMAL},
+		pact_period =
+		#{record.pactPeriod,jdbcType=VARCHAR},
+		money_value02 =
+		#{record.moneyValue02,jdbcType=DECIMAL},
+		money_value03 =
+		#{record.moneyValue03,jdbcType=DECIMAL},
+		money_value04 =
+		#{record.moneyValue04,jdbcType=DECIMAL},
+		money_value05 =
+		#{record.moneyValue05,jdbcType=DECIMAL},
+		money_value06 =
+		#{record.moneyValue06,jdbcType=DECIMAL},
+		money_value07 =
+		#{record.moneyValue07,jdbcType=DECIMAL},
+		money_value08 =
+		#{record.moneyValue08,jdbcType=DECIMAL},
+		money_value09 =
+		#{record.moneyValue09,jdbcType=DECIMAL},
+		money_value10 =
+		#{record.moneyValue10,jdbcType=DECIMAL},
+		money_value11 =
+		#{record.moneyValue11,jdbcType=DECIMAL},
+		money_value12 =
+		#{record.moneyValue12,jdbcType=DECIMAL},
+		money_value13 =
+		#{record.moneyValue13,jdbcType=DECIMAL},
+		money_value14 =
+		#{record.moneyValue14,jdbcType=DECIMAL},
+		money_value15 =
+		#{record.moneyValue15,jdbcType=DECIMAL},
+		money_value16 =
+		#{record.moneyValue16,jdbcType=DECIMAL},
+		money_value17 =
+		#{record.moneyValue17,jdbcType=DECIMAL},
+		money_value18 =
+		#{record.moneyValue18,jdbcType=DECIMAL},
+		money_value19 =
+		#{record.moneyValue19,jdbcType=DECIMAL},
+		money_value20 =
+		#{record.moneyValue20,jdbcType=DECIMAL},
+		money_value21 =
+		#{record.moneyValue21,jdbcType=DECIMAL},
+		bank_name =
+		#{record.bankName,jdbcType=VARCHAR},
+		bank_no =
+		#{record.bankNo,jdbcType=VARCHAR},
+		money_value22 =
+		#{record.moneyValue22,jdbcType=DECIMAL},
+		money_value23 =
+		#{record.moneyValue23,jdbcType=DECIMAL},
+		money_value24 =
+		#{record.moneyValue24,jdbcType=DECIMAL},
+		sect_property_a =
+		#{record.sectPropertyA,jdbcType=VARCHAR},
+		sect_property_b =
+		#{record.sectPropertyB,jdbcType=VARCHAR},
+		sect_property_c =
+		#{record.sectPropertyC,jdbcType=VARCHAR},
+		sortorder =
+		#{record.sortorder,jdbcType=INTEGER},
+		complete_money =
+		#{record.completeMoney,jdbcType=VARCHAR},
+		upload_id =
+		#{record.uploadId,jdbcType=VARCHAR},
+		pwd =
+		#{record.pwd,jdbcType=VARCHAR},
+		money_value25 =
+		#{record.moneyValue25,jdbcType=DECIMAL},
+		money_value26 =
+		#{record.moneyValue26,jdbcType=DECIMAL},
+		project_id =
+		#{record.projectId,jdbcType=VARCHAR},
+		zzhdj =
+		#{record.zzhdj,jdbcType=VARCHAR},
+		zhshhm =
+		#{record.zhshhm,jdbcType=VARCHAR},
+		yyzhzh =
+		#{record.yyzhzh,jdbcType=VARCHAR},
+		dwfzr =
+		#{record.dwfzr,jdbcType=VARCHAR},
+		fzrdh =
+		#{record.fzrdh,jdbcType=VARCHAR},
+		chshyzhryrsh =
+		#{record.chshyzhryrsh,jdbcType=INTEGER},
+		bjrq =
+		#{record.bjrq,jdbcType=DATE},
+		zygczgjhj =
+		#{record.zygczgjhj,jdbcType=DECIMAL},
+		money_value31 =
+		#{record.moneyValue31,jdbcType=DECIMAL},
+		createtime =
+		#{record.createtime,jdbcType=TIMESTAMP},
+		inserttime =
+		#{record.inserttime,jdbcType=TIMESTAMP},
+		sect_content =
+		#{record.sectContent,jdbcType=LONGVARCHAR},
+		zfbmc1 =
+		#{record.zfbmc1,jdbcType=LONGVARCHAR},
+		zfbmc2 =
+		#{record.zfbmc2,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update hd_sect_info
+		set id = #{record.id,jdbcType=VARCHAR},
+		supervision_id = #{record.supervisionId,jdbcType=VARCHAR},
+		direct_id =
+		#{record.directId,jdbcType=VARCHAR},
+		sect_short_name =
+		#{record.sectShortName,jdbcType=VARCHAR},
+		sect_no =
+		#{record.sectNo,jdbcType=VARCHAR},
+		sys_dept_id =
+		#{record.sysDeptId,jdbcType=VARCHAR},
+		super_dept_name =
+		#{record.superDeptName,jdbcType=VARCHAR},
+		comp_add =
+		#{record.compAdd,jdbcType=VARCHAR},
+		comp_tel =
+		#{record.compTel,jdbcType=VARCHAR},
+		sect_type =
+		#{record.sectType,jdbcType=VARCHAR},
+		sect_begin_point =
+		#{record.sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point =
+		#{record.sectEndPoint,jdbcType=VARCHAR},
+		chain_length =
+		#{record.chainLength,jdbcType=DECIMAL},
+		sect_length =
+		#{record.sectLength,jdbcType=DECIMAL},
+		sect_add =
+		#{record.sectAdd,jdbcType=VARCHAR},
+		begin_day =
+		#{record.beginDay,jdbcType=DATE},
+		plan_end_day =
+		#{record.planEndDay,jdbcType=DATE},
+		begin_token_day =
+		#{record.beginTokenDay,jdbcType=DATE},
+		superv_people =
+		#{record.supervPeople,jdbcType=VARCHAR},
+		sect_leader =
+		#{record.sectLeader,jdbcType=VARCHAR},
+		sect_leader_tel =
+		#{record.sectLeaderTel,jdbcType=VARCHAR},
+		sect_engineer =
+		#{record.sectEngineer,jdbcType=VARCHAR},
+		sect_pact_no =
+		#{record.sectPactNo,jdbcType=VARCHAR},
+		pact_money =
+		#{record.pactMoney,jdbcType=DECIMAL},
+		pact_period =
+		#{record.pactPeriod,jdbcType=VARCHAR},
+		money_value02 =
+		#{record.moneyValue02,jdbcType=DECIMAL},
+		money_value03 =
+		#{record.moneyValue03,jdbcType=DECIMAL},
+		money_value04 =
+		#{record.moneyValue04,jdbcType=DECIMAL},
+		money_value05 =
+		#{record.moneyValue05,jdbcType=DECIMAL},
+		money_value06 =
+		#{record.moneyValue06,jdbcType=DECIMAL},
+		money_value07 =
+		#{record.moneyValue07,jdbcType=DECIMAL},
+		money_value08 =
+		#{record.moneyValue08,jdbcType=DECIMAL},
+		money_value09 =
+		#{record.moneyValue09,jdbcType=DECIMAL},
+		money_value10 =
+		#{record.moneyValue10,jdbcType=DECIMAL},
+		money_value11 =
+		#{record.moneyValue11,jdbcType=DECIMAL},
+		money_value12 =
+		#{record.moneyValue12,jdbcType=DECIMAL},
+		money_value13 =
+		#{record.moneyValue13,jdbcType=DECIMAL},
+		money_value14 =
+		#{record.moneyValue14,jdbcType=DECIMAL},
+		money_value15 =
+		#{record.moneyValue15,jdbcType=DECIMAL},
+		money_value16 =
+		#{record.moneyValue16,jdbcType=DECIMAL},
+		money_value17 =
+		#{record.moneyValue17,jdbcType=DECIMAL},
+		money_value18 =
+		#{record.moneyValue18,jdbcType=DECIMAL},
+		money_value19 =
+		#{record.moneyValue19,jdbcType=DECIMAL},
+		money_value20 =
+		#{record.moneyValue20,jdbcType=DECIMAL},
+		money_value21 =
+		#{record.moneyValue21,jdbcType=DECIMAL},
+		bank_name =
+		#{record.bankName,jdbcType=VARCHAR},
+		bank_no =
+		#{record.bankNo,jdbcType=VARCHAR},
+		money_value22 =
+		#{record.moneyValue22,jdbcType=DECIMAL},
+		money_value23 =
+		#{record.moneyValue23,jdbcType=DECIMAL},
+		money_value24 =
+		#{record.moneyValue24,jdbcType=DECIMAL},
+		sect_property_a =
+		#{record.sectPropertyA,jdbcType=VARCHAR},
+		sect_property_b =
+		#{record.sectPropertyB,jdbcType=VARCHAR},
+		sect_property_c =
+		#{record.sectPropertyC,jdbcType=VARCHAR},
+		sortorder =
+		#{record.sortorder,jdbcType=INTEGER},
+		complete_money =
+		#{record.completeMoney,jdbcType=VARCHAR},
+		upload_id =
+		#{record.uploadId,jdbcType=VARCHAR},
+		pwd =
+		#{record.pwd,jdbcType=VARCHAR},
+		money_value25 =
+		#{record.moneyValue25,jdbcType=DECIMAL},
+		money_value26 =
+		#{record.moneyValue26,jdbcType=DECIMAL},
+		project_id =
+		#{record.projectId,jdbcType=VARCHAR},
+		zzhdj =
+		#{record.zzhdj,jdbcType=VARCHAR},
+		zhshhm =
+		#{record.zhshhm,jdbcType=VARCHAR},
+		yyzhzh =
+		#{record.yyzhzh,jdbcType=VARCHAR},
+		dwfzr =
+		#{record.dwfzr,jdbcType=VARCHAR},
+		fzrdh =
+		#{record.fzrdh,jdbcType=VARCHAR},
+		chshyzhryrsh =
+		#{record.chshyzhryrsh,jdbcType=INTEGER},
+		bjrq =
+		#{record.bjrq,jdbcType=DATE},
+		zygczgjhj =
+		#{record.zygczgjhj,jdbcType=DECIMAL},
+		money_value31 =
+		#{record.moneyValue31,jdbcType=DECIMAL},
+		createtime =
+		#{record.createtime,jdbcType=TIMESTAMP},
+		inserttime =
+		#{record.inserttime,jdbcType=TIMESTAMP}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs">
+		update hd_sect_info
+		<set>
+			<if test="supervisionId != null">
+				supervision_id = #{supervisionId,jdbcType=VARCHAR},
+			</if>
+			<if test="directId != null">
+				direct_id = #{directId,jdbcType=VARCHAR},
+			</if>
+			<if test="sectShortName != null">
+				sect_short_name = #{sectShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="sectNo != null">
+				sect_no = #{sectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sysDeptId != null">
+				sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="superDeptName != null">
+				super_dept_name = #{superDeptName,jdbcType=VARCHAR},
+			</if>
+			<if test="compAdd != null">
+				comp_add = #{compAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				comp_tel = #{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectType != null">
+				sect_type = #{sectType,jdbcType=VARCHAR},
+			</if>
+			<if test="sectBeginPoint != null">
+				sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEndPoint != null">
+				sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="chainLength != null">
+				chain_length = #{chainLength,jdbcType=DECIMAL},
+			</if>
+			<if test="sectLength != null">
+				sect_length = #{sectLength,jdbcType=DECIMAL},
+			</if>
+			<if test="sectAdd != null">
+				sect_add = #{sectAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="beginDay != null">
+				begin_day = #{beginDay,jdbcType=DATE},
+			</if>
+			<if test="planEndDay != null">
+				plan_end_day = #{planEndDay,jdbcType=DATE},
+			</if>
+			<if test="beginTokenDay != null">
+				begin_token_day = #{beginTokenDay,jdbcType=DATE},
+			</if>
+			<if test="supervPeople != null">
+				superv_people = #{supervPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="sectLeader != null">
+				sect_leader = #{sectLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="sectLeaderTel != null">
+				sect_leader_tel = #{sectLeaderTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEngineer != null">
+				sect_engineer = #{sectEngineer,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPactNo != null">
+				sect_pact_no = #{sectPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pactMoney != null">
+				pact_money = #{pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="pactPeriod != null">
+				pact_period = #{pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue02 != null">
+				money_value02 = #{moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue03 != null">
+				money_value03 = #{moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue04 != null">
+				money_value04 = #{moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue05 != null">
+				money_value05 = #{moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue06 != null">
+				money_value06 = #{moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue07 != null">
+				money_value07 = #{moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue08 != null">
+				money_value08 = #{moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue09 != null">
+				money_value09 = #{moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue10 != null">
+				money_value10 = #{moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue11 != null">
+				money_value11 = #{moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue12 != null">
+				money_value12 = #{moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue13 != null">
+				money_value13 = #{moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue14 != null">
+				money_value14 = #{moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue15 != null">
+				money_value15 = #{moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue16 != null">
+				money_value16 = #{moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue17 != null">
+				money_value17 = #{moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue18 != null">
+				money_value18 = #{moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue19 != null">
+				money_value19 = #{moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue20 != null">
+				money_value20 = #{moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue21 != null">
+				money_value21 = #{moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				bank_no = #{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue22 != null">
+				money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue23 != null">
+				money_value23 = #{moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue24 != null">
+				money_value24 = #{moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="sectPropertyA != null">
+				sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPropertyB != null">
+				sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="sectPropertyC != null">
+				sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="sortorder != null">
+				sortorder = #{sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="completeMoney != null">
+				complete_money = #{completeMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadId != null">
+				upload_id = #{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue25 != null">
+				money_value25 = #{moneyValue25,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue26 != null">
+				money_value26 = #{moneyValue26,jdbcType=DECIMAL},
+			</if>
+			<if test="projectId != null">
+				project_id = #{projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="zzhdj != null">
+				zzhdj = #{zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="zhshhm != null">
+				zhshhm = #{zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="yyzhzh != null">
+				yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="dwfzr != null">
+				dwfzr = #{dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrdh != null">
+				fzrdh = #{fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="chshyzhryrsh != null">
+				chshyzhryrsh = #{chshyzhryrsh,jdbcType=INTEGER},
+			</if>
+			<if test="bjrq != null">
+				bjrq = #{bjrq,jdbcType=DATE},
+			</if>
+			<if test="zygczgjhj != null">
+				zygczgjhj = #{zygczgjhj,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue31 != null">
+				money_value31 = #{moneyValue31,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inserttime != null">
+				inserttime = #{inserttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sectContent != null">
+				sect_content = #{sectContent,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="zfbmc1 != null">
+				zfbmc1 = #{zfbmc1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="zfbmc2 != null">
+				zfbmc2 = #{zfbmc2,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs">
+		update
+		hd_sect_info
+		set supervision_id = #{supervisionId,jdbcType=VARCHAR},
+		direct_id = #{directId,jdbcType=VARCHAR},
+		sect_short_name =
+		#{sectShortName,jdbcType=VARCHAR},
+		sect_no =
+		#{sectNo,jdbcType=VARCHAR},
+		sys_dept_id =
+		#{sysDeptId,jdbcType=VARCHAR},
+		super_dept_name =
+		#{superDeptName,jdbcType=VARCHAR},
+		comp_add =
+		#{compAdd,jdbcType=VARCHAR},
+		comp_tel = #{compTel,jdbcType=VARCHAR},
+		sect_type = #{sectType,jdbcType=VARCHAR},
+		sect_begin_point =
+		#{sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point =
+		#{sectEndPoint,jdbcType=VARCHAR},
+		chain_length =
+		#{chainLength,jdbcType=DECIMAL},
+		sect_length =
+		#{sectLength,jdbcType=DECIMAL},
+		sect_add = #{sectAdd,jdbcType=VARCHAR},
+		begin_day = #{beginDay,jdbcType=DATE},
+		plan_end_day =
+		#{planEndDay,jdbcType=DATE},
+		begin_token_day =
+		#{beginTokenDay,jdbcType=DATE},
+		superv_people =
+		#{supervPeople,jdbcType=VARCHAR},
+		sect_leader =
+		#{sectLeader,jdbcType=VARCHAR},
+		sect_leader_tel =
+		#{sectLeaderTel,jdbcType=VARCHAR},
+		sect_engineer =
+		#{sectEngineer,jdbcType=VARCHAR},
+		sect_pact_no =
+		#{sectPactNo,jdbcType=VARCHAR},
+		pact_money =
+		#{pactMoney,jdbcType=DECIMAL},
+		pact_period =
+		#{pactPeriod,jdbcType=VARCHAR},
+		money_value02 =
+		#{moneyValue02,jdbcType=DECIMAL},
+		money_value03 =
+		#{moneyValue03,jdbcType=DECIMAL},
+		money_value04 =
+		#{moneyValue04,jdbcType=DECIMAL},
+		money_value05 =
+		#{moneyValue05,jdbcType=DECIMAL},
+		money_value06 =
+		#{moneyValue06,jdbcType=DECIMAL},
+		money_value07 =
+		#{moneyValue07,jdbcType=DECIMAL},
+		money_value08 =
+		#{moneyValue08,jdbcType=DECIMAL},
+		money_value09 =
+		#{moneyValue09,jdbcType=DECIMAL},
+		money_value10 =
+		#{moneyValue10,jdbcType=DECIMAL},
+		money_value11 =
+		#{moneyValue11,jdbcType=DECIMAL},
+		money_value12 =
+		#{moneyValue12,jdbcType=DECIMAL},
+		money_value13 =
+		#{moneyValue13,jdbcType=DECIMAL},
+		money_value14 =
+		#{moneyValue14,jdbcType=DECIMAL},
+		money_value15 =
+		#{moneyValue15,jdbcType=DECIMAL},
+		money_value16 =
+		#{moneyValue16,jdbcType=DECIMAL},
+		money_value17 =
+		#{moneyValue17,jdbcType=DECIMAL},
+		money_value18 =
+		#{moneyValue18,jdbcType=DECIMAL},
+		money_value19 =
+		#{moneyValue19,jdbcType=DECIMAL},
+		money_value20 =
+		#{moneyValue20,jdbcType=DECIMAL},
+		money_value21 =
+		#{moneyValue21,jdbcType=DECIMAL},
+		bank_name =
+		#{bankName,jdbcType=VARCHAR},
+		bank_no = #{bankNo,jdbcType=VARCHAR},
+		money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+		money_value23 =
+		#{moneyValue23,jdbcType=DECIMAL},
+		money_value24 =
+		#{moneyValue24,jdbcType=DECIMAL},
+		sect_property_a =
+		#{sectPropertyA,jdbcType=VARCHAR},
+		sect_property_b =
+		#{sectPropertyB,jdbcType=VARCHAR},
+		sect_property_c =
+		#{sectPropertyC,jdbcType=VARCHAR},
+		sortorder =
+		#{sortorder,jdbcType=INTEGER},
+		complete_money =
+		#{completeMoney,jdbcType=VARCHAR},
+		upload_id =
+		#{uploadId,jdbcType=VARCHAR},
+		pwd = #{pwd,jdbcType=VARCHAR},
+		money_value25 = #{moneyValue25,jdbcType=DECIMAL},
+		money_value26 =
+		#{moneyValue26,jdbcType=DECIMAL},
+		project_id =
+		#{projectId,jdbcType=VARCHAR},
+		zzhdj = #{zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{zhshhm,jdbcType=VARCHAR},
+		yyzhzh =
+		#{yyzhzh,jdbcType=VARCHAR},
+		dwfzr = #{dwfzr,jdbcType=VARCHAR},
+		fzrdh =
+		#{fzrdh,jdbcType=VARCHAR},
+		chshyzhryrsh =
+		#{chshyzhryrsh,jdbcType=INTEGER},
+		bjrq = #{bjrq,jdbcType=DATE},
+		zygczgjhj = #{zygczgjhj,jdbcType=DECIMAL},
+		money_value31 =
+		#{moneyValue31,jdbcType=DECIMAL},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		inserttime =
+		#{inserttime,jdbcType=TIMESTAMP},
+		sect_content =
+		#{sectContent,jdbcType=LONGVARCHAR},
+		zfbmc1 =
+		#{zfbmc1,jdbcType=LONGVARCHAR},
+		zfbmc2 = #{zfbmc2,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.SectInfo">
+		update
+		hd_sect_info
+		set supervision_id = #{supervisionId,jdbcType=VARCHAR},
+		direct_id = #{directId,jdbcType=VARCHAR},
+		sect_short_name =
+		#{sectShortName,jdbcType=VARCHAR},
+		sect_no =
+		#{sectNo,jdbcType=VARCHAR},
+		sys_dept_id =
+		#{sysDeptId,jdbcType=VARCHAR},
+		super_dept_name =
+		#{superDeptName,jdbcType=VARCHAR},
+		comp_add =
+		#{compAdd,jdbcType=VARCHAR},
+		comp_tel = #{compTel,jdbcType=VARCHAR},
+		sect_type = #{sectType,jdbcType=VARCHAR},
+		sect_begin_point =
+		#{sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point =
+		#{sectEndPoint,jdbcType=VARCHAR},
+		chain_length =
+		#{chainLength,jdbcType=DECIMAL},
+		sect_length =
+		#{sectLength,jdbcType=DECIMAL},
+		sect_add = #{sectAdd,jdbcType=VARCHAR},
+		begin_day = #{beginDay,jdbcType=DATE},
+		plan_end_day =
+		#{planEndDay,jdbcType=DATE},
+		begin_token_day =
+		#{beginTokenDay,jdbcType=DATE},
+		superv_people =
+		#{supervPeople,jdbcType=VARCHAR},
+		sect_leader =
+		#{sectLeader,jdbcType=VARCHAR},
+		sect_leader_tel =
+		#{sectLeaderTel,jdbcType=VARCHAR},
+		sect_engineer =
+		#{sectEngineer,jdbcType=VARCHAR},
+		sect_pact_no =
+		#{sectPactNo,jdbcType=VARCHAR},
+		pact_money =
+		#{pactMoney,jdbcType=DECIMAL},
+		pact_period =
+		#{pactPeriod,jdbcType=VARCHAR},
+		money_value02 =
+		#{moneyValue02,jdbcType=DECIMAL},
+		money_value03 =
+		#{moneyValue03,jdbcType=DECIMAL},
+		money_value04 =
+		#{moneyValue04,jdbcType=DECIMAL},
+		money_value05 =
+		#{moneyValue05,jdbcType=DECIMAL},
+		money_value06 =
+		#{moneyValue06,jdbcType=DECIMAL},
+		money_value07 =
+		#{moneyValue07,jdbcType=DECIMAL},
+		money_value08 =
+		#{moneyValue08,jdbcType=DECIMAL},
+		money_value09 =
+		#{moneyValue09,jdbcType=DECIMAL},
+		money_value10 =
+		#{moneyValue10,jdbcType=DECIMAL},
+		money_value11 =
+		#{moneyValue11,jdbcType=DECIMAL},
+		money_value12 =
+		#{moneyValue12,jdbcType=DECIMAL},
+		money_value13 =
+		#{moneyValue13,jdbcType=DECIMAL},
+		money_value14 =
+		#{moneyValue14,jdbcType=DECIMAL},
+		money_value15 =
+		#{moneyValue15,jdbcType=DECIMAL},
+		money_value16 =
+		#{moneyValue16,jdbcType=DECIMAL},
+		money_value17 =
+		#{moneyValue17,jdbcType=DECIMAL},
+		money_value18 =
+		#{moneyValue18,jdbcType=DECIMAL},
+		money_value19 =
+		#{moneyValue19,jdbcType=DECIMAL},
+		money_value20 =
+		#{moneyValue20,jdbcType=DECIMAL},
+		money_value21 =
+		#{moneyValue21,jdbcType=DECIMAL},
+		bank_name =
+		#{bankName,jdbcType=VARCHAR},
+		bank_no = #{bankNo,jdbcType=VARCHAR},
+		money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+		money_value23 =
+		#{moneyValue23,jdbcType=DECIMAL},
+		money_value24 =
+		#{moneyValue24,jdbcType=DECIMAL},
+		sect_property_a =
+		#{sectPropertyA,jdbcType=VARCHAR},
+		sect_property_b =
+		#{sectPropertyB,jdbcType=VARCHAR},
+		sect_property_c =
+		#{sectPropertyC,jdbcType=VARCHAR},
+		sortorder =
+		#{sortorder,jdbcType=INTEGER},
+		complete_money =
+		#{completeMoney,jdbcType=VARCHAR},
+		upload_id =
+		#{uploadId,jdbcType=VARCHAR},
+		pwd = #{pwd,jdbcType=VARCHAR},
+		money_value25 = #{moneyValue25,jdbcType=DECIMAL},
+		money_value26 =
+		#{moneyValue26,jdbcType=DECIMAL},
+		project_id =
+		#{projectId,jdbcType=VARCHAR},
+		zzhdj = #{zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{zhshhm,jdbcType=VARCHAR},
+		yyzhzh =
+		#{yyzhzh,jdbcType=VARCHAR},
+		dwfzr = #{dwfzr,jdbcType=VARCHAR},
+		fzrdh =
+		#{fzrdh,jdbcType=VARCHAR},
+		chshyzhryrsh =
+		#{chshyzhryrsh,jdbcType=INTEGER},
+		bjrq = #{bjrq,jdbcType=DATE},
+		zygczgjhj = #{zygczgjhj,jdbcType=DECIMAL},
+		money_value31 =
+		#{moneyValue31,jdbcType=DECIMAL},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		inserttime =
+		#{inserttime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="findSectInfoMaxInserttime" resultType="java.lang.String">
+		select
+		max(inserttime) from hd_sect_info;
+	</select>
+	  <delete id="deleteAll">
+   delete from hd_sect_info;
   </delete>
-  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.SectInfoExample" >
-    delete from hd_sect_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs" >
-    insert into hd_sect_info (id, supervision_id, direct_id, 
-      sect_short_name, sect_no, sys_dept_id, 
-      super_dept_name, comp_add, comp_tel, 
-      sect_type, sect_begin_point, sect_end_point, 
-      chain_length, sect_length, sect_add, 
-      begin_day, plan_end_day, begin_token_day, 
-      superv_people, sect_leader, sect_leader_tel, 
-      sect_engineer, sect_pact_no, pact_money, 
-      pact_period, money_value02, money_value03, 
-      money_value04, money_value05, money_value06, 
-      money_value07, money_value08, money_value09, 
-      money_value10, money_value11, money_value12, 
-      money_value13, money_value14, money_value15, 
-      money_value16, money_value17, money_value18, 
-      money_value19, money_value20, money_value21, 
-      bank_name, bank_no, money_value22, 
-      money_value23, money_value24, sect_property_a, 
-      sect_property_b, sect_property_c, sortorder, 
-      complete_money, upload_id, pwd, 
-      money_value25, money_value26, project_id, 
-      zzhdj, zhshhm, yyzhzh, 
-      dwfzr, fzrdh, chshyzhryrsh, 
-      bjrq, zygczgjhj, money_value31, 
-      createtime, sect_content, zfbmc1, 
-      zfbmc2)
-    values (#{id,jdbcType=VARCHAR}, #{supervisionId,jdbcType=VARCHAR}, #{directId,jdbcType=VARCHAR}, 
-      #{sectShortName,jdbcType=VARCHAR}, #{sectNo,jdbcType=VARCHAR}, #{sysDeptId,jdbcType=VARCHAR}, 
-      #{superDeptName,jdbcType=VARCHAR}, #{compAdd,jdbcType=VARCHAR}, #{compTel,jdbcType=VARCHAR}, 
-      #{sectType,jdbcType=VARCHAR}, #{sectBeginPoint,jdbcType=VARCHAR}, #{sectEndPoint,jdbcType=VARCHAR}, 
-      #{chainLength,jdbcType=REAL}, #{sectLength,jdbcType=REAL}, #{sectAdd,jdbcType=VARCHAR}, 
-      #{beginDay,jdbcType=DATE}, #{planEndDay,jdbcType=DATE}, #{beginTokenDay,jdbcType=DATE}, 
-      #{supervPeople,jdbcType=VARCHAR}, #{sectLeader,jdbcType=VARCHAR}, #{sectLeaderTel,jdbcType=VARCHAR}, 
-      #{sectEngineer,jdbcType=VARCHAR}, #{sectPactNo,jdbcType=VARCHAR}, #{pactMoney,jdbcType=REAL}, 
-      #{pactPeriod,jdbcType=VARCHAR}, #{moneyValue02,jdbcType=REAL}, #{moneyValue03,jdbcType=REAL}, 
-      #{moneyValue04,jdbcType=REAL}, #{moneyValue05,jdbcType=REAL}, #{moneyValue06,jdbcType=REAL}, 
-      #{moneyValue07,jdbcType=REAL}, #{moneyValue08,jdbcType=REAL}, #{moneyValue09,jdbcType=REAL}, 
-      #{moneyValue10,jdbcType=REAL}, #{moneyValue11,jdbcType=REAL}, #{moneyValue12,jdbcType=REAL}, 
-      #{moneyValue13,jdbcType=REAL}, #{moneyValue14,jdbcType=REAL}, #{moneyValue15,jdbcType=REAL}, 
-      #{moneyValue16,jdbcType=REAL}, #{moneyValue17,jdbcType=REAL}, #{moneyValue18,jdbcType=REAL}, 
-      #{moneyValue19,jdbcType=REAL}, #{moneyValue20,jdbcType=REAL}, #{moneyValue21,jdbcType=REAL}, 
-      #{bankName,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, #{moneyValue22,jdbcType=REAL}, 
-      #{moneyValue23,jdbcType=REAL}, #{moneyValue24,jdbcType=REAL}, #{sectPropertyA,jdbcType=VARCHAR}, 
-      #{sectPropertyB,jdbcType=VARCHAR}, #{sectPropertyC,jdbcType=VARCHAR}, #{sortorder,jdbcType=INTEGER}, 
-      #{completeMoney,jdbcType=VARCHAR}, #{uploadId,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{moneyValue25,jdbcType=REAL}, #{moneyValue26,jdbcType=REAL}, #{projectId,jdbcType=VARCHAR}, 
-      #{zzhdj,jdbcType=VARCHAR}, #{zhshhm,jdbcType=VARCHAR}, #{yyzhzh,jdbcType=VARCHAR}, 
-      #{dwfzr,jdbcType=VARCHAR}, #{fzrdh,jdbcType=VARCHAR}, #{chshyzhryrsh,jdbcType=INTEGER}, 
-      #{bjrq,jdbcType=DATE}, #{zygczgjhj,jdbcType=REAL}, #{moneyValue31,jdbcType=REAL}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{sectContent,jdbcType=LONGVARCHAR}, #{zfbmc1,jdbcType=LONGVARCHAR}, 
-      #{zfbmc2,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs" >
-    insert into hd_sect_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="supervisionId != null" >
-        supervision_id,
-      </if>
-      <if test="directId != null" >
-        direct_id,
-      </if>
-      <if test="sectShortName != null" >
-        sect_short_name,
-      </if>
-      <if test="sectNo != null" >
-        sect_no,
-      </if>
-      <if test="sysDeptId != null" >
-        sys_dept_id,
-      </if>
-      <if test="superDeptName != null" >
-        super_dept_name,
-      </if>
-      <if test="compAdd != null" >
-        comp_add,
-      </if>
-      <if test="compTel != null" >
-        comp_tel,
-      </if>
-      <if test="sectType != null" >
-        sect_type,
-      </if>
-      <if test="sectBeginPoint != null" >
-        sect_begin_point,
-      </if>
-      <if test="sectEndPoint != null" >
-        sect_end_point,
-      </if>
-      <if test="chainLength != null" >
-        chain_length,
-      </if>
-      <if test="sectLength != null" >
-        sect_length,
-      </if>
-      <if test="sectAdd != null" >
-        sect_add,
-      </if>
-      <if test="beginDay != null" >
-        begin_day,
-      </if>
-      <if test="planEndDay != null" >
-        plan_end_day,
-      </if>
-      <if test="beginTokenDay != null" >
-        begin_token_day,
-      </if>
-      <if test="supervPeople != null" >
-        superv_people,
-      </if>
-      <if test="sectLeader != null" >
-        sect_leader,
-      </if>
-      <if test="sectLeaderTel != null" >
-        sect_leader_tel,
-      </if>
-      <if test="sectEngineer != null" >
-        sect_engineer,
-      </if>
-      <if test="sectPactNo != null" >
-        sect_pact_no,
-      </if>
-      <if test="pactMoney != null" >
-        pact_money,
-      </if>
-      <if test="pactPeriod != null" >
-        pact_period,
-      </if>
-      <if test="moneyValue02 != null" >
-        money_value02,
-      </if>
-      <if test="moneyValue03 != null" >
-        money_value03,
-      </if>
-      <if test="moneyValue04 != null" >
-        money_value04,
-      </if>
-      <if test="moneyValue05 != null" >
-        money_value05,
-      </if>
-      <if test="moneyValue06 != null" >
-        money_value06,
-      </if>
-      <if test="moneyValue07 != null" >
-        money_value07,
-      </if>
-      <if test="moneyValue08 != null" >
-        money_value08,
-      </if>
-      <if test="moneyValue09 != null" >
-        money_value09,
-      </if>
-      <if test="moneyValue10 != null" >
-        money_value10,
-      </if>
-      <if test="moneyValue11 != null" >
-        money_value11,
-      </if>
-      <if test="moneyValue12 != null" >
-        money_value12,
-      </if>
-      <if test="moneyValue13 != null" >
-        money_value13,
-      </if>
-      <if test="moneyValue14 != null" >
-        money_value14,
-      </if>
-      <if test="moneyValue15 != null" >
-        money_value15,
-      </if>
-      <if test="moneyValue16 != null" >
-        money_value16,
-      </if>
-      <if test="moneyValue17 != null" >
-        money_value17,
-      </if>
-      <if test="moneyValue18 != null" >
-        money_value18,
-      </if>
-      <if test="moneyValue19 != null" >
-        money_value19,
-      </if>
-      <if test="moneyValue20 != null" >
-        money_value20,
-      </if>
-      <if test="moneyValue21 != null" >
-        money_value21,
-      </if>
-      <if test="bankName != null" >
-        bank_name,
-      </if>
-      <if test="bankNo != null" >
-        bank_no,
-      </if>
-      <if test="moneyValue22 != null" >
-        money_value22,
-      </if>
-      <if test="moneyValue23 != null" >
-        money_value23,
-      </if>
-      <if test="moneyValue24 != null" >
-        money_value24,
-      </if>
-      <if test="sectPropertyA != null" >
-        sect_property_a,
-      </if>
-      <if test="sectPropertyB != null" >
-        sect_property_b,
-      </if>
-      <if test="sectPropertyC != null" >
-        sect_property_c,
-      </if>
-      <if test="sortorder != null" >
-        sortorder,
-      </if>
-      <if test="completeMoney != null" >
-        complete_money,
-      </if>
-      <if test="uploadId != null" >
-        upload_id,
-      </if>
-      <if test="pwd != null" >
-        pwd,
-      </if>
-      <if test="moneyValue25 != null" >
-        money_value25,
-      </if>
-      <if test="moneyValue26 != null" >
-        money_value26,
-      </if>
-      <if test="projectId != null" >
-        project_id,
-      </if>
-      <if test="zzhdj != null" >
-        zzhdj,
-      </if>
-      <if test="zhshhm != null" >
-        zhshhm,
-      </if>
-      <if test="yyzhzh != null" >
-        yyzhzh,
-      </if>
-      <if test="dwfzr != null" >
-        dwfzr,
-      </if>
-      <if test="fzrdh != null" >
-        fzrdh,
-      </if>
-      <if test="chshyzhryrsh != null" >
-        chshyzhryrsh,
-      </if>
-      <if test="bjrq != null" >
-        bjrq,
-      </if>
-      <if test="zygczgjhj != null" >
-        zygczgjhj,
-      </if>
-      <if test="moneyValue31 != null" >
-        money_value31,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="sectContent != null" >
-        sect_content,
-      </if>
-      <if test="zfbmc1 != null" >
-        zfbmc1,
-      </if>
-      <if test="zfbmc2 != null" >
-        zfbmc2,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionId != null" >
-        #{supervisionId,jdbcType=VARCHAR},
-      </if>
-      <if test="directId != null" >
-        #{directId,jdbcType=VARCHAR},
-      </if>
-      <if test="sectShortName != null" >
-        #{sectShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="sectNo != null" >
-        #{sectNo,jdbcType=VARCHAR},
-      </if>
-      <if test="sysDeptId != null" >
-        #{sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="superDeptName != null" >
-        #{superDeptName,jdbcType=VARCHAR},
-      </if>
-      <if test="compAdd != null" >
-        #{compAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="compTel != null" >
-        #{compTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectType != null" >
-        #{sectType,jdbcType=VARCHAR},
-      </if>
-      <if test="sectBeginPoint != null" >
-        #{sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEndPoint != null" >
-        #{sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="chainLength != null" >
-        #{chainLength,jdbcType=REAL},
-      </if>
-      <if test="sectLength != null" >
-        #{sectLength,jdbcType=REAL},
-      </if>
-      <if test="sectAdd != null" >
-        #{sectAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="beginDay != null" >
-        #{beginDay,jdbcType=DATE},
-      </if>
-      <if test="planEndDay != null" >
-        #{planEndDay,jdbcType=DATE},
-      </if>
-      <if test="beginTokenDay != null" >
-        #{beginTokenDay,jdbcType=DATE},
-      </if>
-      <if test="supervPeople != null" >
-        #{supervPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="sectLeader != null" >
-        #{sectLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="sectLeaderTel != null" >
-        #{sectLeaderTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEngineer != null" >
-        #{sectEngineer,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPactNo != null" >
-        #{sectPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="pactMoney != null" >
-        #{pactMoney,jdbcType=REAL},
-      </if>
-      <if test="pactPeriod != null" >
-        #{pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue02 != null" >
-        #{moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="moneyValue03 != null" >
-        #{moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="moneyValue04 != null" >
-        #{moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="moneyValue05 != null" >
-        #{moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="moneyValue06 != null" >
-        #{moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="moneyValue07 != null" >
-        #{moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="moneyValue08 != null" >
-        #{moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="moneyValue09 != null" >
-        #{moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="moneyValue10 != null" >
-        #{moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="moneyValue11 != null" >
-        #{moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="moneyValue12 != null" >
-        #{moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="moneyValue13 != null" >
-        #{moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="moneyValue14 != null" >
-        #{moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="moneyValue15 != null" >
-        #{moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="moneyValue16 != null" >
-        #{moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="moneyValue17 != null" >
-        #{moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="moneyValue18 != null" >
-        #{moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="moneyValue19 != null" >
-        #{moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="moneyValue20 != null" >
-        #{moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="moneyValue21 != null" >
-        #{moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="bankName != null" >
-        #{bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="bankNo != null" >
-        #{bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue22 != null" >
-        #{moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="moneyValue23 != null" >
-        #{moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="moneyValue24 != null" >
-        #{moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="sectPropertyA != null" >
-        #{sectPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPropertyB != null" >
-        #{sectPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPropertyC != null" >
-        #{sectPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="sortorder != null" >
-        #{sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="completeMoney != null" >
-        #{completeMoney,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadId != null" >
-        #{uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null" >
-        #{pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue25 != null" >
-        #{moneyValue25,jdbcType=REAL},
-      </if>
-      <if test="moneyValue26 != null" >
-        #{moneyValue26,jdbcType=REAL},
-      </if>
-      <if test="projectId != null" >
-        #{projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="zzhdj != null" >
-        #{zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="zhshhm != null" >
-        #{zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="yyzhzh != null" >
-        #{yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="dwfzr != null" >
-        #{dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrdh != null" >
-        #{fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="chshyzhryrsh != null" >
-        #{chshyzhryrsh,jdbcType=INTEGER},
-      </if>
-      <if test="bjrq != null" >
-        #{bjrq,jdbcType=DATE},
-      </if>
-      <if test="zygczgjhj != null" >
-        #{zygczgjhj,jdbcType=REAL},
-      </if>
-      <if test="moneyValue31 != null" >
-        #{moneyValue31,jdbcType=REAL},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sectContent != null" >
-        #{sectContent,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="zfbmc1 != null" >
-        #{zfbmc1,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="zfbmc2 != null" >
-        #{zfbmc2,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.SectInfoExample" resultType="java.lang.Integer" >
-    select count(*) from hd_sect_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update hd_sect_info
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionId != null" >
-        supervision_id = #{record.supervisionId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.directId != null" >
-        direct_id = #{record.directId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectShortName != null" >
-        sect_short_name = #{record.sectShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectNo != null" >
-        sect_no = #{record.sectNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sysDeptId != null" >
-        sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.superDeptName != null" >
-        super_dept_name = #{record.superDeptName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.compAdd != null" >
-        comp_add = #{record.compAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.compTel != null" >
-        comp_tel = #{record.compTel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectType != null" >
-        sect_type = #{record.sectType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectBeginPoint != null" >
-        sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectEndPoint != null" >
-        sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="record.chainLength != null" >
-        chain_length = #{record.chainLength,jdbcType=REAL},
-      </if>
-      <if test="record.sectLength != null" >
-        sect_length = #{record.sectLength,jdbcType=REAL},
-      </if>
-      <if test="record.sectAdd != null" >
-        sect_add = #{record.sectAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.beginDay != null" >
-        begin_day = #{record.beginDay,jdbcType=DATE},
-      </if>
-      <if test="record.planEndDay != null" >
-        plan_end_day = #{record.planEndDay,jdbcType=DATE},
-      </if>
-      <if test="record.beginTokenDay != null" >
-        begin_token_day = #{record.beginTokenDay,jdbcType=DATE},
-      </if>
-      <if test="record.supervPeople != null" >
-        superv_people = #{record.supervPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectLeader != null" >
-        sect_leader = #{record.sectLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectLeaderTel != null" >
-        sect_leader_tel = #{record.sectLeaderTel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectEngineer != null" >
-        sect_engineer = #{record.sectEngineer,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectPactNo != null" >
-        sect_pact_no = #{record.sectPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pactMoney != null" >
-        pact_money = #{record.pactMoney,jdbcType=REAL},
-      </if>
-      <if test="record.pactPeriod != null" >
-        pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyValue02 != null" >
-        money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue03 != null" >
-        money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue04 != null" >
-        money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue05 != null" >
-        money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue06 != null" >
-        money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue07 != null" >
-        money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue08 != null" >
-        money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue09 != null" >
-        money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue10 != null" >
-        money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue11 != null" >
-        money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue12 != null" >
-        money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue13 != null" >
-        money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue14 != null" >
-        money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue15 != null" >
-        money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue16 != null" >
-        money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue17 != null" >
-        money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue18 != null" >
-        money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue19 != null" >
-        money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue20 != null" >
-        money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue21 != null" >
-        money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="record.bankName != null" >
-        bank_name = #{record.bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bankNo != null" >
-        bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyValue22 != null" >
-        money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue23 != null" >
-        money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue24 != null" >
-        money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="record.sectPropertyA != null" >
-        sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectPropertyB != null" >
-        sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectPropertyC != null" >
-        sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sortorder != null" >
-        sortorder = #{record.sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="record.completeMoney != null" >
-        complete_money = #{record.completeMoney,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uploadId != null" >
-        upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwd != null" >
-        pwd = #{record.pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyValue25 != null" >
-        money_value25 = #{record.moneyValue25,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue26 != null" >
-        money_value26 = #{record.moneyValue26,jdbcType=REAL},
-      </if>
-      <if test="record.projectId != null" >
-        project_id = #{record.projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zzhdj != null" >
-        zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zhshhm != null" >
-        zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.yyzhzh != null" >
-        yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.dwfzr != null" >
-        dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fzrdh != null" >
-        fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.chshyzhryrsh != null" >
-        chshyzhryrsh = #{record.chshyzhryrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.bjrq != null" >
-        bjrq = #{record.bjrq,jdbcType=DATE},
-      </if>
-      <if test="record.zygczgjhj != null" >
-        zygczgjhj = #{record.zygczgjhj,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue31 != null" >
-        money_value31 = #{record.moneyValue31,jdbcType=REAL},
-      </if>
-      <if test="record.createtime != null" >
-        createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.sectContent != null" >
-        sect_content = #{record.sectContent,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.zfbmc1 != null" >
-        zfbmc1 = #{record.zfbmc1,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.zfbmc2 != null" >
-        zfbmc2 = #{record.zfbmc2,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update hd_sect_info
-    set id = #{record.id,jdbcType=VARCHAR},
-      supervision_id = #{record.supervisionId,jdbcType=VARCHAR},
-      direct_id = #{record.directId,jdbcType=VARCHAR},
-      sect_short_name = #{record.sectShortName,jdbcType=VARCHAR},
-      sect_no = #{record.sectNo,jdbcType=VARCHAR},
-      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      super_dept_name = #{record.superDeptName,jdbcType=VARCHAR},
-      comp_add = #{record.compAdd,jdbcType=VARCHAR},
-      comp_tel = #{record.compTel,jdbcType=VARCHAR},
-      sect_type = #{record.sectType,jdbcType=VARCHAR},
-      sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      chain_length = #{record.chainLength,jdbcType=REAL},
-      sect_length = #{record.sectLength,jdbcType=REAL},
-      sect_add = #{record.sectAdd,jdbcType=VARCHAR},
-      begin_day = #{record.beginDay,jdbcType=DATE},
-      plan_end_day = #{record.planEndDay,jdbcType=DATE},
-      begin_token_day = #{record.beginTokenDay,jdbcType=DATE},
-      superv_people = #{record.supervPeople,jdbcType=VARCHAR},
-      sect_leader = #{record.sectLeader,jdbcType=VARCHAR},
-      sect_leader_tel = #{record.sectLeaderTel,jdbcType=VARCHAR},
-      sect_engineer = #{record.sectEngineer,jdbcType=VARCHAR},
-      sect_pact_no = #{record.sectPactNo,jdbcType=VARCHAR},
-      pact_money = #{record.pactMoney,jdbcType=REAL},
-      pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      bank_name = #{record.bankName,jdbcType=VARCHAR},
-      bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
-      sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
-      sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
-      sortorder = #{record.sortorder,jdbcType=INTEGER},
-      complete_money = #{record.completeMoney,jdbcType=VARCHAR},
-      upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      pwd = #{record.pwd,jdbcType=VARCHAR},
-      money_value25 = #{record.moneyValue25,jdbcType=REAL},
-      money_value26 = #{record.moneyValue26,jdbcType=REAL},
-      project_id = #{record.projectId,jdbcType=VARCHAR},
-      zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      chshyzhryrsh = #{record.chshyzhryrsh,jdbcType=INTEGER},
-      bjrq = #{record.bjrq,jdbcType=DATE},
-      zygczgjhj = #{record.zygczgjhj,jdbcType=REAL},
-      money_value31 = #{record.moneyValue31,jdbcType=REAL},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      sect_content = #{record.sectContent,jdbcType=LONGVARCHAR},
-      zfbmc1 = #{record.zfbmc1,jdbcType=LONGVARCHAR},
-      zfbmc2 = #{record.zfbmc2,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update hd_sect_info
-    set id = #{record.id,jdbcType=VARCHAR},
-      supervision_id = #{record.supervisionId,jdbcType=VARCHAR},
-      direct_id = #{record.directId,jdbcType=VARCHAR},
-      sect_short_name = #{record.sectShortName,jdbcType=VARCHAR},
-      sect_no = #{record.sectNo,jdbcType=VARCHAR},
-      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      super_dept_name = #{record.superDeptName,jdbcType=VARCHAR},
-      comp_add = #{record.compAdd,jdbcType=VARCHAR},
-      comp_tel = #{record.compTel,jdbcType=VARCHAR},
-      sect_type = #{record.sectType,jdbcType=VARCHAR},
-      sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      chain_length = #{record.chainLength,jdbcType=REAL},
-      sect_length = #{record.sectLength,jdbcType=REAL},
-      sect_add = #{record.sectAdd,jdbcType=VARCHAR},
-      begin_day = #{record.beginDay,jdbcType=DATE},
-      plan_end_day = #{record.planEndDay,jdbcType=DATE},
-      begin_token_day = #{record.beginTokenDay,jdbcType=DATE},
-      superv_people = #{record.supervPeople,jdbcType=VARCHAR},
-      sect_leader = #{record.sectLeader,jdbcType=VARCHAR},
-      sect_leader_tel = #{record.sectLeaderTel,jdbcType=VARCHAR},
-      sect_engineer = #{record.sectEngineer,jdbcType=VARCHAR},
-      sect_pact_no = #{record.sectPactNo,jdbcType=VARCHAR},
-      pact_money = #{record.pactMoney,jdbcType=REAL},
-      pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      bank_name = #{record.bankName,jdbcType=VARCHAR},
-      bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
-      sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
-      sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
-      sortorder = #{record.sortorder,jdbcType=INTEGER},
-      complete_money = #{record.completeMoney,jdbcType=VARCHAR},
-      upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      pwd = #{record.pwd,jdbcType=VARCHAR},
-      money_value25 = #{record.moneyValue25,jdbcType=REAL},
-      money_value26 = #{record.moneyValue26,jdbcType=REAL},
-      project_id = #{record.projectId,jdbcType=VARCHAR},
-      zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      chshyzhryrsh = #{record.chshyzhryrsh,jdbcType=INTEGER},
-      bjrq = #{record.bjrq,jdbcType=DATE},
-      zygczgjhj = #{record.zygczgjhj,jdbcType=REAL},
-      money_value31 = #{record.moneyValue31,jdbcType=REAL},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs" >
-    update hd_sect_info
-    <set >
-      <if test="supervisionId != null" >
-        supervision_id = #{supervisionId,jdbcType=VARCHAR},
-      </if>
-      <if test="directId != null" >
-        direct_id = #{directId,jdbcType=VARCHAR},
-      </if>
-      <if test="sectShortName != null" >
-        sect_short_name = #{sectShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="sectNo != null" >
-        sect_no = #{sectNo,jdbcType=VARCHAR},
-      </if>
-      <if test="sysDeptId != null" >
-        sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="superDeptName != null" >
-        super_dept_name = #{superDeptName,jdbcType=VARCHAR},
-      </if>
-      <if test="compAdd != null" >
-        comp_add = #{compAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="compTel != null" >
-        comp_tel = #{compTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectType != null" >
-        sect_type = #{sectType,jdbcType=VARCHAR},
-      </if>
-      <if test="sectBeginPoint != null" >
-        sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEndPoint != null" >
-        sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="chainLength != null" >
-        chain_length = #{chainLength,jdbcType=REAL},
-      </if>
-      <if test="sectLength != null" >
-        sect_length = #{sectLength,jdbcType=REAL},
-      </if>
-      <if test="sectAdd != null" >
-        sect_add = #{sectAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="beginDay != null" >
-        begin_day = #{beginDay,jdbcType=DATE},
-      </if>
-      <if test="planEndDay != null" >
-        plan_end_day = #{planEndDay,jdbcType=DATE},
-      </if>
-      <if test="beginTokenDay != null" >
-        begin_token_day = #{beginTokenDay,jdbcType=DATE},
-      </if>
-      <if test="supervPeople != null" >
-        superv_people = #{supervPeople,jdbcType=VARCHAR},
-      </if>
-      <if test="sectLeader != null" >
-        sect_leader = #{sectLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="sectLeaderTel != null" >
-        sect_leader_tel = #{sectLeaderTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEngineer != null" >
-        sect_engineer = #{sectEngineer,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPactNo != null" >
-        sect_pact_no = #{sectPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="pactMoney != null" >
-        pact_money = #{pactMoney,jdbcType=REAL},
-      </if>
-      <if test="pactPeriod != null" >
-        pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue02 != null" >
-        money_value02 = #{moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="moneyValue03 != null" >
-        money_value03 = #{moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="moneyValue04 != null" >
-        money_value04 = #{moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="moneyValue05 != null" >
-        money_value05 = #{moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="moneyValue06 != null" >
-        money_value06 = #{moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="moneyValue07 != null" >
-        money_value07 = #{moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="moneyValue08 != null" >
-        money_value08 = #{moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="moneyValue09 != null" >
-        money_value09 = #{moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="moneyValue10 != null" >
-        money_value10 = #{moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="moneyValue11 != null" >
-        money_value11 = #{moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="moneyValue12 != null" >
-        money_value12 = #{moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="moneyValue13 != null" >
-        money_value13 = #{moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="moneyValue14 != null" >
-        money_value14 = #{moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="moneyValue15 != null" >
-        money_value15 = #{moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="moneyValue16 != null" >
-        money_value16 = #{moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="moneyValue17 != null" >
-        money_value17 = #{moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="moneyValue18 != null" >
-        money_value18 = #{moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="moneyValue19 != null" >
-        money_value19 = #{moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="moneyValue20 != null" >
-        money_value20 = #{moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="moneyValue21 != null" >
-        money_value21 = #{moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="bankName != null" >
-        bank_name = #{bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="bankNo != null" >
-        bank_no = #{bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue22 != null" >
-        money_value22 = #{moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="moneyValue23 != null" >
-        money_value23 = #{moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="moneyValue24 != null" >
-        money_value24 = #{moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="sectPropertyA != null" >
-        sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPropertyB != null" >
-        sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="sectPropertyC != null" >
-        sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="sortorder != null" >
-        sortorder = #{sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="completeMoney != null" >
-        complete_money = #{completeMoney,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadId != null" >
-        upload_id = #{uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null" >
-        pwd = #{pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue25 != null" >
-        money_value25 = #{moneyValue25,jdbcType=REAL},
-      </if>
-      <if test="moneyValue26 != null" >
-        money_value26 = #{moneyValue26,jdbcType=REAL},
-      </if>
-      <if test="projectId != null" >
-        project_id = #{projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="zzhdj != null" >
-        zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="zhshhm != null" >
-        zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="yyzhzh != null" >
-        yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="dwfzr != null" >
-        dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrdh != null" >
-        fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="chshyzhryrsh != null" >
-        chshyzhryrsh = #{chshyzhryrsh,jdbcType=INTEGER},
-      </if>
-      <if test="bjrq != null" >
-        bjrq = #{bjrq,jdbcType=DATE},
-      </if>
-      <if test="zygczgjhj != null" >
-        zygczgjhj = #{zygczgjhj,jdbcType=REAL},
-      </if>
-      <if test="moneyValue31 != null" >
-        money_value31 = #{moneyValue31,jdbcType=REAL},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sectContent != null" >
-        sect_content = #{sectContent,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="zfbmc1 != null" >
-        zfbmc1 = #{zfbmc1,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="zfbmc2 != null" >
-        zfbmc2 = #{zfbmc2,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SectInfoWithBLOBs" >
-    update hd_sect_info
-    set supervision_id = #{supervisionId,jdbcType=VARCHAR},
-      direct_id = #{directId,jdbcType=VARCHAR},
-      sect_short_name = #{sectShortName,jdbcType=VARCHAR},
-      sect_no = #{sectNo,jdbcType=VARCHAR},
-      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      super_dept_name = #{superDeptName,jdbcType=VARCHAR},
-      comp_add = #{compAdd,jdbcType=VARCHAR},
-      comp_tel = #{compTel,jdbcType=VARCHAR},
-      sect_type = #{sectType,jdbcType=VARCHAR},
-      sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      chain_length = #{chainLength,jdbcType=REAL},
-      sect_length = #{sectLength,jdbcType=REAL},
-      sect_add = #{sectAdd,jdbcType=VARCHAR},
-      begin_day = #{beginDay,jdbcType=DATE},
-      plan_end_day = #{planEndDay,jdbcType=DATE},
-      begin_token_day = #{beginTokenDay,jdbcType=DATE},
-      superv_people = #{supervPeople,jdbcType=VARCHAR},
-      sect_leader = #{sectLeader,jdbcType=VARCHAR},
-      sect_leader_tel = #{sectLeaderTel,jdbcType=VARCHAR},
-      sect_engineer = #{sectEngineer,jdbcType=VARCHAR},
-      sect_pact_no = #{sectPactNo,jdbcType=VARCHAR},
-      pact_money = #{pactMoney,jdbcType=REAL},
-      pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      money_value02 = #{moneyValue02,jdbcType=REAL},
-      money_value03 = #{moneyValue03,jdbcType=REAL},
-      money_value04 = #{moneyValue04,jdbcType=REAL},
-      money_value05 = #{moneyValue05,jdbcType=REAL},
-      money_value06 = #{moneyValue06,jdbcType=REAL},
-      money_value07 = #{moneyValue07,jdbcType=REAL},
-      money_value08 = #{moneyValue08,jdbcType=REAL},
-      money_value09 = #{moneyValue09,jdbcType=REAL},
-      money_value10 = #{moneyValue10,jdbcType=REAL},
-      money_value11 = #{moneyValue11,jdbcType=REAL},
-      money_value12 = #{moneyValue12,jdbcType=REAL},
-      money_value13 = #{moneyValue13,jdbcType=REAL},
-      money_value14 = #{moneyValue14,jdbcType=REAL},
-      money_value15 = #{moneyValue15,jdbcType=REAL},
-      money_value16 = #{moneyValue16,jdbcType=REAL},
-      money_value17 = #{moneyValue17,jdbcType=REAL},
-      money_value18 = #{moneyValue18,jdbcType=REAL},
-      money_value19 = #{moneyValue19,jdbcType=REAL},
-      money_value20 = #{moneyValue20,jdbcType=REAL},
-      money_value21 = #{moneyValue21,jdbcType=REAL},
-      bank_name = #{bankName,jdbcType=VARCHAR},
-      bank_no = #{bankNo,jdbcType=VARCHAR},
-      money_value22 = #{moneyValue22,jdbcType=REAL},
-      money_value23 = #{moneyValue23,jdbcType=REAL},
-      money_value24 = #{moneyValue24,jdbcType=REAL},
-      sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
-      sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
-      sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
-      sortorder = #{sortorder,jdbcType=INTEGER},
-      complete_money = #{completeMoney,jdbcType=VARCHAR},
-      upload_id = #{uploadId,jdbcType=VARCHAR},
-      pwd = #{pwd,jdbcType=VARCHAR},
-      money_value25 = #{moneyValue25,jdbcType=REAL},
-      money_value26 = #{moneyValue26,jdbcType=REAL},
-      project_id = #{projectId,jdbcType=VARCHAR},
-      zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      chshyzhryrsh = #{chshyzhryrsh,jdbcType=INTEGER},
-      bjrq = #{bjrq,jdbcType=DATE},
-      zygczgjhj = #{zygczgjhj,jdbcType=REAL},
-      money_value31 = #{moneyValue31,jdbcType=REAL},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      sect_content = #{sectContent,jdbcType=LONGVARCHAR},
-      zfbmc1 = #{zfbmc1,jdbcType=LONGVARCHAR},
-      zfbmc2 = #{zfbmc2,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.SectInfo" >
-    update hd_sect_info
-    set supervision_id = #{supervisionId,jdbcType=VARCHAR},
-      direct_id = #{directId,jdbcType=VARCHAR},
-      sect_short_name = #{sectShortName,jdbcType=VARCHAR},
-      sect_no = #{sectNo,jdbcType=VARCHAR},
-      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      super_dept_name = #{superDeptName,jdbcType=VARCHAR},
-      comp_add = #{compAdd,jdbcType=VARCHAR},
-      comp_tel = #{compTel,jdbcType=VARCHAR},
-      sect_type = #{sectType,jdbcType=VARCHAR},
-      sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      chain_length = #{chainLength,jdbcType=REAL},
-      sect_length = #{sectLength,jdbcType=REAL},
-      sect_add = #{sectAdd,jdbcType=VARCHAR},
-      begin_day = #{beginDay,jdbcType=DATE},
-      plan_end_day = #{planEndDay,jdbcType=DATE},
-      begin_token_day = #{beginTokenDay,jdbcType=DATE},
-      superv_people = #{supervPeople,jdbcType=VARCHAR},
-      sect_leader = #{sectLeader,jdbcType=VARCHAR},
-      sect_leader_tel = #{sectLeaderTel,jdbcType=VARCHAR},
-      sect_engineer = #{sectEngineer,jdbcType=VARCHAR},
-      sect_pact_no = #{sectPactNo,jdbcType=VARCHAR},
-      pact_money = #{pactMoney,jdbcType=REAL},
-      pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      money_value02 = #{moneyValue02,jdbcType=REAL},
-      money_value03 = #{moneyValue03,jdbcType=REAL},
-      money_value04 = #{moneyValue04,jdbcType=REAL},
-      money_value05 = #{moneyValue05,jdbcType=REAL},
-      money_value06 = #{moneyValue06,jdbcType=REAL},
-      money_value07 = #{moneyValue07,jdbcType=REAL},
-      money_value08 = #{moneyValue08,jdbcType=REAL},
-      money_value09 = #{moneyValue09,jdbcType=REAL},
-      money_value10 = #{moneyValue10,jdbcType=REAL},
-      money_value11 = #{moneyValue11,jdbcType=REAL},
-      money_value12 = #{moneyValue12,jdbcType=REAL},
-      money_value13 = #{moneyValue13,jdbcType=REAL},
-      money_value14 = #{moneyValue14,jdbcType=REAL},
-      money_value15 = #{moneyValue15,jdbcType=REAL},
-      money_value16 = #{moneyValue16,jdbcType=REAL},
-      money_value17 = #{moneyValue17,jdbcType=REAL},
-      money_value18 = #{moneyValue18,jdbcType=REAL},
-      money_value19 = #{moneyValue19,jdbcType=REAL},
-      money_value20 = #{moneyValue20,jdbcType=REAL},
-      money_value21 = #{moneyValue21,jdbcType=REAL},
-      bank_name = #{bankName,jdbcType=VARCHAR},
-      bank_no = #{bankNo,jdbcType=VARCHAR},
-      money_value22 = #{moneyValue22,jdbcType=REAL},
-      money_value23 = #{moneyValue23,jdbcType=REAL},
-      money_value24 = #{moneyValue24,jdbcType=REAL},
-      sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
-      sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
-      sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
-      sortorder = #{sortorder,jdbcType=INTEGER},
-      complete_money = #{completeMoney,jdbcType=VARCHAR},
-      upload_id = #{uploadId,jdbcType=VARCHAR},
-      pwd = #{pwd,jdbcType=VARCHAR},
-      money_value25 = #{moneyValue25,jdbcType=REAL},
-      money_value26 = #{moneyValue26,jdbcType=REAL},
-      project_id = #{projectId,jdbcType=VARCHAR},
-      zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      chshyzhryrsh = #{chshyzhryrsh,jdbcType=INTEGER},
-      bjrq = #{bjrq,jdbcType=DATE},
-      zygczgjhj = #{zygczgjhj,jdbcType=REAL},
-      money_value31 = #{moneyValue31,jdbcType=REAL},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

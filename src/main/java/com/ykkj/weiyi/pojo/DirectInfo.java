@@ -1,6 +1,6 @@
 package com.ykkj.weiyi.pojo;
 
-import java.sql.Timestamp;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class DirectInfo {
@@ -24,7 +24,7 @@ public class DirectInfo {
 
     private Integer duration;
 
-    private Float projectMoney;
+    private BigDecimal projectMoney;
 
     private String projectAdd;
 
@@ -34,7 +34,7 @@ public class DirectInfo {
 
     private String uploadId;
 
-    private Float propertyA;
+    private BigDecimal propertyA;
 
     private String propertyB;
 
@@ -44,7 +44,9 @@ public class DirectInfo {
 
     private Integer roleType;
 
-    private Timestamp createtime;
+    private Date createtime;
+
+    private Date inserttime;
 
     public String getId() {
         return id;
@@ -126,11 +128,11 @@ public class DirectInfo {
         this.duration = duration;
     }
 
-    public Float getProjectMoney() {
+    public BigDecimal getProjectMoney() {
         return projectMoney;
     }
 
-    public void setProjectMoney(Float projectMoney) {
+    public void setProjectMoney(BigDecimal projectMoney) {
         this.projectMoney = projectMoney;
     }
 
@@ -166,11 +168,11 @@ public class DirectInfo {
         this.uploadId = uploadId == null ? null : uploadId.trim();
     }
 
-    public Float getPropertyA() {
+    public BigDecimal getPropertyA() {
         return propertyA;
     }
 
-    public void setPropertyA(Float propertyA) {
+    public void setPropertyA(BigDecimal propertyA) {
         this.propertyA = propertyA;
     }
 
@@ -206,11 +208,19 @@ public class DirectInfo {
         this.roleType = roleType;
     }
 
-    public Timestamp getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Timestamp createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public Date getInserttime() {
+        return inserttime;
+    }
+
+    public void setInserttime(Date inserttime) {
+        this.inserttime = inserttime;
     }
 }

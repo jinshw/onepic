@@ -27,15 +27,15 @@
     <result column="design_name" property="designName" jdbcType="VARCHAR" />
     <result column="design_add" property="designAdd" jdbcType="VARCHAR" />
     <result column="design_tel" property="designTel" jdbcType="VARCHAR" />
-    <result column="project_totalInversted" property="projectTotalinversted" jdbcType="REAL" />
-    <result column="project_total_len" property="projectTotalLen" jdbcType="REAL" />
+    <result column="project_totalInversted" property="projectTotalinversted" jdbcType="DECIMAL" />
+    <result column="project_total_len" property="projectTotalLen" jdbcType="DECIMAL" />
     <result column="project_plan_duration" property="projectPlanDuration" jdbcType="INTEGER" />
     <result column="lag_day" property="lagDay" jdbcType="INTEGER" />
     <result column="begin_day" property="beginDay" jdbcType="DATE" />
     <result column="end_day" property="endDay" jdbcType="DATE" />
     <result column="completion_day" property="completionDay" jdbcType="DATE" />
-    <result column="approve_estimate" property="approveEstimate" jdbcType="REAL" />
-    <result column="budget" property="budget" jdbcType="REAL" />
+    <result column="approve_estimate" property="approveEstimate" jdbcType="DECIMAL" />
+    <result column="budget" property="budget" jdbcType="DECIMAL" />
     <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
     <result column="project_property_a" property="projectPropertyA" jdbcType="VARCHAR" />
     <result column="project_property_b" property="projectPropertyB" jdbcType="VARCHAR" />
@@ -63,7 +63,7 @@
     <result column="qianqixmisbn" property="qianqixmisbn" jdbcType="VARCHAR" />
     <result column="qianqixmmc" property="qianqixmmc" jdbcType="VARCHAR" />
     <result column="bgxyqdshj" property="bgxyqdshj" jdbcType="DATE" />
-    <result column="zhdbcfhj" property="zhdbcfhj" jdbcType="REAL" />
+    <result column="zhdbcfhj" property="zhdbcfhj" jdbcType="DECIMAL" />
     <result column="zq_dzfzr" property="zqDzfzr" jdbcType="VARCHAR" />
     <result column="zq_xsfzr" property="zqXsfzr" jdbcType="VARCHAR" />
     <result column="zq_zhbld" property="zqZhbld" jdbcType="VARCHAR" />
@@ -71,6 +71,7 @@
     <result column="belong_cities" property="belongCities" jdbcType="VARCHAR" />
     <result column="issuance" property="issuance" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs" extends="BaseResultMap" >
     <result column="project_descript" property="projectDescript" jdbcType="LONGVARCHAR" />
@@ -151,7 +152,7 @@
     lxrdh, xmzhgdwjfgld, chbshjpfwh, shgtpfwh, chbshjpfshj, shgtpfrq, qdzhh, jshzhh, 
     jshgm, zhyjshbzh, jshdw, jshdwdz, jshdwdh, gchgm, jshbzh, role_type, area, qianqixmisbn, 
     qianqixmmc, bgxyqdshj, zhdbcfhj, zq_dzfzr, zq_xsfzr, zq_zhbld, zq_xmfzr, belong_cities, 
-    issuance, createtime
+    issuance, createtime, inserttime
   </sql>
   <sql id="Blob_Column_List" >
     project_descript, build_content, money_composition, availability_money, project_approval, 
@@ -229,7 +230,7 @@
       bgxyqdshj, zhdbcfhj, zq_dzfzr, 
       zq_xsfzr, zq_zhbld, zq_xmfzr, 
       belong_cities, issuance, createtime, 
-      project_descript, build_content, 
+      inserttime, project_descript, build_content, 
       money_composition, availability_money, 
       project_approval, project_memo, overview, 
       xmjshyyyzhyxy, ztjdap)
@@ -241,10 +242,10 @@
       #{ownerTel,jdbcType=VARCHAR}, #{zxbmc,jdbcType=VARCHAR}, #{zxbdz,jdbcType=VARCHAR}, 
       #{zxbdh,jdbcType=VARCHAR}, #{tenderName,jdbcType=VARCHAR}, #{tenderAdd,jdbcType=VARCHAR}, 
       #{tenderTel,jdbcType=VARCHAR}, #{designName,jdbcType=VARCHAR}, #{designAdd,jdbcType=VARCHAR}, 
-      #{designTel,jdbcType=VARCHAR}, #{projectTotalinversted,jdbcType=REAL}, #{projectTotalLen,jdbcType=REAL}, 
+      #{designTel,jdbcType=VARCHAR}, #{projectTotalinversted,jdbcType=DECIMAL}, #{projectTotalLen,jdbcType=DECIMAL}, 
       #{projectPlanDuration,jdbcType=INTEGER}, #{lagDay,jdbcType=INTEGER}, #{beginDay,jdbcType=DATE}, 
-      #{endDay,jdbcType=DATE}, #{completionDay,jdbcType=DATE}, #{approveEstimate,jdbcType=REAL}, 
-      #{budget,jdbcType=REAL}, #{uploadId,jdbcType=VARCHAR}, #{projectPropertyA,jdbcType=VARCHAR}, 
+      #{endDay,jdbcType=DATE}, #{completionDay,jdbcType=DATE}, #{approveEstimate,jdbcType=DECIMAL}, 
+      #{budget,jdbcType=DECIMAL}, #{uploadId,jdbcType=VARCHAR}, #{projectPropertyA,jdbcType=VARCHAR}, 
       #{projectPropertyB,jdbcType=VARCHAR}, #{projectPropertyC,jdbcType=VARCHAR}, #{sortorder,jdbcType=INTEGER}, 
       #{xmlxdzh,jdbcType=VARCHAR}, #{xmlxrxm,jdbcType=VARCHAR}, #{lxrdh,jdbcType=VARCHAR}, 
       #{xmzhgdwjfgld,jdbcType=VARCHAR}, #{chbshjpfwh,jdbcType=VARCHAR}, #{shgtpfwh,jdbcType=VARCHAR}, 
@@ -253,10 +254,10 @@
       #{jshdw,jdbcType=VARCHAR}, #{jshdwdz,jdbcType=VARCHAR}, #{jshdwdh,jdbcType=VARCHAR}, 
       #{gchgm,jdbcType=VARCHAR}, #{jshbzh,jdbcType=VARCHAR}, #{roleType,jdbcType=INTEGER}, 
       #{area,jdbcType=VARCHAR}, #{qianqixmisbn,jdbcType=VARCHAR}, #{qianqixmmc,jdbcType=VARCHAR}, 
-      #{bgxyqdshj,jdbcType=DATE}, #{zhdbcfhj,jdbcType=REAL}, #{zqDzfzr,jdbcType=VARCHAR}, 
+      #{bgxyqdshj,jdbcType=DATE}, #{zhdbcfhj,jdbcType=DECIMAL}, #{zqDzfzr,jdbcType=VARCHAR}, 
       #{zqXsfzr,jdbcType=VARCHAR}, #{zqZhbld,jdbcType=VARCHAR}, #{zqXmfzr,jdbcType=VARCHAR}, 
       #{belongCities,jdbcType=VARCHAR}, #{issuance,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{projectDescript,jdbcType=LONGVARCHAR}, #{buildContent,jdbcType=LONGVARCHAR}, 
+      #{inserttime,jdbcType=TIMESTAMP}, #{projectDescript,jdbcType=LONGVARCHAR}, #{buildContent,jdbcType=LONGVARCHAR}, 
       #{moneyComposition,jdbcType=LONGVARCHAR}, #{availabilityMoney,jdbcType=LONGVARCHAR}, 
       #{projectApproval,jdbcType=LONGVARCHAR}, #{projectMemo,jdbcType=LONGVARCHAR}, #{overview,jdbcType=LONGVARCHAR}, 
       #{xmjshyyyzhyxy,jdbcType=LONGVARCHAR}, #{ztjdap,jdbcType=LONGVARCHAR})
@@ -471,6 +472,9 @@
       <if test="createtime != null" >
         createtime,
       </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
       <if test="projectDescript != null" >
         project_descript,
       </if>
@@ -576,10 +580,10 @@
         #{designTel,jdbcType=VARCHAR},
       </if>
       <if test="projectTotalinversted != null" >
-        #{projectTotalinversted,jdbcType=REAL},
+        #{projectTotalinversted,jdbcType=DECIMAL},
       </if>
       <if test="projectTotalLen != null" >
-        #{projectTotalLen,jdbcType=REAL},
+        #{projectTotalLen,jdbcType=DECIMAL},
       </if>
       <if test="projectPlanDuration != null" >
         #{projectPlanDuration,jdbcType=INTEGER},
@@ -597,10 +601,10 @@
         #{completionDay,jdbcType=DATE},
       </if>
       <if test="approveEstimate != null" >
-        #{approveEstimate,jdbcType=REAL},
+        #{approveEstimate,jdbcType=DECIMAL},
       </if>
       <if test="budget != null" >
-        #{budget,jdbcType=REAL},
+        #{budget,jdbcType=DECIMAL},
       </if>
       <if test="uploadId != null" >
         #{uploadId,jdbcType=VARCHAR},
@@ -684,7 +688,7 @@
         #{bgxyqdshj,jdbcType=DATE},
       </if>
       <if test="zhdbcfhj != null" >
-        #{zhdbcfhj,jdbcType=REAL},
+        #{zhdbcfhj,jdbcType=DECIMAL},
       </if>
       <if test="zqDzfzr != null" >
         #{zqDzfzr,jdbcType=VARCHAR},
@@ -706,6 +710,9 @@
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
       </if>
       <if test="projectDescript != null" >
         #{projectDescript,jdbcType=LONGVARCHAR},
@@ -821,10 +828,10 @@
         design_tel = #{record.designTel,jdbcType=VARCHAR},
       </if>
       <if test="record.projectTotalinversted != null" >
-        project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
+        project_totalInversted = #{record.projectTotalinversted,jdbcType=DECIMAL},
       </if>
       <if test="record.projectTotalLen != null" >
-        project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+        project_total_len = #{record.projectTotalLen,jdbcType=DECIMAL},
       </if>
       <if test="record.projectPlanDuration != null" >
         project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
@@ -842,10 +849,10 @@
         completion_day = #{record.completionDay,jdbcType=DATE},
       </if>
       <if test="record.approveEstimate != null" >
-        approve_estimate = #{record.approveEstimate,jdbcType=REAL},
+        approve_estimate = #{record.approveEstimate,jdbcType=DECIMAL},
       </if>
       <if test="record.budget != null" >
-        budget = #{record.budget,jdbcType=REAL},
+        budget = #{record.budget,jdbcType=DECIMAL},
       </if>
       <if test="record.uploadId != null" >
         upload_id = #{record.uploadId,jdbcType=VARCHAR},
@@ -929,7 +936,7 @@
         bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
       </if>
       <if test="record.zhdbcfhj != null" >
-        zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+        zhdbcfhj = #{record.zhdbcfhj,jdbcType=DECIMAL},
       </if>
       <if test="record.zqDzfzr != null" >
         zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
@@ -951,6 +958,9 @@
       </if>
       <if test="record.createtime != null" >
         createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.projectDescript != null" >
         project_descript = #{record.projectDescript,jdbcType=LONGVARCHAR},
@@ -1011,15 +1021,15 @@
       design_name = #{record.designName,jdbcType=VARCHAR},
       design_add = #{record.designAdd,jdbcType=VARCHAR},
       design_tel = #{record.designTel,jdbcType=VARCHAR},
-      project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
-      project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+      project_totalInversted = #{record.projectTotalinversted,jdbcType=DECIMAL},
+      project_total_len = #{record.projectTotalLen,jdbcType=DECIMAL},
       project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
       lag_day = #{record.lagDay,jdbcType=INTEGER},
       begin_day = #{record.beginDay,jdbcType=DATE},
       end_day = #{record.endDay,jdbcType=DATE},
       completion_day = #{record.completionDay,jdbcType=DATE},
-      approve_estimate = #{record.approveEstimate,jdbcType=REAL},
-      budget = #{record.budget,jdbcType=REAL},
+      approve_estimate = #{record.approveEstimate,jdbcType=DECIMAL},
+      budget = #{record.budget,jdbcType=DECIMAL},
       upload_id = #{record.uploadId,jdbcType=VARCHAR},
       project_property_a = #{record.projectPropertyA,jdbcType=VARCHAR},
       project_property_b = #{record.projectPropertyB,jdbcType=VARCHAR},
@@ -1047,7 +1057,7 @@
       qianqixmisbn = #{record.qianqixmisbn,jdbcType=VARCHAR},
       qianqixmmc = #{record.qianqixmmc,jdbcType=VARCHAR},
       bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
-      zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+      zhdbcfhj = #{record.zhdbcfhj,jdbcType=DECIMAL},
       zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
       zq_xsfzr = #{record.zqXsfzr,jdbcType=VARCHAR},
       zq_zhbld = #{record.zqZhbld,jdbcType=VARCHAR},
@@ -1055,6 +1065,7 @@
       belong_cities = #{record.belongCities,jdbcType=VARCHAR},
       issuance = #{record.issuance,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
       project_descript = #{record.projectDescript,jdbcType=LONGVARCHAR},
       build_content = #{record.buildContent,jdbcType=LONGVARCHAR},
       money_composition = #{record.moneyComposition,jdbcType=LONGVARCHAR},
@@ -1095,15 +1106,15 @@
       design_name = #{record.designName,jdbcType=VARCHAR},
       design_add = #{record.designAdd,jdbcType=VARCHAR},
       design_tel = #{record.designTel,jdbcType=VARCHAR},
-      project_totalInversted = #{record.projectTotalinversted,jdbcType=REAL},
-      project_total_len = #{record.projectTotalLen,jdbcType=REAL},
+      project_totalInversted = #{record.projectTotalinversted,jdbcType=DECIMAL},
+      project_total_len = #{record.projectTotalLen,jdbcType=DECIMAL},
       project_plan_duration = #{record.projectPlanDuration,jdbcType=INTEGER},
       lag_day = #{record.lagDay,jdbcType=INTEGER},
       begin_day = #{record.beginDay,jdbcType=DATE},
       end_day = #{record.endDay,jdbcType=DATE},
       completion_day = #{record.completionDay,jdbcType=DATE},
-      approve_estimate = #{record.approveEstimate,jdbcType=REAL},
-      budget = #{record.budget,jdbcType=REAL},
+      approve_estimate = #{record.approveEstimate,jdbcType=DECIMAL},
+      budget = #{record.budget,jdbcType=DECIMAL},
       upload_id = #{record.uploadId,jdbcType=VARCHAR},
       project_property_a = #{record.projectPropertyA,jdbcType=VARCHAR},
       project_property_b = #{record.projectPropertyB,jdbcType=VARCHAR},
@@ -1131,14 +1142,15 @@
       qianqixmisbn = #{record.qianqixmisbn,jdbcType=VARCHAR},
       qianqixmmc = #{record.qianqixmmc,jdbcType=VARCHAR},
       bgxyqdshj = #{record.bgxyqdshj,jdbcType=DATE},
-      zhdbcfhj = #{record.zhdbcfhj,jdbcType=REAL},
+      zhdbcfhj = #{record.zhdbcfhj,jdbcType=DECIMAL},
       zq_dzfzr = #{record.zqDzfzr,jdbcType=VARCHAR},
       zq_xsfzr = #{record.zqXsfzr,jdbcType=VARCHAR},
       zq_zhbld = #{record.zqZhbld,jdbcType=VARCHAR},
       zq_xmfzr = #{record.zqXmfzr,jdbcType=VARCHAR},
       belong_cities = #{record.belongCities,jdbcType=VARCHAR},
       issuance = #{record.issuance,jdbcType=INTEGER},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -1219,10 +1231,10 @@
         design_tel = #{designTel,jdbcType=VARCHAR},
       </if>
       <if test="projectTotalinversted != null" >
-        project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
+        project_totalInversted = #{projectTotalinversted,jdbcType=DECIMAL},
       </if>
       <if test="projectTotalLen != null" >
-        project_total_len = #{projectTotalLen,jdbcType=REAL},
+        project_total_len = #{projectTotalLen,jdbcType=DECIMAL},
       </if>
       <if test="projectPlanDuration != null" >
         project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
@@ -1240,10 +1252,10 @@
         completion_day = #{completionDay,jdbcType=DATE},
       </if>
       <if test="approveEstimate != null" >
-        approve_estimate = #{approveEstimate,jdbcType=REAL},
+        approve_estimate = #{approveEstimate,jdbcType=DECIMAL},
       </if>
       <if test="budget != null" >
-        budget = #{budget,jdbcType=REAL},
+        budget = #{budget,jdbcType=DECIMAL},
       </if>
       <if test="uploadId != null" >
         upload_id = #{uploadId,jdbcType=VARCHAR},
@@ -1327,7 +1339,7 @@
         bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
       </if>
       <if test="zhdbcfhj != null" >
-        zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+        zhdbcfhj = #{zhdbcfhj,jdbcType=DECIMAL},
       </if>
       <if test="zqDzfzr != null" >
         zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
@@ -1349,6 +1361,9 @@
       </if>
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
       </if>
       <if test="projectDescript != null" >
         project_descript = #{projectDescript,jdbcType=LONGVARCHAR},
@@ -1406,15 +1421,15 @@
       design_name = #{designName,jdbcType=VARCHAR},
       design_add = #{designAdd,jdbcType=VARCHAR},
       design_tel = #{designTel,jdbcType=VARCHAR},
-      project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
-      project_total_len = #{projectTotalLen,jdbcType=REAL},
+      project_totalInversted = #{projectTotalinversted,jdbcType=DECIMAL},
+      project_total_len = #{projectTotalLen,jdbcType=DECIMAL},
       project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
       lag_day = #{lagDay,jdbcType=INTEGER},
       begin_day = #{beginDay,jdbcType=DATE},
       end_day = #{endDay,jdbcType=DATE},
       completion_day = #{completionDay,jdbcType=DATE},
-      approve_estimate = #{approveEstimate,jdbcType=REAL},
-      budget = #{budget,jdbcType=REAL},
+      approve_estimate = #{approveEstimate,jdbcType=DECIMAL},
+      budget = #{budget,jdbcType=DECIMAL},
       upload_id = #{uploadId,jdbcType=VARCHAR},
       project_property_a = #{projectPropertyA,jdbcType=VARCHAR},
       project_property_b = #{projectPropertyB,jdbcType=VARCHAR},
@@ -1442,7 +1457,7 @@
       qianqixmisbn = #{qianqixmisbn,jdbcType=VARCHAR},
       qianqixmmc = #{qianqixmmc,jdbcType=VARCHAR},
       bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
-      zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+      zhdbcfhj = #{zhdbcfhj,jdbcType=DECIMAL},
       zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
       zq_xsfzr = #{zqXsfzr,jdbcType=VARCHAR},
       zq_zhbld = #{zqZhbld,jdbcType=VARCHAR},
@@ -1450,6 +1465,7 @@
       belong_cities = #{belongCities,jdbcType=VARCHAR},
       issuance = #{issuance,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
       project_descript = #{projectDescript,jdbcType=LONGVARCHAR},
       build_content = #{buildContent,jdbcType=LONGVARCHAR},
       money_composition = #{moneyComposition,jdbcType=LONGVARCHAR},
@@ -1487,15 +1503,15 @@
       design_name = #{designName,jdbcType=VARCHAR},
       design_add = #{designAdd,jdbcType=VARCHAR},
       design_tel = #{designTel,jdbcType=VARCHAR},
-      project_totalInversted = #{projectTotalinversted,jdbcType=REAL},
-      project_total_len = #{projectTotalLen,jdbcType=REAL},
+      project_totalInversted = #{projectTotalinversted,jdbcType=DECIMAL},
+      project_total_len = #{projectTotalLen,jdbcType=DECIMAL},
       project_plan_duration = #{projectPlanDuration,jdbcType=INTEGER},
       lag_day = #{lagDay,jdbcType=INTEGER},
       begin_day = #{beginDay,jdbcType=DATE},
       end_day = #{endDay,jdbcType=DATE},
       completion_day = #{completionDay,jdbcType=DATE},
-      approve_estimate = #{approveEstimate,jdbcType=REAL},
-      budget = #{budget,jdbcType=REAL},
+      approve_estimate = #{approveEstimate,jdbcType=DECIMAL},
+      budget = #{budget,jdbcType=DECIMAL},
       upload_id = #{uploadId,jdbcType=VARCHAR},
       project_property_a = #{projectPropertyA,jdbcType=VARCHAR},
       project_property_b = #{projectPropertyB,jdbcType=VARCHAR},
@@ -1523,14 +1539,21 @@
       qianqixmisbn = #{qianqixmisbn,jdbcType=VARCHAR},
       qianqixmmc = #{qianqixmmc,jdbcType=VARCHAR},
       bgxyqdshj = #{bgxyqdshj,jdbcType=DATE},
-      zhdbcfhj = #{zhdbcfhj,jdbcType=REAL},
+      zhdbcfhj = #{zhdbcfhj,jdbcType=DECIMAL},
       zq_dzfzr = #{zqDzfzr,jdbcType=VARCHAR},
       zq_xsfzr = #{zqXsfzr,jdbcType=VARCHAR},
       zq_zhbld = #{zqZhbld,jdbcType=VARCHAR},
       zq_xmfzr = #{zqXmfzr,jdbcType=VARCHAR},
       belong_cities = #{belongCities,jdbcType=VARCHAR},
       issuance = #{issuance,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+    <select id="findProjectInfoMaxInserttime"  resultType="java.lang.String" >
+    select max(inserttime) from hd_project_info;
+  </select>
+  <delete id="deleteAll">
+  delete from hd_project_info;
+  </delete>
 </mapper>

@@ -42,6 +42,7 @@
                             项目基本信息
                             </label>
                     </li>
+                    
                     <li class="list-group-item" :style="{display:config.yxhcInfoDisplay}">
                         <label><input type="checkbox" data-type="yxhcInfo" 
                             v-model="config.yxhcInfo" v-on:change="inputChange($event)"> 
@@ -60,18 +61,6 @@
         props: {
             config: {
                 type: Object,
-                default: function() {
-                    return {
-                        jdhc: true,
-                        scanPicInfo: false,
-                        projectInfo: false,
-                        yxhcInfo: true,
-                        jdhcDisplay: 'none',
-                        scanPicInfoDisplay: 'none',
-                        projectInfoDisplay: 'none',
-                        yxhcInfoDisplay: 'none',
-                    };
-                }
             }
         },
         data: function() {
@@ -119,7 +108,8 @@
             }
         },
         mounted: function() {
-            this.$nextTick(function() {});
+            this.$nextTick(function() {
+            });
         }
     });
     export default SetPage;

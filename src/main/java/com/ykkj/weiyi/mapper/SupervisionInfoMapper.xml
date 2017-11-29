@@ -1,1638 +1,1739 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ykkj.weiyi.dao.SupervisionInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.SupervisionInfo" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="direct_id" property="directId" jdbcType="VARCHAR" />
-    <result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
-    <result column="supervision_no" property="supervisionNo" jdbcType="VARCHAR" />
-    <result column="supervision_short_name" property="supervisionShortName" jdbcType="VARCHAR" />
-    <result column="supervision_add" property="supervisionAdd" jdbcType="VARCHAR" />
-    <result column="service_period" property="servicePeriod" jdbcType="VARCHAR" />
-    <result column="director_name" property="directorName" jdbcType="VARCHAR" />
-    <result column="director_tel" property="directorTel" jdbcType="VARCHAR" />
-    <result column="supervision_tel" property="supervisionTel" jdbcType="VARCHAR" />
-    <result column="sect_begin_point" property="sectBeginPoint" jdbcType="VARCHAR" />
-    <result column="sect_end_point" property="sectEndPoint" jdbcType="VARCHAR" />
-    <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
-    <result column="supervision_pact_no" property="supervisionPactNo" jdbcType="VARCHAR" />
-    <result column="pact_money" property="pactMoney" jdbcType="REAL" />
-    <result column="pact_period" property="pactPeriod" jdbcType="VARCHAR" />
-    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
-    <result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
-    <result column="superv_property_a" property="supervPropertyA" jdbcType="VARCHAR" />
-    <result column="superv_property_b" property="supervPropertyB" jdbcType="VARCHAR" />
-    <result column="superv_property_c" property="supervPropertyC" jdbcType="VARCHAR" />
-    <result column="sortorder" property="sortorder" jdbcType="INTEGER" />
-    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
-    <result column="zzhdj" property="zzhdj" jdbcType="VARCHAR" />
-    <result column="zhshhm" property="zhshhm" jdbcType="VARCHAR" />
-    <result column="yyzhzh" property="yyzhzh" jdbcType="VARCHAR" />
-    <result column="chzhhm" property="chzhhm" jdbcType="VARCHAR" />
-    <result column="zhgrsh" property="zhgrsh" jdbcType="INTEGER" />
-    <result column="zhyjshrsh" property="zhyjshrsh" jdbcType="INTEGER" />
-    <result column="yjdzh" property="yjdzh" jdbcType="VARCHAR" />
-    <result column="jlgchshzgrsh" property="jlgchshzgrsh" jdbcType="INTEGER" />
-    <result column="chbjzhrs" property="chbjzhrs" jdbcType="INTEGER" />
-    <result column="chbzhjzhrsh" property="chbzhjzhrsh" jdbcType="INTEGER" />
-    <result column="chtjzhrsh" property="chtjzhrsh" jdbcType="INTEGER" />
-    <result column="dwfzr" property="dwfzr" jdbcType="VARCHAR" />
-    <result column="fzrdh" property="fzrdh" jdbcType="VARCHAR" />
-    <result column="dwyb" property="dwyb" jdbcType="VARCHAR" />
-    <result column="fzrzhw" property="fzrzhw" jdbcType="VARCHAR" />
-    <result column="sxhth" property="sxhth" jdbcType="VARCHAR" />
-    <result column="sxlch" property="sxlch" jdbcType="REAL" />
-    <result column="sxldzj" property="sxldzj" jdbcType="REAL" />
-    <result column="jlftbzj" property="jlftbzj" jdbcType="REAL" />
-    <result column="jlfjbj" property="jlfjbj" jdbcType="REAL" />
-    <result column="shgjdfwq" property="shgjdfwq" jdbcType="REAL" />
-    <result column="kshrq" property="kshrq" jdbcType="DATE" />
-    <result column="jshrq" property="jshrq" jdbcType="DATE" />
-    <result column="qxzrfwq" property="qxzrfwq" jdbcType="REAL" />
-    <result column="htjlryshl" property="htjlryshl" jdbcType="INTEGER" />
-    <result column="zhyjljyshrysl" property="zhyjljyshrysl" jdbcType="INTEGER" />
-    <result column="zjbdzh" property="zjbdzh" jdbcType="VARCHAR" />
-    <result column="gzjbyb" property="gzjbyb" jdbcType="VARCHAR" />
-    <result column="zjblxdh" property="zjblxdh" jdbcType="VARCHAR" />
-    <result column="xmxtrxm" property="xmxtrxm" jdbcType="VARCHAR" />
-    <result column="xmxtrdh" property="xmxtrdh" jdbcType="VARCHAR" />
-    <result column="bjrq" property="bjrq" jdbcType="DATE" />
-    <result column="money_value01" property="moneyValue01" jdbcType="REAL" />
-    <result column="money_value02" property="moneyValue02" jdbcType="REAL" />
-    <result column="money_value03" property="moneyValue03" jdbcType="REAL" />
-    <result column="money_value04" property="moneyValue04" jdbcType="REAL" />
-    <result column="money_value05" property="moneyValue05" jdbcType="REAL" />
-    <result column="money_value06" property="moneyValue06" jdbcType="REAL" />
-    <result column="money_value07" property="moneyValue07" jdbcType="REAL" />
-    <result column="money_value08" property="moneyValue08" jdbcType="REAL" />
-    <result column="money_value09" property="moneyValue09" jdbcType="REAL" />
-    <result column="money_value10" property="moneyValue10" jdbcType="REAL" />
-    <result column="money_value11" property="moneyValue11" jdbcType="REAL" />
-    <result column="role_type" property="roleType" jdbcType="VARCHAR" />
-    <result column="money_value12" property="moneyValue12" jdbcType="REAL" />
-    <result column="money_value13" property="moneyValue13" jdbcType="REAL" />
-    <result column="money_value14" property="moneyValue14" jdbcType="REAL" />
-    <result column="money_value15" property="moneyValue15" jdbcType="REAL" />
-    <result column="money_value16" property="moneyValue16" jdbcType="REAL" />
-    <result column="money_value17" property="moneyValue17" jdbcType="REAL" />
-    <result column="money_value18" property="moneyValue18" jdbcType="REAL" />
-    <result column="money_value19" property="moneyValue19" jdbcType="REAL" />
-    <result column="money_value20" property="moneyValue20" jdbcType="REAL" />
-    <result column="money_value21" property="moneyValue21" jdbcType="REAL" />
-    <result column="money_value22" property="moneyValue22" jdbcType="REAL" />
-    <result column="money_value23" property="moneyValue23" jdbcType="REAL" />
-    <result column="money_value24" property="moneyValue24" jdbcType="REAL" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs" extends="BaseResultMap" >
-    <result column="supervision_memo" property="supervisionMemo" jdbcType="LONGVARCHAR" />
-    <result column="dwyjgk" property="dwyjgk" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, direct_id, sys_dept_id, supervision_no, supervision_short_name, supervision_add, 
-    service_period, director_name, director_tel, supervision_tel, sect_begin_point, sect_end_point, 
-    upload_id, supervision_pact_no, pact_money, pact_period, bank_name, bank_no, superv_property_a, 
-    superv_property_b, superv_property_c, sortorder, project_id, zzhdj, zhshhm, yyzhzh, 
-    chzhhm, zhgrsh, zhyjshrsh, yjdzh, jlgchshzgrsh, chbjzhrs, chbzhjzhrsh, chtjzhrsh, 
-    dwfzr, fzrdh, dwyb, fzrzhw, sxhth, sxlch, sxldzj, jlftbzj, jlfjbj, shgjdfwq, kshrq, 
-    jshrq, qxzrfwq, htjlryshl, zhyjljyshrysl, zjbdzh, gzjbyb, zjblxdh, xmxtrxm, xmxtrdh, 
-    bjrq, money_value01, money_value02, money_value03, money_value04, money_value05, 
-    money_value06, money_value07, money_value08, money_value09, money_value10, money_value11, 
-    role_type, money_value12, money_value13, money_value14, money_value15, money_value16, 
-    money_value17, money_value18, money_value19, money_value20, money_value21, money_value22, 
-    money_value23, money_value24, createtime
-  </sql>
-  <sql id="Blob_Column_List" >
-    supervision_memo, dwyjgk
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from hd_supervision_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from hd_supervision_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from hd_supervision_info
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from hd_supervision_info
-    where id = #{id,jdbcType=VARCHAR}
+<mapper namespace="com.ykkj.weiyi.dao.SupervisionInfoMapper">
+	<resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.SupervisionInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="direct_id" property="directId" jdbcType="VARCHAR" />
+		<result column="sys_dept_id" property="sysDeptId" jdbcType="VARCHAR" />
+		<result column="supervision_no" property="supervisionNo"
+			jdbcType="VARCHAR" />
+		<result column="supervision_short_name" property="supervisionShortName"
+			jdbcType="VARCHAR" />
+		<result column="supervision_add" property="supervisionAdd"
+			jdbcType="VARCHAR" />
+		<result column="service_period" property="servicePeriod"
+			jdbcType="VARCHAR" />
+		<result column="director_name" property="directorName"
+			jdbcType="VARCHAR" />
+		<result column="director_tel" property="directorTel" jdbcType="VARCHAR" />
+		<result column="supervision_tel" property="supervisionTel"
+			jdbcType="VARCHAR" />
+		<result column="sect_begin_point" property="sectBeginPoint"
+			jdbcType="VARCHAR" />
+		<result column="sect_end_point" property="sectEndPoint"
+			jdbcType="VARCHAR" />
+		<result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+		<result column="supervision_pact_no" property="supervisionPactNo"
+			jdbcType="VARCHAR" />
+		<result column="pact_money" property="pactMoney" jdbcType="DECIMAL" />
+		<result column="pact_period" property="pactPeriod" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
+		<result column="superv_property_a" property="supervPropertyA"
+			jdbcType="VARCHAR" />
+		<result column="superv_property_b" property="supervPropertyB"
+			jdbcType="VARCHAR" />
+		<result column="superv_property_c" property="supervPropertyC"
+			jdbcType="VARCHAR" />
+		<result column="sortorder" property="sortorder" jdbcType="INTEGER" />
+		<result column="project_id" property="projectId" jdbcType="VARCHAR" />
+		<result column="zzhdj" property="zzhdj" jdbcType="VARCHAR" />
+		<result column="zhshhm" property="zhshhm" jdbcType="VARCHAR" />
+		<result column="yyzhzh" property="yyzhzh" jdbcType="VARCHAR" />
+		<result column="chzhhm" property="chzhhm" jdbcType="VARCHAR" />
+		<result column="zhgrsh" property="zhgrsh" jdbcType="INTEGER" />
+		<result column="zhyjshrsh" property="zhyjshrsh" jdbcType="INTEGER" />
+		<result column="yjdzh" property="yjdzh" jdbcType="VARCHAR" />
+		<result column="jlgchshzgrsh" property="jlgchshzgrsh" jdbcType="INTEGER" />
+		<result column="chbjzhrs" property="chbjzhrs" jdbcType="INTEGER" />
+		<result column="chbzhjzhrsh" property="chbzhjzhrsh" jdbcType="INTEGER" />
+		<result column="chtjzhrsh" property="chtjzhrsh" jdbcType="INTEGER" />
+		<result column="dwfzr" property="dwfzr" jdbcType="VARCHAR" />
+		<result column="fzrdh" property="fzrdh" jdbcType="VARCHAR" />
+		<result column="dwyb" property="dwyb" jdbcType="VARCHAR" />
+		<result column="fzrzhw" property="fzrzhw" jdbcType="VARCHAR" />
+		<result column="sxhth" property="sxhth" jdbcType="VARCHAR" />
+		<result column="sxlch" property="sxlch" jdbcType="DECIMAL" />
+		<result column="sxldzj" property="sxldzj" jdbcType="DECIMAL" />
+		<result column="jlftbzj" property="jlftbzj" jdbcType="DECIMAL" />
+		<result column="jlfjbj" property="jlfjbj" jdbcType="DECIMAL" />
+		<result column="shgjdfwq" property="shgjdfwq" jdbcType="DECIMAL" />
+		<result column="kshrq" property="kshrq" jdbcType="DATE" />
+		<result column="jshrq" property="jshrq" jdbcType="DATE" />
+		<result column="qxzrfwq" property="qxzrfwq" jdbcType="DECIMAL" />
+		<result column="htjlryshl" property="htjlryshl" jdbcType="INTEGER" />
+		<result column="zhyjljyshrysl" property="zhyjljyshrysl"
+			jdbcType="INTEGER" />
+		<result column="zjbdzh" property="zjbdzh" jdbcType="VARCHAR" />
+		<result column="gzjbyb" property="gzjbyb" jdbcType="VARCHAR" />
+		<result column="zjblxdh" property="zjblxdh" jdbcType="VARCHAR" />
+		<result column="xmxtrxm" property="xmxtrxm" jdbcType="VARCHAR" />
+		<result column="xmxtrdh" property="xmxtrdh" jdbcType="VARCHAR" />
+		<result column="bjrq" property="bjrq" jdbcType="DATE" />
+		<result column="money_value01" property="moneyValue01"
+			jdbcType="DECIMAL" />
+		<result column="money_value02" property="moneyValue02"
+			jdbcType="DECIMAL" />
+		<result column="money_value03" property="moneyValue03"
+			jdbcType="DECIMAL" />
+		<result column="money_value04" property="moneyValue04"
+			jdbcType="DECIMAL" />
+		<result column="money_value05" property="moneyValue05"
+			jdbcType="DECIMAL" />
+		<result column="money_value06" property="moneyValue06"
+			jdbcType="DECIMAL" />
+		<result column="money_value07" property="moneyValue07"
+			jdbcType="DECIMAL" />
+		<result column="money_value08" property="moneyValue08"
+			jdbcType="DECIMAL" />
+		<result column="money_value09" property="moneyValue09"
+			jdbcType="DECIMAL" />
+		<result column="money_value10" property="moneyValue10"
+			jdbcType="DECIMAL" />
+		<result column="money_value11" property="moneyValue11"
+			jdbcType="DECIMAL" />
+		<result column="role_type" property="roleType" jdbcType="VARCHAR" />
+		<result column="money_value12" property="moneyValue12"
+			jdbcType="DECIMAL" />
+		<result column="money_value13" property="moneyValue13"
+			jdbcType="DECIMAL" />
+		<result column="money_value14" property="moneyValue14"
+			jdbcType="DECIMAL" />
+		<result column="money_value15" property="moneyValue15"
+			jdbcType="DECIMAL" />
+		<result column="money_value16" property="moneyValue16"
+			jdbcType="DECIMAL" />
+		<result column="money_value17" property="moneyValue17"
+			jdbcType="DECIMAL" />
+		<result column="money_value18" property="moneyValue18"
+			jdbcType="DECIMAL" />
+		<result column="money_value19" property="moneyValue19"
+			jdbcType="DECIMAL" />
+		<result column="money_value20" property="moneyValue20"
+			jdbcType="DECIMAL" />
+		<result column="money_value21" property="moneyValue21"
+			jdbcType="DECIMAL" />
+		<result column="money_value22" property="moneyValue22"
+			jdbcType="DECIMAL" />
+		<result column="money_value23" property="moneyValue23"
+			jdbcType="DECIMAL" />
+		<result column="money_value24" property="moneyValue24"
+			jdbcType="DECIMAL" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="inserttime" property="inserttime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs"
+		extends="BaseResultMap">
+		<result column="supervision_memo" property="supervisionMemo"
+			jdbcType="LONGVARCHAR" />
+		<result column="dwyjgk" property="dwyjgk" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, direct_id, sys_dept_id, supervision_no, supervision_short_name,
+		supervision_add,
+		service_period, director_name, director_tel, supervision_tel, sect_begin_point,
+		sect_end_point,
+		upload_id, supervision_pact_no, pact_money, pact_period, bank_name, bank_no,
+		superv_property_a,
+		superv_property_b, superv_property_c, sortorder, project_id, zzhdj, zhshhm, yyzhzh,
+		chzhhm, zhgrsh, zhyjshrsh, yjdzh, jlgchshzgrsh, chbjzhrs, chbzhjzhrsh,
+		chtjzhrsh,
+		dwfzr, fzrdh, dwyb, fzrzhw, sxhth, sxlch, sxldzj, jlftbzj, jlfjbj, shgjdfwq,
+		kshrq,
+		jshrq, qxzrfwq, htjlryshl, zhyjljyshrysl, zjbdzh, gzjbyb, zjblxdh, xmxtrxm,
+		xmxtrdh,
+		bjrq, money_value01, money_value02, money_value03, money_value04,
+		money_value05,
+		money_value06, money_value07, money_value08, money_value09, money_value10,
+		money_value11,
+		role_type, money_value12, money_value13, money_value14, money_value15,
+		money_value16,
+		money_value17, money_value18, money_value19, money_value20, money_value21,
+		money_value22,
+		money_value23, money_value24, createtime, inserttime
+	</sql>
+	<sql id="Blob_Column_List">
+		supervision_memo, dwyjgk
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from hd_supervision_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from hd_supervision_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from hd_supervision_info
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from hd_supervision_info
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample">
+		delete from hd_supervision_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs">
+		insert into hd_supervision_info (id, direct_id, sys_dept_id,
+		supervision_no, supervision_short_name, supervision_add,
+		service_period, director_name, director_tel,
+		supervision_tel, sect_begin_point, sect_end_point,
+		upload_id, supervision_pact_no, pact_money,
+		pact_period, bank_name, bank_no,
+		superv_property_a, superv_property_b, superv_property_c,
+		sortorder, project_id, zzhdj,
+		zhshhm, yyzhzh, chzhhm,
+		zhgrsh, zhyjshrsh, yjdzh,
+		jlgchshzgrsh, chbjzhrs, chbzhjzhrsh,
+		chtjzhrsh, dwfzr, fzrdh,
+		dwyb, fzrzhw, sxhth,
+		sxlch, sxldzj, jlftbzj,
+		jlfjbj, shgjdfwq, kshrq,
+		jshrq, qxzrfwq, htjlryshl,
+		zhyjljyshrysl, zjbdzh, gzjbyb,
+		zjblxdh, xmxtrxm, xmxtrdh,
+		bjrq, money_value01, money_value02,
+		money_value03, money_value04, money_value05,
+		money_value06, money_value07, money_value08,
+		money_value09, money_value10, money_value11,
+		role_type, money_value12, money_value13,
+		money_value14, money_value15, money_value16,
+		money_value17, money_value18, money_value19,
+		money_value20, money_value21, money_value22,
+		money_value23, money_value24, createtime,
+		inserttime, supervision_memo, dwyjgk
+		)
+		values (#{id,jdbcType=VARCHAR}, #{directId,jdbcType=VARCHAR},
+		#{sysDeptId,jdbcType=VARCHAR},
+		#{supervisionNo,jdbcType=VARCHAR}, #{supervisionShortName,jdbcType=VARCHAR},
+		#{supervisionAdd,jdbcType=VARCHAR},
+		#{servicePeriod,jdbcType=VARCHAR}, #{directorName,jdbcType=VARCHAR}, #{directorTel,jdbcType=VARCHAR},
+		#{supervisionTel,jdbcType=VARCHAR},
+		#{sectBeginPoint,jdbcType=VARCHAR}, #{sectEndPoint,jdbcType=VARCHAR},
+		#{uploadId,jdbcType=VARCHAR}, #{supervisionPactNo,jdbcType=VARCHAR},
+		#{pactMoney,jdbcType=DECIMAL},
+		#{pactPeriod,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR},
+		#{supervPropertyA,jdbcType=VARCHAR},
+		#{supervPropertyB,jdbcType=VARCHAR},
+		#{supervPropertyC,jdbcType=VARCHAR},
+		#{sortorder,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{zzhdj,jdbcType=VARCHAR},
+		#{zhshhm,jdbcType=VARCHAR}, #{yyzhzh,jdbcType=VARCHAR},
+		#{chzhhm,jdbcType=VARCHAR},
+		#{zhgrsh,jdbcType=INTEGER}, #{zhyjshrsh,jdbcType=INTEGER}, #{yjdzh,jdbcType=VARCHAR},
+		#{jlgchshzgrsh,jdbcType=INTEGER}, #{chbjzhrs,jdbcType=INTEGER},
+		#{chbzhjzhrsh,jdbcType=INTEGER},
+		#{chtjzhrsh,jdbcType=INTEGER}, #{dwfzr,jdbcType=VARCHAR}, #{fzrdh,jdbcType=VARCHAR},
+		#{dwyb,jdbcType=VARCHAR}, #{fzrzhw,jdbcType=VARCHAR},
+		#{sxhth,jdbcType=VARCHAR},
+		#{sxlch,jdbcType=DECIMAL}, #{sxldzj,jdbcType=DECIMAL}, #{jlftbzj,jdbcType=DECIMAL},
+		#{jlfjbj,jdbcType=DECIMAL}, #{shgjdfwq,jdbcType=DECIMAL},
+		#{kshrq,jdbcType=DATE},
+		#{jshrq,jdbcType=DATE}, #{qxzrfwq,jdbcType=DECIMAL}, #{htjlryshl,jdbcType=INTEGER},
+		#{zhyjljyshrysl,jdbcType=INTEGER}, #{zjbdzh,jdbcType=VARCHAR},
+		#{gzjbyb,jdbcType=VARCHAR},
+		#{zjblxdh,jdbcType=VARCHAR}, #{xmxtrxm,jdbcType=VARCHAR}, #{xmxtrdh,jdbcType=VARCHAR},
+		#{bjrq,jdbcType=DATE}, #{moneyValue01,jdbcType=DECIMAL},
+		#{moneyValue02,jdbcType=DECIMAL},
+		#{moneyValue03,jdbcType=DECIMAL}, #{moneyValue04,jdbcType=DECIMAL}, #{moneyValue05,jdbcType=DECIMAL},
+		#{moneyValue06,jdbcType=DECIMAL}, #{moneyValue07,jdbcType=DECIMAL},
+		#{moneyValue08,jdbcType=DECIMAL},
+		#{moneyValue09,jdbcType=DECIMAL}, #{moneyValue10,jdbcType=DECIMAL}, #{moneyValue11,jdbcType=DECIMAL},
+		#{roleType,jdbcType=VARCHAR}, #{moneyValue12,jdbcType=DECIMAL},
+		#{moneyValue13,jdbcType=DECIMAL},
+		#{moneyValue14,jdbcType=DECIMAL}, #{moneyValue15,jdbcType=DECIMAL}, #{moneyValue16,jdbcType=DECIMAL},
+		#{moneyValue17,jdbcType=DECIMAL}, #{moneyValue18,jdbcType=DECIMAL},
+		#{moneyValue19,jdbcType=DECIMAL},
+		#{moneyValue20,jdbcType=DECIMAL}, #{moneyValue21,jdbcType=DECIMAL}, #{moneyValue22,jdbcType=DECIMAL},
+		#{moneyValue23,jdbcType=DECIMAL}, #{moneyValue24,jdbcType=DECIMAL},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{inserttime,jdbcType=CHAR}, #{supervisionMemo,jdbcType=LONGVARCHAR},
+		#{dwyjgk,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs">
+		insert into hd_supervision_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="directId != null">
+				direct_id,
+			</if>
+			<if test="sysDeptId != null">
+				sys_dept_id,
+			</if>
+			<if test="supervisionNo != null">
+				supervision_no,
+			</if>
+			<if test="supervisionShortName != null">
+				supervision_short_name,
+			</if>
+			<if test="supervisionAdd != null">
+				supervision_add,
+			</if>
+			<if test="servicePeriod != null">
+				service_period,
+			</if>
+			<if test="directorName != null">
+				director_name,
+			</if>
+			<if test="directorTel != null">
+				director_tel,
+			</if>
+			<if test="supervisionTel != null">
+				supervision_tel,
+			</if>
+			<if test="sectBeginPoint != null">
+				sect_begin_point,
+			</if>
+			<if test="sectEndPoint != null">
+				sect_end_point,
+			</if>
+			<if test="uploadId != null">
+				upload_id,
+			</if>
+			<if test="supervisionPactNo != null">
+				supervision_pact_no,
+			</if>
+			<if test="pactMoney != null">
+				pact_money,
+			</if>
+			<if test="pactPeriod != null">
+				pact_period,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankNo != null">
+				bank_no,
+			</if>
+			<if test="supervPropertyA != null">
+				superv_property_a,
+			</if>
+			<if test="supervPropertyB != null">
+				superv_property_b,
+			</if>
+			<if test="supervPropertyC != null">
+				superv_property_c,
+			</if>
+			<if test="sortorder != null">
+				sortorder,
+			</if>
+			<if test="projectId != null">
+				project_id,
+			</if>
+			<if test="zzhdj != null">
+				zzhdj,
+			</if>
+			<if test="zhshhm != null">
+				zhshhm,
+			</if>
+			<if test="yyzhzh != null">
+				yyzhzh,
+			</if>
+			<if test="chzhhm != null">
+				chzhhm,
+			</if>
+			<if test="zhgrsh != null">
+				zhgrsh,
+			</if>
+			<if test="zhyjshrsh != null">
+				zhyjshrsh,
+			</if>
+			<if test="yjdzh != null">
+				yjdzh,
+			</if>
+			<if test="jlgchshzgrsh != null">
+				jlgchshzgrsh,
+			</if>
+			<if test="chbjzhrs != null">
+				chbjzhrs,
+			</if>
+			<if test="chbzhjzhrsh != null">
+				chbzhjzhrsh,
+			</if>
+			<if test="chtjzhrsh != null">
+				chtjzhrsh,
+			</if>
+			<if test="dwfzr != null">
+				dwfzr,
+			</if>
+			<if test="fzrdh != null">
+				fzrdh,
+			</if>
+			<if test="dwyb != null">
+				dwyb,
+			</if>
+			<if test="fzrzhw != null">
+				fzrzhw,
+			</if>
+			<if test="sxhth != null">
+				sxhth,
+			</if>
+			<if test="sxlch != null">
+				sxlch,
+			</if>
+			<if test="sxldzj != null">
+				sxldzj,
+			</if>
+			<if test="jlftbzj != null">
+				jlftbzj,
+			</if>
+			<if test="jlfjbj != null">
+				jlfjbj,
+			</if>
+			<if test="shgjdfwq != null">
+				shgjdfwq,
+			</if>
+			<if test="kshrq != null">
+				kshrq,
+			</if>
+			<if test="jshrq != null">
+				jshrq,
+			</if>
+			<if test="qxzrfwq != null">
+				qxzrfwq,
+			</if>
+			<if test="htjlryshl != null">
+				htjlryshl,
+			</if>
+			<if test="zhyjljyshrysl != null">
+				zhyjljyshrysl,
+			</if>
+			<if test="zjbdzh != null">
+				zjbdzh,
+			</if>
+			<if test="gzjbyb != null">
+				gzjbyb,
+			</if>
+			<if test="zjblxdh != null">
+				zjblxdh,
+			</if>
+			<if test="xmxtrxm != null">
+				xmxtrxm,
+			</if>
+			<if test="xmxtrdh != null">
+				xmxtrdh,
+			</if>
+			<if test="bjrq != null">
+				bjrq,
+			</if>
+			<if test="moneyValue01 != null">
+				money_value01,
+			</if>
+			<if test="moneyValue02 != null">
+				money_value02,
+			</if>
+			<if test="moneyValue03 != null">
+				money_value03,
+			</if>
+			<if test="moneyValue04 != null">
+				money_value04,
+			</if>
+			<if test="moneyValue05 != null">
+				money_value05,
+			</if>
+			<if test="moneyValue06 != null">
+				money_value06,
+			</if>
+			<if test="moneyValue07 != null">
+				money_value07,
+			</if>
+			<if test="moneyValue08 != null">
+				money_value08,
+			</if>
+			<if test="moneyValue09 != null">
+				money_value09,
+			</if>
+			<if test="moneyValue10 != null">
+				money_value10,
+			</if>
+			<if test="moneyValue11 != null">
+				money_value11,
+			</if>
+			<if test="roleType != null">
+				role_type,
+			</if>
+			<if test="moneyValue12 != null">
+				money_value12,
+			</if>
+			<if test="moneyValue13 != null">
+				money_value13,
+			</if>
+			<if test="moneyValue14 != null">
+				money_value14,
+			</if>
+			<if test="moneyValue15 != null">
+				money_value15,
+			</if>
+			<if test="moneyValue16 != null">
+				money_value16,
+			</if>
+			<if test="moneyValue17 != null">
+				money_value17,
+			</if>
+			<if test="moneyValue18 != null">
+				money_value18,
+			</if>
+			<if test="moneyValue19 != null">
+				money_value19,
+			</if>
+			<if test="moneyValue20 != null">
+				money_value20,
+			</if>
+			<if test="moneyValue21 != null">
+				money_value21,
+			</if>
+			<if test="moneyValue22 != null">
+				money_value22,
+			</if>
+			<if test="moneyValue23 != null">
+				money_value23,
+			</if>
+			<if test="moneyValue24 != null">
+				money_value24,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="inserttime != null">
+				inserttime,
+			</if>
+			<if test="supervisionMemo != null">
+				supervision_memo,
+			</if>
+			<if test="dwyjgk != null">
+				dwyjgk,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="directId != null">
+				#{directId,jdbcType=VARCHAR},
+			</if>
+			<if test="sysDeptId != null">
+				#{sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionNo != null">
+				#{supervisionNo,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionShortName != null">
+				#{supervisionShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionAdd != null">
+				#{supervisionAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="servicePeriod != null">
+				#{servicePeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="directorName != null">
+				#{directorName,jdbcType=VARCHAR},
+			</if>
+			<if test="directorTel != null">
+				#{directorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionTel != null">
+				#{supervisionTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectBeginPoint != null">
+				#{sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEndPoint != null">
+				#{sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadId != null">
+				#{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionPactNo != null">
+				#{supervisionPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pactMoney != null">
+				#{pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="pactPeriod != null">
+				#{pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyA != null">
+				#{supervPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyB != null">
+				#{supervPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyC != null">
+				#{supervPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="sortorder != null">
+				#{sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="projectId != null">
+				#{projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="zzhdj != null">
+				#{zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="zhshhm != null">
+				#{zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="yyzhzh != null">
+				#{yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="chzhhm != null">
+				#{chzhhm,jdbcType=VARCHAR},
+			</if>
+			<if test="zhgrsh != null">
+				#{zhgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="zhyjshrsh != null">
+				#{zhyjshrsh,jdbcType=INTEGER},
+			</if>
+			<if test="yjdzh != null">
+				#{yjdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="jlgchshzgrsh != null">
+				#{jlgchshzgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="chbjzhrs != null">
+				#{chbjzhrs,jdbcType=INTEGER},
+			</if>
+			<if test="chbzhjzhrsh != null">
+				#{chbzhjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="chtjzhrsh != null">
+				#{chtjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="dwfzr != null">
+				#{dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrdh != null">
+				#{fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="dwyb != null">
+				#{dwyb,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrzhw != null">
+				#{fzrzhw,jdbcType=VARCHAR},
+			</if>
+			<if test="sxhth != null">
+				#{sxhth,jdbcType=VARCHAR},
+			</if>
+			<if test="sxlch != null">
+				#{sxlch,jdbcType=DECIMAL},
+			</if>
+			<if test="sxldzj != null">
+				#{sxldzj,jdbcType=DECIMAL},
+			</if>
+			<if test="jlftbzj != null">
+				#{jlftbzj,jdbcType=DECIMAL},
+			</if>
+			<if test="jlfjbj != null">
+				#{jlfjbj,jdbcType=DECIMAL},
+			</if>
+			<if test="shgjdfwq != null">
+				#{shgjdfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="kshrq != null">
+				#{kshrq,jdbcType=DATE},
+			</if>
+			<if test="jshrq != null">
+				#{jshrq,jdbcType=DATE},
+			</if>
+			<if test="qxzrfwq != null">
+				#{qxzrfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="htjlryshl != null">
+				#{htjlryshl,jdbcType=INTEGER},
+			</if>
+			<if test="zhyjljyshrysl != null">
+				#{zhyjljyshrysl,jdbcType=INTEGER},
+			</if>
+			<if test="zjbdzh != null">
+				#{zjbdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="gzjbyb != null">
+				#{gzjbyb,jdbcType=VARCHAR},
+			</if>
+			<if test="zjblxdh != null">
+				#{zjblxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="xmxtrxm != null">
+				#{xmxtrxm,jdbcType=VARCHAR},
+			</if>
+			<if test="xmxtrdh != null">
+				#{xmxtrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="bjrq != null">
+				#{bjrq,jdbcType=DATE},
+			</if>
+			<if test="moneyValue01 != null">
+				#{moneyValue01,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue02 != null">
+				#{moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue03 != null">
+				#{moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue04 != null">
+				#{moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue05 != null">
+				#{moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue06 != null">
+				#{moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue07 != null">
+				#{moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue08 != null">
+				#{moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue09 != null">
+				#{moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue10 != null">
+				#{moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue11 != null">
+				#{moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="roleType != null">
+				#{roleType,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue12 != null">
+				#{moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue13 != null">
+				#{moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue14 != null">
+				#{moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue15 != null">
+				#{moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue16 != null">
+				#{moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue17 != null">
+				#{moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue18 != null">
+				#{moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue19 != null">
+				#{moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue20 != null">
+				#{moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue21 != null">
+				#{moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue22 != null">
+				#{moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue23 != null">
+				#{moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue24 != null">
+				#{moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inserttime != null">
+				#{inserttime,jdbcType=CHAR},
+			</if>
+			<if test="supervisionMemo != null">
+				#{supervisionMemo,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="dwyjgk != null">
+				#{dwyjgk,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample"
+		resultType="java.lang.Integer">
+		select count(*) from hd_supervision_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update hd_supervision_info
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.directId != null">
+				direct_id = #{record.directId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sysDeptId != null">
+				sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionNo != null">
+				supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionShortName != null">
+				supervision_short_name =
+				#{record.supervisionShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionAdd != null">
+				supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.servicePeriod != null">
+				service_period = #{record.servicePeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="record.directorName != null">
+				director_name = #{record.directorName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.directorTel != null">
+				director_tel = #{record.directorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionTel != null">
+				supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectBeginPoint != null">
+				sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sectEndPoint != null">
+				sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="record.uploadId != null">
+				upload_id = #{record.uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervisionPactNo != null">
+				supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pactMoney != null">
+				pact_money = #{record.pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="record.pactPeriod != null">
+				pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bankName != null">
+				bank_name = #{record.bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bankNo != null">
+				bank_no = #{record.bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervPropertyA != null">
+				superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervPropertyB != null">
+				superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="record.supervPropertyC != null">
+				superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sortorder != null">
+				sortorder = #{record.sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="record.projectId != null">
+				project_id = #{record.projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zzhdj != null">
+				zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zhshhm != null">
+				zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.yyzhzh != null">
+				yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.chzhhm != null">
+				chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zhgrsh != null">
+				zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.zhyjshrsh != null">
+				zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.yjdzh != null">
+				yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jlgchshzgrsh != null">
+				jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.chbjzhrs != null">
+				chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
+			</if>
+			<if test="record.chbzhjzhrsh != null">
+				chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.chtjzhrsh != null">
+				chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="record.dwfzr != null">
+				dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fzrdh != null">
+				fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.dwyb != null">
+				dwyb = #{record.dwyb,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fzrzhw != null">
+				fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sxhth != null">
+				sxhth = #{record.sxhth,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sxlch != null">
+				sxlch = #{record.sxlch,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sxldzj != null">
+				sxldzj = #{record.sxldzj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.jlftbzj != null">
+				jlftbzj = #{record.jlftbzj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.jlfjbj != null">
+				jlfjbj = #{record.jlfjbj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.shgjdfwq != null">
+				shgjdfwq = #{record.shgjdfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="record.kshrq != null">
+				kshrq = #{record.kshrq,jdbcType=DATE},
+			</if>
+			<if test="record.jshrq != null">
+				jshrq = #{record.jshrq,jdbcType=DATE},
+			</if>
+			<if test="record.qxzrfwq != null">
+				qxzrfwq = #{record.qxzrfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="record.htjlryshl != null">
+				htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
+			</if>
+			<if test="record.zhyjljyshrysl != null">
+				zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
+			</if>
+			<if test="record.zjbdzh != null">
+				zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.gzjbyb != null">
+				gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
+			</if>
+			<if test="record.zjblxdh != null">
+				zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.xmxtrxm != null">
+				xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.xmxtrdh != null">
+				xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bjrq != null">
+				bjrq = #{record.bjrq,jdbcType=DATE},
+			</if>
+			<if test="record.moneyValue01 != null">
+				money_value01 = #{record.moneyValue01,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue02 != null">
+				money_value02 = #{record.moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue03 != null">
+				money_value03 = #{record.moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue04 != null">
+				money_value04 = #{record.moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue05 != null">
+				money_value05 = #{record.moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue06 != null">
+				money_value06 = #{record.moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue07 != null">
+				money_value07 = #{record.moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue08 != null">
+				money_value08 = #{record.moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue09 != null">
+				money_value09 = #{record.moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue10 != null">
+				money_value10 = #{record.moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue11 != null">
+				money_value11 = #{record.moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="record.roleType != null">
+				role_type = #{record.roleType,jdbcType=VARCHAR},
+			</if>
+			<if test="record.moneyValue12 != null">
+				money_value12 = #{record.moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue13 != null">
+				money_value13 = #{record.moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue14 != null">
+				money_value14 = #{record.moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue15 != null">
+				money_value15 = #{record.moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue16 != null">
+				money_value16 = #{record.moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue17 != null">
+				money_value17 = #{record.moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue18 != null">
+				money_value18 = #{record.moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue19 != null">
+				money_value19 = #{record.moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue20 != null">
+				money_value20 = #{record.moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue21 != null">
+				money_value21 = #{record.moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue22 != null">
+				money_value22 = #{record.moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue23 != null">
+				money_value23 = #{record.moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="record.moneyValue24 != null">
+				money_value24 = #{record.moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.inserttime != null">
+				inserttime = #{record.inserttime,jdbcType=CHAR},
+			</if>
+			<if test="record.supervisionMemo != null">
+				supervision_memo = #{record.supervisionMemo,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.dwyjgk != null">
+				dwyjgk = #{record.dwyjgk,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update hd_supervision_info
+		set id = #{record.id,jdbcType=VARCHAR},
+		direct_id = #{record.directId,jdbcType=VARCHAR},
+		sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+		supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
+		supervision_short_name = #{record.supervisionShortName,jdbcType=VARCHAR},
+		supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
+		service_period = #{record.servicePeriod,jdbcType=VARCHAR},
+		director_name = #{record.directorName,jdbcType=VARCHAR},
+		director_tel = #{record.directorTel,jdbcType=VARCHAR},
+		supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
+		sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
+		upload_id = #{record.uploadId,jdbcType=VARCHAR},
+		supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
+		pact_money = #{record.pactMoney,jdbcType=DECIMAL},
+		pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
+		bank_name = #{record.bankName,jdbcType=VARCHAR},
+		bank_no = #{record.bankNo,jdbcType=VARCHAR},
+		superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
+		superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
+		superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
+		sortorder = #{record.sortorder,jdbcType=INTEGER},
+		project_id = #{record.projectId,jdbcType=VARCHAR},
+		zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
+		yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
+		chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
+		zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
+		zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
+		yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
+		jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
+		chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
+		chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
+		chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
+		dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
+		fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+		dwyb = #{record.dwyb,jdbcType=VARCHAR},
+		fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
+		sxhth = #{record.sxhth,jdbcType=VARCHAR},
+		sxlch = #{record.sxlch,jdbcType=DECIMAL},
+		sxldzj = #{record.sxldzj,jdbcType=DECIMAL},
+		jlftbzj = #{record.jlftbzj,jdbcType=DECIMAL},
+		jlfjbj = #{record.jlfjbj,jdbcType=DECIMAL},
+		shgjdfwq = #{record.shgjdfwq,jdbcType=DECIMAL},
+		kshrq = #{record.kshrq,jdbcType=DATE},
+		jshrq = #{record.jshrq,jdbcType=DATE},
+		qxzrfwq = #{record.qxzrfwq,jdbcType=DECIMAL},
+		htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
+		zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
+		zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
+		gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
+		zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
+		xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
+		xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
+		bjrq = #{record.bjrq,jdbcType=DATE},
+		money_value01 = #{record.moneyValue01,jdbcType=DECIMAL},
+		money_value02 = #{record.moneyValue02,jdbcType=DECIMAL},
+		money_value03 = #{record.moneyValue03,jdbcType=DECIMAL},
+		money_value04 = #{record.moneyValue04,jdbcType=DECIMAL},
+		money_value05 = #{record.moneyValue05,jdbcType=DECIMAL},
+		money_value06 = #{record.moneyValue06,jdbcType=DECIMAL},
+		money_value07 = #{record.moneyValue07,jdbcType=DECIMAL},
+		money_value08 = #{record.moneyValue08,jdbcType=DECIMAL},
+		money_value09 = #{record.moneyValue09,jdbcType=DECIMAL},
+		money_value10 = #{record.moneyValue10,jdbcType=DECIMAL},
+		money_value11 = #{record.moneyValue11,jdbcType=DECIMAL},
+		role_type = #{record.roleType,jdbcType=VARCHAR},
+		money_value12 = #{record.moneyValue12,jdbcType=DECIMAL},
+		money_value13 = #{record.moneyValue13,jdbcType=DECIMAL},
+		money_value14 = #{record.moneyValue14,jdbcType=DECIMAL},
+		money_value15 = #{record.moneyValue15,jdbcType=DECIMAL},
+		money_value16 = #{record.moneyValue16,jdbcType=DECIMAL},
+		money_value17 = #{record.moneyValue17,jdbcType=DECIMAL},
+		money_value18 = #{record.moneyValue18,jdbcType=DECIMAL},
+		money_value19 = #{record.moneyValue19,jdbcType=DECIMAL},
+		money_value20 = #{record.moneyValue20,jdbcType=DECIMAL},
+		money_value21 = #{record.moneyValue21,jdbcType=DECIMAL},
+		money_value22 = #{record.moneyValue22,jdbcType=DECIMAL},
+		money_value23 = #{record.moneyValue23,jdbcType=DECIMAL},
+		money_value24 = #{record.moneyValue24,jdbcType=DECIMAL},
+		createtime = #{record.createtime,jdbcType=TIMESTAMP},
+		inserttime = #{record.inserttime,jdbcType=CHAR},
+		supervision_memo = #{record.supervisionMemo,jdbcType=LONGVARCHAR},
+		dwyjgk = #{record.dwyjgk,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update hd_supervision_info
+		set id = #{record.id,jdbcType=VARCHAR},
+		direct_id = #{record.directId,jdbcType=VARCHAR},
+		sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
+		supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
+		supervision_short_name = #{record.supervisionShortName,jdbcType=VARCHAR},
+		supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
+		service_period = #{record.servicePeriod,jdbcType=VARCHAR},
+		director_name = #{record.directorName,jdbcType=VARCHAR},
+		director_tel = #{record.directorTel,jdbcType=VARCHAR},
+		supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
+		sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
+		upload_id = #{record.uploadId,jdbcType=VARCHAR},
+		supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
+		pact_money = #{record.pactMoney,jdbcType=DECIMAL},
+		pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
+		bank_name = #{record.bankName,jdbcType=VARCHAR},
+		bank_no = #{record.bankNo,jdbcType=VARCHAR},
+		superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
+		superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
+		superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
+		sortorder = #{record.sortorder,jdbcType=INTEGER},
+		project_id = #{record.projectId,jdbcType=VARCHAR},
+		zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
+		yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
+		chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
+		zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
+		zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
+		yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
+		jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
+		chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
+		chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
+		chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
+		dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
+		fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+		dwyb = #{record.dwyb,jdbcType=VARCHAR},
+		fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
+		sxhth = #{record.sxhth,jdbcType=VARCHAR},
+		sxlch = #{record.sxlch,jdbcType=DECIMAL},
+		sxldzj = #{record.sxldzj,jdbcType=DECIMAL},
+		jlftbzj = #{record.jlftbzj,jdbcType=DECIMAL},
+		jlfjbj = #{record.jlfjbj,jdbcType=DECIMAL},
+		shgjdfwq = #{record.shgjdfwq,jdbcType=DECIMAL},
+		kshrq = #{record.kshrq,jdbcType=DATE},
+		jshrq = #{record.jshrq,jdbcType=DATE},
+		qxzrfwq = #{record.qxzrfwq,jdbcType=DECIMAL},
+		htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
+		zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
+		zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
+		gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
+		zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
+		xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
+		xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
+		bjrq = #{record.bjrq,jdbcType=DATE},
+		money_value01 = #{record.moneyValue01,jdbcType=DECIMAL},
+		money_value02 = #{record.moneyValue02,jdbcType=DECIMAL},
+		money_value03 = #{record.moneyValue03,jdbcType=DECIMAL},
+		money_value04 = #{record.moneyValue04,jdbcType=DECIMAL},
+		money_value05 = #{record.moneyValue05,jdbcType=DECIMAL},
+		money_value06 = #{record.moneyValue06,jdbcType=DECIMAL},
+		money_value07 = #{record.moneyValue07,jdbcType=DECIMAL},
+		money_value08 = #{record.moneyValue08,jdbcType=DECIMAL},
+		money_value09 = #{record.moneyValue09,jdbcType=DECIMAL},
+		money_value10 = #{record.moneyValue10,jdbcType=DECIMAL},
+		money_value11 = #{record.moneyValue11,jdbcType=DECIMAL},
+		role_type = #{record.roleType,jdbcType=VARCHAR},
+		money_value12 = #{record.moneyValue12,jdbcType=DECIMAL},
+		money_value13 = #{record.moneyValue13,jdbcType=DECIMAL},
+		money_value14 = #{record.moneyValue14,jdbcType=DECIMAL},
+		money_value15 = #{record.moneyValue15,jdbcType=DECIMAL},
+		money_value16 = #{record.moneyValue16,jdbcType=DECIMAL},
+		money_value17 = #{record.moneyValue17,jdbcType=DECIMAL},
+		money_value18 = #{record.moneyValue18,jdbcType=DECIMAL},
+		money_value19 = #{record.moneyValue19,jdbcType=DECIMAL},
+		money_value20 = #{record.moneyValue20,jdbcType=DECIMAL},
+		money_value21 = #{record.moneyValue21,jdbcType=DECIMAL},
+		money_value22 = #{record.moneyValue22,jdbcType=DECIMAL},
+		money_value23 = #{record.moneyValue23,jdbcType=DECIMAL},
+		money_value24 = #{record.moneyValue24,jdbcType=DECIMAL},
+		createtime = #{record.createtime,jdbcType=TIMESTAMP},
+		inserttime = #{record.inserttime,jdbcType=CHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs">
+		update hd_supervision_info
+		<set>
+			<if test="directId != null">
+				direct_id = #{directId,jdbcType=VARCHAR},
+			</if>
+			<if test="sysDeptId != null">
+				sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionNo != null">
+				supervision_no = #{supervisionNo,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionShortName != null">
+				supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionAdd != null">
+				supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="servicePeriod != null">
+				service_period = #{servicePeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="directorName != null">
+				director_name = #{directorName,jdbcType=VARCHAR},
+			</if>
+			<if test="directorTel != null">
+				director_tel = #{directorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionTel != null">
+				supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
+			</if>
+			<if test="sectBeginPoint != null">
+				sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="sectEndPoint != null">
+				sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadId != null">
+				upload_id = #{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisionPactNo != null">
+				supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pactMoney != null">
+				pact_money = #{pactMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="pactPeriod != null">
+				pact_period = #{pactPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				bank_no = #{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyA != null">
+				superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyB != null">
+				superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="supervPropertyC != null">
+				superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="sortorder != null">
+				sortorder = #{sortorder,jdbcType=INTEGER},
+			</if>
+			<if test="projectId != null">
+				project_id = #{projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="zzhdj != null">
+				zzhdj = #{zzhdj,jdbcType=VARCHAR},
+			</if>
+			<if test="zhshhm != null">
+				zhshhm = #{zhshhm,jdbcType=VARCHAR},
+			</if>
+			<if test="yyzhzh != null">
+				yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="chzhhm != null">
+				chzhhm = #{chzhhm,jdbcType=VARCHAR},
+			</if>
+			<if test="zhgrsh != null">
+				zhgrsh = #{zhgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="zhyjshrsh != null">
+				zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
+			</if>
+			<if test="yjdzh != null">
+				yjdzh = #{yjdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="jlgchshzgrsh != null">
+				jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
+			</if>
+			<if test="chbjzhrs != null">
+				chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
+			</if>
+			<if test="chbzhjzhrsh != null">
+				chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="chtjzhrsh != null">
+				chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
+			</if>
+			<if test="dwfzr != null">
+				dwfzr = #{dwfzr,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrdh != null">
+				fzrdh = #{fzrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="dwyb != null">
+				dwyb = #{dwyb,jdbcType=VARCHAR},
+			</if>
+			<if test="fzrzhw != null">
+				fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
+			</if>
+			<if test="sxhth != null">
+				sxhth = #{sxhth,jdbcType=VARCHAR},
+			</if>
+			<if test="sxlch != null">
+				sxlch = #{sxlch,jdbcType=DECIMAL},
+			</if>
+			<if test="sxldzj != null">
+				sxldzj = #{sxldzj,jdbcType=DECIMAL},
+			</if>
+			<if test="jlftbzj != null">
+				jlftbzj = #{jlftbzj,jdbcType=DECIMAL},
+			</if>
+			<if test="jlfjbj != null">
+				jlfjbj = #{jlfjbj,jdbcType=DECIMAL},
+			</if>
+			<if test="shgjdfwq != null">
+				shgjdfwq = #{shgjdfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="kshrq != null">
+				kshrq = #{kshrq,jdbcType=DATE},
+			</if>
+			<if test="jshrq != null">
+				jshrq = #{jshrq,jdbcType=DATE},
+			</if>
+			<if test="qxzrfwq != null">
+				qxzrfwq = #{qxzrfwq,jdbcType=DECIMAL},
+			</if>
+			<if test="htjlryshl != null">
+				htjlryshl = #{htjlryshl,jdbcType=INTEGER},
+			</if>
+			<if test="zhyjljyshrysl != null">
+				zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
+			</if>
+			<if test="zjbdzh != null">
+				zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
+			</if>
+			<if test="gzjbyb != null">
+				gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
+			</if>
+			<if test="zjblxdh != null">
+				zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="xmxtrxm != null">
+				xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
+			</if>
+			<if test="xmxtrdh != null">
+				xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
+			</if>
+			<if test="bjrq != null">
+				bjrq = #{bjrq,jdbcType=DATE},
+			</if>
+			<if test="moneyValue01 != null">
+				money_value01 = #{moneyValue01,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue02 != null">
+				money_value02 = #{moneyValue02,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue03 != null">
+				money_value03 = #{moneyValue03,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue04 != null">
+				money_value04 = #{moneyValue04,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue05 != null">
+				money_value05 = #{moneyValue05,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue06 != null">
+				money_value06 = #{moneyValue06,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue07 != null">
+				money_value07 = #{moneyValue07,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue08 != null">
+				money_value08 = #{moneyValue08,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue09 != null">
+				money_value09 = #{moneyValue09,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue10 != null">
+				money_value10 = #{moneyValue10,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue11 != null">
+				money_value11 = #{moneyValue11,jdbcType=DECIMAL},
+			</if>
+			<if test="roleType != null">
+				role_type = #{roleType,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyValue12 != null">
+				money_value12 = #{moneyValue12,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue13 != null">
+				money_value13 = #{moneyValue13,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue14 != null">
+				money_value14 = #{moneyValue14,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue15 != null">
+				money_value15 = #{moneyValue15,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue16 != null">
+				money_value16 = #{moneyValue16,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue17 != null">
+				money_value17 = #{moneyValue17,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue18 != null">
+				money_value18 = #{moneyValue18,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue19 != null">
+				money_value19 = #{moneyValue19,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue20 != null">
+				money_value20 = #{moneyValue20,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue21 != null">
+				money_value21 = #{moneyValue21,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue22 != null">
+				money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue23 != null">
+				money_value23 = #{moneyValue23,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyValue24 != null">
+				money_value24 = #{moneyValue24,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inserttime != null">
+				inserttime = #{inserttime,jdbcType=CHAR},
+			</if>
+			<if test="supervisionMemo != null">
+				supervision_memo = #{supervisionMemo,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="dwyjgk != null">
+				dwyjgk = #{dwyjgk,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs">
+		update hd_supervision_info
+		set direct_id = #{directId,jdbcType=VARCHAR},
+		sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+		supervision_no = #{supervisionNo,jdbcType=VARCHAR},
+		supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
+		supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
+		service_period = #{servicePeriod,jdbcType=VARCHAR},
+		director_name = #{directorName,jdbcType=VARCHAR},
+		director_tel = #{directorTel,jdbcType=VARCHAR},
+		supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
+		sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
+		upload_id = #{uploadId,jdbcType=VARCHAR},
+		supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
+		pact_money = #{pactMoney,jdbcType=DECIMAL},
+		pact_period = #{pactPeriod,jdbcType=VARCHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_no = #{bankNo,jdbcType=VARCHAR},
+		superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
+		superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
+		superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
+		sortorder = #{sortorder,jdbcType=INTEGER},
+		project_id = #{projectId,jdbcType=VARCHAR},
+		zzhdj = #{zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{zhshhm,jdbcType=VARCHAR},
+		yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
+		chzhhm = #{chzhhm,jdbcType=VARCHAR},
+		zhgrsh = #{zhgrsh,jdbcType=INTEGER},
+		zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
+		yjdzh = #{yjdzh,jdbcType=VARCHAR},
+		jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
+		chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
+		chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
+		chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
+		dwfzr = #{dwfzr,jdbcType=VARCHAR},
+		fzrdh = #{fzrdh,jdbcType=VARCHAR},
+		dwyb = #{dwyb,jdbcType=VARCHAR},
+		fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
+		sxhth = #{sxhth,jdbcType=VARCHAR},
+		sxlch = #{sxlch,jdbcType=DECIMAL},
+		sxldzj = #{sxldzj,jdbcType=DECIMAL},
+		jlftbzj = #{jlftbzj,jdbcType=DECIMAL},
+		jlfjbj = #{jlfjbj,jdbcType=DECIMAL},
+		shgjdfwq = #{shgjdfwq,jdbcType=DECIMAL},
+		kshrq = #{kshrq,jdbcType=DATE},
+		jshrq = #{jshrq,jdbcType=DATE},
+		qxzrfwq = #{qxzrfwq,jdbcType=DECIMAL},
+		htjlryshl = #{htjlryshl,jdbcType=INTEGER},
+		zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
+		zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
+		gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
+		zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
+		xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
+		xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
+		bjrq = #{bjrq,jdbcType=DATE},
+		money_value01 = #{moneyValue01,jdbcType=DECIMAL},
+		money_value02 = #{moneyValue02,jdbcType=DECIMAL},
+		money_value03 = #{moneyValue03,jdbcType=DECIMAL},
+		money_value04 = #{moneyValue04,jdbcType=DECIMAL},
+		money_value05 = #{moneyValue05,jdbcType=DECIMAL},
+		money_value06 = #{moneyValue06,jdbcType=DECIMAL},
+		money_value07 = #{moneyValue07,jdbcType=DECIMAL},
+		money_value08 = #{moneyValue08,jdbcType=DECIMAL},
+		money_value09 = #{moneyValue09,jdbcType=DECIMAL},
+		money_value10 = #{moneyValue10,jdbcType=DECIMAL},
+		money_value11 = #{moneyValue11,jdbcType=DECIMAL},
+		role_type = #{roleType,jdbcType=VARCHAR},
+		money_value12 = #{moneyValue12,jdbcType=DECIMAL},
+		money_value13 = #{moneyValue13,jdbcType=DECIMAL},
+		money_value14 = #{moneyValue14,jdbcType=DECIMAL},
+		money_value15 = #{moneyValue15,jdbcType=DECIMAL},
+		money_value16 = #{moneyValue16,jdbcType=DECIMAL},
+		money_value17 = #{moneyValue17,jdbcType=DECIMAL},
+		money_value18 = #{moneyValue18,jdbcType=DECIMAL},
+		money_value19 = #{moneyValue19,jdbcType=DECIMAL},
+		money_value20 = #{moneyValue20,jdbcType=DECIMAL},
+		money_value21 = #{moneyValue21,jdbcType=DECIMAL},
+		money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+		money_value23 = #{moneyValue23,jdbcType=DECIMAL},
+		money_value24 = #{moneyValue24,jdbcType=DECIMAL},
+		createtime = #{createtime,jdbcType=TIMESTAMP},
+		inserttime = #{inserttime,jdbcType=CHAR},
+		supervision_memo = #{supervisionMemo,jdbcType=LONGVARCHAR},
+		dwyjgk = #{dwyjgk,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.SupervisionInfo">
+		update hd_supervision_info
+		set direct_id = #{directId,jdbcType=VARCHAR},
+		sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
+		supervision_no = #{supervisionNo,jdbcType=VARCHAR},
+		supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
+		supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
+		service_period = #{servicePeriod,jdbcType=VARCHAR},
+		director_name = #{directorName,jdbcType=VARCHAR},
+		director_tel = #{directorTel,jdbcType=VARCHAR},
+		supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
+		sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
+		sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
+		upload_id = #{uploadId,jdbcType=VARCHAR},
+		supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
+		pact_money = #{pactMoney,jdbcType=DECIMAL},
+		pact_period = #{pactPeriod,jdbcType=VARCHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_no = #{bankNo,jdbcType=VARCHAR},
+		superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
+		superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
+		superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
+		sortorder = #{sortorder,jdbcType=INTEGER},
+		project_id = #{projectId,jdbcType=VARCHAR},
+		zzhdj = #{zzhdj,jdbcType=VARCHAR},
+		zhshhm = #{zhshhm,jdbcType=VARCHAR},
+		yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
+		chzhhm = #{chzhhm,jdbcType=VARCHAR},
+		zhgrsh = #{zhgrsh,jdbcType=INTEGER},
+		zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
+		yjdzh = #{yjdzh,jdbcType=VARCHAR},
+		jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
+		chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
+		chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
+		chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
+		dwfzr = #{dwfzr,jdbcType=VARCHAR},
+		fzrdh = #{fzrdh,jdbcType=VARCHAR},
+		dwyb = #{dwyb,jdbcType=VARCHAR},
+		fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
+		sxhth = #{sxhth,jdbcType=VARCHAR},
+		sxlch = #{sxlch,jdbcType=DECIMAL},
+		sxldzj = #{sxldzj,jdbcType=DECIMAL},
+		jlftbzj = #{jlftbzj,jdbcType=DECIMAL},
+		jlfjbj = #{jlfjbj,jdbcType=DECIMAL},
+		shgjdfwq = #{shgjdfwq,jdbcType=DECIMAL},
+		kshrq = #{kshrq,jdbcType=DATE},
+		jshrq = #{jshrq,jdbcType=DATE},
+		qxzrfwq = #{qxzrfwq,jdbcType=DECIMAL},
+		htjlryshl = #{htjlryshl,jdbcType=INTEGER},
+		zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
+		zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
+		gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
+		zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
+		xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
+		xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
+		bjrq = #{bjrq,jdbcType=DATE},
+		money_value01 = #{moneyValue01,jdbcType=DECIMAL},
+		money_value02 = #{moneyValue02,jdbcType=DECIMAL},
+		money_value03 = #{moneyValue03,jdbcType=DECIMAL},
+		money_value04 = #{moneyValue04,jdbcType=DECIMAL},
+		money_value05 = #{moneyValue05,jdbcType=DECIMAL},
+		money_value06 = #{moneyValue06,jdbcType=DECIMAL},
+		money_value07 = #{moneyValue07,jdbcType=DECIMAL},
+		money_value08 = #{moneyValue08,jdbcType=DECIMAL},
+		money_value09 = #{moneyValue09,jdbcType=DECIMAL},
+		money_value10 = #{moneyValue10,jdbcType=DECIMAL},
+		money_value11 = #{moneyValue11,jdbcType=DECIMAL},
+		role_type = #{roleType,jdbcType=VARCHAR},
+		money_value12 = #{moneyValue12,jdbcType=DECIMAL},
+		money_value13 = #{moneyValue13,jdbcType=DECIMAL},
+		money_value14 = #{moneyValue14,jdbcType=DECIMAL},
+		money_value15 = #{moneyValue15,jdbcType=DECIMAL},
+		money_value16 = #{moneyValue16,jdbcType=DECIMAL},
+		money_value17 = #{moneyValue17,jdbcType=DECIMAL},
+		money_value18 = #{moneyValue18,jdbcType=DECIMAL},
+		money_value19 = #{moneyValue19,jdbcType=DECIMAL},
+		money_value20 = #{moneyValue20,jdbcType=DECIMAL},
+		money_value21 = #{moneyValue21,jdbcType=DECIMAL},
+		money_value22 = #{moneyValue22,jdbcType=DECIMAL},
+		money_value23 = #{moneyValue23,jdbcType=DECIMAL},
+		money_value24 = #{moneyValue24,jdbcType=DECIMAL},
+		createtime = #{createtime,jdbcType=TIMESTAMP},
+		inserttime = #{inserttime,jdbcType=CHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="findSupervisionInfoMaxInserttime" resultType="java.lang.String">
+		select max(inserttime) from hd_supervision_info;
+	</select>
+	  <delete id="deleteAll">
+   delete from hd_supervision_info;
   </delete>
-  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample" >
-    delete from hd_supervision_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs" >
-    insert into hd_supervision_info (id, direct_id, sys_dept_id, 
-      supervision_no, supervision_short_name, supervision_add, 
-      service_period, director_name, director_tel, 
-      supervision_tel, sect_begin_point, sect_end_point, 
-      upload_id, supervision_pact_no, pact_money, 
-      pact_period, bank_name, bank_no, 
-      superv_property_a, superv_property_b, superv_property_c, 
-      sortorder, project_id, zzhdj, 
-      zhshhm, yyzhzh, chzhhm, 
-      zhgrsh, zhyjshrsh, yjdzh, 
-      jlgchshzgrsh, chbjzhrs, chbzhjzhrsh, 
-      chtjzhrsh, dwfzr, fzrdh, 
-      dwyb, fzrzhw, sxhth, 
-      sxlch, sxldzj, jlftbzj, jlfjbj, 
-      shgjdfwq, kshrq, jshrq, qxzrfwq, 
-      htjlryshl, zhyjljyshrysl, zjbdzh, 
-      gzjbyb, zjblxdh, xmxtrxm, 
-      xmxtrdh, bjrq, money_value01, 
-      money_value02, money_value03, money_value04, 
-      money_value05, money_value06, money_value07, 
-      money_value08, money_value09, money_value10, 
-      money_value11, role_type, money_value12, 
-      money_value13, money_value14, money_value15, 
-      money_value16, money_value17, money_value18, 
-      money_value19, money_value20, money_value21, 
-      money_value22, money_value23, money_value24, 
-      createtime, supervision_memo, dwyjgk
-      )
-    values (#{id,jdbcType=VARCHAR}, #{directId,jdbcType=VARCHAR}, #{sysDeptId,jdbcType=VARCHAR}, 
-      #{supervisionNo,jdbcType=VARCHAR}, #{supervisionShortName,jdbcType=VARCHAR}, #{supervisionAdd,jdbcType=VARCHAR}, 
-      #{servicePeriod,jdbcType=VARCHAR}, #{directorName,jdbcType=VARCHAR}, #{directorTel,jdbcType=VARCHAR}, 
-      #{supervisionTel,jdbcType=VARCHAR}, #{sectBeginPoint,jdbcType=VARCHAR}, #{sectEndPoint,jdbcType=VARCHAR}, 
-      #{uploadId,jdbcType=VARCHAR}, #{supervisionPactNo,jdbcType=VARCHAR}, #{pactMoney,jdbcType=REAL}, 
-      #{pactPeriod,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, 
-      #{supervPropertyA,jdbcType=VARCHAR}, #{supervPropertyB,jdbcType=VARCHAR}, #{supervPropertyC,jdbcType=VARCHAR}, 
-      #{sortorder,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{zzhdj,jdbcType=VARCHAR}, 
-      #{zhshhm,jdbcType=VARCHAR}, #{yyzhzh,jdbcType=VARCHAR}, #{chzhhm,jdbcType=VARCHAR}, 
-      #{zhgrsh,jdbcType=INTEGER}, #{zhyjshrsh,jdbcType=INTEGER}, #{yjdzh,jdbcType=VARCHAR}, 
-      #{jlgchshzgrsh,jdbcType=INTEGER}, #{chbjzhrs,jdbcType=INTEGER}, #{chbzhjzhrsh,jdbcType=INTEGER}, 
-      #{chtjzhrsh,jdbcType=INTEGER}, #{dwfzr,jdbcType=VARCHAR}, #{fzrdh,jdbcType=VARCHAR}, 
-      #{dwyb,jdbcType=VARCHAR}, #{fzrzhw,jdbcType=VARCHAR}, #{sxhth,jdbcType=VARCHAR}, 
-      #{sxlch,jdbcType=REAL}, #{sxldzj,jdbcType=REAL}, #{jlftbzj,jdbcType=REAL}, #{jlfjbj,jdbcType=REAL}, 
-      #{shgjdfwq,jdbcType=REAL}, #{kshrq,jdbcType=DATE}, #{jshrq,jdbcType=DATE}, #{qxzrfwq,jdbcType=REAL}, 
-      #{htjlryshl,jdbcType=INTEGER}, #{zhyjljyshrysl,jdbcType=INTEGER}, #{zjbdzh,jdbcType=VARCHAR}, 
-      #{gzjbyb,jdbcType=VARCHAR}, #{zjblxdh,jdbcType=VARCHAR}, #{xmxtrxm,jdbcType=VARCHAR}, 
-      #{xmxtrdh,jdbcType=VARCHAR}, #{bjrq,jdbcType=DATE}, #{moneyValue01,jdbcType=REAL}, 
-      #{moneyValue02,jdbcType=REAL}, #{moneyValue03,jdbcType=REAL}, #{moneyValue04,jdbcType=REAL}, 
-      #{moneyValue05,jdbcType=REAL}, #{moneyValue06,jdbcType=REAL}, #{moneyValue07,jdbcType=REAL}, 
-      #{moneyValue08,jdbcType=REAL}, #{moneyValue09,jdbcType=REAL}, #{moneyValue10,jdbcType=REAL}, 
-      #{moneyValue11,jdbcType=REAL}, #{roleType,jdbcType=VARCHAR}, #{moneyValue12,jdbcType=REAL}, 
-      #{moneyValue13,jdbcType=REAL}, #{moneyValue14,jdbcType=REAL}, #{moneyValue15,jdbcType=REAL}, 
-      #{moneyValue16,jdbcType=REAL}, #{moneyValue17,jdbcType=REAL}, #{moneyValue18,jdbcType=REAL}, 
-      #{moneyValue19,jdbcType=REAL}, #{moneyValue20,jdbcType=REAL}, #{moneyValue21,jdbcType=REAL}, 
-      #{moneyValue22,jdbcType=REAL}, #{moneyValue23,jdbcType=REAL}, #{moneyValue24,jdbcType=REAL}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{supervisionMemo,jdbcType=LONGVARCHAR}, #{dwyjgk,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs" >
-    insert into hd_supervision_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="directId != null" >
-        direct_id,
-      </if>
-      <if test="sysDeptId != null" >
-        sys_dept_id,
-      </if>
-      <if test="supervisionNo != null" >
-        supervision_no,
-      </if>
-      <if test="supervisionShortName != null" >
-        supervision_short_name,
-      </if>
-      <if test="supervisionAdd != null" >
-        supervision_add,
-      </if>
-      <if test="servicePeriod != null" >
-        service_period,
-      </if>
-      <if test="directorName != null" >
-        director_name,
-      </if>
-      <if test="directorTel != null" >
-        director_tel,
-      </if>
-      <if test="supervisionTel != null" >
-        supervision_tel,
-      </if>
-      <if test="sectBeginPoint != null" >
-        sect_begin_point,
-      </if>
-      <if test="sectEndPoint != null" >
-        sect_end_point,
-      </if>
-      <if test="uploadId != null" >
-        upload_id,
-      </if>
-      <if test="supervisionPactNo != null" >
-        supervision_pact_no,
-      </if>
-      <if test="pactMoney != null" >
-        pact_money,
-      </if>
-      <if test="pactPeriod != null" >
-        pact_period,
-      </if>
-      <if test="bankName != null" >
-        bank_name,
-      </if>
-      <if test="bankNo != null" >
-        bank_no,
-      </if>
-      <if test="supervPropertyA != null" >
-        superv_property_a,
-      </if>
-      <if test="supervPropertyB != null" >
-        superv_property_b,
-      </if>
-      <if test="supervPropertyC != null" >
-        superv_property_c,
-      </if>
-      <if test="sortorder != null" >
-        sortorder,
-      </if>
-      <if test="projectId != null" >
-        project_id,
-      </if>
-      <if test="zzhdj != null" >
-        zzhdj,
-      </if>
-      <if test="zhshhm != null" >
-        zhshhm,
-      </if>
-      <if test="yyzhzh != null" >
-        yyzhzh,
-      </if>
-      <if test="chzhhm != null" >
-        chzhhm,
-      </if>
-      <if test="zhgrsh != null" >
-        zhgrsh,
-      </if>
-      <if test="zhyjshrsh != null" >
-        zhyjshrsh,
-      </if>
-      <if test="yjdzh != null" >
-        yjdzh,
-      </if>
-      <if test="jlgchshzgrsh != null" >
-        jlgchshzgrsh,
-      </if>
-      <if test="chbjzhrs != null" >
-        chbjzhrs,
-      </if>
-      <if test="chbzhjzhrsh != null" >
-        chbzhjzhrsh,
-      </if>
-      <if test="chtjzhrsh != null" >
-        chtjzhrsh,
-      </if>
-      <if test="dwfzr != null" >
-        dwfzr,
-      </if>
-      <if test="fzrdh != null" >
-        fzrdh,
-      </if>
-      <if test="dwyb != null" >
-        dwyb,
-      </if>
-      <if test="fzrzhw != null" >
-        fzrzhw,
-      </if>
-      <if test="sxhth != null" >
-        sxhth,
-      </if>
-      <if test="sxlch != null" >
-        sxlch,
-      </if>
-      <if test="sxldzj != null" >
-        sxldzj,
-      </if>
-      <if test="jlftbzj != null" >
-        jlftbzj,
-      </if>
-      <if test="jlfjbj != null" >
-        jlfjbj,
-      </if>
-      <if test="shgjdfwq != null" >
-        shgjdfwq,
-      </if>
-      <if test="kshrq != null" >
-        kshrq,
-      </if>
-      <if test="jshrq != null" >
-        jshrq,
-      </if>
-      <if test="qxzrfwq != null" >
-        qxzrfwq,
-      </if>
-      <if test="htjlryshl != null" >
-        htjlryshl,
-      </if>
-      <if test="zhyjljyshrysl != null" >
-        zhyjljyshrysl,
-      </if>
-      <if test="zjbdzh != null" >
-        zjbdzh,
-      </if>
-      <if test="gzjbyb != null" >
-        gzjbyb,
-      </if>
-      <if test="zjblxdh != null" >
-        zjblxdh,
-      </if>
-      <if test="xmxtrxm != null" >
-        xmxtrxm,
-      </if>
-      <if test="xmxtrdh != null" >
-        xmxtrdh,
-      </if>
-      <if test="bjrq != null" >
-        bjrq,
-      </if>
-      <if test="moneyValue01 != null" >
-        money_value01,
-      </if>
-      <if test="moneyValue02 != null" >
-        money_value02,
-      </if>
-      <if test="moneyValue03 != null" >
-        money_value03,
-      </if>
-      <if test="moneyValue04 != null" >
-        money_value04,
-      </if>
-      <if test="moneyValue05 != null" >
-        money_value05,
-      </if>
-      <if test="moneyValue06 != null" >
-        money_value06,
-      </if>
-      <if test="moneyValue07 != null" >
-        money_value07,
-      </if>
-      <if test="moneyValue08 != null" >
-        money_value08,
-      </if>
-      <if test="moneyValue09 != null" >
-        money_value09,
-      </if>
-      <if test="moneyValue10 != null" >
-        money_value10,
-      </if>
-      <if test="moneyValue11 != null" >
-        money_value11,
-      </if>
-      <if test="roleType != null" >
-        role_type,
-      </if>
-      <if test="moneyValue12 != null" >
-        money_value12,
-      </if>
-      <if test="moneyValue13 != null" >
-        money_value13,
-      </if>
-      <if test="moneyValue14 != null" >
-        money_value14,
-      </if>
-      <if test="moneyValue15 != null" >
-        money_value15,
-      </if>
-      <if test="moneyValue16 != null" >
-        money_value16,
-      </if>
-      <if test="moneyValue17 != null" >
-        money_value17,
-      </if>
-      <if test="moneyValue18 != null" >
-        money_value18,
-      </if>
-      <if test="moneyValue19 != null" >
-        money_value19,
-      </if>
-      <if test="moneyValue20 != null" >
-        money_value20,
-      </if>
-      <if test="moneyValue21 != null" >
-        money_value21,
-      </if>
-      <if test="moneyValue22 != null" >
-        money_value22,
-      </if>
-      <if test="moneyValue23 != null" >
-        money_value23,
-      </if>
-      <if test="moneyValue24 != null" >
-        money_value24,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="supervisionMemo != null" >
-        supervision_memo,
-      </if>
-      <if test="dwyjgk != null" >
-        dwyjgk,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="directId != null" >
-        #{directId,jdbcType=VARCHAR},
-      </if>
-      <if test="sysDeptId != null" >
-        #{sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionNo != null" >
-        #{supervisionNo,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionShortName != null" >
-        #{supervisionShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionAdd != null" >
-        #{supervisionAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="servicePeriod != null" >
-        #{servicePeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="directorName != null" >
-        #{directorName,jdbcType=VARCHAR},
-      </if>
-      <if test="directorTel != null" >
-        #{directorTel,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionTel != null" >
-        #{supervisionTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectBeginPoint != null" >
-        #{sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEndPoint != null" >
-        #{sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadId != null" >
-        #{uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionPactNo != null" >
-        #{supervisionPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="pactMoney != null" >
-        #{pactMoney,jdbcType=REAL},
-      </if>
-      <if test="pactPeriod != null" >
-        #{pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="bankName != null" >
-        #{bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="bankNo != null" >
-        #{bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyA != null" >
-        #{supervPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyB != null" >
-        #{supervPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyC != null" >
-        #{supervPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="sortorder != null" >
-        #{sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="projectId != null" >
-        #{projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="zzhdj != null" >
-        #{zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="zhshhm != null" >
-        #{zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="yyzhzh != null" >
-        #{yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="chzhhm != null" >
-        #{chzhhm,jdbcType=VARCHAR},
-      </if>
-      <if test="zhgrsh != null" >
-        #{zhgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="zhyjshrsh != null" >
-        #{zhyjshrsh,jdbcType=INTEGER},
-      </if>
-      <if test="yjdzh != null" >
-        #{yjdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="jlgchshzgrsh != null" >
-        #{jlgchshzgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="chbjzhrs != null" >
-        #{chbjzhrs,jdbcType=INTEGER},
-      </if>
-      <if test="chbzhjzhrsh != null" >
-        #{chbzhjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="chtjzhrsh != null" >
-        #{chtjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="dwfzr != null" >
-        #{dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrdh != null" >
-        #{fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="dwyb != null" >
-        #{dwyb,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrzhw != null" >
-        #{fzrzhw,jdbcType=VARCHAR},
-      </if>
-      <if test="sxhth != null" >
-        #{sxhth,jdbcType=VARCHAR},
-      </if>
-      <if test="sxlch != null" >
-        #{sxlch,jdbcType=REAL},
-      </if>
-      <if test="sxldzj != null" >
-        #{sxldzj,jdbcType=REAL},
-      </if>
-      <if test="jlftbzj != null" >
-        #{jlftbzj,jdbcType=REAL},
-      </if>
-      <if test="jlfjbj != null" >
-        #{jlfjbj,jdbcType=REAL},
-      </if>
-      <if test="shgjdfwq != null" >
-        #{shgjdfwq,jdbcType=REAL},
-      </if>
-      <if test="kshrq != null" >
-        #{kshrq,jdbcType=DATE},
-      </if>
-      <if test="jshrq != null" >
-        #{jshrq,jdbcType=DATE},
-      </if>
-      <if test="qxzrfwq != null" >
-        #{qxzrfwq,jdbcType=REAL},
-      </if>
-      <if test="htjlryshl != null" >
-        #{htjlryshl,jdbcType=INTEGER},
-      </if>
-      <if test="zhyjljyshrysl != null" >
-        #{zhyjljyshrysl,jdbcType=INTEGER},
-      </if>
-      <if test="zjbdzh != null" >
-        #{zjbdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="gzjbyb != null" >
-        #{gzjbyb,jdbcType=VARCHAR},
-      </if>
-      <if test="zjblxdh != null" >
-        #{zjblxdh,jdbcType=VARCHAR},
-      </if>
-      <if test="xmxtrxm != null" >
-        #{xmxtrxm,jdbcType=VARCHAR},
-      </if>
-      <if test="xmxtrdh != null" >
-        #{xmxtrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="bjrq != null" >
-        #{bjrq,jdbcType=DATE},
-      </if>
-      <if test="moneyValue01 != null" >
-        #{moneyValue01,jdbcType=REAL},
-      </if>
-      <if test="moneyValue02 != null" >
-        #{moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="moneyValue03 != null" >
-        #{moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="moneyValue04 != null" >
-        #{moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="moneyValue05 != null" >
-        #{moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="moneyValue06 != null" >
-        #{moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="moneyValue07 != null" >
-        #{moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="moneyValue08 != null" >
-        #{moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="moneyValue09 != null" >
-        #{moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="moneyValue10 != null" >
-        #{moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="moneyValue11 != null" >
-        #{moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="roleType != null" >
-        #{roleType,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue12 != null" >
-        #{moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="moneyValue13 != null" >
-        #{moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="moneyValue14 != null" >
-        #{moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="moneyValue15 != null" >
-        #{moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="moneyValue16 != null" >
-        #{moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="moneyValue17 != null" >
-        #{moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="moneyValue18 != null" >
-        #{moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="moneyValue19 != null" >
-        #{moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="moneyValue20 != null" >
-        #{moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="moneyValue21 != null" >
-        #{moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="moneyValue22 != null" >
-        #{moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="moneyValue23 != null" >
-        #{moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="moneyValue24 != null" >
-        #{moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="supervisionMemo != null" >
-        #{supervisionMemo,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="dwyjgk != null" >
-        #{dwyjgk,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoExample" resultType="java.lang.Integer" >
-    select count(*) from hd_supervision_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update hd_supervision_info
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.directId != null" >
-        direct_id = #{record.directId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sysDeptId != null" >
-        sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionNo != null" >
-        supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionShortName != null" >
-        supervision_short_name = #{record.supervisionShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionAdd != null" >
-        supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.servicePeriod != null" >
-        service_period = #{record.servicePeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.directorName != null" >
-        director_name = #{record.directorName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.directorTel != null" >
-        director_tel = #{record.directorTel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionTel != null" >
-        supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectBeginPoint != null" >
-        sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sectEndPoint != null" >
-        sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uploadId != null" >
-        upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervisionPactNo != null" >
-        supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pactMoney != null" >
-        pact_money = #{record.pactMoney,jdbcType=REAL},
-      </if>
-      <if test="record.pactPeriod != null" >
-        pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bankName != null" >
-        bank_name = #{record.bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bankNo != null" >
-        bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervPropertyA != null" >
-        superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervPropertyB != null" >
-        superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supervPropertyC != null" >
-        superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sortorder != null" >
-        sortorder = #{record.sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="record.projectId != null" >
-        project_id = #{record.projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zzhdj != null" >
-        zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zhshhm != null" >
-        zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.yyzhzh != null" >
-        yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.chzhhm != null" >
-        chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zhgrsh != null" >
-        zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.zhyjshrsh != null" >
-        zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.yjdzh != null" >
-        yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jlgchshzgrsh != null" >
-        jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.chbjzhrs != null" >
-        chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
-      </if>
-      <if test="record.chbzhjzhrsh != null" >
-        chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.chtjzhrsh != null" >
-        chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="record.dwfzr != null" >
-        dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fzrdh != null" >
-        fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.dwyb != null" >
-        dwyb = #{record.dwyb,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fzrzhw != null" >
-        fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sxhth != null" >
-        sxhth = #{record.sxhth,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sxlch != null" >
-        sxlch = #{record.sxlch,jdbcType=REAL},
-      </if>
-      <if test="record.sxldzj != null" >
-        sxldzj = #{record.sxldzj,jdbcType=REAL},
-      </if>
-      <if test="record.jlftbzj != null" >
-        jlftbzj = #{record.jlftbzj,jdbcType=REAL},
-      </if>
-      <if test="record.jlfjbj != null" >
-        jlfjbj = #{record.jlfjbj,jdbcType=REAL},
-      </if>
-      <if test="record.shgjdfwq != null" >
-        shgjdfwq = #{record.shgjdfwq,jdbcType=REAL},
-      </if>
-      <if test="record.kshrq != null" >
-        kshrq = #{record.kshrq,jdbcType=DATE},
-      </if>
-      <if test="record.jshrq != null" >
-        jshrq = #{record.jshrq,jdbcType=DATE},
-      </if>
-      <if test="record.qxzrfwq != null" >
-        qxzrfwq = #{record.qxzrfwq,jdbcType=REAL},
-      </if>
-      <if test="record.htjlryshl != null" >
-        htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
-      </if>
-      <if test="record.zhyjljyshrysl != null" >
-        zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
-      </if>
-      <if test="record.zjbdzh != null" >
-        zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.gzjbyb != null" >
-        gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
-      </if>
-      <if test="record.zjblxdh != null" >
-        zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.xmxtrxm != null" >
-        xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.xmxtrdh != null" >
-        xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bjrq != null" >
-        bjrq = #{record.bjrq,jdbcType=DATE},
-      </if>
-      <if test="record.moneyValue01 != null" >
-        money_value01 = #{record.moneyValue01,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue02 != null" >
-        money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue03 != null" >
-        money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue04 != null" >
-        money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue05 != null" >
-        money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue06 != null" >
-        money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue07 != null" >
-        money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue08 != null" >
-        money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue09 != null" >
-        money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue10 != null" >
-        money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue11 != null" >
-        money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="record.roleType != null" >
-        role_type = #{record.roleType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyValue12 != null" >
-        money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue13 != null" >
-        money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue14 != null" >
-        money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue15 != null" >
-        money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue16 != null" >
-        money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue17 != null" >
-        money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue18 != null" >
-        money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue19 != null" >
-        money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue20 != null" >
-        money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue21 != null" >
-        money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue22 != null" >
-        money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue23 != null" >
-        money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="record.moneyValue24 != null" >
-        money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="record.createtime != null" >
-        createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.supervisionMemo != null" >
-        supervision_memo = #{record.supervisionMemo,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.dwyjgk != null" >
-        dwyjgk = #{record.dwyjgk,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update hd_supervision_info
-    set id = #{record.id,jdbcType=VARCHAR},
-      direct_id = #{record.directId,jdbcType=VARCHAR},
-      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
-      supervision_short_name = #{record.supervisionShortName,jdbcType=VARCHAR},
-      supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
-      service_period = #{record.servicePeriod,jdbcType=VARCHAR},
-      director_name = #{record.directorName,jdbcType=VARCHAR},
-      director_tel = #{record.directorTel,jdbcType=VARCHAR},
-      supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
-      sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
-      pact_money = #{record.pactMoney,jdbcType=REAL},
-      pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      bank_name = #{record.bankName,jdbcType=VARCHAR},
-      bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
-      superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
-      superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
-      sortorder = #{record.sortorder,jdbcType=INTEGER},
-      project_id = #{record.projectId,jdbcType=VARCHAR},
-      zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
-      zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
-      zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
-      yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
-      jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
-      chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
-      chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
-      chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
-      dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      dwyb = #{record.dwyb,jdbcType=VARCHAR},
-      fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
-      sxhth = #{record.sxhth,jdbcType=VARCHAR},
-      sxlch = #{record.sxlch,jdbcType=REAL},
-      sxldzj = #{record.sxldzj,jdbcType=REAL},
-      jlftbzj = #{record.jlftbzj,jdbcType=REAL},
-      jlfjbj = #{record.jlfjbj,jdbcType=REAL},
-      shgjdfwq = #{record.shgjdfwq,jdbcType=REAL},
-      kshrq = #{record.kshrq,jdbcType=DATE},
-      jshrq = #{record.jshrq,jdbcType=DATE},
-      qxzrfwq = #{record.qxzrfwq,jdbcType=REAL},
-      htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
-      zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
-      zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
-      gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
-      zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
-      xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
-      xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
-      bjrq = #{record.bjrq,jdbcType=DATE},
-      money_value01 = #{record.moneyValue01,jdbcType=REAL},
-      money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      role_type = #{record.roleType,jdbcType=VARCHAR},
-      money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      supervision_memo = #{record.supervisionMemo,jdbcType=LONGVARCHAR},
-      dwyjgk = #{record.dwyjgk,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update hd_supervision_info
-    set id = #{record.id,jdbcType=VARCHAR},
-      direct_id = #{record.directId,jdbcType=VARCHAR},
-      sys_dept_id = #{record.sysDeptId,jdbcType=VARCHAR},
-      supervision_no = #{record.supervisionNo,jdbcType=VARCHAR},
-      supervision_short_name = #{record.supervisionShortName,jdbcType=VARCHAR},
-      supervision_add = #{record.supervisionAdd,jdbcType=VARCHAR},
-      service_period = #{record.servicePeriod,jdbcType=VARCHAR},
-      director_name = #{record.directorName,jdbcType=VARCHAR},
-      director_tel = #{record.directorTel,jdbcType=VARCHAR},
-      supervision_tel = #{record.supervisionTel,jdbcType=VARCHAR},
-      sect_begin_point = #{record.sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{record.sectEndPoint,jdbcType=VARCHAR},
-      upload_id = #{record.uploadId,jdbcType=VARCHAR},
-      supervision_pact_no = #{record.supervisionPactNo,jdbcType=VARCHAR},
-      pact_money = #{record.pactMoney,jdbcType=REAL},
-      pact_period = #{record.pactPeriod,jdbcType=VARCHAR},
-      bank_name = #{record.bankName,jdbcType=VARCHAR},
-      bank_no = #{record.bankNo,jdbcType=VARCHAR},
-      superv_property_a = #{record.supervPropertyA,jdbcType=VARCHAR},
-      superv_property_b = #{record.supervPropertyB,jdbcType=VARCHAR},
-      superv_property_c = #{record.supervPropertyC,jdbcType=VARCHAR},
-      sortorder = #{record.sortorder,jdbcType=INTEGER},
-      project_id = #{record.projectId,jdbcType=VARCHAR},
-      zzhdj = #{record.zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{record.zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{record.yyzhzh,jdbcType=VARCHAR},
-      chzhhm = #{record.chzhhm,jdbcType=VARCHAR},
-      zhgrsh = #{record.zhgrsh,jdbcType=INTEGER},
-      zhyjshrsh = #{record.zhyjshrsh,jdbcType=INTEGER},
-      yjdzh = #{record.yjdzh,jdbcType=VARCHAR},
-      jlgchshzgrsh = #{record.jlgchshzgrsh,jdbcType=INTEGER},
-      chbjzhrs = #{record.chbjzhrs,jdbcType=INTEGER},
-      chbzhjzhrsh = #{record.chbzhjzhrsh,jdbcType=INTEGER},
-      chtjzhrsh = #{record.chtjzhrsh,jdbcType=INTEGER},
-      dwfzr = #{record.dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
-      dwyb = #{record.dwyb,jdbcType=VARCHAR},
-      fzrzhw = #{record.fzrzhw,jdbcType=VARCHAR},
-      sxhth = #{record.sxhth,jdbcType=VARCHAR},
-      sxlch = #{record.sxlch,jdbcType=REAL},
-      sxldzj = #{record.sxldzj,jdbcType=REAL},
-      jlftbzj = #{record.jlftbzj,jdbcType=REAL},
-      jlfjbj = #{record.jlfjbj,jdbcType=REAL},
-      shgjdfwq = #{record.shgjdfwq,jdbcType=REAL},
-      kshrq = #{record.kshrq,jdbcType=DATE},
-      jshrq = #{record.jshrq,jdbcType=DATE},
-      qxzrfwq = #{record.qxzrfwq,jdbcType=REAL},
-      htjlryshl = #{record.htjlryshl,jdbcType=INTEGER},
-      zhyjljyshrysl = #{record.zhyjljyshrysl,jdbcType=INTEGER},
-      zjbdzh = #{record.zjbdzh,jdbcType=VARCHAR},
-      gzjbyb = #{record.gzjbyb,jdbcType=VARCHAR},
-      zjblxdh = #{record.zjblxdh,jdbcType=VARCHAR},
-      xmxtrxm = #{record.xmxtrxm,jdbcType=VARCHAR},
-      xmxtrdh = #{record.xmxtrdh,jdbcType=VARCHAR},
-      bjrq = #{record.bjrq,jdbcType=DATE},
-      money_value01 = #{record.moneyValue01,jdbcType=REAL},
-      money_value02 = #{record.moneyValue02,jdbcType=REAL},
-      money_value03 = #{record.moneyValue03,jdbcType=REAL},
-      money_value04 = #{record.moneyValue04,jdbcType=REAL},
-      money_value05 = #{record.moneyValue05,jdbcType=REAL},
-      money_value06 = #{record.moneyValue06,jdbcType=REAL},
-      money_value07 = #{record.moneyValue07,jdbcType=REAL},
-      money_value08 = #{record.moneyValue08,jdbcType=REAL},
-      money_value09 = #{record.moneyValue09,jdbcType=REAL},
-      money_value10 = #{record.moneyValue10,jdbcType=REAL},
-      money_value11 = #{record.moneyValue11,jdbcType=REAL},
-      role_type = #{record.roleType,jdbcType=VARCHAR},
-      money_value12 = #{record.moneyValue12,jdbcType=REAL},
-      money_value13 = #{record.moneyValue13,jdbcType=REAL},
-      money_value14 = #{record.moneyValue14,jdbcType=REAL},
-      money_value15 = #{record.moneyValue15,jdbcType=REAL},
-      money_value16 = #{record.moneyValue16,jdbcType=REAL},
-      money_value17 = #{record.moneyValue17,jdbcType=REAL},
-      money_value18 = #{record.moneyValue18,jdbcType=REAL},
-      money_value19 = #{record.moneyValue19,jdbcType=REAL},
-      money_value20 = #{record.moneyValue20,jdbcType=REAL},
-      money_value21 = #{record.moneyValue21,jdbcType=REAL},
-      money_value22 = #{record.moneyValue22,jdbcType=REAL},
-      money_value23 = #{record.moneyValue23,jdbcType=REAL},
-      money_value24 = #{record.moneyValue24,jdbcType=REAL},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs" >
-    update hd_supervision_info
-    <set >
-      <if test="directId != null" >
-        direct_id = #{directId,jdbcType=VARCHAR},
-      </if>
-      <if test="sysDeptId != null" >
-        sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionNo != null" >
-        supervision_no = #{supervisionNo,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionShortName != null" >
-        supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionAdd != null" >
-        supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
-      </if>
-      <if test="servicePeriod != null" >
-        service_period = #{servicePeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="directorName != null" >
-        director_name = #{directorName,jdbcType=VARCHAR},
-      </if>
-      <if test="directorTel != null" >
-        director_tel = #{directorTel,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionTel != null" >
-        supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sectBeginPoint != null" >
-        sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="sectEndPoint != null" >
-        sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadId != null" >
-        upload_id = #{uploadId,jdbcType=VARCHAR},
-      </if>
-      <if test="supervisionPactNo != null" >
-        supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
-      </if>
-      <if test="pactMoney != null" >
-        pact_money = #{pactMoney,jdbcType=REAL},
-      </if>
-      <if test="pactPeriod != null" >
-        pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      </if>
-      <if test="bankName != null" >
-        bank_name = #{bankName,jdbcType=VARCHAR},
-      </if>
-      <if test="bankNo != null" >
-        bank_no = #{bankNo,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyA != null" >
-        superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyB != null" >
-        superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
-      </if>
-      <if test="supervPropertyC != null" >
-        superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
-      </if>
-      <if test="sortorder != null" >
-        sortorder = #{sortorder,jdbcType=INTEGER},
-      </if>
-      <if test="projectId != null" >
-        project_id = #{projectId,jdbcType=VARCHAR},
-      </if>
-      <if test="zzhdj != null" >
-        zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      </if>
-      <if test="zhshhm != null" >
-        zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      </if>
-      <if test="yyzhzh != null" >
-        yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      </if>
-      <if test="chzhhm != null" >
-        chzhhm = #{chzhhm,jdbcType=VARCHAR},
-      </if>
-      <if test="zhgrsh != null" >
-        zhgrsh = #{zhgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="zhyjshrsh != null" >
-        zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
-      </if>
-      <if test="yjdzh != null" >
-        yjdzh = #{yjdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="jlgchshzgrsh != null" >
-        jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
-      </if>
-      <if test="chbjzhrs != null" >
-        chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
-      </if>
-      <if test="chbzhjzhrsh != null" >
-        chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="chtjzhrsh != null" >
-        chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
-      </if>
-      <if test="dwfzr != null" >
-        dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrdh != null" >
-        fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="dwyb != null" >
-        dwyb = #{dwyb,jdbcType=VARCHAR},
-      </if>
-      <if test="fzrzhw != null" >
-        fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
-      </if>
-      <if test="sxhth != null" >
-        sxhth = #{sxhth,jdbcType=VARCHAR},
-      </if>
-      <if test="sxlch != null" >
-        sxlch = #{sxlch,jdbcType=REAL},
-      </if>
-      <if test="sxldzj != null" >
-        sxldzj = #{sxldzj,jdbcType=REAL},
-      </if>
-      <if test="jlftbzj != null" >
-        jlftbzj = #{jlftbzj,jdbcType=REAL},
-      </if>
-      <if test="jlfjbj != null" >
-        jlfjbj = #{jlfjbj,jdbcType=REAL},
-      </if>
-      <if test="shgjdfwq != null" >
-        shgjdfwq = #{shgjdfwq,jdbcType=REAL},
-      </if>
-      <if test="kshrq != null" >
-        kshrq = #{kshrq,jdbcType=DATE},
-      </if>
-      <if test="jshrq != null" >
-        jshrq = #{jshrq,jdbcType=DATE},
-      </if>
-      <if test="qxzrfwq != null" >
-        qxzrfwq = #{qxzrfwq,jdbcType=REAL},
-      </if>
-      <if test="htjlryshl != null" >
-        htjlryshl = #{htjlryshl,jdbcType=INTEGER},
-      </if>
-      <if test="zhyjljyshrysl != null" >
-        zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
-      </if>
-      <if test="zjbdzh != null" >
-        zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
-      </if>
-      <if test="gzjbyb != null" >
-        gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
-      </if>
-      <if test="zjblxdh != null" >
-        zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
-      </if>
-      <if test="xmxtrxm != null" >
-        xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
-      </if>
-      <if test="xmxtrdh != null" >
-        xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
-      </if>
-      <if test="bjrq != null" >
-        bjrq = #{bjrq,jdbcType=DATE},
-      </if>
-      <if test="moneyValue01 != null" >
-        money_value01 = #{moneyValue01,jdbcType=REAL},
-      </if>
-      <if test="moneyValue02 != null" >
-        money_value02 = #{moneyValue02,jdbcType=REAL},
-      </if>
-      <if test="moneyValue03 != null" >
-        money_value03 = #{moneyValue03,jdbcType=REAL},
-      </if>
-      <if test="moneyValue04 != null" >
-        money_value04 = #{moneyValue04,jdbcType=REAL},
-      </if>
-      <if test="moneyValue05 != null" >
-        money_value05 = #{moneyValue05,jdbcType=REAL},
-      </if>
-      <if test="moneyValue06 != null" >
-        money_value06 = #{moneyValue06,jdbcType=REAL},
-      </if>
-      <if test="moneyValue07 != null" >
-        money_value07 = #{moneyValue07,jdbcType=REAL},
-      </if>
-      <if test="moneyValue08 != null" >
-        money_value08 = #{moneyValue08,jdbcType=REAL},
-      </if>
-      <if test="moneyValue09 != null" >
-        money_value09 = #{moneyValue09,jdbcType=REAL},
-      </if>
-      <if test="moneyValue10 != null" >
-        money_value10 = #{moneyValue10,jdbcType=REAL},
-      </if>
-      <if test="moneyValue11 != null" >
-        money_value11 = #{moneyValue11,jdbcType=REAL},
-      </if>
-      <if test="roleType != null" >
-        role_type = #{roleType,jdbcType=VARCHAR},
-      </if>
-      <if test="moneyValue12 != null" >
-        money_value12 = #{moneyValue12,jdbcType=REAL},
-      </if>
-      <if test="moneyValue13 != null" >
-        money_value13 = #{moneyValue13,jdbcType=REAL},
-      </if>
-      <if test="moneyValue14 != null" >
-        money_value14 = #{moneyValue14,jdbcType=REAL},
-      </if>
-      <if test="moneyValue15 != null" >
-        money_value15 = #{moneyValue15,jdbcType=REAL},
-      </if>
-      <if test="moneyValue16 != null" >
-        money_value16 = #{moneyValue16,jdbcType=REAL},
-      </if>
-      <if test="moneyValue17 != null" >
-        money_value17 = #{moneyValue17,jdbcType=REAL},
-      </if>
-      <if test="moneyValue18 != null" >
-        money_value18 = #{moneyValue18,jdbcType=REAL},
-      </if>
-      <if test="moneyValue19 != null" >
-        money_value19 = #{moneyValue19,jdbcType=REAL},
-      </if>
-      <if test="moneyValue20 != null" >
-        money_value20 = #{moneyValue20,jdbcType=REAL},
-      </if>
-      <if test="moneyValue21 != null" >
-        money_value21 = #{moneyValue21,jdbcType=REAL},
-      </if>
-      <if test="moneyValue22 != null" >
-        money_value22 = #{moneyValue22,jdbcType=REAL},
-      </if>
-      <if test="moneyValue23 != null" >
-        money_value23 = #{moneyValue23,jdbcType=REAL},
-      </if>
-      <if test="moneyValue24 != null" >
-        money_value24 = #{moneyValue24,jdbcType=REAL},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="supervisionMemo != null" >
-        supervision_memo = #{supervisionMemo,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="dwyjgk != null" >
-        dwyjgk = #{dwyjgk,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs" >
-    update hd_supervision_info
-    set direct_id = #{directId,jdbcType=VARCHAR},
-      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      supervision_no = #{supervisionNo,jdbcType=VARCHAR},
-      supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
-      supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
-      service_period = #{servicePeriod,jdbcType=VARCHAR},
-      director_name = #{directorName,jdbcType=VARCHAR},
-      director_tel = #{directorTel,jdbcType=VARCHAR},
-      supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
-      sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      upload_id = #{uploadId,jdbcType=VARCHAR},
-      supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
-      pact_money = #{pactMoney,jdbcType=REAL},
-      pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      bank_name = #{bankName,jdbcType=VARCHAR},
-      bank_no = #{bankNo,jdbcType=VARCHAR},
-      superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
-      superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
-      superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
-      sortorder = #{sortorder,jdbcType=INTEGER},
-      project_id = #{projectId,jdbcType=VARCHAR},
-      zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      chzhhm = #{chzhhm,jdbcType=VARCHAR},
-      zhgrsh = #{zhgrsh,jdbcType=INTEGER},
-      zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
-      yjdzh = #{yjdzh,jdbcType=VARCHAR},
-      jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
-      chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
-      chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
-      chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
-      dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      dwyb = #{dwyb,jdbcType=VARCHAR},
-      fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
-      sxhth = #{sxhth,jdbcType=VARCHAR},
-      sxlch = #{sxlch,jdbcType=REAL},
-      sxldzj = #{sxldzj,jdbcType=REAL},
-      jlftbzj = #{jlftbzj,jdbcType=REAL},
-      jlfjbj = #{jlfjbj,jdbcType=REAL},
-      shgjdfwq = #{shgjdfwq,jdbcType=REAL},
-      kshrq = #{kshrq,jdbcType=DATE},
-      jshrq = #{jshrq,jdbcType=DATE},
-      qxzrfwq = #{qxzrfwq,jdbcType=REAL},
-      htjlryshl = #{htjlryshl,jdbcType=INTEGER},
-      zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
-      zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
-      gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
-      zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
-      xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
-      xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
-      bjrq = #{bjrq,jdbcType=DATE},
-      money_value01 = #{moneyValue01,jdbcType=REAL},
-      money_value02 = #{moneyValue02,jdbcType=REAL},
-      money_value03 = #{moneyValue03,jdbcType=REAL},
-      money_value04 = #{moneyValue04,jdbcType=REAL},
-      money_value05 = #{moneyValue05,jdbcType=REAL},
-      money_value06 = #{moneyValue06,jdbcType=REAL},
-      money_value07 = #{moneyValue07,jdbcType=REAL},
-      money_value08 = #{moneyValue08,jdbcType=REAL},
-      money_value09 = #{moneyValue09,jdbcType=REAL},
-      money_value10 = #{moneyValue10,jdbcType=REAL},
-      money_value11 = #{moneyValue11,jdbcType=REAL},
-      role_type = #{roleType,jdbcType=VARCHAR},
-      money_value12 = #{moneyValue12,jdbcType=REAL},
-      money_value13 = #{moneyValue13,jdbcType=REAL},
-      money_value14 = #{moneyValue14,jdbcType=REAL},
-      money_value15 = #{moneyValue15,jdbcType=REAL},
-      money_value16 = #{moneyValue16,jdbcType=REAL},
-      money_value17 = #{moneyValue17,jdbcType=REAL},
-      money_value18 = #{moneyValue18,jdbcType=REAL},
-      money_value19 = #{moneyValue19,jdbcType=REAL},
-      money_value20 = #{moneyValue20,jdbcType=REAL},
-      money_value21 = #{moneyValue21,jdbcType=REAL},
-      money_value22 = #{moneyValue22,jdbcType=REAL},
-      money_value23 = #{moneyValue23,jdbcType=REAL},
-      money_value24 = #{moneyValue24,jdbcType=REAL},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      supervision_memo = #{supervisionMemo,jdbcType=LONGVARCHAR},
-      dwyjgk = #{dwyjgk,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.SupervisionInfo" >
-    update hd_supervision_info
-    set direct_id = #{directId,jdbcType=VARCHAR},
-      sys_dept_id = #{sysDeptId,jdbcType=VARCHAR},
-      supervision_no = #{supervisionNo,jdbcType=VARCHAR},
-      supervision_short_name = #{supervisionShortName,jdbcType=VARCHAR},
-      supervision_add = #{supervisionAdd,jdbcType=VARCHAR},
-      service_period = #{servicePeriod,jdbcType=VARCHAR},
-      director_name = #{directorName,jdbcType=VARCHAR},
-      director_tel = #{directorTel,jdbcType=VARCHAR},
-      supervision_tel = #{supervisionTel,jdbcType=VARCHAR},
-      sect_begin_point = #{sectBeginPoint,jdbcType=VARCHAR},
-      sect_end_point = #{sectEndPoint,jdbcType=VARCHAR},
-      upload_id = #{uploadId,jdbcType=VARCHAR},
-      supervision_pact_no = #{supervisionPactNo,jdbcType=VARCHAR},
-      pact_money = #{pactMoney,jdbcType=REAL},
-      pact_period = #{pactPeriod,jdbcType=VARCHAR},
-      bank_name = #{bankName,jdbcType=VARCHAR},
-      bank_no = #{bankNo,jdbcType=VARCHAR},
-      superv_property_a = #{supervPropertyA,jdbcType=VARCHAR},
-      superv_property_b = #{supervPropertyB,jdbcType=VARCHAR},
-      superv_property_c = #{supervPropertyC,jdbcType=VARCHAR},
-      sortorder = #{sortorder,jdbcType=INTEGER},
-      project_id = #{projectId,jdbcType=VARCHAR},
-      zzhdj = #{zzhdj,jdbcType=VARCHAR},
-      zhshhm = #{zhshhm,jdbcType=VARCHAR},
-      yyzhzh = #{yyzhzh,jdbcType=VARCHAR},
-      chzhhm = #{chzhhm,jdbcType=VARCHAR},
-      zhgrsh = #{zhgrsh,jdbcType=INTEGER},
-      zhyjshrsh = #{zhyjshrsh,jdbcType=INTEGER},
-      yjdzh = #{yjdzh,jdbcType=VARCHAR},
-      jlgchshzgrsh = #{jlgchshzgrsh,jdbcType=INTEGER},
-      chbjzhrs = #{chbjzhrs,jdbcType=INTEGER},
-      chbzhjzhrsh = #{chbzhjzhrsh,jdbcType=INTEGER},
-      chtjzhrsh = #{chtjzhrsh,jdbcType=INTEGER},
-      dwfzr = #{dwfzr,jdbcType=VARCHAR},
-      fzrdh = #{fzrdh,jdbcType=VARCHAR},
-      dwyb = #{dwyb,jdbcType=VARCHAR},
-      fzrzhw = #{fzrzhw,jdbcType=VARCHAR},
-      sxhth = #{sxhth,jdbcType=VARCHAR},
-      sxlch = #{sxlch,jdbcType=REAL},
-      sxldzj = #{sxldzj,jdbcType=REAL},
-      jlftbzj = #{jlftbzj,jdbcType=REAL},
-      jlfjbj = #{jlfjbj,jdbcType=REAL},
-      shgjdfwq = #{shgjdfwq,jdbcType=REAL},
-      kshrq = #{kshrq,jdbcType=DATE},
-      jshrq = #{jshrq,jdbcType=DATE},
-      qxzrfwq = #{qxzrfwq,jdbcType=REAL},
-      htjlryshl = #{htjlryshl,jdbcType=INTEGER},
-      zhyjljyshrysl = #{zhyjljyshrysl,jdbcType=INTEGER},
-      zjbdzh = #{zjbdzh,jdbcType=VARCHAR},
-      gzjbyb = #{gzjbyb,jdbcType=VARCHAR},
-      zjblxdh = #{zjblxdh,jdbcType=VARCHAR},
-      xmxtrxm = #{xmxtrxm,jdbcType=VARCHAR},
-      xmxtrdh = #{xmxtrdh,jdbcType=VARCHAR},
-      bjrq = #{bjrq,jdbcType=DATE},
-      money_value01 = #{moneyValue01,jdbcType=REAL},
-      money_value02 = #{moneyValue02,jdbcType=REAL},
-      money_value03 = #{moneyValue03,jdbcType=REAL},
-      money_value04 = #{moneyValue04,jdbcType=REAL},
-      money_value05 = #{moneyValue05,jdbcType=REAL},
-      money_value06 = #{moneyValue06,jdbcType=REAL},
-      money_value07 = #{moneyValue07,jdbcType=REAL},
-      money_value08 = #{moneyValue08,jdbcType=REAL},
-      money_value09 = #{moneyValue09,jdbcType=REAL},
-      money_value10 = #{moneyValue10,jdbcType=REAL},
-      money_value11 = #{moneyValue11,jdbcType=REAL},
-      role_type = #{roleType,jdbcType=VARCHAR},
-      money_value12 = #{moneyValue12,jdbcType=REAL},
-      money_value13 = #{moneyValue13,jdbcType=REAL},
-      money_value14 = #{moneyValue14,jdbcType=REAL},
-      money_value15 = #{moneyValue15,jdbcType=REAL},
-      money_value16 = #{moneyValue16,jdbcType=REAL},
-      money_value17 = #{moneyValue17,jdbcType=REAL},
-      money_value18 = #{moneyValue18,jdbcType=REAL},
-      money_value19 = #{moneyValue19,jdbcType=REAL},
-      money_value20 = #{moneyValue20,jdbcType=REAL},
-      money_value21 = #{moneyValue21,jdbcType=REAL},
-      money_value22 = #{moneyValue22,jdbcType=REAL},
-      money_value23 = #{moneyValue23,jdbcType=REAL},
-      money_value24 = #{moneyValue24,jdbcType=REAL},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>
