@@ -6,11 +6,10 @@
 // host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
 var host = "http://localhost:8090";
 var MAPURL = {
-    URL: host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GL",
-    URL_DATA: host + "/iserver/services/data-xjsl_Final/rest/data",
-    ROAD_URL: host + "/iserver/services/map-xjsl_Final/rest/maps/JSGIST-GS",
+    URL: host + "/iserver/services/map-XinJiangYiZhangTu/rest/maps/JSGIST-GL（彩色）",
+    URL_DATA: host + "/iserver/services/data-XinJiangYiZhangTu/rest/data",
+    ROAD_URL: host + "/iserver/services/map-XinJiangYiZhangTu/rest/maps/JSGIST-GS",// 没用到
     ZJ_ROAD: host + "/iserver/services/map-zaijiandaoluxin2/rest/maps/GLZJ",
-    // ZJ_ROAD: host + "/iserver/services/map-zaijiandaoluxin/rest/maps/GLZJ",
     XJ_YX_ALL: host + "/iserver/services/map-XJ_level11/rest/maps/XJ_11",
     YX_2015: host + "/iserver/services/map-WK20171011/rest/maps/WK2015",
     YX_2016_1: host + "/iserver/services/map-TWD20171012/rest/maps/TWD2016",

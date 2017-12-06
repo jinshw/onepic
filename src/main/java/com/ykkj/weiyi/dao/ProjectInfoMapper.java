@@ -45,4 +45,6 @@ public interface ProjectInfoMapper
     String findProjectInfoMaxInserttime();
 
     void deleteAll();
+
+    ProjectInfo findProjectInfoByID(String id);
 }

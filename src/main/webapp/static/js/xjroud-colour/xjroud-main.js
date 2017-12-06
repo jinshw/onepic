@@ -463,7 +463,7 @@ function queryYXInfo(SmID) {
     });*/
     console.log("smid=="+SmID)
     queryParam = new SuperMap.REST.FilterParameter({
-        name:"qujingjieRL@xj",
+        name:"jingjieR@xj",
         attributeFilter: "SmID = " + SmID
     })
 
@@ -546,9 +546,9 @@ function infoQuery() {
 
     setLayerVisibility({
         layerT: true,
-        layerRoad: true,
+        layerRoad: false,
         layerYXALL: false,
-        layerZJRoad: true,
+        layerZJRoad: false,
         layer20150913: false,
         layer20161210: false,
         layer20170101: false,
@@ -573,6 +573,7 @@ function setLayerVisibility(obj) {
     layerRoad.setVisibility(obj["layerRoad"] || false)
     layerYXALL.setVisibility(obj["layerYXALL"] || false)
     layerZJRoad.setVisibility(obj["layerZJRoad"] || false)
+    // layerZJRoad.setVisibility(false)
 
     layer20150913.setVisibility(obj["layer20150913"] || false)
     layer20161210.setVisibility(obj["layer20161210"] || false)
@@ -673,8 +674,7 @@ $(document).ready(function () {
         if ( (nodes.length > 0 && nodes[0].id != 1 && nodes[0].id != 11 && nodes[0].id != 12 && nodes[0].id != 13)
             ||(nodesDZ.length > 0 && nodesDZ[0].id != 1 && nodesDZ[0].id != 11 && nodesDZ[0].id != 12 && nodesDZ[0].id != 13)
             || (nodesJS.length > 0 && nodesJS[0].id != 1 && nodesJS[0].id != 11 && nodesJS[0].id != 12 && nodesJS[0].id != 13)
-        )
-        {
+        ) {
             $("#leftSider").css("display", "block")
             $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
             vectorLayer.setVisibility(true)
@@ -703,8 +703,7 @@ $(document).ready(function () {
         if ( (nodes.length > 0 && nodes[0].id != 1 && nodes[0].id != 11 && nodes[0].id != 12 && nodes[0].id != 13)
             ||(nodesDZ.length > 0 && nodesDZ[0].id != 1 && nodesDZ[0].id != 11 && nodesDZ[0].id != 12 && nodesDZ[0].id != 13)
             || (nodesJS.length > 0 && nodesJS[0].id != 1 && nodesJS[0].id != 11 && nodesJS[0].id != 12 && nodesJS[0].id != 13)
-        )
-        {
+        ){
             $("#leftSider").css("display", "block")
             $("#MainId").removeClass("col-md-12 col-sm-12").addClass("col-md-10 col-sm-10")
             vectorLayer.setVisibility(true)
@@ -831,7 +830,7 @@ $(document).ready(function () {
             layerT: false,
             layerRoad: true,
             layerYXALL: true,
-            layerZJRoad: false,
+            layerZJRoad: true,
             layer20150913: false,
             layer20161210: false,
             layer20170101: true,

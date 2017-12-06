@@ -15,6 +15,7 @@ import com.ykkj.weiyi.dao.SectInfoMapper;
 import com.ykkj.weiyi.dao.SupervisionInfoMapper;
 import com.ykkj.weiyi.pojo.DirectInfoExample;
 import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
+import com.ykkj.weiyi.pojo.ProjectInfo;
 import com.ykkj.weiyi.pojo.ProjectInfoExample;
 import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SectInfoExample;
@@ -208,6 +209,13 @@ public class HdServiceImpl implements HdService
     {
         // TODO Auto-generated method stub
         return sectInfoMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public ProjectInfo findProjectInfoByID(String id)
+    {
+        // TODO Auto-generated method stub
+        return projectInfoMapper.findProjectInfoByID(id);
     }
 
 }

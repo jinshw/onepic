@@ -3,6 +3,7 @@ package com.ykkj.weiyi.controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ykkj.weiyi.common.StaticUtils;
 import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
+import com.ykkj.weiyi.pojo.ProjectInfo;
 import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs;
@@ -145,18 +147,26 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETPROJECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        ProjectInfoWithBLOBs pwb;
-        hdService.deleteAllProjectInfo();
-        while (iterator.hasNext())
+
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            pwb = new ProjectInfoWithBLOBs();
-            hdTask.jsonToObj(pwb, jsonObject);
-            pwb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insert(pwb);
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            ProjectInfoWithBLOBs pwb;
+            hdService.deleteAllProjectInfo();
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                pwb = new ProjectInfoWithBLOBs();
+                hdTask.jsonToObj(pwb, jsonObject);
+                pwb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insert(pwb);
+            }
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -174,18 +184,25 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETDIRECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        DirectInfoWithBLOBs dwb;
-        hdService.deleteAllDirectInfo();
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            dwb = new DirectInfoWithBLOBs();
-            hdTask.jsonToObj(dwb, jsonObject);
-            dwb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertDirectInfo(dwb);
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            DirectInfoWithBLOBs dwb;
+            hdService.deleteAllDirectInfo();
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                dwb = new DirectInfoWithBLOBs();
+                hdTask.jsonToObj(dwb, jsonObject);
+                dwb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertDirectInfo(dwb);
+            }
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -203,18 +220,26 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETSUPERVISIONINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
+        System.out.println(res + "!!!!");
         JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        SupervisionInfoWithBLOBs swb;
-        hdService.deleteAllSupervisionInfo();
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            swb = new SupervisionInfoWithBLOBs();
-            hdTask.jsonToObj(swb, jsonObject);
-            swb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertSupervisionInfo(swb);
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            SupervisionInfoWithBLOBs swb;
+            hdService.deleteAllSupervisionInfo();
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                swb = new SupervisionInfoWithBLOBs();
+                hdTask.jsonToObj(swb, jsonObject);
+                swb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertSupervisionInfo(swb);
+            }
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -232,18 +257,25 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETSECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        SectInfoWithBLOBs swb;
-        hdService.deleteAllSectInfo();
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            swb = new SectInfoWithBLOBs();
-            hdTask.jsonToObj(swb, jsonObject);
-            swb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertSectInfo(swb);
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            SectInfoWithBLOBs swb;
+            hdService.deleteAllSectInfo();
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                swb = new SectInfoWithBLOBs();
+                hdTask.jsonToObj(swb, jsonObject);
+                swb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertSectInfo(swb);
+            }
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -264,23 +296,30 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETPROJECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        ProjectInfoWithBLOBs pwb;
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            pwb = new ProjectInfoWithBLOBs();
-            hdTask.jsonToObj(pwb, jsonObject);
-            if (hdService.findProjectInfoWithBLOBsByID(pwb.getId()) != null)
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            ProjectInfoWithBLOBs pwb;
+            while (iterator.hasNext())
             {
-                // System.out.println("id:" + pwb.getId() + "重复，修改中....");
-                hdService.deleteProjectInfoByID(pwb.getId());
-                // System.out.println("修改成功");
+                jsonObject = iterator.next();
+                pwb = new ProjectInfoWithBLOBs();
+                hdTask.jsonToObj(pwb, jsonObject);
+                if (hdService.findProjectInfoWithBLOBsByID(pwb.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteProjectInfoByID(pwb.getId());
+                    // System.out.println("修改成功");
+                }
+                pwb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insert(pwb);
             }
-            pwb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insert(pwb);
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -301,23 +340,30 @@ public class HdDataController
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETDIRECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        DirectInfoWithBLOBs dwb;
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            dwb = new DirectInfoWithBLOBs();
-            hdTask.jsonToObj(dwb, jsonObject);
-            if (hdService.findDirectInfoByID(dwb.getId()) != null)
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            DirectInfoWithBLOBs dwb;
+            while (iterator.hasNext())
             {
-                // System.out.println("id:" + pwb.getId() + "重复，修改中....");
-                hdService.deleteDirectInfoByID(dwb.getId());
-                // System.out.println("修改成功");
+                jsonObject = iterator.next();
+                dwb = new DirectInfoWithBLOBs();
+                hdTask.jsonToObj(dwb, jsonObject);
+                if (hdService.findDirectInfoByID(dwb.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteDirectInfoByID(dwb.getId());
+                    // System.out.println("修改成功");
+                }
+                dwb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertDirectInfo(dwb);
             }
-            dwb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertDirectInfo(dwb);
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -333,28 +379,36 @@ public class HdDataController
         Map<String, String> map = new HashMap<String, String>();
         map.put("type", "0");
         map.put("startTime", st);
+        System.out.println(st);
         int id = 0;
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETSUPERVISIONINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        SupervisionInfoWithBLOBs swb;
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            swb = new SupervisionInfoWithBLOBs();
-            hdTask.jsonToObj(swb, jsonObject);
-            if (hdService.findSupervisionInfoByID(swb.getId()) != null)
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            SupervisionInfoWithBLOBs swb;
+            while (iterator.hasNext())
             {
-                // System.out.println("id:" + pwb.getId() + "重复，修改中....");
-                hdService.deleteSupervisionInfoByID(swb.getId());
-                // System.out.println("修改成功");
+                jsonObject = iterator.next();
+                swb = new SupervisionInfoWithBLOBs();
+                hdTask.jsonToObj(swb, jsonObject);
+                if (hdService.findSupervisionInfoByID(swb.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteSupervisionInfoByID(swb.getId());
+                    // System.out.println("修改成功");
+                }
+                swb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertSupervisionInfo(swb);
             }
-            swb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertSupervisionInfo(swb);
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
@@ -370,29 +424,67 @@ public class HdDataController
         Map<String, String> map = new HashMap<String, String>();
         map.put("type", "0");
         map.put("startTime", st);
+        System.out.println(st);
         int id = 0;
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String datas = HttpUtils.URLGet(StaticUtils.HD_GETSECTINFO, map,
                 "UTF-8");
         JSONObject res = JSONObject.fromObject(datas);
-        JSONArray jsonArray = res.getJSONArray("returnData");
-        Iterator<JSONObject> iterator = jsonArray.iterator();
-        JSONObject jsonObject;
-        SectInfoWithBLOBs swb;
-        while (iterator.hasNext())
+        if ("0".equals(res.getString("status")))
         {
-            jsonObject = iterator.next();
-            swb = new SectInfoWithBLOBs();
-            hdTask.jsonToObj(swb, jsonObject);
-            if (hdService.findSectInfoByID(swb.getId()) != null)
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            SectInfoWithBLOBs swb;
+            while (iterator.hasNext())
             {
-                // System.out.println("id:" + pwb.getId() + "重复，修改中....");
-                hdService.deleteSectInfoByID(swb.getId());
-                // System.out.println("修改成功");
+                jsonObject = iterator.next();
+                swb = new SectInfoWithBLOBs();
+                hdTask.jsonToObj(swb, jsonObject);
+                if (hdService.findSectInfoByID(swb.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteSectInfoByID(swb.getId());
+                    // System.out.println("修改成功");
+                }
+                swb.setCreatetime(new Timestamp(new Date().getTime()));
+                hdService.insertSectInfo(swb);
             }
-            swb.setCreatetime(new Timestamp(new Date().getTime()));
-            hdService.insertSectInfo(swb);
+        }
+        else
+        {
+            System.out.println(res);
         }
     }
 
+    @RequestMapping("checkall")
+    public void checkall(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+        JSONObject result = new JSONObject();
+        result.put("status", "200");
+        result.put("message", "成功");
+        String id = request.getParameter("id");
+        if ("treeDemo".equals(id))
+        {
+            id = "4028a8835dc68068015de9af3262504f";
+        }
+        try
+        {
+            ProjectInfo projectInfo = hdService.findProjectInfoByID(id);
+            List<ProjectInfo> projectInfoList = new ArrayList<ProjectInfo>();
+            projectInfoList.add(projectInfo);
+            JSONArray jsonArray = JSONFormat.formatDate(projectInfoList,
+                    "yyyy-MM-dd HH:mm:ss", Date.class, null);
+            System.out.println(jsonArray.toString());
+            result.put("returnData", jsonArray.toString());
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().print(result.toString());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 }

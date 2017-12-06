@@ -1,5 +1,22 @@
 # 新疆公路建设指挥平台
 
+## 20171205-新增黑色底图
+* 修改的主要内容：
+   替换底图、在建道路地址；修改左侧项目树初始化查询和点击查询
+* 修改底图地址：
+URL: host + "/iserver/services/map-XinJiangYiZhangTu/rest/maps/JSGIST-GL（黑）",
+URL_DATA: host + "/iserver/services/data-XinJiangYiZhangTu/rest/data",
+ROAD_URL: host + "/iserver/services/map-XinJiangYiZhangTu/rest/maps/JSGIST-GS",// 没用到
+ZJ_ROAD: host + "/iserver/services/map-zaijiandaoluxin2/rest/maps/GLZJ",
+
+* 修改文件：
+xjroud-config.js
+xjroud-echarts.js
+xjroud-main.js
+xjroud-ztree.js
+
+
+
 ## 20171013-新增
 * 影像核查：     
 1. 添加核查影像图层

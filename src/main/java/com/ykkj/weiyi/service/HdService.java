@@ -3,6 +3,7 @@ package com.ykkj.weiyi.service;
 import java.util.List;
 
 import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
+import com.ykkj.weiyi.pojo.ProjectInfo;
 import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs;
@@ -121,5 +122,7 @@ public interface HdService
     public SupervisionInfoWithBLOBs findSupervisionInfoByID(String id);
 
     public SectInfoWithBLOBs findSectInfoByID(String id);
+
+    public ProjectInfo findProjectInfoByID(String id);
 
 }

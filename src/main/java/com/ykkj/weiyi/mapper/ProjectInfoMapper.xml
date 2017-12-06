@@ -1556,4 +1556,9 @@
   <delete id="deleteAll">
   delete from hd_project_info;
   </delete>
+  
+    <select id="findProjectInfoByID" parameterType="java.lang.String" resultType="com.ykkj.weiyi.pojo.ProjectInfo" >
+    select * from hd_project_info 
+  where id = #{id,jdbcType=VARCHAR}
+  </select>
 </mapper>
