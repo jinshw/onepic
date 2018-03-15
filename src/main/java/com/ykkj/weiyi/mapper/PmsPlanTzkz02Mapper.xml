@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz02Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="jhbz_id" property="jhbzId" jdbcType="VARCHAR" />
+    <result column="id_two" property="idTwo" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="zb_type" property="zbType" jdbcType="DECIMAL" />
+    <result column="zb_code" property="zbCode" jdbcType="VARCHAR" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="htsl1" property="htsl1" jdbcType="DECIMAL" />
+    <result column="htsl2" property="htsl2" jdbcType="DECIMAL" />
+    <result column="fhsl1" property="fhsl1" jdbcType="DECIMAL" />
+    <result column="fhsl2" property="fhsl2" jdbcType="DECIMAL" />
+    <result column="bnjh1" property="bnjh1" jdbcType="DECIMAL" />
+    <result column="bnjh2" property="bnjh2" jdbcType="DECIMAL" />
+    <result column="zbyljwc11" property="zbyljwc11" jdbcType="DECIMAL" />
+    <result column="zbyljwc21" property="zbyljwc21" jdbcType="DECIMAL" />
+    <result column="zncljwc11" property="zncljwc11" jdbcType="DECIMAL" />
+    <result column="zncljwc21" property="zncljwc21" jdbcType="DECIMAL" />
+    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="creattime" property="creattime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, item_name, jhbz_id, id_two, unit, zb_type, zb_code, parent_code, htsl1, 
+    htsl2, fhsl1, fhsl2, bnjh1, bnjh2, zbyljwc11, zbyljwc21, zncljwc11, zncljwc21, inserttime, 
+    creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz02
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz02
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pms_plan_tzkz02
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02Example" >
+    delete from pms_plan_tzkz02
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
+    insert into pms_plan_tzkz02 (id, m_id, item_name, 
+      jhbz_id, id_two, unit, 
+      zb_type, zb_code, parent_code, 
+      htsl1, htsl2, fhsl1, 
+      fhsl2, bnjh1, bnjh2, 
+      zbyljwc11, zbyljwc21, zncljwc11, 
+      zncljwc21, inserttime, creattime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{jhbzId,jdbcType=VARCHAR}, #{idTwo,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{zbType,jdbcType=DECIMAL}, #{zbCode,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{htsl1,jdbcType=DECIMAL}, #{htsl2,jdbcType=DECIMAL}, #{fhsl1,jdbcType=DECIMAL}, 
+      #{fhsl2,jdbcType=DECIMAL}, #{bnjh1,jdbcType=DECIMAL}, #{bnjh2,jdbcType=DECIMAL}, 
+      #{zbyljwc11,jdbcType=DECIMAL}, #{zbyljwc21,jdbcType=DECIMAL}, #{zncljwc11,jdbcType=DECIMAL}, 
+      #{zncljwc21,jdbcType=DECIMAL}, #{inserttime,jdbcType=DATE}, #{creattime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
+    insert into pms_plan_tzkz02
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="jhbzId != null" >
+        jhbz_id,
+      </if>
+      <if test="idTwo != null" >
+        id_two,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="zbType != null" >
+        zb_type,
+      </if>
+      <if test="zbCode != null" >
+        zb_code,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="htsl1 != null" >
+        htsl1,
+      </if>
+      <if test="htsl2 != null" >
+        htsl2,
+      </if>
+      <if test="fhsl1 != null" >
+        fhsl1,
+      </if>
+      <if test="fhsl2 != null" >
+        fhsl2,
+      </if>
+      <if test="bnjh1 != null" >
+        bnjh1,
+      </if>
+      <if test="bnjh2 != null" >
+        bnjh2,
+      </if>
+      <if test="zbyljwc11 != null" >
+        zbyljwc11,
+      </if>
+      <if test="zbyljwc21 != null" >
+        zbyljwc21,
+      </if>
+      <if test="zncljwc11 != null" >
+        zncljwc11,
+      </if>
+      <if test="zncljwc21 != null" >
+        zncljwc21,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="jhbzId != null" >
+        #{jhbzId,jdbcType=VARCHAR},
+      </if>
+      <if test="idTwo != null" >
+        #{idTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="zbType != null" >
+        #{zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="zbCode != null" >
+        #{zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="htsl1 != null" >
+        #{htsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="htsl2 != null" >
+        #{htsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="fhsl1 != null" >
+        #{fhsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="fhsl2 != null" >
+        #{fhsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjh1 != null" >
+        #{bnjh1,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjh2 != null" >
+        #{bnjh2,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyljwc11 != null" >
+        #{zbyljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyljwc21 != null" >
+        #{zbyljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="zncljwc11 != null" >
+        #{zncljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="zncljwc21 != null" >
+        #{zncljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz02
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz02
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jhbzId != null" >
+        jhbz_id = #{record.jhbzId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idTwo != null" >
+        id_two = #{record.idTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbType != null" >
+        zb_type = #{record.zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbCode != null" >
+        zb_code = #{record.zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentCode != null" >
+        parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.htsl1 != null" >
+        htsl1 = #{record.htsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.htsl2 != null" >
+        htsl2 = #{record.htsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fhsl1 != null" >
+        fhsl1 = #{record.fhsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fhsl2 != null" >
+        fhsl2 = #{record.fhsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bnjh1 != null" >
+        bnjh1 = #{record.bnjh1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bnjh2 != null" >
+        bnjh2 = #{record.bnjh2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbyljwc11 != null" >
+        zbyljwc11 = #{record.zbyljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbyljwc21 != null" >
+        zbyljwc21 = #{record.zbyljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zncljwc11 != null" >
+        zncljwc11 = #{record.zncljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zncljwc21 != null" >
+        zncljwc21 = #{record.zncljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=DATE},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz02
+    set id = #{record.id,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      jhbz_id = #{record.jhbzId,jdbcType=VARCHAR},
+      id_two = #{record.idTwo,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      zb_type = #{record.zbType,jdbcType=DECIMAL},
+      zb_code = #{record.zbCode,jdbcType=VARCHAR},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      htsl1 = #{record.htsl1,jdbcType=DECIMAL},
+      htsl2 = #{record.htsl2,jdbcType=DECIMAL},
+      fhsl1 = #{record.fhsl1,jdbcType=DECIMAL},
+      fhsl2 = #{record.fhsl2,jdbcType=DECIMAL},
+      bnjh1 = #{record.bnjh1,jdbcType=DECIMAL},
+      bnjh2 = #{record.bnjh2,jdbcType=DECIMAL},
+      zbyljwc11 = #{record.zbyljwc11,jdbcType=DECIMAL},
+      zbyljwc21 = #{record.zbyljwc21,jdbcType=DECIMAL},
+      zncljwc11 = #{record.zncljwc11,jdbcType=DECIMAL},
+      zncljwc21 = #{record.zncljwc21,jdbcType=DECIMAL},
+      inserttime = #{record.inserttime,jdbcType=DATE},
+      creattime = #{record.creattime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
+    update pms_plan_tzkz02
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="jhbzId != null" >
+        jhbz_id = #{jhbzId,jdbcType=VARCHAR},
+      </if>
+      <if test="idTwo != null" >
+        id_two = #{idTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="zbType != null" >
+        zb_type = #{zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="zbCode != null" >
+        zb_code = #{zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="htsl1 != null" >
+        htsl1 = #{htsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="htsl2 != null" >
+        htsl2 = #{htsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="fhsl1 != null" >
+        fhsl1 = #{fhsl1,jdbcType=DECIMAL},
+      </if>
+      <if test="fhsl2 != null" >
+        fhsl2 = #{fhsl2,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjh1 != null" >
+        bnjh1 = #{bnjh1,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjh2 != null" >
+        bnjh2 = #{bnjh2,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyljwc11 != null" >
+        zbyljwc11 = #{zbyljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyljwc21 != null" >
+        zbyljwc21 = #{zbyljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="zncljwc11 != null" >
+        zncljwc11 = #{zncljwc11,jdbcType=DECIMAL},
+      </if>
+      <if test="zncljwc21 != null" >
+        zncljwc21 = #{zncljwc21,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
+    update pms_plan_tzkz02
+    set m_id = #{mId,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      jhbz_id = #{jhbzId,jdbcType=VARCHAR},
+      id_two = #{idTwo,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      zb_type = #{zbType,jdbcType=DECIMAL},
+      zb_code = #{zbCode,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      htsl1 = #{htsl1,jdbcType=DECIMAL},
+      htsl2 = #{htsl2,jdbcType=DECIMAL},
+      fhsl1 = #{fhsl1,jdbcType=DECIMAL},
+      fhsl2 = #{fhsl2,jdbcType=DECIMAL},
+      bnjh1 = #{bnjh1,jdbcType=DECIMAL},
+      bnjh2 = #{bnjh2,jdbcType=DECIMAL},
+      zbyljwc11 = #{zbyljwc11,jdbcType=DECIMAL},
+      zbyljwc21 = #{zbyljwc21,jdbcType=DECIMAL},
+      zncljwc11 = #{zncljwc11,jdbcType=DECIMAL},
+      zncljwc21 = #{zncljwc21,jdbcType=DECIMAL},
+      inserttime = #{inserttime,jdbcType=DATE},
+      creattime = #{creattime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.JdpzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.JdpzInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="zb_code" property="zbCode" jdbcType="VARCHAR" />
+    <result column="zb_year" property="zbYear" jdbcType="DECIMAL" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="zb_name" property="zbName" jdbcType="VARCHAR" />
+    <result column="zb_unit" property="zbUnit" jdbcType="VARCHAR" />
+    <result column="zb_price" property="zbPrice" jdbcType="VARCHAR" />
+    <result column="zb_type" property="zbType" jdbcType="DECIMAL" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.JdpzInfo" extends="BaseResultMap" >
+    <result column="jbyq" property="jbyq" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, zb_code, zb_year, parent_code, zb_name, zb_unit, zb_price, zb_type, inserttime, 
+    creattime
+  </sql>
+  <sql id="Blob_Column_List" >
+    jbyq
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.JdpzInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_jdpz_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.JdpzInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_jdpz_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_jdpz_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_jdpz_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.JdpzInfoExample" >
+    delete from hd_jdpz_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.JdpzInfo" >
+    insert into hd_jdpz_info (id, zb_code, zb_year, 
+      parent_code, zb_name, zb_unit, 
+      zb_price, zb_type, inserttime, 
+      creattime, jbyq)
+    values (#{id,jdbcType=VARCHAR}, #{zbCode,jdbcType=VARCHAR}, #{zbYear,jdbcType=DECIMAL}, 
+      #{parentCode,jdbcType=VARCHAR}, #{zbName,jdbcType=VARCHAR}, #{zbUnit,jdbcType=VARCHAR}, 
+      #{zbPrice,jdbcType=VARCHAR}, #{zbType,jdbcType=DECIMAL}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{creattime,jdbcType=TIMESTAMP}, #{jbyq,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.JdpzInfo" >
+    insert into hd_jdpz_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zbCode != null" >
+        zb_code,
+      </if>
+      <if test="zbYear != null" >
+        zb_year,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="zbName != null" >
+        zb_name,
+      </if>
+      <if test="zbUnit != null" >
+        zb_unit,
+      </if>
+      <if test="zbPrice != null" >
+        zb_price,
+      </if>
+      <if test="zbType != null" >
+        zb_type,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+      <if test="jbyq != null" >
+        jbyq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zbCode != null" >
+        #{zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zbYear != null" >
+        #{zbYear,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zbName != null" >
+        #{zbName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbUnit != null" >
+        #{zbUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="zbPrice != null" >
+        #{zbPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="zbType != null" >
+        #{zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jbyq != null" >
+        #{jbyq,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.JdpzInfoExample" resultType="java.lang.Integer" >
+    select count(*) from hd_jdpz_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_jdpz_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbCode != null" >
+        zb_code = #{record.zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbYear != null" >
+        zb_year = #{record.zbYear,jdbcType=DECIMAL},
+      </if>
+      <if test="record.parentCode != null" >
+        parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbName != null" >
+        zb_name = #{record.zbName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbUnit != null" >
+        zb_unit = #{record.zbUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbPrice != null" >
+        zb_price = #{record.zbPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbType != null" >
+        zb_type = #{record.zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jbyq != null" >
+        jbyq = #{record.jbyq,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hd_jdpz_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      zb_code = #{record.zbCode,jdbcType=VARCHAR},
+      zb_year = #{record.zbYear,jdbcType=DECIMAL},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      zb_name = #{record.zbName,jdbcType=VARCHAR},
+      zb_unit = #{record.zbUnit,jdbcType=VARCHAR},
+      zb_price = #{record.zbPrice,jdbcType=VARCHAR},
+      zb_type = #{record.zbType,jdbcType=DECIMAL},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      jbyq = #{record.jbyq,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_jdpz_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      zb_code = #{record.zbCode,jdbcType=VARCHAR},
+      zb_year = #{record.zbYear,jdbcType=DECIMAL},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      zb_name = #{record.zbName,jdbcType=VARCHAR},
+      zb_unit = #{record.zbUnit,jdbcType=VARCHAR},
+      zb_price = #{record.zbPrice,jdbcType=VARCHAR},
+      zb_type = #{record.zbType,jdbcType=DECIMAL},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.JdpzInfo" >
+    update hd_jdpz_info
+    <set >
+      <if test="zbCode != null" >
+        zb_code = #{zbCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zbYear != null" >
+        zb_year = #{zbYear,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zbName != null" >
+        zb_name = #{zbName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbUnit != null" >
+        zb_unit = #{zbUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="zbPrice != null" >
+        zb_price = #{zbPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="zbType != null" >
+        zb_type = #{zbType,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jbyq != null" >
+        jbyq = #{jbyq,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.JdpzInfo" >
+    update hd_jdpz_info
+    set zb_code = #{zbCode,jdbcType=VARCHAR},
+      zb_year = #{zbYear,jdbcType=DECIMAL},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      zb_name = #{zbName,jdbcType=VARCHAR},
+      zb_unit = #{zbUnit,jdbcType=VARCHAR},
+      zb_price = #{zbPrice,jdbcType=VARCHAR},
+      zb_type = #{zbType,jdbcType=DECIMAL},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP},
+      jbyq = #{jbyq,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.JdpzInfo" >
+    update hd_jdpz_info
+    set zb_code = #{zbCode,jdbcType=VARCHAR},
+      zb_year = #{zbYear,jdbcType=DECIMAL},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      zb_name = #{zbName,jdbcType=VARCHAR},
+      zb_unit = #{zbUnit,jdbcType=VARCHAR},
+      zb_price = #{zbPrice,jdbcType=VARCHAR},
+      zb_type = #{zbType,jdbcType=DECIMAL},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  	<select id="findPmsJdpzInfoById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from hd_jdpz_info
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteJdpzInfoById" parameterType="java.lang.String">
+		delete from
+		hd_jdpz_info
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertJdpzInfoList" parameterType="com.ykkj.weiyi.pojo.JdpzInfo">
+		insert into hd_jdpz_info (id, zb_code, zb_year,
+		parent_code, zb_name, zb_unit,
+		zb_price, zb_type, inserttime,
+		creattime, jbyq)
+		values
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(#{item.id,jdbcType=VARCHAR}, #{item.zbCode,jdbcType=VARCHAR}, #{item.zbYear,jdbcType=DECIMAL},
+			#{item.parentCode,jdbcType=VARCHAR}, #{item.zbName,jdbcType=VARCHAR},
+			#{item.zbUnit,jdbcType=VARCHAR},
+			#{item.zbPrice,jdbcType=VARCHAR}, #{item.zbType,jdbcType=DECIMAL}, #{item.inserttime,jdbcType=TIMESTAMP},
+			#{item.creattime,jdbcType=TIMESTAMP}, #{item.jbyq,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+	    <delete id="deleteAllJdpzInfo">
+  delete from hd_jdpz_info;
+  </delete>
+    <select id="findJdpzInfoMaxInserttime" resultType="java.lang.String">
+		select
+		max(inserttime) from hd_jdpz_info;
+	</select>
+  
+</mapper>

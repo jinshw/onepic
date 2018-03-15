@@ -126,7 +126,7 @@ var BASE_URL_HTML = "/onepic";
 	return dtd.promise();
     }
 
-    ajaxRequest.checkall = function(obj) {// 查询标注
+    ajaxRequest.checkall = function(obj) {// 查询项目基本信息
 	var dtd = $.Deferred();
 	$.ajax({
 	    url : BASE_URL_HTML + '/hd/checkall',

@@ -31,16 +31,28 @@
         </div>
         <div id="page-inner">
             <div class="row">
+                <a href="${ctx}/hd/getDeleteInfoHD" target="_blank" class="btn btn-primary">获取删除信息</a>
                 <a href="${ctx}/hd/getProjectInfo" target="_blank" class="btn btn-primary">获取项目信息</a>
 <a href="${ctx}/hd/getProjectInfoHDZL" target="_blank" class="btn btn-primary">获取项目信息（增量接口）</a>
 <a href="${ctx}/hd/getDirectInfoHDZL" target="_blank" class="btn btn-primary">获取DirectInfo信息（增量接口）</a>
 <a href="${ctx}/hd/getSupervisionInfoHDZL" target="_blank" class="btn btn-primary">获取SupervisionInfo信息（增量接口）</a>
 <a href="${ctx}/hd/getSectInfoHDZL" target="_blank" class="btn btn-primary">获取SectInfo信息（增量接口）</a>
+<a href="${ctx}/hd/getPmsIssueInfoHDZL" target="_blank" class="btn btn-primary">获取PMS_IMSSUE信息（增量接口）</a>
+<a href="${ctx}/hd/getPmsIssueInfoHDALL" target="_blank" class="btn btn-primary">获取PMS_IMSSUE信息（全量接口）</a>
+<a href="${ctx}/hd/getPmsComPactListingHDZL" target="_blank" class="btn btn-primary">获取hd_pms_com_pact_listing信息（增量接口）</a>
+<a href="${ctx}/hd/getPmsComPactListingHDALL" target="_blank" class="btn btn-primary">获取hd_pms_com_pact_listing信息（全量接口）</a>
                 <a href="${ctx}/hd/getProjectInfoHDALL" target="_blank" class="btn btn-primary">获取项目信息（全量接口）</a>
             <a href="${ctx}/hd/getDirectInfoHDALL" target="_blank" class="btn btn-primary">获取DirectInfo信息（全量接口）</a>
            <a href="${ctx}/hd/getSupervisionInfoHDALL" target="_blank" class="btn btn-primary">获取SupervisionInfo信息（全量接口）</a>
             <a href="${ctx}/hd/getSectInfoHDALL" target="_blank" class="btn btn-primary">获取SectInfo信息（全量接口）</a>
-           
+<a href="${ctx}/hd/getJdpzInfoHDALL" target="_blank" class="btn btn-primary">获取预备费配置度信息（全量接口）</a>
+<a href="${ctx}/hd/getJdpzInfoHDZL" target="_blank" class="btn btn-primary">获取预备费配置度信息（增量接口）</a>    
+<a href="${ctx}/hd/getPmsQingdanJiliangMainHDALL" target="_blank" class="btn btn-primary">获取计量单主表信息（全量接口）</a>
+<a href="${ctx}/hd/getPmsQingdanJiliangMainHDZL" target="_blank" class="btn btn-primary">获取计量单主表信息（增量接口）</a>           
+<a href="${ctx}/hd/getPmsQingdanJiliangHDALL" target="_blank" class="btn btn-primary">获取计量单子表信息（全量接口）</a>
+<a href="${ctx}/hd/getPmsQingdanJiliangHDZL" target="_blank" class="btn btn-primary">获取计量单子表信息（增量接口）</a> 
+<a href="${ctx}/hd/getPmsPlaninputZbInfoHDALL" target="_blank" class="btn btn-primary">获取月报录入表信息（全量接口）</a> 
+<a href="${ctx}/hd/test" target="_blank" class="btn btn-primary">测试接口</a>           
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3">

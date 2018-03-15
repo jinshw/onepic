@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz01Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz01" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="monitor_dept" property="monitorDept" jdbcType="VARCHAR" />
+    <result column="mt_pact_money" property="mtPactMoney" jdbcType="DECIMAL" />
+    <result column="monitorLeader" property="monitorleader" jdbcType="VARCHAR" />
+    <result column="inspection_dept" property="inspectionDept" jdbcType="VARCHAR" />
+    <result column="ip_money" property="ipMoney" jdbcType="DECIMAL" />
+    <result column="inspection_leader" property="inspectionLeader" jdbcType="VARCHAR" />
+    <result column="director_dept" property="directorDept" jdbcType="VARCHAR" />
+    <result column="dtpact_money" property="dtpactMoney" jdbcType="DECIMAL" />
+    <result column="directo_leader" property="directoLeader" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="DECIMAL" />
+    <result column="page" property="page" jdbcType="DECIMAL" />
+    <result column="project_plan_duration" property="projectPlanDuration" jdbcType="DECIMAL" />
+    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="creattime" property="creattime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, monitor_dept, mt_pact_money, monitorLeader, inspection_dept, ip_money, 
+    inspection_leader, director_dept, dtpact_money, directo_leader, sn, page, project_plan_duration, 
+    inserttime, creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz01
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz01
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pms_plan_tzkz01
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01Example" >
+    delete from pms_plan_tzkz01
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01" >
+    insert into pms_plan_tzkz01 (id, m_id, monitor_dept, 
+      mt_pact_money, monitorLeader, inspection_dept, 
+      ip_money, inspection_leader, director_dept, 
+      dtpact_money, directo_leader, sn, 
+      page, project_plan_duration, inserttime, 
+      creattime)
+    values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{monitorDept,jdbcType=VARCHAR}, 
+      #{mtPactMoney,jdbcType=DECIMAL}, #{monitorleader,jdbcType=VARCHAR}, #{inspectionDept,jdbcType=VARCHAR}, 
+      #{ipMoney,jdbcType=DECIMAL}, #{inspectionLeader,jdbcType=VARCHAR}, #{directorDept,jdbcType=VARCHAR}, 
+      #{dtpactMoney,jdbcType=DECIMAL}, #{directoLeader,jdbcType=VARCHAR}, #{sn,jdbcType=DECIMAL}, 
+      #{page,jdbcType=DECIMAL}, #{projectPlanDuration,jdbcType=DECIMAL}, #{inserttime,jdbcType=DATE}, 
+      #{creattime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01" >
+    insert into pms_plan_tzkz01
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="monitorDept != null" >
+        monitor_dept,
+      </if>
+      <if test="mtPactMoney != null" >
+        mt_pact_money,
+      </if>
+      <if test="monitorleader != null" >
+        monitorLeader,
+      </if>
+      <if test="inspectionDept != null" >
+        inspection_dept,
+      </if>
+      <if test="ipMoney != null" >
+        ip_money,
+      </if>
+      <if test="inspectionLeader != null" >
+        inspection_leader,
+      </if>
+      <if test="directorDept != null" >
+        director_dept,
+      </if>
+      <if test="dtpactMoney != null" >
+        dtpact_money,
+      </if>
+      <if test="directoLeader != null" >
+        directo_leader,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="page != null" >
+        page,
+      </if>
+      <if test="projectPlanDuration != null" >
+        project_plan_duration,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorDept != null" >
+        #{monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="mtPactMoney != null" >
+        #{mtPactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="monitorleader != null" >
+        #{monitorleader,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionDept != null" >
+        #{inspectionDept,jdbcType=VARCHAR},
+      </if>
+      <if test="ipMoney != null" >
+        #{ipMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="inspectionLeader != null" >
+        #{inspectionLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="directorDept != null" >
+        #{directorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="dtpactMoney != null" >
+        #{dtpactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="directoLeader != null" >
+        #{directoLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="page != null" >
+        #{page,jdbcType=DECIMAL},
+      </if>
+      <if test="projectPlanDuration != null" >
+        #{projectPlanDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz01
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz01
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monitorDept != null" >
+        monitor_dept = #{record.monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mtPactMoney != null" >
+        mt_pact_money = #{record.mtPactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.monitorleader != null" >
+        monitorLeader = #{record.monitorleader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inspectionDept != null" >
+        inspection_dept = #{record.inspectionDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipMoney != null" >
+        ip_money = #{record.ipMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inspectionLeader != null" >
+        inspection_leader = #{record.inspectionLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directorDept != null" >
+        director_dept = #{record.directorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtpactMoney != null" >
+        dtpact_money = #{record.dtpactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.directoLeader != null" >
+        directo_leader = #{record.directoLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=DECIMAL},
+      </if>
+      <if test="record.page != null" >
+        page = #{record.page,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectPlanDuration != null" >
+        project_plan_duration = #{record.projectPlanDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=DATE},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz01
+    set id = #{record.id,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      monitor_dept = #{record.monitorDept,jdbcType=VARCHAR},
+      mt_pact_money = #{record.mtPactMoney,jdbcType=DECIMAL},
+      monitorLeader = #{record.monitorleader,jdbcType=VARCHAR},
+      inspection_dept = #{record.inspectionDept,jdbcType=VARCHAR},
+      ip_money = #{record.ipMoney,jdbcType=DECIMAL},
+      inspection_leader = #{record.inspectionLeader,jdbcType=VARCHAR},
+      director_dept = #{record.directorDept,jdbcType=VARCHAR},
+      dtpact_money = #{record.dtpactMoney,jdbcType=DECIMAL},
+      directo_leader = #{record.directoLeader,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=DECIMAL},
+      page = #{record.page,jdbcType=DECIMAL},
+      project_plan_duration = #{record.projectPlanDuration,jdbcType=DECIMAL},
+      inserttime = #{record.inserttime,jdbcType=DATE},
+      creattime = #{record.creattime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01" >
+    update pms_plan_tzkz01
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorDept != null" >
+        monitor_dept = #{monitorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="mtPactMoney != null" >
+        mt_pact_money = #{mtPactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="monitorleader != null" >
+        monitorLeader = #{monitorleader,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionDept != null" >
+        inspection_dept = #{inspectionDept,jdbcType=VARCHAR},
+      </if>
+      <if test="ipMoney != null" >
+        ip_money = #{ipMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="inspectionLeader != null" >
+        inspection_leader = #{inspectionLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="directorDept != null" >
+        director_dept = #{directorDept,jdbcType=VARCHAR},
+      </if>
+      <if test="dtpactMoney != null" >
+        dtpact_money = #{dtpactMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="directoLeader != null" >
+        directo_leader = #{directoLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="page != null" >
+        page = #{page,jdbcType=DECIMAL},
+      </if>
+      <if test="projectPlanDuration != null" >
+        project_plan_duration = #{projectPlanDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01" >
+    update pms_plan_tzkz01
+    set m_id = #{mId,jdbcType=VARCHAR},
+      monitor_dept = #{monitorDept,jdbcType=VARCHAR},
+      mt_pact_money = #{mtPactMoney,jdbcType=DECIMAL},
+      monitorLeader = #{monitorleader,jdbcType=VARCHAR},
+      inspection_dept = #{inspectionDept,jdbcType=VARCHAR},
+      ip_money = #{ipMoney,jdbcType=DECIMAL},
+      inspection_leader = #{inspectionLeader,jdbcType=VARCHAR},
+      director_dept = #{directorDept,jdbcType=VARCHAR},
+      dtpact_money = #{dtpactMoney,jdbcType=DECIMAL},
+      directo_leader = #{directoLeader,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=DECIMAL},
+      page = #{page,jdbcType=DECIMAL},
+      project_plan_duration = #{projectPlanDuration,jdbcType=DECIMAL},
+      inserttime = #{inserttime,jdbcType=DATE},
+      creattime = #{creattime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

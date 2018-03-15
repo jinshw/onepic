@@ -47,4 +47,6 @@ public interface SupervisionInfoMapper
     String findSupervisionInfoMaxInserttime();
 
     void deleteAll();
+
+    List<SupervisionInfoWithBLOBs> findSupervisionInfoByProjectId(String id);
 }

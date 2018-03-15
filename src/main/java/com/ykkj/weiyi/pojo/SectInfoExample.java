@@ -1283,6 +1283,76 @@ public class SectInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andLagDayIsNull() {
+            addCriterion("lag_day is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayIsNotNull() {
+            addCriterion("lag_day is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayEqualTo(String value) {
+            addCriterion("lag_day =", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayNotEqualTo(String value) {
+            addCriterion("lag_day <>", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayGreaterThan(String value) {
+            addCriterion("lag_day >", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayGreaterThanOrEqualTo(String value) {
+            addCriterion("lag_day >=", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayLessThan(String value) {
+            addCriterion("lag_day <", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayLessThanOrEqualTo(String value) {
+            addCriterion("lag_day <=", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayLike(String value) {
+            addCriterion("lag_day like", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayNotLike(String value) {
+            addCriterion("lag_day not like", value, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayIn(List<String> values) {
+            addCriterion("lag_day in", values, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayNotIn(List<String> values) {
+            addCriterion("lag_day not in", values, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayBetween(String value1, String value2) {
+            addCriterion("lag_day between", value1, value2, "lagDay");
+            return (Criteria) this;
+        }
+
+        public Criteria andLagDayNotBetween(String value1, String value2) {
+            addCriterion("lag_day not between", value1, value2, "lagDay");
+            return (Criteria) this;
+        }
+
         public Criteria andBeginTokenDayIsNull() {
             addCriterion("begin_token_day is null");
             return (Criteria) this;

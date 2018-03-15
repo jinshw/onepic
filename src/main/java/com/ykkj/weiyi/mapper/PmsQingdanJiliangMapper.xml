@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsQingdanJiliangMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsQingdanJiliang" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="qih" property="qih" jdbcType="VARCHAR" />
+    <result column="p_id" property="pId" jdbcType="VARCHAR" />
+    <result column="wbs_listing_id" property="wbsListingId" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="DECIMAL" />
+    <result column="sect_isbn" property="sectIsbn" jdbcType="VARCHAR" />
+    <result column="fbfx" property="fbfx" jdbcType="VARCHAR" />
+    <result column="qdbh" property="qdbh" jdbcType="VARCHAR" />
+    <result column="listing_no" property="listingNo" jdbcType="VARCHAR" />
+    <result column="qdmc" property="qdmc" jdbcType="VARCHAR" />
+    <result column="qddw" property="qddw" jdbcType="VARCHAR" />
+    <result column="htdj" property="htdj" jdbcType="DECIMAL" />
+    <result column="listing_version" property="listingVersion" jdbcType="DECIMAL" />
+    <result column="htsl" property="htsl" jdbcType="DECIMAL" />
+    <result column="htje" property="htje" jdbcType="DECIMAL" />
+    <result column="wbs_bh" property="wbsBh" jdbcType="VARCHAR" />
+    <result column="wbs_bane" property="wbsBane" jdbcType="VARCHAR" />
+    <result column="jllx" property="jllx" jdbcType="DECIMAL" />
+    <result column="bgpzwh" property="bgpzwh" jdbcType="VARCHAR" />
+    <result column="jlsl" property="jlsl" jdbcType="DECIMAL" />
+    <result column="qzbgjl" property="qzbgjl" jdbcType="DECIMAL" />
+    <result column="jlje" property="jlje" jdbcType="DECIMAL" />
+    <result column="qzzh" property="qzzh" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="th" property="th" jdbcType="VARCHAR" />
+    <result column="ctwz" property="ctwz" jdbcType="VARCHAR" />
+    <result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+    <result column="jldbh_s" property="jldbhS" jdbcType="VARCHAR" />
+    <result column="jldbh" property="jldbh" jdbcType="DECIMAL" />
+    <result column="jgzh" property="jgzh" jdbcType="VARCHAR" />
+    <result column="zjdbh" property="zjdbh" jdbcType="VARCHAR" />
+    <result column="jlrq" property="jlrq" jdbcType="DATE" />
+    <result column="jly" property="jly" jdbcType="VARCHAR" />
+    <result column="jlhdsl" property="jlhdsl" jdbcType="DECIMAL" />
+    <result column="all_finished_num" property="allFinishedNum" jdbcType="DECIMAL" />
+    <result column="zjpl" property="zjpl" jdbcType="DECIMAL" />
+    <result column="zjzjdbh" property="zjzjdbh" jdbcType="VARCHAR" />
+    <result column="cjpl" property="cjpl" jdbcType="DECIMAL" />
+    <result column="cjzjdbh" property="cjzjdbh" jdbcType="VARCHAR" />
+    <result column="jyplhj" property="jyplhj" jdbcType="DECIMAL" />
+    <result column="sect_property_a" property="sectPropertyA" jdbcType="VARCHAR" />
+    <result column="sect_property_b" property="sectPropertyB" jdbcType="VARCHAR" />
+    <result column="sect_property_c" property="sectPropertyC" jdbcType="VARCHAR" />
+    <result column="jllsh" property="jllsh" jdbcType="VARCHAR" />
+    <result column="cqlx" property="cqlx" jdbcType="VARCHAR" />
+    <result column="gcnr" property="gcnr" jdbcType="VARCHAR" />
+    <result column="bgsjth" property="bgsjth" jdbcType="VARCHAR" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs" extends="BaseResultMap" >
+    <result column="note" property="note" jdbcType="LONGVARCHAR" />
+    <result column="jsgs" property="jsgs" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, qih, p_id, wbs_listing_id, user_type, sect_isbn, fbfx, qdbh, listing_no, qdmc, 
+    qddw, htdj, listing_version, htsl, htje, wbs_bh, wbs_bane, jllx, bgpzwh, jlsl, qzbgjl, 
+    jlje, qzzh, position, th, ctwz, upload_id, jldbh_s, jldbh, jgzh, zjdbh, jlrq, jly, 
+    jlhdsl, all_finished_num, zjpl, zjzjdbh, cjpl, cjzjdbh, jyplhj, sect_property_a, 
+    sect_property_b, sect_property_c, jllsh, cqlx, gcnr, bgsjth, inserttime, creattime
+  </sql>
+  <sql id="Blob_Column_List" >
+    note, jsgs
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_pms_qingdan_jiliang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_pms_qingdan_jiliang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_pms_qingdan_jiliang
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_pms_qingdan_jiliang
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangExample" >
+    delete from hd_pms_qingdan_jiliang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs" >
+    insert into hd_pms_qingdan_jiliang (id, qih, p_id, 
+      wbs_listing_id, user_type, sect_isbn, 
+      fbfx, qdbh, listing_no, 
+      qdmc, qddw, htdj, listing_version, 
+      htsl, htje, wbs_bh, 
+      wbs_bane, jllx, bgpzwh, 
+      jlsl, qzbgjl, jlje, 
+      qzzh, position, th, 
+      ctwz, upload_id, jldbh_s, 
+      jldbh, jgzh, zjdbh, 
+      jlrq, jly, jlhdsl, all_finished_num, 
+      zjpl, zjzjdbh, cjpl, 
+      cjzjdbh, jyplhj, sect_property_a, 
+      sect_property_b, sect_property_c, jllsh, 
+      cqlx, gcnr, bgsjth, 
+      inserttime, creattime, note, 
+      jsgs)
+    values (#{id,jdbcType=VARCHAR}, #{qih,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{wbsListingId,jdbcType=VARCHAR}, #{userType,jdbcType=DECIMAL}, #{sectIsbn,jdbcType=VARCHAR}, 
+      #{fbfx,jdbcType=VARCHAR}, #{qdbh,jdbcType=VARCHAR}, #{listingNo,jdbcType=VARCHAR}, 
+      #{qdmc,jdbcType=VARCHAR}, #{qddw,jdbcType=VARCHAR}, #{htdj,jdbcType=DECIMAL}, #{listingVersion,jdbcType=DECIMAL}, 
+      #{htsl,jdbcType=DECIMAL}, #{htje,jdbcType=DECIMAL}, #{wbsBh,jdbcType=VARCHAR}, 
+      #{wbsBane,jdbcType=VARCHAR}, #{jllx,jdbcType=DECIMAL}, #{bgpzwh,jdbcType=VARCHAR}, 
+      #{jlsl,jdbcType=DECIMAL}, #{qzbgjl,jdbcType=DECIMAL}, #{jlje,jdbcType=DECIMAL}, 
+      #{qzzh,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{th,jdbcType=VARCHAR}, 
+      #{ctwz,jdbcType=VARCHAR}, #{uploadId,jdbcType=VARCHAR}, #{jldbhS,jdbcType=VARCHAR}, 
+      #{jldbh,jdbcType=DECIMAL}, #{jgzh,jdbcType=VARCHAR}, #{zjdbh,jdbcType=VARCHAR}, 
+      #{jlrq,jdbcType=DATE}, #{jly,jdbcType=VARCHAR}, #{jlhdsl,jdbcType=DECIMAL}, #{allFinishedNum,jdbcType=DECIMAL}, 
+      #{zjpl,jdbcType=DECIMAL}, #{zjzjdbh,jdbcType=VARCHAR}, #{cjpl,jdbcType=DECIMAL}, 
+      #{cjzjdbh,jdbcType=VARCHAR}, #{jyplhj,jdbcType=DECIMAL}, #{sectPropertyA,jdbcType=VARCHAR}, 
+      #{sectPropertyB,jdbcType=VARCHAR}, #{sectPropertyC,jdbcType=VARCHAR}, #{jllsh,jdbcType=VARCHAR}, 
+      #{cqlx,jdbcType=VARCHAR}, #{gcnr,jdbcType=VARCHAR}, #{bgsjth,jdbcType=VARCHAR}, 
+      #{inserttime,jdbcType=TIMESTAMP}, #{creattime,jdbcType=TIMESTAMP}, #{note,jdbcType=LONGVARCHAR}, 
+      #{jsgs,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs" >
+    insert into hd_pms_qingdan_jiliang
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="qih != null" >
+        qih,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="wbsListingId != null" >
+        wbs_listing_id,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="sectIsbn != null" >
+        sect_isbn,
+      </if>
+      <if test="fbfx != null" >
+        fbfx,
+      </if>
+      <if test="qdbh != null" >
+        qdbh,
+      </if>
+      <if test="listingNo != null" >
+        listing_no,
+      </if>
+      <if test="qdmc != null" >
+        qdmc,
+      </if>
+      <if test="qddw != null" >
+        qddw,
+      </if>
+      <if test="htdj != null" >
+        htdj,
+      </if>
+      <if test="listingVersion != null" >
+        listing_version,
+      </if>
+      <if test="htsl != null" >
+        htsl,
+      </if>
+      <if test="htje != null" >
+        htje,
+      </if>
+      <if test="wbsBh != null" >
+        wbs_bh,
+      </if>
+      <if test="wbsBane != null" >
+        wbs_bane,
+      </if>
+      <if test="jllx != null" >
+        jllx,
+      </if>
+      <if test="bgpzwh != null" >
+        bgpzwh,
+      </if>
+      <if test="jlsl != null" >
+        jlsl,
+      </if>
+      <if test="qzbgjl != null" >
+        qzbgjl,
+      </if>
+      <if test="jlje != null" >
+        jlje,
+      </if>
+      <if test="qzzh != null" >
+        qzzh,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="th != null" >
+        th,
+      </if>
+      <if test="ctwz != null" >
+        ctwz,
+      </if>
+      <if test="uploadId != null" >
+        upload_id,
+      </if>
+      <if test="jldbhS != null" >
+        jldbh_s,
+      </if>
+      <if test="jldbh != null" >
+        jldbh,
+      </if>
+      <if test="jgzh != null" >
+        jgzh,
+      </if>
+      <if test="zjdbh != null" >
+        zjdbh,
+      </if>
+      <if test="jlrq != null" >
+        jlrq,
+      </if>
+      <if test="jly != null" >
+        jly,
+      </if>
+      <if test="jlhdsl != null" >
+        jlhdsl,
+      </if>
+      <if test="allFinishedNum != null" >
+        all_finished_num,
+      </if>
+      <if test="zjpl != null" >
+        zjpl,
+      </if>
+      <if test="zjzjdbh != null" >
+        zjzjdbh,
+      </if>
+      <if test="cjpl != null" >
+        cjpl,
+      </if>
+      <if test="cjzjdbh != null" >
+        cjzjdbh,
+      </if>
+      <if test="jyplhj != null" >
+        jyplhj,
+      </if>
+      <if test="sectPropertyA != null" >
+        sect_property_a,
+      </if>
+      <if test="sectPropertyB != null" >
+        sect_property_b,
+      </if>
+      <if test="sectPropertyC != null" >
+        sect_property_c,
+      </if>
+      <if test="jllsh != null" >
+        jllsh,
+      </if>
+      <if test="cqlx != null" >
+        cqlx,
+      </if>
+      <if test="gcnr != null" >
+        gcnr,
+      </if>
+      <if test="bgsjth != null" >
+        bgsjth,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="jsgs != null" >
+        jsgs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="qih != null" >
+        #{qih,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="wbsListingId != null" >
+        #{wbsListingId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=DECIMAL},
+      </if>
+      <if test="sectIsbn != null" >
+        #{sectIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfx != null" >
+        #{fbfx,jdbcType=VARCHAR},
+      </if>
+      <if test="qdbh != null" >
+        #{qdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="listingNo != null" >
+        #{listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="qdmc != null" >
+        #{qdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qddw != null" >
+        #{qddw,jdbcType=VARCHAR},
+      </if>
+      <if test="htdj != null" >
+        #{htdj,jdbcType=DECIMAL},
+      </if>
+      <if test="listingVersion != null" >
+        #{listingVersion,jdbcType=DECIMAL},
+      </if>
+      <if test="htsl != null" >
+        #{htsl,jdbcType=DECIMAL},
+      </if>
+      <if test="htje != null" >
+        #{htje,jdbcType=DECIMAL},
+      </if>
+      <if test="wbsBh != null" >
+        #{wbsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="wbsBane != null" >
+        #{wbsBane,jdbcType=VARCHAR},
+      </if>
+      <if test="jllx != null" >
+        #{jllx,jdbcType=DECIMAL},
+      </if>
+      <if test="bgpzwh != null" >
+        #{bgpzwh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlsl != null" >
+        #{jlsl,jdbcType=DECIMAL},
+      </if>
+      <if test="qzbgjl != null" >
+        #{qzbgjl,jdbcType=DECIMAL},
+      </if>
+      <if test="jlje != null" >
+        #{jlje,jdbcType=DECIMAL},
+      </if>
+      <if test="qzzh != null" >
+        #{qzzh,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="th != null" >
+        #{th,jdbcType=VARCHAR},
+      </if>
+      <if test="ctwz != null" >
+        #{ctwz,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadId != null" >
+        #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="jldbhS != null" >
+        #{jldbhS,jdbcType=VARCHAR},
+      </if>
+      <if test="jldbh != null" >
+        #{jldbh,jdbcType=DECIMAL},
+      </if>
+      <if test="jgzh != null" >
+        #{jgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjdbh != null" >
+        #{zjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlrq != null" >
+        #{jlrq,jdbcType=DATE},
+      </if>
+      <if test="jly != null" >
+        #{jly,jdbcType=VARCHAR},
+      </if>
+      <if test="jlhdsl != null" >
+        #{jlhdsl,jdbcType=DECIMAL},
+      </if>
+      <if test="allFinishedNum != null" >
+        #{allFinishedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="zjpl != null" >
+        #{zjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="zjzjdbh != null" >
+        #{zjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjpl != null" >
+        #{cjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="cjzjdbh != null" >
+        #{cjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jyplhj != null" >
+        #{jyplhj,jdbcType=DECIMAL},
+      </if>
+      <if test="sectPropertyA != null" >
+        #{sectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="sectPropertyB != null" >
+        #{sectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="sectPropertyC != null" >
+        #{sectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="jllsh != null" >
+        #{jllsh,jdbcType=VARCHAR},
+      </if>
+      <if test="cqlx != null" >
+        #{cqlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gcnr != null" >
+        #{gcnr,jdbcType=VARCHAR},
+      </if>
+      <if test="bgsjth != null" >
+        #{bgsjth,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jsgs != null" >
+        #{jsgs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangExample" resultType="java.lang.Integer" >
+    select count(*) from hd_pms_qingdan_jiliang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_pms_qingdan_jiliang
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qih != null" >
+        qih = #{record.qih,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wbsListingId != null" >
+        wbs_listing_id = #{record.wbsListingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sectIsbn != null" >
+        sect_isbn = #{record.sectIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbfx != null" >
+        fbfx = #{record.fbfx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qdbh != null" >
+        qdbh = #{record.qdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingNo != null" >
+        listing_no = #{record.listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qdmc != null" >
+        qdmc = #{record.qdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qddw != null" >
+        qddw = #{record.qddw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.htdj != null" >
+        htdj = #{record.htdj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.listingVersion != null" >
+        listing_version = #{record.listingVersion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.htsl != null" >
+        htsl = #{record.htsl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.htje != null" >
+        htje = #{record.htje,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wbsBh != null" >
+        wbs_bh = #{record.wbsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wbsBane != null" >
+        wbs_bane = #{record.wbsBane,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jllx != null" >
+        jllx = #{record.jllx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bgpzwh != null" >
+        bgpzwh = #{record.bgpzwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlsl != null" >
+        jlsl = #{record.jlsl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qzbgjl != null" >
+        qzbgjl = #{record.qzbgjl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jlje != null" >
+        jlje = #{record.jlje,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qzzh != null" >
+        qzzh = #{record.qzzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.th != null" >
+        th = #{record.th,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctwz != null" >
+        ctwz = #{record.ctwz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadId != null" >
+        upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jldbhS != null" >
+        jldbh_s = #{record.jldbhS,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jldbh != null" >
+        jldbh = #{record.jldbh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jgzh != null" >
+        jgzh = #{record.jgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjdbh != null" >
+        zjdbh = #{record.zjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlrq != null" >
+        jlrq = #{record.jlrq,jdbcType=DATE},
+      </if>
+      <if test="record.jly != null" >
+        jly = #{record.jly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlhdsl != null" >
+        jlhdsl = #{record.jlhdsl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allFinishedNum != null" >
+        all_finished_num = #{record.allFinishedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zjpl != null" >
+        zjpl = #{record.zjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zjzjdbh != null" >
+        zjzjdbh = #{record.zjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjpl != null" >
+        cjpl = #{record.cjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cjzjdbh != null" >
+        cjzjdbh = #{record.cjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyplhj != null" >
+        jyplhj = #{record.jyplhj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sectPropertyA != null" >
+        sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sectPropertyB != null" >
+        sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sectPropertyC != null" >
+        sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jllsh != null" >
+        jllsh = #{record.jllsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cqlx != null" >
+        cqlx = #{record.cqlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcnr != null" >
+        gcnr = #{record.gcnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bgsjth != null" >
+        bgsjth = #{record.bgsjth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.jsgs != null" >
+        jsgs = #{record.jsgs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hd_pms_qingdan_jiliang
+    set id = #{record.id,jdbcType=VARCHAR},
+      qih = #{record.qih,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      wbs_listing_id = #{record.wbsListingId,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=DECIMAL},
+      sect_isbn = #{record.sectIsbn,jdbcType=VARCHAR},
+      fbfx = #{record.fbfx,jdbcType=VARCHAR},
+      qdbh = #{record.qdbh,jdbcType=VARCHAR},
+      listing_no = #{record.listingNo,jdbcType=VARCHAR},
+      qdmc = #{record.qdmc,jdbcType=VARCHAR},
+      qddw = #{record.qddw,jdbcType=VARCHAR},
+      htdj = #{record.htdj,jdbcType=DECIMAL},
+      listing_version = #{record.listingVersion,jdbcType=DECIMAL},
+      htsl = #{record.htsl,jdbcType=DECIMAL},
+      htje = #{record.htje,jdbcType=DECIMAL},
+      wbs_bh = #{record.wbsBh,jdbcType=VARCHAR},
+      wbs_bane = #{record.wbsBane,jdbcType=VARCHAR},
+      jllx = #{record.jllx,jdbcType=DECIMAL},
+      bgpzwh = #{record.bgpzwh,jdbcType=VARCHAR},
+      jlsl = #{record.jlsl,jdbcType=DECIMAL},
+      qzbgjl = #{record.qzbgjl,jdbcType=DECIMAL},
+      jlje = #{record.jlje,jdbcType=DECIMAL},
+      qzzh = #{record.qzzh,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      th = #{record.th,jdbcType=VARCHAR},
+      ctwz = #{record.ctwz,jdbcType=VARCHAR},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      jldbh_s = #{record.jldbhS,jdbcType=VARCHAR},
+      jldbh = #{record.jldbh,jdbcType=DECIMAL},
+      jgzh = #{record.jgzh,jdbcType=VARCHAR},
+      zjdbh = #{record.zjdbh,jdbcType=VARCHAR},
+      jlrq = #{record.jlrq,jdbcType=DATE},
+      jly = #{record.jly,jdbcType=VARCHAR},
+      jlhdsl = #{record.jlhdsl,jdbcType=DECIMAL},
+      all_finished_num = #{record.allFinishedNum,jdbcType=DECIMAL},
+      zjpl = #{record.zjpl,jdbcType=DECIMAL},
+      zjzjdbh = #{record.zjzjdbh,jdbcType=VARCHAR},
+      cjpl = #{record.cjpl,jdbcType=DECIMAL},
+      cjzjdbh = #{record.cjzjdbh,jdbcType=VARCHAR},
+      jyplhj = #{record.jyplhj,jdbcType=DECIMAL},
+      sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
+      sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
+      sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
+      jllsh = #{record.jllsh,jdbcType=VARCHAR},
+      cqlx = #{record.cqlx,jdbcType=VARCHAR},
+      gcnr = #{record.gcnr,jdbcType=VARCHAR},
+      bgsjth = #{record.bgsjth,jdbcType=VARCHAR},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      note = #{record.note,jdbcType=LONGVARCHAR},
+      jsgs = #{record.jsgs,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_pms_qingdan_jiliang
+    set id = #{record.id,jdbcType=VARCHAR},
+      qih = #{record.qih,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      wbs_listing_id = #{record.wbsListingId,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=DECIMAL},
+      sect_isbn = #{record.sectIsbn,jdbcType=VARCHAR},
+      fbfx = #{record.fbfx,jdbcType=VARCHAR},
+      qdbh = #{record.qdbh,jdbcType=VARCHAR},
+      listing_no = #{record.listingNo,jdbcType=VARCHAR},
+      qdmc = #{record.qdmc,jdbcType=VARCHAR},
+      qddw = #{record.qddw,jdbcType=VARCHAR},
+      htdj = #{record.htdj,jdbcType=DECIMAL},
+      listing_version = #{record.listingVersion,jdbcType=DECIMAL},
+      htsl = #{record.htsl,jdbcType=DECIMAL},
+      htje = #{record.htje,jdbcType=DECIMAL},
+      wbs_bh = #{record.wbsBh,jdbcType=VARCHAR},
+      wbs_bane = #{record.wbsBane,jdbcType=VARCHAR},
+      jllx = #{record.jllx,jdbcType=DECIMAL},
+      bgpzwh = #{record.bgpzwh,jdbcType=VARCHAR},
+      jlsl = #{record.jlsl,jdbcType=DECIMAL},
+      qzbgjl = #{record.qzbgjl,jdbcType=DECIMAL},
+      jlje = #{record.jlje,jdbcType=DECIMAL},
+      qzzh = #{record.qzzh,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      th = #{record.th,jdbcType=VARCHAR},
+      ctwz = #{record.ctwz,jdbcType=VARCHAR},
+      upload_id = #{record.uploadId,jdbcType=VARCHAR},
+      jldbh_s = #{record.jldbhS,jdbcType=VARCHAR},
+      jldbh = #{record.jldbh,jdbcType=DECIMAL},
+      jgzh = #{record.jgzh,jdbcType=VARCHAR},
+      zjdbh = #{record.zjdbh,jdbcType=VARCHAR},
+      jlrq = #{record.jlrq,jdbcType=DATE},
+      jly = #{record.jly,jdbcType=VARCHAR},
+      jlhdsl = #{record.jlhdsl,jdbcType=DECIMAL},
+      all_finished_num = #{record.allFinishedNum,jdbcType=DECIMAL},
+      zjpl = #{record.zjpl,jdbcType=DECIMAL},
+      zjzjdbh = #{record.zjzjdbh,jdbcType=VARCHAR},
+      cjpl = #{record.cjpl,jdbcType=DECIMAL},
+      cjzjdbh = #{record.cjzjdbh,jdbcType=VARCHAR},
+      jyplhj = #{record.jyplhj,jdbcType=DECIMAL},
+      sect_property_a = #{record.sectPropertyA,jdbcType=VARCHAR},
+      sect_property_b = #{record.sectPropertyB,jdbcType=VARCHAR},
+      sect_property_c = #{record.sectPropertyC,jdbcType=VARCHAR},
+      jllsh = #{record.jllsh,jdbcType=VARCHAR},
+      cqlx = #{record.cqlx,jdbcType=VARCHAR},
+      gcnr = #{record.gcnr,jdbcType=VARCHAR},
+      bgsjth = #{record.bgsjth,jdbcType=VARCHAR},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs" >
+    update hd_pms_qingdan_jiliang
+    <set >
+      <if test="qih != null" >
+        qih = #{qih,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="wbsListingId != null" >
+        wbs_listing_id = #{wbsListingId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=DECIMAL},
+      </if>
+      <if test="sectIsbn != null" >
+        sect_isbn = #{sectIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfx != null" >
+        fbfx = #{fbfx,jdbcType=VARCHAR},
+      </if>
+      <if test="qdbh != null" >
+        qdbh = #{qdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="listingNo != null" >
+        listing_no = #{listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="qdmc != null" >
+        qdmc = #{qdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qddw != null" >
+        qddw = #{qddw,jdbcType=VARCHAR},
+      </if>
+      <if test="htdj != null" >
+        htdj = #{htdj,jdbcType=DECIMAL},
+      </if>
+      <if test="listingVersion != null" >
+        listing_version = #{listingVersion,jdbcType=DECIMAL},
+      </if>
+      <if test="htsl != null" >
+        htsl = #{htsl,jdbcType=DECIMAL},
+      </if>
+      <if test="htje != null" >
+        htje = #{htje,jdbcType=DECIMAL},
+      </if>
+      <if test="wbsBh != null" >
+        wbs_bh = #{wbsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="wbsBane != null" >
+        wbs_bane = #{wbsBane,jdbcType=VARCHAR},
+      </if>
+      <if test="jllx != null" >
+        jllx = #{jllx,jdbcType=DECIMAL},
+      </if>
+      <if test="bgpzwh != null" >
+        bgpzwh = #{bgpzwh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlsl != null" >
+        jlsl = #{jlsl,jdbcType=DECIMAL},
+      </if>
+      <if test="qzbgjl != null" >
+        qzbgjl = #{qzbgjl,jdbcType=DECIMAL},
+      </if>
+      <if test="jlje != null" >
+        jlje = #{jlje,jdbcType=DECIMAL},
+      </if>
+      <if test="qzzh != null" >
+        qzzh = #{qzzh,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="th != null" >
+        th = #{th,jdbcType=VARCHAR},
+      </if>
+      <if test="ctwz != null" >
+        ctwz = #{ctwz,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadId != null" >
+        upload_id = #{uploadId,jdbcType=VARCHAR},
+      </if>
+      <if test="jldbhS != null" >
+        jldbh_s = #{jldbhS,jdbcType=VARCHAR},
+      </if>
+      <if test="jldbh != null" >
+        jldbh = #{jldbh,jdbcType=DECIMAL},
+      </if>
+      <if test="jgzh != null" >
+        jgzh = #{jgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjdbh != null" >
+        zjdbh = #{zjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlrq != null" >
+        jlrq = #{jlrq,jdbcType=DATE},
+      </if>
+      <if test="jly != null" >
+        jly = #{jly,jdbcType=VARCHAR},
+      </if>
+      <if test="jlhdsl != null" >
+        jlhdsl = #{jlhdsl,jdbcType=DECIMAL},
+      </if>
+      <if test="allFinishedNum != null" >
+        all_finished_num = #{allFinishedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="zjpl != null" >
+        zjpl = #{zjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="zjzjdbh != null" >
+        zjzjdbh = #{zjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjpl != null" >
+        cjpl = #{cjpl,jdbcType=DECIMAL},
+      </if>
+      <if test="cjzjdbh != null" >
+        cjzjdbh = #{cjzjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jyplhj != null" >
+        jyplhj = #{jyplhj,jdbcType=DECIMAL},
+      </if>
+      <if test="sectPropertyA != null" >
+        sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="sectPropertyB != null" >
+        sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="sectPropertyC != null" >
+        sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
+      </if>
+      <if test="jllsh != null" >
+        jllsh = #{jllsh,jdbcType=VARCHAR},
+      </if>
+      <if test="cqlx != null" >
+        cqlx = #{cqlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gcnr != null" >
+        gcnr = #{gcnr,jdbcType=VARCHAR},
+      </if>
+      <if test="bgsjth != null" >
+        bgsjth = #{bgsjth,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jsgs != null" >
+        jsgs = #{jsgs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs" >
+    update hd_pms_qingdan_jiliang
+    set qih = #{qih,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR},
+      wbs_listing_id = #{wbsListingId,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=DECIMAL},
+      sect_isbn = #{sectIsbn,jdbcType=VARCHAR},
+      fbfx = #{fbfx,jdbcType=VARCHAR},
+      qdbh = #{qdbh,jdbcType=VARCHAR},
+      listing_no = #{listingNo,jdbcType=VARCHAR},
+      qdmc = #{qdmc,jdbcType=VARCHAR},
+      qddw = #{qddw,jdbcType=VARCHAR},
+      htdj = #{htdj,jdbcType=DECIMAL},
+      listing_version = #{listingVersion,jdbcType=DECIMAL},
+      htsl = #{htsl,jdbcType=DECIMAL},
+      htje = #{htje,jdbcType=DECIMAL},
+      wbs_bh = #{wbsBh,jdbcType=VARCHAR},
+      wbs_bane = #{wbsBane,jdbcType=VARCHAR},
+      jllx = #{jllx,jdbcType=DECIMAL},
+      bgpzwh = #{bgpzwh,jdbcType=VARCHAR},
+      jlsl = #{jlsl,jdbcType=DECIMAL},
+      qzbgjl = #{qzbgjl,jdbcType=DECIMAL},
+      jlje = #{jlje,jdbcType=DECIMAL},
+      qzzh = #{qzzh,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      th = #{th,jdbcType=VARCHAR},
+      ctwz = #{ctwz,jdbcType=VARCHAR},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      jldbh_s = #{jldbhS,jdbcType=VARCHAR},
+      jldbh = #{jldbh,jdbcType=DECIMAL},
+      jgzh = #{jgzh,jdbcType=VARCHAR},
+      zjdbh = #{zjdbh,jdbcType=VARCHAR},
+      jlrq = #{jlrq,jdbcType=DATE},
+      jly = #{jly,jdbcType=VARCHAR},
+      jlhdsl = #{jlhdsl,jdbcType=DECIMAL},
+      all_finished_num = #{allFinishedNum,jdbcType=DECIMAL},
+      zjpl = #{zjpl,jdbcType=DECIMAL},
+      zjzjdbh = #{zjzjdbh,jdbcType=VARCHAR},
+      cjpl = #{cjpl,jdbcType=DECIMAL},
+      cjzjdbh = #{cjzjdbh,jdbcType=VARCHAR},
+      jyplhj = #{jyplhj,jdbcType=DECIMAL},
+      sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
+      sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
+      sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
+      jllsh = #{jllsh,jdbcType=VARCHAR},
+      cqlx = #{cqlx,jdbcType=VARCHAR},
+      gcnr = #{gcnr,jdbcType=VARCHAR},
+      bgsjth = #{bgsjth,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=LONGVARCHAR},
+      jsgs = #{jsgs,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliang" >
+    update hd_pms_qingdan_jiliang
+    set qih = #{qih,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR},
+      wbs_listing_id = #{wbsListingId,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=DECIMAL},
+      sect_isbn = #{sectIsbn,jdbcType=VARCHAR},
+      fbfx = #{fbfx,jdbcType=VARCHAR},
+      qdbh = #{qdbh,jdbcType=VARCHAR},
+      listing_no = #{listingNo,jdbcType=VARCHAR},
+      qdmc = #{qdmc,jdbcType=VARCHAR},
+      qddw = #{qddw,jdbcType=VARCHAR},
+      htdj = #{htdj,jdbcType=DECIMAL},
+      listing_version = #{listingVersion,jdbcType=DECIMAL},
+      htsl = #{htsl,jdbcType=DECIMAL},
+      htje = #{htje,jdbcType=DECIMAL},
+      wbs_bh = #{wbsBh,jdbcType=VARCHAR},
+      wbs_bane = #{wbsBane,jdbcType=VARCHAR},
+      jllx = #{jllx,jdbcType=DECIMAL},
+      bgpzwh = #{bgpzwh,jdbcType=VARCHAR},
+      jlsl = #{jlsl,jdbcType=DECIMAL},
+      qzbgjl = #{qzbgjl,jdbcType=DECIMAL},
+      jlje = #{jlje,jdbcType=DECIMAL},
+      qzzh = #{qzzh,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      th = #{th,jdbcType=VARCHAR},
+      ctwz = #{ctwz,jdbcType=VARCHAR},
+      upload_id = #{uploadId,jdbcType=VARCHAR},
+      jldbh_s = #{jldbhS,jdbcType=VARCHAR},
+      jldbh = #{jldbh,jdbcType=DECIMAL},
+      jgzh = #{jgzh,jdbcType=VARCHAR},
+      zjdbh = #{zjdbh,jdbcType=VARCHAR},
+      jlrq = #{jlrq,jdbcType=DATE},
+      jly = #{jly,jdbcType=VARCHAR},
+      jlhdsl = #{jlhdsl,jdbcType=DECIMAL},
+      all_finished_num = #{allFinishedNum,jdbcType=DECIMAL},
+      zjpl = #{zjpl,jdbcType=DECIMAL},
+      zjzjdbh = #{zjzjdbh,jdbcType=VARCHAR},
+      cjpl = #{cjpl,jdbcType=DECIMAL},
+      cjzjdbh = #{cjzjdbh,jdbcType=VARCHAR},
+      jyplhj = #{jyplhj,jdbcType=DECIMAL},
+      sect_property_a = #{sectPropertyA,jdbcType=VARCHAR},
+      sect_property_b = #{sectPropertyB,jdbcType=VARCHAR},
+      sect_property_c = #{sectPropertyC,jdbcType=VARCHAR},
+      jllsh = #{jllsh,jdbcType=VARCHAR},
+      cqlx = #{cqlx,jdbcType=VARCHAR},
+      gcnr = #{gcnr,jdbcType=VARCHAR},
+      bgsjth = #{bgsjth,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <delete id="deleteAll">
+		delete from hd_pms_qingdan_jiliang;
+	</delete>
+	<select id="findPmsQingdanJiliangMaxInserttime" resultType="java.lang.String">
+		select
+		max(inserttime) from hd_pms_qingdan_jiliang;
+	</select>
+	<select id="findPmsQingdanJiliangById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from hd_pms_qingdan_jiliang
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deletePmsQingdanJiliangById" parameterType="java.lang.String">
+		delete
+		from
+		hd_pms_qingdan_jiliang
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertPmsQingdanJiliang" parameterType="com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs">
+		insert into hd_pms_qingdan_jiliang (id, qih, p_id,
+		wbs_listing_id,
+		user_type, sect_isbn,
+		fbfx, qdbh, listing_no,
+		qdmc, qddw, htdj,
+		listing_version,
+		htsl, htje, wbs_bh,
+		wbs_bane, jllx, bgpzwh,
+		jlsl,
+		qzbgjl, jlje,
+		qzzh, position, th,
+		ctwz, upload_id, jldbh_s,
+		jldbh, jgzh,
+		zjdbh,
+		jlrq, jly, jlhdsl, all_finished_num,
+		zjpl, zjzjdbh, cjpl,
+		cjzjdbh, jyplhj, sect_property_a,
+		sect_property_b, sect_property_c,
+		jllsh,
+		cqlx, gcnr, bgsjth,
+		inserttime, creattime, note,
+		jsgs)
+		values
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(#{item.id,jdbcType=VARCHAR}, #{item.qih,jdbcType=VARCHAR},
+			#{item.pId,jdbcType=VARCHAR},
+			#{item.wbsListingId,jdbcType=VARCHAR},
+			#{item.userType,jdbcType=DECIMAL},
+			#{item.sectIsbn,jdbcType=VARCHAR},
+			#{item.fbfx,jdbcType=VARCHAR}, #{item.qdbh,jdbcType=VARCHAR},
+			#{item.listingNo,jdbcType=VARCHAR},
+			#{item.qdmc,jdbcType=VARCHAR},
+			#{item.qddw,jdbcType=VARCHAR},
+			#{item.htdj,jdbcType=DECIMAL},
+			#{item.listingVersion,jdbcType=DECIMAL},
+			#{item.htsl,jdbcType=DECIMAL},
+			#{item.htje,jdbcType=DECIMAL},
+			#{item.wbsBh,jdbcType=VARCHAR},
+			#{item.wbsBane,jdbcType=VARCHAR}, #{item.jllx,jdbcType=DECIMAL},
+			#{item.bgpzwh,jdbcType=VARCHAR},
+			#{item.jlsl,jdbcType=DECIMAL},
+			#{item.qzbgjl,jdbcType=DECIMAL},
+			#{item.jlje,jdbcType=DECIMAL},
+			#{item.qzzh,jdbcType=VARCHAR}, #{item.position,jdbcType=VARCHAR},
+			#{item.th,jdbcType=VARCHAR},
+			#{item.ctwz,jdbcType=VARCHAR},
+			#{item.uploadId,jdbcType=VARCHAR},
+			#{item.jldbhS,jdbcType=VARCHAR},
+			#{item.jldbh,jdbcType=DECIMAL}, #{item.jgzh,jdbcType=VARCHAR},
+			#{item.zjdbh,jdbcType=VARCHAR},
+			#{item.jlrq,jdbcType=DATE},
+			#{item.jly,jdbcType=VARCHAR},
+			#{item.jlhdsl,jdbcType=DECIMAL},
+			#{item.allFinishedNum,jdbcType=DECIMAL},
+			#{item.zjpl,jdbcType=DECIMAL},
+			#{item.zjzjdbh,jdbcType=VARCHAR},
+			#{item.cjpl,jdbcType=DECIMAL},
+			#{item.cjzjdbh,jdbcType=VARCHAR}, #{item.jyplhj,jdbcType=DECIMAL},
+			#{item.sectPropertyA,jdbcType=VARCHAR},
+			#{item.sectPropertyB,jdbcType=VARCHAR},
+			#{item.sectPropertyC,jdbcType=VARCHAR},
+			#{item.jllsh,jdbcType=VARCHAR},
+			#{item.cqlx,jdbcType=VARCHAR}, #{item.gcnr,jdbcType=VARCHAR},
+			#{item.bgsjth,jdbcType=VARCHAR},
+			#{item.inserttime,jdbcType=TIMESTAMP},
+			#{item.creattime,jdbcType=TIMESTAMP},
+			#{item.note,jdbcType=LONGVARCHAR},
+			#{item.jsgs,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+</mapper>

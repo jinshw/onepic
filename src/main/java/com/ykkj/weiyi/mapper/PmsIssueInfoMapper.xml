@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsIssueInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="issue_no" property="issueNo" jdbcType="VARCHAR" />
+    <result column="issue_name" property="issueName" jdbcType="VARCHAR" />
+    <result column="begin_date" property="beginDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="current_money_plan" property="currentMoneyPlan" jdbcType="DECIMAL" />
+    <result column="is_current" property="isCurrent" jdbcType="DECIMAL" />
+    <result column="plan_per" property="planPer" jdbcType="DECIMAL" />
+    <result column="bpm_status" property="bpmStatus" jdbcType="VARCHAR" />
+    <result column="bpm_status_bak" property="bpmStatusBak" jdbcType="VARCHAR" />
+    <result column="bpm_node_id" property="bpmNodeId" jdbcType="VARCHAR" />
+    <result column="inserttime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.PmsIssueInfo" extends="BaseResultMap" >
+    <result column="sect_id" property="sectId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, issue_no, issue_name, begin_date, end_date, current_money_plan, is_current, plan_per, 
+    bpm_status, bpm_status_bak, bpm_node_id, inserttime, createtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    sect_id
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_pms_issue_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_pms_issue_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hd_pms_issue_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_pms_issue_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfoExample" >
+    delete from hd_pms_issue_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    insert into hd_pms_issue_info (id, issue_no, issue_name, 
+      begin_date, end_date, current_money_plan, 
+      is_current, plan_per, bpm_status, 
+      bpm_status_bak, bpm_node_id, inserttime, 
+      createtime, sect_id)
+    values (#{id,jdbcType=VARCHAR}, #{issueNo,jdbcType=VARCHAR}, #{issueName,jdbcType=VARCHAR}, 
+      #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{currentMoneyPlan,jdbcType=DECIMAL}, 
+      #{isCurrent,jdbcType=DECIMAL}, #{planPer,jdbcType=DECIMAL}, #{bpmStatus,jdbcType=VARCHAR}, 
+      #{bpmStatusBak,jdbcType=VARCHAR}, #{bpmNodeId,jdbcType=VARCHAR}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{sectId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    insert into hd_pms_issue_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="issueNo != null" >
+        issue_no,
+      </if>
+      <if test="issueName != null" >
+        issue_name,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="currentMoneyPlan != null" >
+        current_money_plan,
+      </if>
+      <if test="isCurrent != null" >
+        is_current,
+      </if>
+      <if test="planPer != null" >
+        plan_per,
+      </if>
+      <if test="bpmStatus != null" >
+        bpm_status,
+      </if>
+      <if test="bpmStatusBak != null" >
+        bpm_status_bak,
+      </if>
+      <if test="bpmNodeId != null" >
+        bpm_node_id,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="sectId != null" >
+        sect_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="issueNo != null" >
+        #{issueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="issueName != null" >
+        #{issueName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="currentMoneyPlan != null" >
+        #{currentMoneyPlan,jdbcType=DECIMAL},
+      </if>
+      <if test="isCurrent != null" >
+        #{isCurrent,jdbcType=DECIMAL},
+      </if>
+      <if test="planPer != null" >
+        #{planPer,jdbcType=DECIMAL},
+      </if>
+      <if test="bpmStatus != null" >
+        #{bpmStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmStatusBak != null" >
+        #{bpmStatusBak,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmNodeId != null" >
+        #{bpmNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sectId != null" >
+        #{sectId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfoExample" resultType="java.lang.Integer" >
+    select count(*) from hd_pms_issue_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_pms_issue_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueNo != null" >
+        issue_no = #{record.issueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueName != null" >
+        issue_name = #{record.issueName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginDate != null" >
+        begin_date = #{record.beginDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=DATE},
+      </if>
+      <if test="record.currentMoneyPlan != null" >
+        current_money_plan = #{record.currentMoneyPlan,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isCurrent != null" >
+        is_current = #{record.isCurrent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.planPer != null" >
+        plan_per = #{record.planPer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bpmStatus != null" >
+        bpm_status = #{record.bpmStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpmStatusBak != null" >
+        bpm_status_bak = #{record.bpmStatusBak,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpmNodeId != null" >
+        bpm_node_id = #{record.bpmNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sectId != null" >
+        sect_id = #{record.sectId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hd_pms_issue_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      issue_no = #{record.issueNo,jdbcType=VARCHAR},
+      issue_name = #{record.issueName,jdbcType=VARCHAR},
+      begin_date = #{record.beginDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE},
+      current_money_plan = #{record.currentMoneyPlan,jdbcType=DECIMAL},
+      is_current = #{record.isCurrent,jdbcType=DECIMAL},
+      plan_per = #{record.planPer,jdbcType=DECIMAL},
+      bpm_status = #{record.bpmStatus,jdbcType=VARCHAR},
+      bpm_status_bak = #{record.bpmStatusBak,jdbcType=VARCHAR},
+      bpm_node_id = #{record.bpmNodeId,jdbcType=VARCHAR},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      sect_id = #{record.sectId,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_pms_issue_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      issue_no = #{record.issueNo,jdbcType=VARCHAR},
+      issue_name = #{record.issueName,jdbcType=VARCHAR},
+      begin_date = #{record.beginDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE},
+      current_money_plan = #{record.currentMoneyPlan,jdbcType=DECIMAL},
+      is_current = #{record.isCurrent,jdbcType=DECIMAL},
+      plan_per = #{record.planPer,jdbcType=DECIMAL},
+      bpm_status = #{record.bpmStatus,jdbcType=VARCHAR},
+      bpm_status_bak = #{record.bpmStatusBak,jdbcType=VARCHAR},
+      bpm_node_id = #{record.bpmNodeId,jdbcType=VARCHAR},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    update hd_pms_issue_info
+    <set >
+      <if test="issueNo != null" >
+        issue_no = #{issueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="issueName != null" >
+        issue_name = #{issueName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="currentMoneyPlan != null" >
+        current_money_plan = #{currentMoneyPlan,jdbcType=DECIMAL},
+      </if>
+      <if test="isCurrent != null" >
+        is_current = #{isCurrent,jdbcType=DECIMAL},
+      </if>
+      <if test="planPer != null" >
+        plan_per = #{planPer,jdbcType=DECIMAL},
+      </if>
+      <if test="bpmStatus != null" >
+        bpm_status = #{bpmStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmStatusBak != null" >
+        bpm_status_bak = #{bpmStatusBak,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmNodeId != null" >
+        bpm_node_id = #{bpmNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sectId != null" >
+        sect_id = #{sectId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    update hd_pms_issue_info
+    set issue_no = #{issueNo,jdbcType=VARCHAR},
+      issue_name = #{issueName,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      current_money_plan = #{currentMoneyPlan,jdbcType=DECIMAL},
+      is_current = #{isCurrent,jdbcType=DECIMAL},
+      plan_per = #{planPer,jdbcType=DECIMAL},
+      bpm_status = #{bpmStatus,jdbcType=VARCHAR},
+      bpm_status_bak = #{bpmStatusBak,jdbcType=VARCHAR},
+      bpm_node_id = #{bpmNodeId,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      sect_id = #{sectId,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsIssueInfo" >
+    update hd_pms_issue_info
+    set issue_no = #{issueNo,jdbcType=VARCHAR},
+      issue_name = #{issueName,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      current_money_plan = #{currentMoneyPlan,jdbcType=DECIMAL},
+      is_current = #{isCurrent,jdbcType=DECIMAL},
+      plan_per = #{planPer,jdbcType=DECIMAL},
+      bpm_status = #{bpmStatus,jdbcType=VARCHAR},
+      bpm_status_bak = #{bpmStatusBak,jdbcType=VARCHAR},
+      bpm_node_id = #{bpmNodeId,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+      <delete id="deleteAll">
+  delete from hd_pms_issue_info;
+  </delete>
+  <select id="findPmsIssueInfoMaxInserttime" resultType="java.lang.String">
+		select
+		max(inserttime) from hd_pms_issue_info;
+	</select>
+	
+	<select id="findPmsIssueInfoById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from hd_pms_issue_info
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+  
+  	<delete id="deletePmsIssueInfoById" parameterType="java.lang.String">
+		delete from
+		hd_pms_issue_info
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>

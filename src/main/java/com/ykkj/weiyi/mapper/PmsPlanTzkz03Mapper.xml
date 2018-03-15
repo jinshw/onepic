@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz03Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="item" property="item" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="gspf_jine" property="gspfJine" jdbcType="DECIMAL" />
+    <result column="lastyear_wctz" property="lastyearWctz" jdbcType="DECIMAL" />
+    <result column="bn_khjh" property="bnKhjh" jdbcType="DECIMAL" />
+    <result column="by_fjjh" property="byFjjh" jdbcType="DECIMAL" />
+    <result column="by_wctz_sjcz" property="byWctzSjcz" jdbcType="DECIMAL" />
+    <result column="by_wctz_zhgs" property="byWctzZhgs" jdbcType="DECIMAL" />
+    <result column="zby_wctz_sjcz" property="zbyWctzSjcz" jdbcType="DECIMAL" />
+    <result column="zby_wctz_zhgs" property="zbyWctzZhgs" jdbcType="DECIMAL" />
+    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="creattime" property="creattime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, item, sn, gspf_jine, lastyear_wctz, bn_khjh, by_fjjh, by_wctz_sjcz, by_wctz_zhgs, 
+    zby_wctz_sjcz, zby_wctz_zhgs, inserttime, creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz03
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz03
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pms_plan_tzkz03
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03Example" >
+    delete from pms_plan_tzkz03
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
+    insert into pms_plan_tzkz03 (id, m_id, item, 
+      sn, gspf_jine, lastyear_wctz, 
+      bn_khjh, by_fjjh, by_wctz_sjcz, 
+      by_wctz_zhgs, zby_wctz_sjcz, zby_wctz_zhgs, 
+      inserttime, creattime)
+    values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{item,jdbcType=VARCHAR}, 
+      #{sn,jdbcType=VARCHAR}, #{gspfJine,jdbcType=DECIMAL}, #{lastyearWctz,jdbcType=DECIMAL}, 
+      #{bnKhjh,jdbcType=DECIMAL}, #{byFjjh,jdbcType=DECIMAL}, #{byWctzSjcz,jdbcType=DECIMAL}, 
+      #{byWctzZhgs,jdbcType=DECIMAL}, #{zbyWctzSjcz,jdbcType=DECIMAL}, #{zbyWctzZhgs,jdbcType=DECIMAL}, 
+      #{inserttime,jdbcType=DATE}, #{creattime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
+    insert into pms_plan_tzkz03
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="item != null" >
+        item,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="gspfJine != null" >
+        gspf_jine,
+      </if>
+      <if test="lastyearWctz != null" >
+        lastyear_wctz,
+      </if>
+      <if test="bnKhjh != null" >
+        bn_khjh,
+      </if>
+      <if test="byFjjh != null" >
+        by_fjjh,
+      </if>
+      <if test="byWctzSjcz != null" >
+        by_wctz_sjcz,
+      </if>
+      <if test="byWctzZhgs != null" >
+        by_wctz_zhgs,
+      </if>
+      <if test="zbyWctzSjcz != null" >
+        zby_wctz_sjcz,
+      </if>
+      <if test="zbyWctzZhgs != null" >
+        zby_wctz_zhgs,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="gspfJine != null" >
+        #{gspfJine,jdbcType=DECIMAL},
+      </if>
+      <if test="lastyearWctz != null" >
+        #{lastyearWctz,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKhjh != null" >
+        #{bnKhjh,jdbcType=DECIMAL},
+      </if>
+      <if test="byFjjh != null" >
+        #{byFjjh,jdbcType=DECIMAL},
+      </if>
+      <if test="byWctzSjcz != null" >
+        #{byWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="byWctzZhgs != null" >
+        #{byWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyWctzSjcz != null" >
+        #{zbyWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyWctzZhgs != null" >
+        #{zbyWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz03
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz03
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.item != null" >
+        item = #{record.item,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gspfJine != null" >
+        gspf_jine = #{record.gspfJine,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastyearWctz != null" >
+        lastyear_wctz = #{record.lastyearWctz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bnKhjh != null" >
+        bn_khjh = #{record.bnKhjh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.byFjjh != null" >
+        by_fjjh = #{record.byFjjh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.byWctzSjcz != null" >
+        by_wctz_sjcz = #{record.byWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.byWctzZhgs != null" >
+        by_wctz_zhgs = #{record.byWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbyWctzSjcz != null" >
+        zby_wctz_sjcz = #{record.zbyWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbyWctzZhgs != null" >
+        zby_wctz_zhgs = #{record.zbyWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=DATE},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz03
+    set id = #{record.id,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      item = #{record.item,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      gspf_jine = #{record.gspfJine,jdbcType=DECIMAL},
+      lastyear_wctz = #{record.lastyearWctz,jdbcType=DECIMAL},
+      bn_khjh = #{record.bnKhjh,jdbcType=DECIMAL},
+      by_fjjh = #{record.byFjjh,jdbcType=DECIMAL},
+      by_wctz_sjcz = #{record.byWctzSjcz,jdbcType=DECIMAL},
+      by_wctz_zhgs = #{record.byWctzZhgs,jdbcType=DECIMAL},
+      zby_wctz_sjcz = #{record.zbyWctzSjcz,jdbcType=DECIMAL},
+      zby_wctz_zhgs = #{record.zbyWctzZhgs,jdbcType=DECIMAL},
+      inserttime = #{record.inserttime,jdbcType=DATE},
+      creattime = #{record.creattime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
+    update pms_plan_tzkz03
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null" >
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="gspfJine != null" >
+        gspf_jine = #{gspfJine,jdbcType=DECIMAL},
+      </if>
+      <if test="lastyearWctz != null" >
+        lastyear_wctz = #{lastyearWctz,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKhjh != null" >
+        bn_khjh = #{bnKhjh,jdbcType=DECIMAL},
+      </if>
+      <if test="byFjjh != null" >
+        by_fjjh = #{byFjjh,jdbcType=DECIMAL},
+      </if>
+      <if test="byWctzSjcz != null" >
+        by_wctz_sjcz = #{byWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="byWctzZhgs != null" >
+        by_wctz_zhgs = #{byWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyWctzSjcz != null" >
+        zby_wctz_sjcz = #{zbyWctzSjcz,jdbcType=DECIMAL},
+      </if>
+      <if test="zbyWctzZhgs != null" >
+        zby_wctz_zhgs = #{zbyWctzZhgs,jdbcType=DECIMAL},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=DATE},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
+    update pms_plan_tzkz03
+    set m_id = #{mId,jdbcType=VARCHAR},
+      item = #{item,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      gspf_jine = #{gspfJine,jdbcType=DECIMAL},
+      lastyear_wctz = #{lastyearWctz,jdbcType=DECIMAL},
+      bn_khjh = #{bnKhjh,jdbcType=DECIMAL},
+      by_fjjh = #{byFjjh,jdbcType=DECIMAL},
+      by_wctz_sjcz = #{byWctzSjcz,jdbcType=DECIMAL},
+      by_wctz_zhgs = #{byWctzZhgs,jdbcType=DECIMAL},
+      zby_wctz_sjcz = #{zbyWctzSjcz,jdbcType=DECIMAL},
+      zby_wctz_zhgs = #{zbyWctzZhgs,jdbcType=DECIMAL},
+      inserttime = #{inserttime,jdbcType=DATE},
+      creattime = #{creattime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

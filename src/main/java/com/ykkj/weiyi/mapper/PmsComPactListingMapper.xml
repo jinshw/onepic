@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsComPactListingMapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsComPactListing" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sect_id" property="sectId" jdbcType="VARCHAR" />
+    <result column="listing_isbn" property="listingIsbn" jdbcType="VARCHAR" />
+    <result column="listing_parent_isbn" property="listingParentIsbn" jdbcType="VARCHAR" />
+    <result column="listing_no" property="listingNo" jdbcType="VARCHAR" />
+    <result column="listing_name" property="listingName" jdbcType="VARCHAR" />
+    <result column="listing_unit" property="listingUnit" jdbcType="VARCHAR" />
+    <result column="listing_amount" property="listingAmount" jdbcType="DECIMAL" />
+    <result column="listing_amount2" property="listingAmount2" jdbcType="DECIMAL" />
+    <result column="listing_price" property="listingPrice" jdbcType="DECIMAL" />
+    <result column="listing_money" property="listingMoney" jdbcType="DECIMAL" />
+    <result column="listing_level" property="listingLevel" jdbcType="DECIMAL" />
+    <result column="has_child" property="hasChild" jdbcType="DECIMAL" />
+    <result column="property_a" property="propertyA" jdbcType="VARCHAR" />
+    <result column="property_b" property="propertyB" jdbcType="VARCHAR" />
+    <result column="property_c" property="propertyC" jdbcType="DECIMAL" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+    <result column="inster_time" property="insterTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sect_id, listing_isbn, listing_parent_isbn, listing_no, listing_name, listing_unit, 
+    listing_amount, listing_amount2, listing_price, listing_money, listing_level, has_child, 
+    property_a, property_b, property_c, inster_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsComPactListingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hd_pms_com_pact_listing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hd_pms_com_pact_listing
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hd_pms_com_pact_listing
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsComPactListingExample" >
+    delete from hd_pms_com_pact_listing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="java.util.List" >
+    insert into hd_pms_com_pact_listing (id, sect_id, listing_isbn, 
+      listing_parent_isbn, listing_no, listing_name, 
+      listing_unit, listing_amount, listing_amount2, 
+      listing_price, listing_money, listing_level, 
+      has_child, property_a, property_b, 
+      property_c, inster_time,creattime)
+    values 
+        <foreach item="item" index="index" collection="list" separator=",">
+        (#{item.id,jdbcType=VARCHAR}, #{item.sectId,jdbcType=VARCHAR}, #{item.listingIsbn,jdbcType=VARCHAR}, 
+      #{item.listingParentIsbn,jdbcType=VARCHAR}, #{item.listingNo,jdbcType=VARCHAR}, #{item.listingName,jdbcType=VARCHAR}, 
+      #{item.listingUnit,jdbcType=VARCHAR}, #{item.listingAmount,jdbcType=DECIMAL}, #{item.listingAmount2,jdbcType=DECIMAL}, 
+      #{item.listingPrice,jdbcType=DECIMAL}, #{item.listingMoney,jdbcType=DECIMAL}, #{item.listingLevel,jdbcType=DECIMAL}, 
+      #{item.hasChild,jdbcType=DECIMAL}, #{item.propertyA,jdbcType=VARCHAR}, #{item.propertyB,jdbcType=VARCHAR}, 
+      #{item.propertyC,jdbcType=DECIMAL}, #{item.insterTime,jdbcType=TIMESTAMP},#{item.creattime,jdbcType=TIMESTAMP})
+        </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsComPactListing" >
+    insert into hd_pms_com_pact_listing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sectId != null" >
+        sect_id,
+      </if>
+      <if test="listingIsbn != null" >
+        listing_isbn,
+      </if>
+      <if test="listingParentIsbn != null" >
+        listing_parent_isbn,
+      </if>
+      <if test="listingNo != null" >
+        listing_no,
+      </if>
+      <if test="listingName != null" >
+        listing_name,
+      </if>
+      <if test="listingUnit != null" >
+        listing_unit,
+      </if>
+      <if test="listingAmount != null" >
+        listing_amount,
+      </if>
+      <if test="listingAmount2 != null" >
+        listing_amount2,
+      </if>
+      <if test="listingPrice != null" >
+        listing_price,
+      </if>
+      <if test="listingMoney != null" >
+        listing_money,
+      </if>
+      <if test="listingLevel != null" >
+        listing_level,
+      </if>
+      <if test="hasChild != null" >
+        has_child,
+      </if>
+      <if test="propertyA != null" >
+        property_a,
+      </if>
+      <if test="propertyB != null" >
+        property_b,
+      </if>
+      <if test="propertyC != null" >
+        property_c,
+      </if>
+      <if test="insterTime != null" >
+        inster_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sectId != null" >
+        #{sectId,jdbcType=VARCHAR},
+      </if>
+      <if test="listingIsbn != null" >
+        #{listingIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="listingParentIsbn != null" >
+        #{listingParentIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="listingNo != null" >
+        #{listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="listingName != null" >
+        #{listingName,jdbcType=VARCHAR},
+      </if>
+      <if test="listingUnit != null" >
+        #{listingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="listingAmount != null" >
+        #{listingAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="listingAmount2 != null" >
+        #{listingAmount2,jdbcType=DECIMAL},
+      </if>
+      <if test="listingPrice != null" >
+        #{listingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listingMoney != null" >
+        #{listingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="listingLevel != null" >
+        #{listingLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="hasChild != null" >
+        #{hasChild,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyA != null" >
+        #{propertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyB != null" >
+        #{propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyC != null" >
+        #{propertyC,jdbcType=DECIMAL},
+      </if>
+      <if test="insterTime != null" >
+        #{insterTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsComPactListingExample" resultType="java.lang.Integer" >
+    select count(*) from hd_pms_com_pact_listing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hd_pms_com_pact_listing
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sectId != null" >
+        sect_id = #{record.sectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingIsbn != null" >
+        listing_isbn = #{record.listingIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingParentIsbn != null" >
+        listing_parent_isbn = #{record.listingParentIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingNo != null" >
+        listing_no = #{record.listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingName != null" >
+        listing_name = #{record.listingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingUnit != null" >
+        listing_unit = #{record.listingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingAmount != null" >
+        listing_amount = #{record.listingAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.listingAmount2 != null" >
+        listing_amount2 = #{record.listingAmount2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.listingPrice != null" >
+        listing_price = #{record.listingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.listingMoney != null" >
+        listing_money = #{record.listingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.listingLevel != null" >
+        listing_level = #{record.listingLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hasChild != null" >
+        has_child = #{record.hasChild,jdbcType=DECIMAL},
+      </if>
+      <if test="record.propertyA != null" >
+        property_a = #{record.propertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyB != null" >
+        property_b = #{record.propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyC != null" >
+        property_c = #{record.propertyC,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insterTime != null" >
+        inster_time = #{record.insterTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hd_pms_com_pact_listing
+    set id = #{record.id,jdbcType=VARCHAR},
+      sect_id = #{record.sectId,jdbcType=VARCHAR},
+      listing_isbn = #{record.listingIsbn,jdbcType=VARCHAR},
+      listing_parent_isbn = #{record.listingParentIsbn,jdbcType=VARCHAR},
+      listing_no = #{record.listingNo,jdbcType=VARCHAR},
+      listing_name = #{record.listingName,jdbcType=VARCHAR},
+      listing_unit = #{record.listingUnit,jdbcType=VARCHAR},
+      listing_amount = #{record.listingAmount,jdbcType=DECIMAL},
+      listing_amount2 = #{record.listingAmount2,jdbcType=DECIMAL},
+      listing_price = #{record.listingPrice,jdbcType=DECIMAL},
+      listing_money = #{record.listingMoney,jdbcType=DECIMAL},
+      listing_level = #{record.listingLevel,jdbcType=DECIMAL},
+      has_child = #{record.hasChild,jdbcType=DECIMAL},
+      property_a = #{record.propertyA,jdbcType=VARCHAR},
+      property_b = #{record.propertyB,jdbcType=VARCHAR},
+      property_c = #{record.propertyC,jdbcType=DECIMAL},
+      inster_time = #{record.insterTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsComPactListing" >
+    update hd_pms_com_pact_listing
+    <set >
+      <if test="sectId != null" >
+        sect_id = #{sectId,jdbcType=VARCHAR},
+      </if>
+      <if test="listingIsbn != null" >
+        listing_isbn = #{listingIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="listingParentIsbn != null" >
+        listing_parent_isbn = #{listingParentIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="listingNo != null" >
+        listing_no = #{listingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="listingName != null" >
+        listing_name = #{listingName,jdbcType=VARCHAR},
+      </if>
+      <if test="listingUnit != null" >
+        listing_unit = #{listingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="listingAmount != null" >
+        listing_amount = #{listingAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="listingAmount2 != null" >
+        listing_amount2 = #{listingAmount2,jdbcType=DECIMAL},
+      </if>
+      <if test="listingPrice != null" >
+        listing_price = #{listingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listingMoney != null" >
+        listing_money = #{listingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="listingLevel != null" >
+        listing_level = #{listingLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="hasChild != null" >
+        has_child = #{hasChild,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyA != null" >
+        property_a = #{propertyA,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyB != null" >
+        property_b = #{propertyB,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyC != null" >
+        property_c = #{propertyC,jdbcType=DECIMAL},
+      </if>
+      <if test="insterTime != null" >
+        inster_time = #{insterTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsComPactListing" >
+    update hd_pms_com_pact_listing
+    set sect_id = #{sectId,jdbcType=VARCHAR},
+      listing_isbn = #{listingIsbn,jdbcType=VARCHAR},
+      listing_parent_isbn = #{listingParentIsbn,jdbcType=VARCHAR},
+      listing_no = #{listingNo,jdbcType=VARCHAR},
+      listing_name = #{listingName,jdbcType=VARCHAR},
+      listing_unit = #{listingUnit,jdbcType=VARCHAR},
+      listing_amount = #{listingAmount,jdbcType=DECIMAL},
+      listing_amount2 = #{listingAmount2,jdbcType=DECIMAL},
+      listing_price = #{listingPrice,jdbcType=DECIMAL},
+      listing_money = #{listingMoney,jdbcType=DECIMAL},
+      listing_level = #{listingLevel,jdbcType=DECIMAL},
+      has_child = #{hasChild,jdbcType=DECIMAL},
+      property_a = #{propertyA,jdbcType=VARCHAR},
+      property_b = #{propertyB,jdbcType=VARCHAR},
+      property_c = #{propertyC,jdbcType=DECIMAL},
+      inster_time = #{insterTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <delete id="deleteAll">
+  delete from hd_pms_com_pact_listing;
+  </delete>
+ 
+  <select id="findPmsComPactListingMaxInserttime" resultType="java.lang.String">
+		select
+		max(inserttime) from hd_pms_com_pact_listing;
+	</select>
+	
+		<select id="findPmsComPactListingById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from hd_pms_com_pact_listing
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deletePmsComPactListingById" parameterType="java.lang.String">
+		delete from
+		hd_pms_com_pact_listing
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>

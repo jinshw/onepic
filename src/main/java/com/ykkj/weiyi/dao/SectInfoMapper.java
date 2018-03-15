@@ -44,4 +44,6 @@ public interface SectInfoMapper
     String findSectInfoMaxInserttime();
 
     void deleteAll();
+
+    List<SectInfo> findSectInfoByDirectId(String id);
 }

@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanInputZbMapper">
+	<resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanInputZb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="entity_id" property="entityId" jdbcType="VARCHAR" />
+		<result column="entity_type" property="entityType" jdbcType="VARCHAR" />
+		<result column="year" property="year" jdbcType="DECIMAL" />
+		<result column="month" property="month" jdbcType="DECIMAL" />
+		<result column="is_suance" property="isSuance" jdbcType="DECIMAL" />
+		<result column="update_people" property="updatePeople"
+			jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="DATE" />
+		<result column="update_action" property="updateAction"
+			jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="DECIMAL" />
+		<result column="property_a" property="propertyA" jdbcType="VARCHAR" />
+		<result column="property_b" property="propertyB" jdbcType="VARCHAR" />
+		<result column="property_c" property="propertyC" jdbcType="VARCHAR" />
+		<result column="real_start_date" property="realStartDate"
+			jdbcType="DATE" />
+		<result column="real_end_date" property="realEndDate" jdbcType="DATE" />
+		<result column="is_sueno" property="isSueno" jdbcType="DECIMAL" />
+		<result column="upload_id" property="uploadId" jdbcType="VARCHAR" />
+		<result column="submit_man" property="submitMan" jdbcType="VARCHAR" />
+		<result column="submit_time" property="submitTime" jdbcType="DATE" />
+		<result column="bpm_status" property="bpmStatus" jdbcType="VARCHAR" />
+		<result column="inserttime" property="inserttime" jdbcType="DATE" />
+		<result column="creattime" property="creattime" jdbcType="DATE" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs"
+		extends="BaseResultMap">
+		<result column="text_value1" property="textValue1" jdbcType="LONGVARCHAR" />
+		<result column="text_value2" property="textValue2" jdbcType="LONGVARCHAR" />
+		<result column="text_value3" property="textValue3" jdbcType="LONGVARCHAR" />
+		<result column="text_value4" property="textValue4" jdbcType="LONGVARCHAR" />
+		<result column="text_value5" property="textValue5" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, entity_id, entity_type, year, month, is_suance,
+		update_people,
+		update_time, update_action,
+		user_type, property_a,
+		property_b, property_c, real_start_date, real_end_date,
+		is_sueno,
+		upload_id, submit_man, submit_time, bpm_status, inserttime, creattime
+	</sql>
+	<sql id="Blob_Column_List">
+		text_value1, text_value2, text_value3, text_value4,
+		text_value5
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from pms_plan_input_zb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from pms_plan_input_zb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from pms_plan_input_zb
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		pms_plan_input_zb
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbExample">
+		delete from pms_plan_input_zb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
+		insert into pms_plan_input_zb
+		(id, entity_id, entity_type,
+		year, month, is_suance,
+		update_people,
+		update_time, update_action,
+		user_type, property_a, property_b,
+		property_c, real_start_date, real_end_date,
+		is_sueno, upload_id,
+		submit_man,
+		submit_time, bpm_status, inserttime,
+		creattime, text_value1,
+		text_value2,
+		text_value3, text_value4, text_value5
+		)
+		values
+		(#{id,jdbcType=VARCHAR}, #{entityId,jdbcType=VARCHAR},
+		#{entityType,jdbcType=VARCHAR},
+		#{year,jdbcType=DECIMAL},
+		#{month,jdbcType=DECIMAL}, #{isSuance,jdbcType=DECIMAL},
+		#{updatePeople,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE},
+		#{updateAction,jdbcType=VARCHAR},
+		#{userType,jdbcType=DECIMAL},
+		#{propertyA,jdbcType=VARCHAR}, #{propertyB,jdbcType=VARCHAR},
+		#{propertyC,jdbcType=VARCHAR}, #{realStartDate,jdbcType=DATE},
+		#{realEndDate,jdbcType=DATE},
+		#{isSueno,jdbcType=DECIMAL},
+		#{uploadId,jdbcType=VARCHAR}, #{submitMan,jdbcType=VARCHAR},
+		#{submitTime,jdbcType=DATE}, #{bpmStatus,jdbcType=VARCHAR},
+		#{inserttime,jdbcType=DATE},
+		#{creattime,jdbcType=DATE},
+		#{textValue1,jdbcType=LONGVARCHAR},
+		#{textValue2,jdbcType=LONGVARCHAR},
+		#{textValue3,jdbcType=LONGVARCHAR},
+		#{textValue4,jdbcType=LONGVARCHAR}, #{textValue5,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
+		insert into pms_plan_input_zb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="entityId != null">
+				entity_id,
+			</if>
+			<if test="entityType != null">
+				entity_type,
+			</if>
+			<if test="year != null">
+				year,
+			</if>
+			<if test="month != null">
+				month,
+			</if>
+			<if test="isSuance != null">
+				is_suance,
+			</if>
+			<if test="updatePeople != null">
+				update_people,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="updateAction != null">
+				update_action,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="propertyA != null">
+				property_a,
+			</if>
+			<if test="propertyB != null">
+				property_b,
+			</if>
+			<if test="propertyC != null">
+				property_c,
+			</if>
+			<if test="realStartDate != null">
+				real_start_date,
+			</if>
+			<if test="realEndDate != null">
+				real_end_date,
+			</if>
+			<if test="isSueno != null">
+				is_sueno,
+			</if>
+			<if test="uploadId != null">
+				upload_id,
+			</if>
+			<if test="submitMan != null">
+				submit_man,
+			</if>
+			<if test="submitTime != null">
+				submit_time,
+			</if>
+			<if test="bpmStatus != null">
+				bpm_status,
+			</if>
+			<if test="inserttime != null">
+				inserttime,
+			</if>
+			<if test="creattime != null">
+				creattime,
+			</if>
+			<if test="textValue1 != null">
+				text_value1,
+			</if>
+			<if test="textValue2 != null">
+				text_value2,
+			</if>
+			<if test="textValue3 != null">
+				text_value3,
+			</if>
+			<if test="textValue4 != null">
+				text_value4,
+			</if>
+			<if test="textValue5 != null">
+				text_value5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="entityId != null">
+				#{entityId,jdbcType=VARCHAR},
+			</if>
+			<if test="entityType != null">
+				#{entityType,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				#{year,jdbcType=DECIMAL},
+			</if>
+			<if test="month != null">
+				#{month,jdbcType=DECIMAL},
+			</if>
+			<if test="isSuance != null">
+				#{isSuance,jdbcType=DECIMAL},
+			</if>
+			<if test="updatePeople != null">
+				#{updatePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=DATE},
+			</if>
+			<if test="updateAction != null">
+				#{updateAction,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=DECIMAL},
+			</if>
+			<if test="propertyA != null">
+				#{propertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyB != null">
+				#{propertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyC != null">
+				#{propertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="realStartDate != null">
+				#{realStartDate,jdbcType=DATE},
+			</if>
+			<if test="realEndDate != null">
+				#{realEndDate,jdbcType=DATE},
+			</if>
+			<if test="isSueno != null">
+				#{isSueno,jdbcType=DECIMAL},
+			</if>
+			<if test="uploadId != null">
+				#{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="submitMan != null">
+				#{submitMan,jdbcType=VARCHAR},
+			</if>
+			<if test="submitTime != null">
+				#{submitTime,jdbcType=DATE},
+			</if>
+			<if test="bpmStatus != null">
+				#{bpmStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="inserttime != null">
+				#{inserttime,jdbcType=DATE},
+			</if>
+			<if test="creattime != null">
+				#{creattime,jdbcType=DATE},
+			</if>
+			<if test="textValue1 != null">
+				#{textValue1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue2 != null">
+				#{textValue2,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue3 != null">
+				#{textValue3,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue4 != null">
+				#{textValue4,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue5 != null">
+				#{textValue5,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbExample"
+		resultType="java.lang.Integer">
+		select count(*) from pms_plan_input_zb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update pms_plan_input_zb
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.entityId != null">
+				entity_id = #{record.entityId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.entityType != null">
+				entity_type = #{record.entityType,jdbcType=VARCHAR},
+			</if>
+			<if test="record.year != null">
+				year = #{record.year,jdbcType=DECIMAL},
+			</if>
+			<if test="record.month != null">
+				month = #{record.month,jdbcType=DECIMAL},
+			</if>
+			<if test="record.isSuance != null">
+				is_suance = #{record.isSuance,jdbcType=DECIMAL},
+			</if>
+			<if test="record.updatePeople != null">
+				update_people = #{record.updatePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.updateTime != null">
+				update_time = #{record.updateTime,jdbcType=DATE},
+			</if>
+			<if test="record.updateAction != null">
+				update_action = #{record.updateAction,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userType != null">
+				user_type = #{record.userType,jdbcType=DECIMAL},
+			</if>
+			<if test="record.propertyA != null">
+				property_a = #{record.propertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="record.propertyB != null">
+				property_b = #{record.propertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="record.propertyC != null">
+				property_c = #{record.propertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="record.realStartDate != null">
+				real_start_date = #{record.realStartDate,jdbcType=DATE},
+			</if>
+			<if test="record.realEndDate != null">
+				real_end_date = #{record.realEndDate,jdbcType=DATE},
+			</if>
+			<if test="record.isSueno != null">
+				is_sueno = #{record.isSueno,jdbcType=DECIMAL},
+			</if>
+			<if test="record.uploadId != null">
+				upload_id = #{record.uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.submitMan != null">
+				submit_man = #{record.submitMan,jdbcType=VARCHAR},
+			</if>
+			<if test="record.submitTime != null">
+				submit_time = #{record.submitTime,jdbcType=DATE},
+			</if>
+			<if test="record.bpmStatus != null">
+				bpm_status = #{record.bpmStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="record.inserttime != null">
+				inserttime = #{record.inserttime,jdbcType=DATE},
+			</if>
+			<if test="record.creattime != null">
+				creattime = #{record.creattime,jdbcType=DATE},
+			</if>
+			<if test="record.textValue1 != null">
+				text_value1 = #{record.textValue1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.textValue2 != null">
+				text_value2 = #{record.textValue2,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.textValue3 != null">
+				text_value3 = #{record.textValue3,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.textValue4 != null">
+				text_value4 = #{record.textValue4,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.textValue5 != null">
+				text_value5 = #{record.textValue5,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update pms_plan_input_zb
+		set id = #{record.id,jdbcType=VARCHAR},
+		entity_id = #{record.entityId,jdbcType=VARCHAR},
+		entity_type =
+		#{record.entityType,jdbcType=VARCHAR},
+		year =
+		#{record.year,jdbcType=DECIMAL},
+		month =
+		#{record.month,jdbcType=DECIMAL},
+		is_suance =
+		#{record.isSuance,jdbcType=DECIMAL},
+		update_people =
+		#{record.updatePeople,jdbcType=VARCHAR},
+		update_time =
+		#{record.updateTime,jdbcType=DATE},
+		update_action =
+		#{record.updateAction,jdbcType=VARCHAR},
+		user_type =
+		#{record.userType,jdbcType=DECIMAL},
+		property_a =
+		#{record.propertyA,jdbcType=VARCHAR},
+		property_b =
+		#{record.propertyB,jdbcType=VARCHAR},
+		property_c =
+		#{record.propertyC,jdbcType=VARCHAR},
+		real_start_date =
+		#{record.realStartDate,jdbcType=DATE},
+		real_end_date =
+		#{record.realEndDate,jdbcType=DATE},
+		is_sueno =
+		#{record.isSueno,jdbcType=DECIMAL},
+		upload_id =
+		#{record.uploadId,jdbcType=VARCHAR},
+		submit_man =
+		#{record.submitMan,jdbcType=VARCHAR},
+		submit_time =
+		#{record.submitTime,jdbcType=DATE},
+		bpm_status =
+		#{record.bpmStatus,jdbcType=VARCHAR},
+		inserttime =
+		#{record.inserttime,jdbcType=DATE},
+		creattime =
+		#{record.creattime,jdbcType=DATE},
+		text_value1 =
+		#{record.textValue1,jdbcType=LONGVARCHAR},
+		text_value2 =
+		#{record.textValue2,jdbcType=LONGVARCHAR},
+		text_value3 =
+		#{record.textValue3,jdbcType=LONGVARCHAR},
+		text_value4 =
+		#{record.textValue4,jdbcType=LONGVARCHAR},
+		text_value5 =
+		#{record.textValue5,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update pms_plan_input_zb
+		set id = #{record.id,jdbcType=VARCHAR},
+		entity_id = #{record.entityId,jdbcType=VARCHAR},
+		entity_type =
+		#{record.entityType,jdbcType=VARCHAR},
+		year =
+		#{record.year,jdbcType=DECIMAL},
+		month =
+		#{record.month,jdbcType=DECIMAL},
+		is_suance =
+		#{record.isSuance,jdbcType=DECIMAL},
+		update_people =
+		#{record.updatePeople,jdbcType=VARCHAR},
+		update_time =
+		#{record.updateTime,jdbcType=DATE},
+		update_action =
+		#{record.updateAction,jdbcType=VARCHAR},
+		user_type =
+		#{record.userType,jdbcType=DECIMAL},
+		property_a =
+		#{record.propertyA,jdbcType=VARCHAR},
+		property_b =
+		#{record.propertyB,jdbcType=VARCHAR},
+		property_c =
+		#{record.propertyC,jdbcType=VARCHAR},
+		real_start_date =
+		#{record.realStartDate,jdbcType=DATE},
+		real_end_date =
+		#{record.realEndDate,jdbcType=DATE},
+		is_sueno =
+		#{record.isSueno,jdbcType=DECIMAL},
+		upload_id =
+		#{record.uploadId,jdbcType=VARCHAR},
+		submit_man =
+		#{record.submitMan,jdbcType=VARCHAR},
+		submit_time =
+		#{record.submitTime,jdbcType=DATE},
+		bpm_status =
+		#{record.bpmStatus,jdbcType=VARCHAR},
+		inserttime =
+		#{record.inserttime,jdbcType=DATE},
+		creattime =
+		#{record.creattime,jdbcType=DATE}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
+		update pms_plan_input_zb
+		<set>
+			<if test="entityId != null">
+				entity_id = #{entityId,jdbcType=VARCHAR},
+			</if>
+			<if test="entityType != null">
+				entity_type = #{entityType,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				year = #{year,jdbcType=DECIMAL},
+			</if>
+			<if test="month != null">
+				month = #{month,jdbcType=DECIMAL},
+			</if>
+			<if test="isSuance != null">
+				is_suance = #{isSuance,jdbcType=DECIMAL},
+			</if>
+			<if test="updatePeople != null">
+				update_people = #{updatePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=DATE},
+			</if>
+			<if test="updateAction != null">
+				update_action = #{updateAction,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=DECIMAL},
+			</if>
+			<if test="propertyA != null">
+				property_a = #{propertyA,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyB != null">
+				property_b = #{propertyB,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyC != null">
+				property_c = #{propertyC,jdbcType=VARCHAR},
+			</if>
+			<if test="realStartDate != null">
+				real_start_date = #{realStartDate,jdbcType=DATE},
+			</if>
+			<if test="realEndDate != null">
+				real_end_date = #{realEndDate,jdbcType=DATE},
+			</if>
+			<if test="isSueno != null">
+				is_sueno = #{isSueno,jdbcType=DECIMAL},
+			</if>
+			<if test="uploadId != null">
+				upload_id = #{uploadId,jdbcType=VARCHAR},
+			</if>
+			<if test="submitMan != null">
+				submit_man = #{submitMan,jdbcType=VARCHAR},
+			</if>
+			<if test="submitTime != null">
+				submit_time = #{submitTime,jdbcType=DATE},
+			</if>
+			<if test="bpmStatus != null">
+				bpm_status = #{bpmStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="inserttime != null">
+				inserttime = #{inserttime,jdbcType=DATE},
+			</if>
+			<if test="creattime != null">
+				creattime = #{creattime,jdbcType=DATE},
+			</if>
+			<if test="textValue1 != null">
+				text_value1 = #{textValue1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue2 != null">
+				text_value2 = #{textValue2,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue3 != null">
+				text_value3 = #{textValue3,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue4 != null">
+				text_value4 = #{textValue4,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="textValue5 != null">
+				text_value5 = #{textValue5,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
+		update
+		pms_plan_input_zb
+		set entity_id = #{entityId,jdbcType=VARCHAR},
+		entity_type = #{entityType,jdbcType=VARCHAR},
+		year =
+		#{year,jdbcType=DECIMAL},
+		month = #{month,jdbcType=DECIMAL},
+		is_suance =
+		#{isSuance,jdbcType=DECIMAL},
+		update_people =
+		#{updatePeople,jdbcType=VARCHAR},
+		update_time =
+		#{updateTime,jdbcType=DATE},
+		update_action =
+		#{updateAction,jdbcType=VARCHAR},
+		user_type =
+		#{userType,jdbcType=DECIMAL},
+		property_a =
+		#{propertyA,jdbcType=VARCHAR},
+		property_b =
+		#{propertyB,jdbcType=VARCHAR},
+		property_c =
+		#{propertyC,jdbcType=VARCHAR},
+		real_start_date =
+		#{realStartDate,jdbcType=DATE},
+		real_end_date =
+		#{realEndDate,jdbcType=DATE},
+		is_sueno = #{isSueno,jdbcType=DECIMAL},
+		upload_id = #{uploadId,jdbcType=VARCHAR},
+		submit_man =
+		#{submitMan,jdbcType=VARCHAR},
+		submit_time =
+		#{submitTime,jdbcType=DATE},
+		bpm_status =
+		#{bpmStatus,jdbcType=VARCHAR},
+		inserttime =
+		#{inserttime,jdbcType=DATE},
+		creattime = #{creattime,jdbcType=DATE},
+		text_value1 = #{textValue1,jdbcType=LONGVARCHAR},
+		text_value2 =
+		#{textValue2,jdbcType=LONGVARCHAR},
+		text_value3 =
+		#{textValue3,jdbcType=LONGVARCHAR},
+		text_value4 =
+		#{textValue4,jdbcType=LONGVARCHAR},
+		text_value5 =
+		#{textValue5,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZb">
+		update
+		pms_plan_input_zb
+		set entity_id = #{entityId,jdbcType=VARCHAR},
+		entity_type = #{entityType,jdbcType=VARCHAR},
+		year =
+		#{year,jdbcType=DECIMAL},
+		month = #{month,jdbcType=DECIMAL},
+		is_suance =
+		#{isSuance,jdbcType=DECIMAL},
+		update_people =
+		#{updatePeople,jdbcType=VARCHAR},
+		update_time =
+		#{updateTime,jdbcType=DATE},
+		update_action =
+		#{updateAction,jdbcType=VARCHAR},
+		user_type =
+		#{userType,jdbcType=DECIMAL},
+		property_a =
+		#{propertyA,jdbcType=VARCHAR},
+		property_b =
+		#{propertyB,jdbcType=VARCHAR},
+		property_c =
+		#{propertyC,jdbcType=VARCHAR},
+		real_start_date =
+		#{realStartDate,jdbcType=DATE},
+		real_end_date =
+		#{realEndDate,jdbcType=DATE},
+		is_sueno = #{isSueno,jdbcType=DECIMAL},
+		upload_id = #{uploadId,jdbcType=VARCHAR},
+		submit_man =
+		#{submitMan,jdbcType=VARCHAR},
+		submit_time =
+		#{submitTime,jdbcType=DATE},
+		bpm_status =
+		#{bpmStatus,jdbcType=VARCHAR},
+		inserttime =
+		#{inserttime,jdbcType=DATE},
+		creattime = #{creattime,jdbcType=DATE}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<delete id="deleteAllPmsPlanInputZbinfo">
+		delete from pms_plan_input_zb;
+	</delete>
+	<insert id="insertPmsPlanInputZbList" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
+		insert into pms_plan_input_zb (id, entity_id, entity_type,
+		year, month,
+		is_suance,
+		update_people, update_time, update_action,
+		user_type,
+		property_a, property_b,
+		property_c, real_start_date, real_end_date,
+		is_sueno, upload_id, submit_man,
+		submit_time, bpm_status, inserttime,
+		creattime, text_value1, text_value2,
+		text_value3, text_value4,
+		text_value5
+		)
+		values
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(#{item.id,jdbcType=VARCHAR}, #{item.entityId,jdbcType=VARCHAR},
+			#{item.entityType,jdbcType=VARCHAR},
+			#{item.year,jdbcType=DECIMAL},
+			#{item.month,jdbcType=DECIMAL},
+			#{item.isSuance,jdbcType=DECIMAL},
+			#{item.updatePeople,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=DATE},
+			#{item.updateAction,jdbcType=VARCHAR},
+			#{item.userType,jdbcType=DECIMAL},
+			#{item.propertyA,jdbcType=VARCHAR},
+			#{item.propertyB,jdbcType=VARCHAR},
+			#{item.propertyC,jdbcType=VARCHAR}, #{item.realStartDate,jdbcType=DATE},
+			#{item.realEndDate,jdbcType=DATE},
+		 <if test="item.isSueno != -1" >
+      #{item.isSueno,jdbcType=DECIMAL},
+      </if>
+      	 <if test="item.isSueno == -1" >
+     Null ,
+      </if>
+			
+			#{item.uploadId,jdbcType=VARCHAR},
+			#{item.submitMan,jdbcType=VARCHAR},
+			#{item.submitTime,jdbcType=DATE}, #{item.bpmStatus,jdbcType=VARCHAR},
+			#{item.inserttime,jdbcType=DATE},
+			#{item.creattime,jdbcType=DATE},
+			#{item.textValue1,jdbcType=LONGVARCHAR},
+			#{item.textValue2,jdbcType=LONGVARCHAR},
+			#{item.textValue3,jdbcType=LONGVARCHAR},
+			#{item.textValue4,jdbcType=LONGVARCHAR},
+			#{item.textValue5,jdbcType=LONGVARCHAR}
+			)
+		</foreach>
+	</insert>
+
+</mapper>

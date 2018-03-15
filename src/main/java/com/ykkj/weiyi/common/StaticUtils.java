@@ -22,5 +22,21 @@ public class StaticUtils
     public static final String HD_GETSUPERVISIONINFO = rb
             .getString("hd_getSupervisionInfo");
     public static final String HD_GETSECTINFO = rb.getString("hd_getSectInfo");
+    public static final String HD_DELETETINFO = rb.getString("hd_deleteInfo");
+    public static final String HD_PMSISSUEINFO = rb
+            .getString("hd_pmsIssueInfo");
+    public static final String HD_PMSQINGDANJILIANGMAIN = rb
+            .getString("hd_pmsQingdanJiliangMain");
+    public static final String HD_PMSQINGDANJILIANG = rb
+            .getString("hd_pmsQingdanJiliang");
+    public static final String HD_PMSCOMPACTLISTING = rb
+            .getString("hd_pmsComPactListing");
+    public static final String HD_JDPZINFO = rb.getString("hd_jdpzinfo");
+    public static final String HD_PMSPLANINPUTZB = rb
+            .getString("hd_pmsPlaninputZb");
+    public static final String HD_PMSPLANTZKZ01INFO = rb
+            .getString("hd_pmsPlanTzkz01Info");
+    public static final String HD_PMSPLANTZKZ02INFO = rb
+            .getString("hd_pmsPlanTzkz02Info");
 
 }

@@ -44,4 +44,6 @@ public interface DirectInfoMapper
     String findDirectInfoMaxInserttime();
 
     void deleteAll();
+
+    DirectInfo findDirectInfoByProjectId(String id);
 }

@@ -38,6 +38,8 @@ public class SectInfo {
 
     private Date planEndDay;
 
+    private String lagDay;
+
     private Date beginTokenDay;
 
     private String supervPeople;
@@ -280,6 +282,14 @@ public class SectInfo {
 
     public void setPlanEndDay(Date planEndDay) {
         this.planEndDay = planEndDay;
+    }
+
+    public String getLagDay() {
+        return lagDay;
+    }
+
+    public void setLagDay(String lagDay) {
+        this.lagDay = lagDay == null ? null : lagDay.trim();
     }
 
     public Date getBeginTokenDay() {

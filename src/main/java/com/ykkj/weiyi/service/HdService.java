@@ -2,9 +2,17 @@ package com.ykkj.weiyi.service;
 
 import java.util.List;
 
+import com.ykkj.weiyi.pojo.DirectInfo;
 import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
+import com.ykkj.weiyi.pojo.JdpzInfo;
+import com.ykkj.weiyi.pojo.PmsComPactListing;
+import com.ykkj.weiyi.pojo.PmsIssueInfo;
+import com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs;
+import com.ykkj.weiyi.pojo.PmsQingdanJiliangMainWithBLOBs;
+import com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs;
 import com.ykkj.weiyi.pojo.ProjectInfo;
 import com.ykkj.weiyi.pojo.ProjectInfoWithBLOBs;
+import com.ykkj.weiyi.pojo.SectInfo;
 import com.ykkj.weiyi.pojo.SectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.SupervisionInfoWithBLOBs;
 
@@ -124,5 +132,67 @@ public interface HdService
     public SectInfoWithBLOBs findSectInfoByID(String id);
 
     public ProjectInfo findProjectInfoByID(String id);
+
+    public DirectInfo findDirectInfoByProjectId(String id);
+
+    public List<SupervisionInfoWithBLOBs> findSupervisionInfoByProjectId(
+            String id);
+
+    public List<SectInfo> findSectInfoByDirectId(String id);
+
+    public void deleteAllPmsIssueInfo();
+
+    public void insertPmsIssueInfo(PmsIssueInfo pii);
+
+    public void deleteAllPmsQingdanJiliangMain();
+
+    public void insertPmsQingdanJiliangMain(
+            List<PmsQingdanJiliangMainWithBLOBs> pQJMList);
+
+    public void deleteAllPmsQingdanJiliang();
+
+    public void insertPmsQingdanJiliang(List<PmsQingdanJiliangWithBLOBs> pQJList);
+
+    public void deleteAllPmsComPactListing();
+
+    public void insertPmsComPactListing(List<PmsComPactListing> pCPLList);
+
+    public String findPmsIssueInfoMaxInserttime();
+
+    public Object findPmsIssueInfoById(String id);
+
+    public void deletePmsIssueInfoById(String id);
+
+    public String findPmsQingdanJiliangMainMaxInserttime();
+
+    public Object findPmsQingdanJiliangMainById(String id);
+
+    public void deletePmsQingdanJiliangMainById(String id);
+
+    public String findPmsQingdanJiliangMaxInserttime();
+
+    public Object findPmsQingdanJiliangById(String id);
+
+    public void deletePmsQingdanJiliangById(String id);
+
+    public String findPmsComPactListingMaxInserttime();
+
+    public Object findPmsComPactListingById(String id);
+
+    public void deletePmsComPactListingById(String id);
+
+    public Object findPmsJdpzInfoById(String id);
+
+    public void deleteJdpzInfoById(String id);
+
+    public void insertJdpzInfoList(List<JdpzInfo> jdpzInfo);
+
+    public void deleteAllJdpzInfo();
+
+    public String findJdpzInfoMaxInserttime();
+
+    public void deleteAllPmsPlanInputZbinfo();
+
+    public void insertPmsPlanInputZbList(List<PmsPlanInputZbWithBLOBs> pPIZList);
 
 }

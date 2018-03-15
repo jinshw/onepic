@@ -31,9 +31,14 @@ function onClick(event, treeId, treeNode) {
     vectorLayer.setVisibility(true)
     removeVectorLayer()
     deactiveAll();// 注销点控件
-    app.checkall(treeId);
     var feature;
+    // 判断海德中是否有数据添加条件 && treeNode.uniqueid != '0' && treeNode.uniqueid != ""
     if (treeNode.gljb != undefined) {
+	if (treeNode.uniqueid != "0") {
+	    app.checkall(treeNode.uniqueid);
+	} else {
+	    layer.msg("没有该项目信息");
+	}
 	var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
 	if (treeNode.gljb == 'GS') {
 	    queryParam = new SuperMap.REST.FilterParameter({
@@ -82,6 +87,8 @@ function onClick(event, treeId, treeNode) {
 		    }
 		});
 	queryBySQLService.processAsync(queryBySQLParams);
+    } else {
+	// layer.msg("系统中没有该项目信息！")
     }
 
 }
@@ -219,6 +226,7 @@ function processCompleted(queryEventArgs) {
 			pId : 11,
 			name : _obj.XMMC,
 			smId : _obj.SmID,
+			uniqueid : _obj.UNIQUEID,
 			gljb : _obj.GLJB,
 			arrIndex : i
 		    })
@@ -228,7 +236,9 @@ function processCompleted(queryEventArgs) {
 			pId : 11,
 			name : _obj.XMMC,
 			smId : _obj.SmID,
+			uniqueid : _obj.UNIQUEID,
 			gljb : _obj.GLJB,
+			uniqueid : _obj.UNIQUEID,
 			arrIndex : i
 		    })
 		} else if (_obj.SSJB.trim() == "建设兵团级") {
@@ -237,6 +247,7 @@ function processCompleted(queryEventArgs) {
 			pId : 11,
 			name : _obj.XMMC,
 			smId : _obj.SmID,
+			uniqueid : _obj.UNIQUEID,
 			gljb : _obj.GLJB,
 			arrIndex : i
 		    })
@@ -252,6 +263,7 @@ function processCompleted(queryEventArgs) {
 		    pId : 11,
 		    name : _obj.XMMC,
 		    smId : _obj.SmID,
+		    uniqueid : _obj.UNIQUEID,
 		    gljb : _obj.GLJB,
 		    arrIndex : i
 		})
@@ -261,6 +273,7 @@ function processCompleted(queryEventArgs) {
 		    pId : 11,
 		    name : _obj.XMMC,
 		    smId : _obj.SmID,
+		    uniqueid : _obj.UNIQUEID,
 		    gljb : _obj.GLJB,
 		    arrIndex : i
 		})
@@ -270,6 +283,7 @@ function processCompleted(queryEventArgs) {
 		    pId : 11,
 		    name : _obj.XMMC,
 		    smId : _obj.SmID,
+		    uniqueid : _obj.UNIQUEID,
 		    gljb : _obj.GLJB,
 		    arrIndex : i
 		})
@@ -289,6 +303,7 @@ function processCompleted(queryEventArgs) {
 		pId : 12,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })
@@ -298,6 +313,7 @@ function processCompleted(queryEventArgs) {
 		pId : 12,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })
@@ -307,6 +323,7 @@ function processCompleted(queryEventArgs) {
 		pId : 12,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })
@@ -322,6 +339,7 @@ function processCompleted(queryEventArgs) {
 		pId : 13,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })
@@ -331,6 +349,7 @@ function processCompleted(queryEventArgs) {
 		pId : 13,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })
@@ -340,6 +359,7 @@ function processCompleted(queryEventArgs) {
 		pId : 13,
 		name : _obj.XMMC,
 		smId : _obj.SmID,
+		uniqueid : _obj.UNIQUEID,
 		gljb : _obj.GLJB,
 		arrIndex : i
 	    })

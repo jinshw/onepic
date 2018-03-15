@@ -591,4 +591,9 @@
   <delete id="deleteAll">
    delete from hd_direct_info;
   </delete>
+  
+    <select id="findDirectInfoByProjectId"  parameterType="java.lang.String" resultType="com.ykkj.weiyi.pojo.DirectInfo" >
+     select * from hd_direct_info 
+  where project_id = #{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

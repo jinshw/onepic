@@ -243,8 +243,8 @@ public class HttpUtils
         {
             strtTotalURL.append(url).append("&").append(getUrl(params, enc));
         }
-        log.debug("GET请求URL = \n" + strtTotalURL.toString());
         System.out.println(url);
+        log.debug("GET请求URL = \n" + strtTotalURL.toString());
         try
         {
             getMethod = new GetMethod(strtTotalURL.toString());

@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -189,6 +190,67 @@ public class HdTask
     }
 
     /**
+     * 获取删除信息
+     */
+    public void getDeleteInfo()
+    {
+
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        HdTask hdTask = new HdTask();
+        Date data = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        calendar.add(Calendar.DAY_OF_MONTH, +7);
+        String st = sf.format(calendar.getTime());
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st);
+        int id = 0;
+        String datas = HttpUtils.URLGet(StaticUtils.HD_DELETETINFO, map,
+                "UTF-8");
+        JSONObject res = JSONObject.fromObject(datas);
+        System.out.println(res);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            SectInfoWithBLOBs swb;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                String type = jsonObject.getString("type");
+                String deleteid = jsonObject.getString("id");
+                String inserttime = jsonObject.getString("inserttime");
+                switch (type)
+                {
+                case "1":
+                    hdService.deleteProjectInfoByID(deleteid);
+                    break;
+                case "2":
+                    hdService.deleteDirectInfoByID(deleteid);
+                    break;
+                case "3":
+                    hdService.deleteSupervisionInfoByID(deleteid);
+                    break;
+                case "4":
+                    hdService.deleteSectInfoByID(deleteid);
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    /**
      * 获取标段信息
      */
     public void getSectInfo()
@@ -247,6 +309,7 @@ public class HdTask
             Double dtemp = null;
             for (Field field : fs)
             {
+
                 String name = field.getName();
                 Class<?> fieldType = field.getType();
                 // String reqVal = (String) jsonObject.get(name);
@@ -268,7 +331,8 @@ public class HdTask
                  */
                 if (fieldType == String.class && jsonObject.has(name))
                 {
-                    field.set(obj, jsonObject.getString(name));
+                    if (!"null".equals(jsonObject.getString(name)))
+                        field.set(obj, jsonObject.getString(name));
                     // field.set(obj, reqVal);
                 }
                 else if (fieldType == Integer.class && jsonObject.has(name)
@@ -290,17 +354,35 @@ public class HdTask
                 else if (fieldType == BigDecimal.class && jsonObject.has(name)
                         && !"".equals(jsonObject.getString(name)))
                 {
-
-                    field.set(obj, new BigDecimal(jsonObject.getString(name)));
+                    if (!"null".equals(jsonObject.getString(name)))
+                        field.set(obj,
+                                new BigDecimal(jsonObject.getString(name)));
                 }
                 else if (fieldType == Boolean.class && jsonObject.has(name))
                 {
-                    field.set(obj, jsonObject.getBoolean(name));
+                    if (!"null".equals(jsonObject.getString(name)))
+                        field.set(obj, jsonObject.getBoolean(name));
+                    // field.set(obj, Boolean.valueOf(reqVal));
+                }
+                else if (fieldType == Long.class && jsonObject.has(name)
+                        && !"".equals(jsonObject.getString(name)))
+                {
+                    if (!"null".equals(jsonObject.getString(name)))
+                    {
+                        field.set(obj, jsonObject.getLong(name));
+                    }
+                    else
+                    {
+                        long s = -1;
+                        field.set(obj, s);
+                    }
                     // field.set(obj, Boolean.valueOf(reqVal));
                 }
                 else if (fieldType == Date.class && jsonObject.has(name)
-                        && !"".equals(jsonObject.getString(name)))
+                        && !"".equals(jsonObject.getString(name))
+                        && !"null".equals(jsonObject.getString(name)))
                 {// 时间
+
                     if (jsonObject.getString(name).length() == 10)
                     {
                         SimpleDateFormat sf1 = new SimpleDateFormat(
