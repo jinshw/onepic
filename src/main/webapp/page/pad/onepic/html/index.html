@@ -28,7 +28,7 @@
     <style>
         .row-margin {
             margin-right: -25px;
-            margin-left: -25px;
+            margin-left: -24px;
         }
 
         .li-item {
@@ -56,7 +56,9 @@
         .filter-line {
             padding: 8px 20px;
             background-color: #353d47;
-            margin: 0;
+            margin: 0 0 3px 0px;
+            border-top: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
         }
 
         .filter-line label {
@@ -64,21 +66,49 @@
         }
 
         .filter-container {
-            width:50px;
-            height:50px;
+            width: 50px;
+            height: 50px;
+            display: none;
         }
-        .app-container.expanded .filter-container{
+
+        .app-container.expanded .filter-container {
             width: 100%;
             height: auto;
             background-color: #353d47;
             float: left;
             color: #FFF;
+            display: block;
+        }
+
+        .title-li {
+            font-family: 微软雅黑;
+            content: '';
+            margin-right: 3px;
+        }
+
+        .breadcrumb > li + li:before {
+            font-family: 微软雅黑;
+            content: '';
+            margin-right: 3px;
+        }
+
+        .search-area {
+            float: right;
+            margin: 8px 0
+        }
+        .flat-blue .btn.search-btn {
+            background-color: #22a7f0;
+            border-color: #22a7f0;
+            border-radius: 5px;
+        }
+        .search-input {
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body class="flat-blue">
-<div class="app-container">
+<div class="app-container expanded">
     <div class="row content-container">
         <nav class="navbar navbar-default navbar-fixed-top navbar-top">
             <div class="container-fluid">
@@ -87,64 +117,29 @@
                         <i class="fa fa-bars icon"></i>
                     </button>
                     <ol class="breadcrumb navbar-breadcrumb">
-                        <li class="active">一张图</li>
+                        <li class="title-li"><a href="javascript:void(0)">基础路网</a></li>
+                        <li class="title-li"><a href="javascript:void(0)">公路规划</a></li>
+                        <li class="title-li"><a href="javascript:void(0)">工程建设</a></li>
                     </ol>
-                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-                        <i class="fa fa-th icon"></i>
-                    </button>
+                    <!--<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">-->
+                    <!--<i class="fa fa-th icon"></i>-->
+                    <!--</button>-->
                 </div>
-                <ul class="nav navbar-nav navbar-right">
+                <div class="search-area">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputPassword2" class="sr-only">搜索</label>
+                            <input type="password" class="form-control search-input" id="inputPassword2"
+                                   placeholder="搜索内容" style="width: 185px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary search-btn">搜索</button>
+                    </form>
+                </div>
+
+                <!--<ul class="nav navbar-nav navbar-right">
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-times icon"></i>
                     </button>
-                    <!-- <li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-comments-o"></i></a>
-                         <ul class="dropdown-menu animated fadeInDown">
-                             <li class="title">
-                                 Notification <span class="badge pull-right">0</span>
-                             </li>
-                             <li class="message">
-                                 No new notification
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="dropdown danger">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-star-half-o"></i> 4</a>
-                         <ul class="dropdown-menu danger  animated fadeInDown">
-                             <li class="title">
-                                 Notification <span class="badge pull-right">4</span>
-                             </li>
-                             <li>
-                                 <ul class="list-group notifications">
-                                     <a href="#">
-                                         <li class="list-group-item">
-                                             <span class="badge">1</span> <i class="fa fa-exclamation-circle icon"></i>
-                                             new registration
-                                         </li>
-                                     </a>
-                                     <a href="#">
-                                         <li class="list-group-item">
-                                             <span class="badge success">1</span> <i class="fa fa-check icon"></i> new
-                                             orders
-                                         </li>
-                                     </a>
-                                     <a href="#">
-                                         <li class="list-group-item">
-                                             <span class="badge danger">2</span> <i class="fa fa-comments icon"></i>
-                                             customers messages
-                                         </li>
-                                     </a>
-                                     <a href="#">
-                                         <li class="list-group-item message">
-                                             view all
-                                         </li>
-                                     </a>
-                                 </ul>
-                             </li>
-                         </ul>
-                     </li>-->
                     <li class="dropdown profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             吴昊 <span class="caret"></span></a>
@@ -167,7 +162,7 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
+                </ul>-->
             </div>
         </nav>
         <div class="side-menu sidebar-inverse">
@@ -175,33 +170,22 @@
                 <div class="side-menu-container">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">
-                            <div class="icon fa fa-paper-plane"></div>
+                            <div class="icon fa fa-paper-plane" id="loginBtn"></div>
                             <div class="title">一张图</div>
                         </a>
-                        <button type="button" class="navbar-expand-toggle pull-right visible-xs">
-                            <i class="fa fa-times icon"></i>
-                        </button>
+                        <!--<button type="button" class="navbar-expand-toggle pull-right visible-xs">-->
+                        <!--<i class="fa fa-times icon"></i>-->
+                        <!--</button>-->
                     </div>
                     <div class="filter-container">
-                        <div class="radio filter-line">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                       value="option1" checked>
-                                建设项目
-                            </label>
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                基础路网
-                            </label>
-                        </div>
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label for="inputPassword2" class="sr-only">搜索</label>
-                                <input type="password" class="form-control" id="inputPassword2"
-                                       placeholder="搜索内容" style="width: 185px;">
-                            </div>
-                            <button type="submit" class="btn btn-default">搜索</button>
-                        </form>
+                        <!-- <form class="form-inline">
+                             <div class="form-group">
+                                 <label for="inputPassword2" class="sr-only">搜索</label>
+                                 <input type="password" class="form-control" id="inputPassword2"
+                                        placeholder="搜索内容" style="width: 185px;">
+                             </div>
+                             <button type="submit" class="btn btn-default">搜索</button>
+                         </form>-->
                         <div class="radio filter-line">
                             <label>
                                 <input type="radio" name="projectType" id="ptTBJ"
@@ -218,137 +202,141 @@
                             </label>
                         </div>
                     </div>
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" id="tbjTree">
                         <!-- <li class="active">
                              <a href="index.html">
                                  <span class="icon fa fa-tachometer"></span><span class="title">厅本级项目</span>
                              </a>
                          </li>-->
-                        <li class="active panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#dropdown-tbj">
-                                <span class="icon fa fa-desktop"></span><span class="title">厅本级建设项目</span>
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-gs">
+                                <span class="icon fa fa-desktop"></span><span class="title">高速</span>
                             </a>
                             <!-- Dropdown level 1 -->
-                            <div id="dropdown-tbj" class="panel-collapse collapse">
+                            <div id="dropdown-gs" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="title-type">
-                                        高速
-                                    </div>
-                                    <div>
-                                        <ul style="padding-left: 0;">
-                                            <li class="li-item">
-                                                <span href="#">
-                                                北京至乌鲁木齐国家高速公路明水（甘新界）至哈密段公路建设项目
-                                                </span>
-                                            </li>
-                                            <li class="li-item">
-                                                <span href="#">
-                                                北京至乌鲁木齐国家高速公路明水
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div style="font-size: 14px;color: #ffffff;">
-                                        <ul id="treeDemo" class="ztree"></ul>
-                                    </div>
+                                    <ul class="nav navbar-nav" id="gsULTBJ">
+                                        <li><a href="javascript:void(0)">Form UI Kits</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </li>
                         <li class="panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#dropdown-element">
-                                <span class="icon fa fa-desktop"></span><span class="title">地州级建设项目</span>
+                            <a data-toggle="collapse" href="#dropdown-gd">
+                                <span class="icon fa fa-desktop"></span><span class="title">国道</span>
                             </a>
                             <!-- Dropdown level 1 -->
-                            <div id="dropdown-element" class="panel-collapse collapse">
+                            <div id="dropdown-gd" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div style="font-size: 14px;color: #ffffff;">
-                                        <ul id="treeDemoDZ" class="ztree"></ul>
-                                    </div>
+                                    <ul class="nav navbar-nav" id="gdULTBJ">
+                                        <li><a href="javascript:void(0)">国道一1</a></li>
+                                        <li><a href="javascript:void(0)">国道一2</a></li>
+                                        <li><a href="javascript:void(0)">国道一3</a></li>
+                                        <li><a href="javascript:void(0)">国道一4</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </li>
                         <li class="panel panel-default dropdown">
                             <a data-toggle="collapse" href="#dropdown-table">
-                                <span class="icon fa fa-table"></span><span class="title">建设兵团级项目</span>
+                                <span class="icon fa fa-table"></span><span class="title">省道</span>
                             </a>
                             <!-- Dropdown level 1 -->
                             <div id="dropdown-table" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <ul id="treeDemoJS" class="ztree"></ul>
+                                    <ul class="nav navbar-nav" id="sdULTBJ">
+                                        <li><a href="javascript:void(0)">省道...</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav" style="display: none;" id="dzjTree">
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-dzj-gs">
+                                <span class="icon fa fa-desktop"></span><span class="title">高速</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-dzj-gs" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav" id="gsULDZJ">
+                                        <li>
+                                            <a href="javascript:void(0)">地州级高速</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </li>
                         <li class="panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#dropdown-form">
-                                <span class="icon fa fa-file-text-o"></span><span class="title">Form</span>
+                            <a data-toggle="collapse" href="#dropdown-dzj-gd">
+                                <span class="icon fa fa-desktop"></span><span class="title">国道</span>
                             </a>
                             <!-- Dropdown level 1 -->
-                            <div id="dropdown-form" class="panel-collapse collapse">
+                            <div id="dropdown-dzj-gd" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="form/ui-kits.html">Form UI Kits</a>
+                                    <ul class="nav navbar-nav" id="gdULDZJ">
+                                        <li><a href="javascript:void(0)">地州级国道一1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-dzj-sd">
+                                <span class="icon fa fa-table"></span><span class="title">省道</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-dzj-sd" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav" id="sdULDZJ">
+                                        <li><a href="javascript:void(0)">地州级省道一1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav" style="display: none;" id="jsbtTree">
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-jsbt-gs">
+                                <span class="icon fa fa-desktop"></span><span class="title">高速</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-jsbt-gs" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav" id="gsULJSBT">
+                                        <li>
+                                            <a href="javascript:void(0)">生产建设兵团级高速</a>
                                         </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-jsbt-gd">
+                                <span class="icon fa fa-desktop"></span><span class="title">国道</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-jsbt-gd" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav" id="gdULJSBT">
+                                        <li><a href="javascript:void(0)">建设兵团国道一1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-jsbt-sd">
+                                <span class="icon fa fa-table"></span><span class="title">省道</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-jsbt-sd" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav" id="sdULJSBT">
+                                        <li><a href="javascript:void(0)">建设兵团级省道一1</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
 
-                        <!-- Dropdown-->
-                        <li class="panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#component-example">
-                                <span class="icon fa fa-cubes"></span><span class="title">Components</span>
-                            </a>
-                            <!-- Dropdown level 1 -->
-                            <div id="component-example" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="components/pricing-table.html">Pricing Table</a>
-                                        </li>
-                                        <li><a href="components/chartjs.html">Chart.JS</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- Dropdown-->
-                        <li class="panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#dropdown-example">
-                                <span class="icon fa fa-slack"></span><span class="title">Page Example</span>
-                            </a>
-                            <!-- Dropdown level 1 -->
-                            <div id="dropdown-example" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="pages/login.html">Login</a>
-                                        </li>
-                                        <li><a href="pages/index.html">Landing Page</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- Dropdown-->
-                        <li class="panel panel-default dropdown">
-                            <a data-toggle="collapse" href="#dropdown-icon">
-                                <span class="icon fa fa-archive"></span><span class="title">Icons</span>
-                            </a>
-                            <!-- Dropdown level 1 -->
-                            <div id="dropdown-icon" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="icons/glyphicons.html">Glyphicons</a>
-                                        </li>
-                                        <li><a href="icons/font-awesome.html">Font Awesomes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="license.html">
-                                <span class="icon fa fa-thumbs-o-up"></span><span class="title">License</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -547,14 +535,15 @@
     </div>
     <footer class="app-footer">
         <div class="wrapper">
-            <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2015 Copyright.
-            More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
-                href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            <!--<span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2015 Copyright.-->
+            <!--More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a-->
+                <!--href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>-->
         </div>
     </footer>
     <div>
         <!-- Javascript Libs -->
         <script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../../static/lib/layer-v2.3/layer.js"></script>
         <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../lib/js/Chart.min.js"></script>
         <script type="text/javascript" src="../lib/js/bootstrap-switch.min.js"></script>
@@ -565,15 +554,12 @@
         <script type="text/javascript" src="../lib/js/ace/ace.js"></script>
         <script type="text/javascript" src="../lib/js/ace/mode-html.js"></script>
         <script type="text/javascript" src="../lib/js/ace/theme-github.js"></script>
+
         <!-- Javascript -->
         <script type="text/javascript" src="../js/app.js"></script>
-
-        <!--<script src="../../../../static/lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
-        <script src="../../../../static/lib/layer-v2.3/layer.js"></script>
-        <script src="../../../../static/lib/zTree-v3/js/jquery.ztree.all.min.js"></script>
         <script src='../../../../static/lib/supermap/libs/SuperMap.Include.js'></script>
         <script type="text/javascript" src="../../../../static/js/xjroud/xjroud-config.js"></script>
-        <script type="text/javascript" src="../js/xjroud-ztree.js"></script>
+        <!--<script type="text/javascript" src="../js/xjroud-ztree.js"></script>-->
         <script type="text/javascript" src="../js/index.js"></script>
     </div>
 </div>

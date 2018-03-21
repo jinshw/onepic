@@ -132,7 +132,7 @@ $(function () {
     };
     myLineChart = new Chart(ctx).Line(data, options);
 });*/
-
+var map;
 $(function () {
     /*
         * 不支持canvas的浏览器不能运行该范例
@@ -146,7 +146,7 @@ $(function () {
         alert('您的设备不支持，请使用pc或其他设备');
         return;
     }
-    document.getElementById('map').style.height = (document.documentElement.clientHeight - 60-24 ) + 'px'
+    document.getElementById('map').style.height = (document.documentElement.clientHeight - 60 - 24 ) + 'px'
 
     //初始化地图
     map = new SuperMap.Map("map", {
@@ -193,9 +193,575 @@ $(function () {
     function addLayer() {
         map.addLayers([
             layerT,
-            layerRoad, layerZJRoad]);
+            layerRoad, layerZJRoad, vectorLayer]);
 
         map.setCenter(new SuperMap.LonLat(87.64226, 43.79469), 1);
     }
 
+
+    // 选择要素
+    var callbacks = {
+        click: function (currentFeature) {
+            console.log(currentFeature)
+            var _html = getPopupMsg(currentFeature.attributes)
+            layer.msg(_html);
+        }
+    }
+    vectorLayer = new SuperMap.Layer.Vector("vectorLayer");
+    var selectFeature = new SuperMap.Control.SelectFeature(vectorLayer, {
+        callbacks: callbacks
+    })
+    map.addControl(selectFeature);
+    selectFeature.activate();
+
 })
+
+
+/**
+ *  左侧道路树查询
+ */
+var setting = {
+    view: {
+        showLine: false,
+        selectedMulti: false
+    },
+    data: {
+        simpleData: {
+            enable: true,
+            idKey: "id",
+            pIdKey: "pId",
+            rootPId: ""
+        }
+    },
+    callback: {
+        onClick: function () {
+
+        }
+    }
+};
+var treeNodes = [{
+    id: 1,
+    pId: 0,
+    name: "厅本级项目",
+    open: true
+}, {
+    id: 11,
+    pId: 1,
+    name: "高速"
+}, {
+    id: 12,
+    pId: 1,
+    name: "国道"
+}, {
+    id: 13,
+    pId: 1,
+    name: "省道"
+}];
+var treeNodesDZ = [{
+    id: 1,
+    pId: 0,
+    name: "地州级项目",
+    open: true
+}, {
+    id: 11,
+    pId: 1,
+    name: "高速"
+}, {
+    id: 12,
+    pId: 1,
+    name: "国道"
+}, {
+    id: 13,
+    pId: 1,
+    name: "省道"
+}];
+var treeNodesJS = [{
+    id: 1,
+    pId: 0,
+    name: "建设兵团及项目",
+    open: true
+}, {
+    id: 11,
+    pId: 1,
+    name: "高速"
+}, {
+    id: 12,
+    pId: 1,
+    name: "国道"
+}, {
+    id: 13,
+    pId: 1,
+    name: "省道"
+}];
+
+var gsFeatures = null;
+var gdFeatures = null;
+var sdFeatures = null;
+
+function queryRoad() {
+    var queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
+    queryParamGS = new SuperMap.REST.FilterParameter({
+        name: "GLGS_1@xj"
+    });
+    queryParamGD = new SuperMap.REST.FilterParameter({
+        // name: "一般国道@交通#2#4"
+        name: "GLGD_3@xj"
+    });
+    queryParamSD = new SuperMap.REST.FilterParameter({
+        name: "一般省道@交通#3"
+    });
+    queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+        queryParams: [queryParamGS, queryParamGD, queryParamSD],
+        queryOption: "ATTRIBUTE"
+    });
+    queryBySQLService = new SuperMap.REST.QueryBySQLService(MAPURL.ZJ_ROAD, {
+        eventListeners: {
+            "processCompleted": processCompleted,
+            "processFailed": processFailed
+        }
+    });
+    queryBySQLService.processAsync(queryBySQLParams);
+}
+
+// 调用查询道路
+queryRoad()
+
+// 查询数据集处理
+function processCompleted(queryEventArgs) {
+    gsFeatures = queryEventArgs.result.recordsets[0].features
+    gdFeatures = queryEventArgs.result.recordsets[1].features
+    sdFeatures = queryEventArgs.result.recordsets[2].features
+
+    console.log(">>>>>>>>>>>>>>>>>")
+    console.log(gsFeatures)
+    console.log(gdFeatures)
+    console.log(sdFeatures)
+    console.log(">>>>>>>>>>>>>>>>>")
+    toggleProjectType(gsFeatures, gdFeatures, sdFeatures)
+
+    var _obj = null;
+    var _count = 0;
+    for (var i = 0; i < gsFeatures.length; i++) {
+        _obj = gsFeatures[i].attributes
+        if (_obj.SSJB.trim() == "厅本级") {
+            treeNodes.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "地州级") {
+            treeNodesDZ.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "建设兵团级") {
+            treeNodesJS.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        }
+    }
+    for (var i = 0; i < gdFeatures.length; i++) {
+        _obj = gdFeatures[i].attributes
+        // treeNodes.push({id: i + 3000, pId: 12, name: _obj.XMMC, smId:
+        // _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+        if (_obj.SSJB.trim() == "厅本级") {
+            treeNodes.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "地州级") {
+            treeNodesDZ.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "建设兵团级") {
+            treeNodesJS.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        }
+    }
+    for (var i = 0; i < sdFeatures.length; i++) {
+        _obj = sdFeatures[i].attributes
+        // treeNodes.push({id: i + 4000, pId: 13, name: _obj.XMMC, smId:
+        // _obj.SmID, gljb: _obj.GLJB, arrIndex: i})
+        if (_obj.SSJB.trim() == "厅本级") {
+            treeNodes.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "地州级") {
+            treeNodesDZ.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        } else if (_obj.SSJB.trim() == "建设兵团级") {
+            treeNodesJS.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })
+        }
+    }
+    /*zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, treeNodes);
+    zTreeObjDZ = $.fn.zTree.init($("#treeDemoDZ"), setting, treeNodesDZ);
+    zTreeObjJS = $.fn.zTree.init($("#treeDemoJS"), setting, treeNodesJS);*/
+}
+
+function processFailed(e) {
+    console.log(e)
+    alert(e.error.errorMsg);
+}
+
+
+$(document).ready(function () {
+    $("input[name='projectType']").click(function () {
+        console.log($(this).val())
+        var projectType = $(this).val()
+        changeProjectType(projectType)
+    })
+})
+
+function changeProjectType(type) {
+    displayProjectTypeTree(type)
+    queryRoad()
+}
+
+function displayProjectTypeTree(type) {
+    if (type == 'tbj') {
+        $("#tbjTree").css("display", "block")
+        $("#dzjTree").css("display", "none")
+        $("#jsbtTree").css("display", "none")
+    } else if (type == 'dzj') {
+        $("#tbjTree").css("display", "none")
+        $("#dzjTree").css("display", "block")
+        $("#jsbtTree").css("display", "none")
+    } else if (type == 'jsbt') {
+        $("#tbjTree").css("display", "none")
+        $("#dzjTree").css("display", "none")
+        $("#jsbtTree").css("display", "block")
+    }
+}
+
+function toggleProjectType(gs, gd, sd) {
+    var type = $("input[name='projectType']:checked").val()
+    var gsStr = "", gdStr = "", sdStr = "";
+    for (var i = 0; i < gsFeatures.length; i++) {
+        _obj = gsFeatures[i].attributes
+        if (_obj.SSJB.trim() == "厅本级" && type == "tbj") {
+            gsStr = gsStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodes.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "地州级" && type == "dzj") {
+            gsStr = gsStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesDZ.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "建设兵团级" && type == "jsbt") {
+            gsStr = gsStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesJS.push({
+                id: i + 2000,
+                pId: 11,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        }
+    }
+    for (var i = 0; i < gdFeatures.length; i++) {
+        _obj = gdFeatures[i].attributes
+        if (_obj.SSJB.trim() == "厅本级" && type == "tbj") {
+            gdStr = gdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodes.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "地州级" && type == "dzj") {
+            gdStr = gdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesDZ.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "建设兵团级" && type == "jsbt") {
+            gdStr = gdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesJS.push({
+                id: i + 3000,
+                pId: 12,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        }
+    }
+    for (var i = 0; i < sdFeatures.length; i++) {
+        _obj = sdFeatures[i].attributes
+        if (_obj.SSJB.trim() == "厅本级" && type == "tbj") {
+            sdStr = sdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodes.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "地州级" && type == "dzj") {
+            sdStr = sdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesDZ.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        } else if (_obj.SSJB.trim() == "建设兵团级" && type == "jsbt") {
+            sdStr = sdStr + `<li><a href="javascript:void(0)" data-smId="${_obj.SmID}" data-gljb="${_obj.GLJB}">${_obj.XMMC}</a></li>`
+            /*treeNodesJS.push({
+                id: i + 4000,
+                pId: 13,
+                name: _obj.XMMC,
+                smId: _obj.SmID,
+                uniqueid: _obj.UNIQUEID,
+                gljb: _obj.GLJB,
+                arrIndex: i
+            })*/
+        }
+    }
+
+    if (type == "tbj") {
+        $("#gsULTBJ").html(gsStr)
+        $("#gdULTBJ").html(gdStr)
+        $("#sdULTBJ").html(sdStr)
+
+        $("#gsULTBJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#gdULTBJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#sdULTBJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+    } else if (type == "dzj") {
+        $("#gsULDZJ").html(gsStr)
+        $("#gdULDZJ").html(gdStr)
+        $("#sdULDZJ").html(sdStr)
+        $("#gsULDZJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#gdULDZJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#sdULDZJ>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+    } else if (type == "jsbt") {
+        $("#gsULJSBT").html(gsStr)
+        $("#gdULJSBT").html(gdStr)
+        $("#sdULJSBT").html(sdStr)
+        $("#gsULJSBT>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#gdULJSBT>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+        $("#sdULJSBT>li>a").click(function () {
+            onClick({smId: $(this).data("smid"), gljb: $(this).data("gljb")})
+        })
+    }
+
+}
+
+
+var style = {
+    strokeColor: "red",
+    strokeWidth: 5,
+    fillOpacity: "1"
+}
+
+function onClick(treeNode) {
+    // vectorLayer.removeAllFeatures();// 去除高亮
+    vectorLayer.setVisibility(true)
+    // removeVectorLayer()
+    // deactiveAll();// 注销点控件
+    var feature;
+    // 判断海德中是否有数据添加条件 && treeNode.uniqueid != '0' && treeNode.uniqueid != ""
+    if (treeNode.gljb != undefined) {
+        if (treeNode.uniqueid != "0") {
+            // app.checkall(treeNode.uniqueid);
+        } else {
+            // layer.msg("没有该项目信息");
+            console.log("没有该项目信息")
+        }
+        var queryParam, queryParamGS, queryParamGD, queryParamSD, queryBySQLParams, queryBySQLService;
+        if (treeNode.gljb == 'GS') {
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "GLGS_1@xj",
+                attributeFilter: "SmID = " + treeNode.smId
+            });
+        } else if (treeNode.gljb == 'GD') {
+            queryParam = new SuperMap.REST.FilterParameter({
+                // name: "一般国道@交通#2#4",
+                name: "GLGD_3@xj",
+                attributeFilter: "SmID = " + treeNode.smId
+            });
+        } else if (treeNode.gljb == 'SD') {
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "一般省道@交通#3",
+                attributeFilter: "SmID = " + treeNode.smId
+            });
+        }
+
+        queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+            queryParams: [queryParam]
+        });
+        queryBySQLService = new SuperMap.REST.QueryBySQLService(
+            MAPURL.ZJ_ROAD,
+            {
+                eventListeners: {
+                    "processCompleted": function (queryEventArgs) {
+                        console.log("-----------")
+                        // console.log(queryEventArgs)
+                        console.log("-----------")
+                        feature = queryEventArgs.result.recordsets[0].features[0]
+                        feature.style = style;
+                        vectorLayer.addFeatures(feature);
+                        map.zoomToExtent(feature.geometry.getBounds())
+
+                        // 显示项目信息
+                        if ($("#projectInfoBt").prop("checked")) {
+                            $("#projectInfoAreaId").css("display", "block")
+                        }
+                        // 显示影像核查信息
+                        if ($("#yxhcInfoBt").prop("checked")) {
+                            $("#yxhcInfoArea").css("display", "block")
+                        }
+                    },
+                    "processFailed": processFailed
+                }
+            });
+        queryBySQLService.processAsync(queryBySQLParams);
+    } else {
+        // layer.msg("系统中没有该项目信息！")
+    }
+
+}
+
+
+/**
+ * [获取提示内容]
+ * @param  {[type]} obj [properties属性]
+ * @return {[type]}     [string]
+ */
+// marker 模板数据
+var _markerTepl = '<div class="popup" style="color: #FFFFFF;font-size: 14px;">  ' +
+    '   <section> ' +
+    '       公路名：##name##' +
+    '   </section>' +
+    '   <section> ' +
+    '       全长：##mileage##公里' +
+    '   </section> ' +
+    '   <section>' +
+    '       开工时间：##startTime##' +
+    '   </section>' +
+    '   <section>' +
+    '       竣工时间：##endTime##' +
+    '   </section>' +
+    '   <section>' +
+    '       简介：##jianjie##' +
+    '   </section>' +
+    '   <section>' +
+    '</div>'
+
+function getPopupMsg(obj) {
+    var _tempTepl = _markerTepl
+    _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
+        .replace("##mileage##", "70")
+        .replace("##startTime##", "2017-5")
+        .replace("##endTime##", "2019-10")
+        .replace("##jianjie##", "G575巴里坤-哈密段")
+        .replace("##actual##", obj.mileage)
+
+    // _tempTepl = _tempTepl.replace("##name##", obj.XMMC)
+    //     .replace("##mileage##", parseInt(obj.length))
+    //     .replace("##startTime##", obj.begin_User)
+    //     .replace("##endTime##", obj.end_User)
+    //     .replace("##jianjie##", obj.jianjie)
+    //     .replace("##actual##", obj.mileage)
+
+    return _tempTepl
+}
