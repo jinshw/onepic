@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 
-  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:jdbc.properties</value>
@@ -15,18 +15,12 @@
 		</property>
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-
-	<!-- 使用annotation定义事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSourceMys" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
+		<!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/repository" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />-->
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
@@ -43,13 +37,110 @@
 		<property name="maxWait" value="${maxWait}"></property>
 		<!--解决连接中断问题 -->
 		<property name="testOnBorrow" value="true"></property>
-		<property name="validationQuery" value="select 1"></property>
+		<property name="validationQuery" value="select * from user"></property>
+	</bean>
+	<bean id="dataSourceOrc" class="org.apache.commons.dbcp.BasicDataSource"
+		  destroy-method="close">
+		<property name="driverClassName" value="${orc-driver}" />
+		<property name="url" value="${orc-url}" />
+		<property name="username" value="${orc-username}" />
+		<property name="password" value="${orc-password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${orc-initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${orc-maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${orc-maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${orc-minIdle}"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${orc-maxWait}"></property>
+		<!--解决连接中断问题 -->
+		<property name="testOnBorrow" value="true"></property>
+		<property name="validationQuery" value="select 1 from dual"></property>
+	</bean>
+	<bean id="dataSourceOrcODS" class="org.apache.commons.dbcp.BasicDataSource"
+		  destroy-method="close">
+		<property name="driverClassName" value="${orc-ods-driver}" />
+		<property name="url" value="${orc-ods-url}" />
+		<property name="username" value="${orc-ods-username}" />
+		<property name="password" value="${orc-ods-password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${orc-ods-initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${orc-ods-maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${orc-ods-maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${orc-ods-minIdle}"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${orc-ods-maxWait}"></property>
+		<!--解决连接中断问题 -->
+		<property name="testOnBorrow" value="true"></property>
+		<property name="validationQuery" value="select 1 from dual"></property>
+	</bean>
+
+	<bean id="dataSource" class="com.ykkj.weiyi.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="dataSourceMys" value-ref="dataSourceMys"></entry>
+				<entry key="dataSourceOrc" value-ref="dataSourceOrc"></entry>
+				<entry key="dataSourceOrcODS" value-ref="dataSourceOrcODS"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSourceMys"></property>
 	</bean>
 
 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+
+
+	<!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>-->
+
+	<!-- 配置事物管理器 -->
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<!-- 使用annotation定义事务 -->
+	<!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+
+	<!-- 拦截器方式配置事物 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- spring aop事物管理 -->
+	<aop:config>
+		<aop:pointcut id="transactionPointcut"
+					  expression="execution(* com.ykkj.weiyi.service.impl..*(..))" />
+		<!-- 设置order的值为2，使得数据库事物开启在数据源切换之后，否则数据源切换不会达到效果  -->
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" order="2"/>
+	</aop:config>
+
+	<!-- 数据源动态切换切面配置 -->
+	<aop:config>
+		<aop:aspect id="dataSourceAspect" ref="dataSourceInterceptor" order="1">
+			<!-- 拦截所有service实现类的方法 -->
+			<aop:pointcut id="dataSourcePointcut"
+						  expression="execution(* com.ykkj.weiyi.service.impl..*.*(..))"/>
+			<aop:before pointcut-ref="dataSourcePointcut" method="intercept" />
+		</aop:aspect>
+	</aop:config>
+
+	<!-- 数据源动态切换实体 -->
+	<bean id="dataSourceInterceptor" class="com.ykkj.weiyi.datasource.DynamicDataSourceInterceptor"/>
 
 	<!-- 缓存设置 -->
 	<bean id="cacheManager"

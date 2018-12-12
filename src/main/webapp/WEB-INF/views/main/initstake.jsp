@@ -505,9 +505,14 @@
 //        $('#dataTables-example').dataTable();
 
         $("#gsBT").click(function () {
+            ajaxRequest.getStake({type:"国省干道:高速公路"}).then(function (data) {
+                layer.msg(data.message)
+            })
+/*
             ajaxRequest.getStake({type:"xj:GLGS"}).then(function (data) {
                 layer.msg(data.message)
             })
+*/
         })
         $("#gdBT").click(function () {
             ajaxRequest.getStake({type:"xj:GLGD"}).then(function (data) {

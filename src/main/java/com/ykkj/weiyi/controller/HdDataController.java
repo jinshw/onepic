@@ -28,7 +28,16 @@ import com.ykkj.weiyi.pojo.DirectInfoWithBLOBs;
 import com.ykkj.weiyi.pojo.JdpzInfo;
 import com.ykkj.weiyi.pojo.PmsComPactListing;
 import com.ykkj.weiyi.pojo.PmsIssueInfo;
+import com.ykkj.weiyi.pojo.PmsPlanInputZb;
 import com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz01;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz02;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz03;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz04;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz05;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz06;
+import com.ykkj.weiyi.pojo.PmsPlanTzkz07;
+import com.ykkj.weiyi.pojo.PmsPlanYbf;
 import com.ykkj.weiyi.pojo.PmsQingdanJiliang;
 import com.ykkj.weiyi.pojo.PmsQingdanJiliangMainWithBLOBs;
 import com.ykkj.weiyi.pojo.PmsQingdanJiliangWithBLOBs;
@@ -662,7 +671,6 @@ public class HdDataController
                     pqj = new PmsPlanInputZbWithBLOBs();
                     hdTask.jsonToObj(pqj, jsonObject);
                     pqj.setCreattime(new Timestamp(new Date().getTime()));
-                    System.out.println(pqj.getInserttime());
                     PPIZList.add(pqj);
                     count++;
                     if (count == listMaxCount)
@@ -676,6 +684,518 @@ public class HdDataController
                 if (!PPIZList.isEmpty())
                 {
                     hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表1信息——全量
+    @RequestMapping("getPmsPlanTzkz01HDALL")
+    public void getPmsPlanTzkz01HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz01> PPIZList = new ArrayList<PmsPlanTzkz01>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz01 ppt1;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt1 = new PmsPlanTzkz01();
+                    hdTask.jsonToObj(ppt1, jsonObject);
+                    ppt1.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表2信息——全量
+    @RequestMapping("getPmsPlanTzkz02HDALL")
+    public void getPmsPlanTzkz02HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz02> PPIZList = new ArrayList<PmsPlanTzkz02>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz02 ppt2;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt2 = new PmsPlanTzkz02();
+                    hdTask.jsonToObj(ppt2, jsonObject);
+                    ppt2.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表3信息——全量
+    @RequestMapping("getPmsPlanTzkz03HDALL")
+    public void getPmsPlanTzkz03HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz03> PPIZList = new ArrayList<PmsPlanTzkz03>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz03 ppt3;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt3 = new PmsPlanTzkz03();
+                    hdTask.jsonToObj(ppt3, jsonObject);
+                    ppt3.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表4信息——全量
+    @RequestMapping("getPmsPlanTzkz04HDALL")
+    public void getPmsPlanTzkz04HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz04> PPIZList = new ArrayList<PmsPlanTzkz04>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz04 ppt4;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt4 = new PmsPlanTzkz04();
+                    hdTask.jsonToObj(ppt4, jsonObject);
+                    ppt4.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取预备费信息——全量
+    @RequestMapping("getPmsPlanYbfHDALL")
+    public void getPmsPlanYbfHDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanYbf> PPIZList = new ArrayList<PmsPlanYbf>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanYbf ppy;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppy = new PmsPlanYbf();
+                    hdTask.jsonToObj(ppy, jsonObject);
+                    ppy.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表5信息——全量
+    @RequestMapping("getPmsPlanTzkz05HDALL")
+    public void getPmsPlanTzkz05HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz05> PPIZList = new ArrayList<PmsPlanTzkz05>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz05 ppt5;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt5 = new PmsPlanTzkz05();
+                    hdTask.jsonToObj(ppt5, jsonObject);
+                    ppt5.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表6信息——全量
+    @RequestMapping("getPmsPlanTzkz06HDALL")
+    public void getPmsPlanTzkz06HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz04> PPIZList = new ArrayList<PmsPlanTzkz04>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz06 ppt6;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt6 = new PmsPlanTzkz06();
+                    hdTask.jsonToObj(ppt6, jsonObject);
+                    ppt6.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
+                    PPIZList.clear();
+                }
+            }
+            else
+            {
+                System.out.println(res);
+            }
+        }
+
+    }
+
+    // 获取表7信息——全量
+    @RequestMapping("getPmsPlanTzkz07HDALL")
+    public void getPmsPlanTzkz07HDALL(HttpServletRequest request,
+            HttpServletResponse response) throws ParseException
+    {
+        int listMaxCount = 500;
+        int count = 0;
+        List<PmsPlanTzkz07> PPIZList = new ArrayList<PmsPlanTzkz07>();
+        HdTask hdTask = new HdTask();
+        int id = 0;
+        // hdService.deleteAllPmsPlanInputZbinfo();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        String[] myTime = this.getMyTime(new Date(2012 - 1900, 1 - 1, 1),
+                new Date(2018 - 1900, 1 - 1, 1), "yyyy-MM-dd HH:mm:ss");
+        for (int i = 0; i < myTime.length - 1; i++)
+        {
+            map.put("type", "0");
+            map.put("startTime", myTime[i]);
+            map.put("endTime", myTime[i + 1]);
+            System.out.println("i=" + i + "    sT=" + myTime[i] + "     eT="
+                    + myTime[i + 1]);
+            String datas = HttpUtils.URLGet(StaticUtils.HD_PMSPLANINPUTZB, map,
+                    "UTF-8");
+            JSONObject res = JSONObject.fromObject(datas);
+            if ("0".equals(res.getString("status")))
+            {
+                String s = res.getString("returnData");
+                System.out.println(s);
+                JSONArray jsonArray = JSONArray.fromObject(s);
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                JSONObject jsonObject;
+                PmsPlanTzkz07 ppt7;
+                while (iterator.hasNext())
+                {
+                    jsonObject = iterator.next();
+                    ppt7 = new PmsPlanTzkz07();
+                    hdTask.jsonToObj(ppt7, jsonObject);
+                    ppt7.setCreattime(new Timestamp(new Date().getTime()));
+                    // PPIZList.add(pqj);
+                    count++;
+                    if (count == listMaxCount)
+                    {
+                        System.out.println(1);
+                        // hdService.insertPmsPlanInputZbList(PPIZList);
+                        count = 0;
+                        PPIZList.clear();
+                    }
+                }
+                if (!PPIZList.isEmpty())
+                {
+                    // hdService.insertPmsPlanInputZbList(PPIZList);
                     PPIZList.clear();
                 }
             }
@@ -1118,6 +1638,555 @@ public class HdDataController
             if (!jdpzInfo.isEmpty())
             {
                 hdService.insertJdpzInfoList(jdpzInfo);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取月报录入信息——增量
+    @RequestMapping("getPmsPlaninputZbInfoHDZL")
+    public void getPmsPlaninputZbInfoHDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanInputZb ppizb;
+            List<PmsPlanInputZb> ppizbList = new ArrayList<PmsPlanInputZb>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppizb = new PmsPlanInputZb();
+                hdTask.jsonToObj(ppizb, jsonObject);
+                if (hdService.findPmsJdpzInfoById(ppizb.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteJdpzInfoById(ppizb.getId());
+                    // System.out.println("修改成功");
+                }
+                ppizb.setCreattime(new Timestamp(new Date().getTime()));
+
+                ppizbList.add(ppizb);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    ppizbList.clear();
+                }
+            }
+            if (!ppizbList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表1信息——增量
+    @RequestMapping("getPmsPlanTzkz01HDZL")
+    public void getPmsPlanTzkz01HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz01 ppt;
+            List<PmsPlanTzkz01> pptList = new ArrayList<PmsPlanTzkz01>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz01();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (hdService.findPmsJdpzInfoById(ppt.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteJdpzInfoById(ppt.getId());
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表2信息——增量
+    @RequestMapping("getPmsPlanTzkz02HDZL")
+    public void getPmsPlanTzkz02HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz02 ppt;
+            List<PmsPlanTzkz02> pptList = new ArrayList<PmsPlanTzkz02>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz02();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (hdService.findPmsJdpzInfoById(ppt.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteJdpzInfoById(ppt.getId());
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表3信息——增量
+    @RequestMapping("getPmsPlanTzkz03HDZL")
+    public void getPmsPlanTzkz03HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz03 ppt;
+            List<PmsPlanTzkz03> pptList = new ArrayList<PmsPlanTzkz03>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz03();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (hdService.findPmsJdpzInfoById(ppt.getId()) != null)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    hdService.deleteJdpzInfoById(ppt.getId());
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表4信息——增量
+    @RequestMapping("getPmsPlanTzkz04HDZL")
+    public void getPmsPlanTzkz04HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz04 ppt;
+            List<PmsPlanTzkz04> pptList = new ArrayList<PmsPlanTzkz04>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz04();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (true/* hdService.findPmsJdpzInfoById(ppt.getId()) != null */)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    /* hdService.deleteJdpzInfoById(ppt.getId()); */
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取预备费信息——增量
+    @RequestMapping("getPmsPlanYbfHDZL")
+    public void getPmsPlanYbfHDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanYbf ppy;
+            List<PmsPlanYbf> ppyList = new ArrayList<PmsPlanYbf>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppy = new PmsPlanYbf();
+                hdTask.jsonToObj(ppy, jsonObject);
+                if (true/* hdService.findPmsJdpzInfoById(ppt.getId()) != null */)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    /* hdService.deleteJdpzInfoById(ppt.getId()); */
+                    // System.out.println("修改成功");
+                }
+                ppy.setCreattime(new Timestamp(new Date().getTime()));
+
+                ppyList.add(ppy);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    ppyList.clear();
+                }
+            }
+            if (!ppyList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表5信息——增量
+    @RequestMapping("getPmsPlanTzkz05HDZL")
+    public void getPmsPlanTzkz05HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz05 ppt;
+            List<PmsPlanTzkz05> pptList = new ArrayList<PmsPlanTzkz05>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz05();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (true/* hdService.findPmsJdpzInfoById(ppt.getId()) != null */)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    /* hdService.deleteJdpzInfoById(ppt.getId()); */
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表6信息——增量
+    @RequestMapping("getPmsPlanTzkz06HDZL")
+    public void getPmsPlanTzkz06HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz06 ppt;
+            List<PmsPlanTzkz06> pptList = new ArrayList<PmsPlanTzkz06>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz06();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (true/* hdService.findPmsJdpzInfoById(ppt.getId()) != null */)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    /* hdService.deleteJdpzInfoById(ppt.getId()); */
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
+            }
+        }
+        else
+        {
+            System.out.println(res);
+        }
+    }
+
+    // 获取表7信息——增量
+    @RequestMapping("getPmsPlanTzkz07HDZL")
+    public void getPmsPlanTzkz07HDZL(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+
+        HdTask hdTask = new HdTask();
+        String st = "";
+        // st = hdService.findJdpzInfoMaxInserttime();
+        // 配置参数
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("type", "0");
+        map.put("startTime", st);
+        System.out.println(st + ">??");
+        int id = 0;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String datas = HttpUtils.URLGet(StaticUtils.HD_JDPZINFO, map, "UTF-8");
+        System.out.println(datas);
+        JSONObject res = JSONObject.fromObject(datas);
+        if ("0".equals(res.getString("status")))
+        {
+            JSONArray jsonArray = res.getJSONArray("returnData");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            JSONObject jsonObject;
+            PmsPlanTzkz07 ppt;
+            List<PmsPlanTzkz07> pptList = new ArrayList<PmsPlanTzkz07>();
+            int listMaxCount = 500;
+            int count = 0;
+            while (iterator.hasNext())
+            {
+                jsonObject = iterator.next();
+                ppt = new PmsPlanTzkz07();
+                hdTask.jsonToObj(ppt, jsonObject);
+                if (true/* hdService.findPmsJdpzInfoById(ppt.getId()) != null */)
+                {
+                    // System.out.println("id:" + pwb.getId() + "重复，修改中....");
+                    /* hdService.deleteJdpzInfoById(ppt.getId()); */
+                    // System.out.println("修改成功");
+                }
+                ppt.setCreattime(new Timestamp(new Date().getTime()));
+
+                pptList.add(ppt);
+                count++;
+                if (count == listMaxCount)
+                {
+                    // hdService.insertJdpzInfoList(ppizbList);
+                    count = 0;
+                    pptList.clear();
+                }
+            }
+            if (!pptList.isEmpty())
+            {
+                // hdService.insertJdpzInfoList(ppizbList);
             }
         }
         else

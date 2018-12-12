@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykkj.weiyi.dao.RoadZdMapper">
+    <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.RoadZd">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="GLDW" jdbcType="VARCHAR" property="gldw" />
+        <result column="REPORTPERSON" jdbcType="VARCHAR" property="reportperson" />
+        <result column="CONNPHONE" jdbcType="VARCHAR" property="connphone" />
+        <result column="FAX" jdbcType="VARCHAR" property="fax" />
+        <result column="ROADCODE" jdbcType="VARCHAR" property="roadcode" />
+        <result column="ROADNAME" jdbcType="VARCHAR" property="roadname" />
+        <result column="ROADSTART" jdbcType="VARCHAR" property="roadstart" />
+        <result column="ROADEND" jdbcType="VARCHAR" property="roadend" />
+        <result column="INFONAME" jdbcType="VARCHAR" property="infoname" />
+        <result column="BLOCKEDSTART" jdbcType="VARCHAR" property="blockedstart" />
+        <result column="BLOCKEDEND" jdbcType="VARCHAR" property="blockedend" />
+        <result column="ENUMCODE" jdbcType="VARCHAR" property="enumcode" />
+        <result column="ENUMCONTENT" jdbcType="VARCHAR" property="enumcontent" />
+        <result column="REASONCODE" jdbcType="VARCHAR" property="reasoncode" />
+        <result column="REASONCONTENT" jdbcType="VARCHAR" property="reasoncontent" />
+        <result column="DIRECTIONCODE" jdbcType="VARCHAR" property="directioncode" />
+        <result column="DIRECTION" jdbcType="VARCHAR" property="direction" />
+        <result column="TYPECODE" jdbcType="VARCHAR" property="typecode" />
+        <result column="TYPE" jdbcType="VARCHAR" property="type" />
+        <result column="STARTTIME" jdbcType="VARCHAR" property="starttime" />
+        <result column="ENDTIME" jdbcType="VARCHAR" property="endtime" />
+        <result column="PUBTIME" jdbcType="VARCHAR" property="pubtime" />
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+        <result column="ISCHECKED" jdbcType="CHAR" property="ischecked" />
+        <result column="ENUMDETAIL" jdbcType="VARCHAR" property="enumdetail" />
+        <result column="YX" jdbcType="VARCHAR" property="yx" />
+        <result column="CITYCODE" jdbcType="VARCHAR" property="citycode" />
+        <result column="CITYNAME" jdbcType="VARCHAR" property="cityname" />
+        <result column="YXCODE" jdbcType="VARCHAR" property="yxcode" />
+        <result column="F001" jdbcType="VARCHAR" property="f001" />
+        <result column="F002" jdbcType="VARCHAR" property="f002" />
+        <result column="F003" jdbcType="VARCHAR" property="f003" />
+        <result column="F004" jdbcType="VARCHAR" property="f004" />
+        <result column="F005" jdbcType="VARCHAR" property="f005" />
+        <result column="F006" jdbcType="VARCHAR" property="f006" />
+        <result column="F007" jdbcType="VARCHAR" property="f007" />
+        <result column="F008" jdbcType="VARCHAR" property="f008" />
+        <result column="F009" jdbcType="VARCHAR" property="f009" />
+        <result column="F010" jdbcType="VARCHAR" property="f010" />
+        <result column="ISHEBING" jdbcType="CHAR" property="ishebing" />
+        <result column="ISREPORTJTB" jdbcType="CHAR" property="isreportjtb" />
+        <result column="ISREPORTYJXT" jdbcType="CHAR" property="isreportyjxt" />
+        <result column="ISCANCEL" jdbcType="CHAR" property="iscancel" />
+        <result column="ISSTATE" jdbcType="DECIMAL" property="isstate" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, GLDW, REPORTPERSON, CONNPHONE, FAX, ROADCODE, ROADNAME, ROADSTART, ROADEND, INFONAME,
+    BLOCKEDSTART, BLOCKEDEND, ENUMCODE, ENUMCONTENT, REASONCODE, REASONCONTENT, DIRECTIONCODE,
+    DIRECTION, TYPECODE, TYPE, STARTTIME, ENDTIME, PUBTIME, UPDATETIME, DESCRIPTION,
+    ISCHECKED, ENUMDETAIL, YX, CITYCODE, CITYNAME, YXCODE, F001, F002, F003, F004, F005,
+    F006, F007, F008, F009, F010, ISHEBING, ISREPORTJTB, ISREPORTYJXT, ISCANCEL, ISSTATE
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from XJCX.ROADBLOCKED
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="findByTypeCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+        <include refid="Base_Column_List" />
+        from XJCX.ROADBLOCKED
+		where ENDTIME > #{sysDateTime,jdbcType=VARCHAR} and #{sysDateTime,jdbcType=VARCHAR} > STARTTIME
+        order by STARTTIME DESC
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from ROADBLOCKED
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.ykkj.weiyi.pojo.RoadZd">
+    insert into ROADBLOCKED (ID, GLDW, REPORTPERSON,
+      CONNPHONE, FAX, ROADCODE,
+      ROADNAME, ROADSTART, ROADEND,
+      INFONAME, BLOCKEDSTART, BLOCKEDEND,
+      ENUMCODE, ENUMCONTENT, REASONCODE,
+      REASONCONTENT, DIRECTIONCODE, DIRECTION,
+      TYPECODE, TYPE, STARTTIME,
+      ENDTIME, PUBTIME, UPDATETIME,
+      DESCRIPTION, ISCHECKED, ENUMDETAIL,
+      YX, CITYCODE, CITYNAME,
+      YXCODE, F001, F002,
+      F003, F004, F005, F006,
+      F007, F008, F009, F010,
+      ISHEBING, ISREPORTJTB, ISREPORTYJXT,
+      ISCANCEL, ISSTATE)
+    values (#{id,jdbcType=VARCHAR}, #{gldw,jdbcType=VARCHAR}, #{reportperson,jdbcType=VARCHAR},
+      #{connphone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{roadcode,jdbcType=VARCHAR},
+      #{roadname,jdbcType=VARCHAR}, #{roadstart,jdbcType=VARCHAR}, #{roadend,jdbcType=VARCHAR},
+      #{infoname,jdbcType=VARCHAR}, #{blockedstart,jdbcType=VARCHAR}, #{blockedend,jdbcType=VARCHAR},
+      #{enumcode,jdbcType=VARCHAR}, #{enumcontent,jdbcType=VARCHAR}, #{reasoncode,jdbcType=VARCHAR},
+      #{reasoncontent,jdbcType=VARCHAR}, #{directioncode,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR},
+      #{typecode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR},
+      #{endtime,jdbcType=VARCHAR}, #{pubtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR}, #{ischecked,jdbcType=CHAR}, #{enumdetail,jdbcType=VARCHAR},
+      #{yx,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR},
+      #{yxcode,jdbcType=VARCHAR}, #{f001,jdbcType=VARCHAR}, #{f002,jdbcType=VARCHAR},
+      #{f003,jdbcType=VARCHAR}, #{f004,jdbcType=VARCHAR}, #{f005,jdbcType=VARCHAR}, #{f006,jdbcType=VARCHAR},
+      #{f007,jdbcType=VARCHAR}, #{f008,jdbcType=VARCHAR}, #{f009,jdbcType=VARCHAR}, #{f010,jdbcType=VARCHAR},
+      #{ishebing,jdbcType=CHAR}, #{isreportjtb,jdbcType=CHAR}, #{isreportyjxt,jdbcType=CHAR},
+      #{iscancel,jdbcType=CHAR}, #{isstate,jdbcType=DECIMAL})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.RoadZd">
+        insert into ROADBLOCKED
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="gldw != null">
+                GLDW,
+            </if>
+            <if test="reportperson != null">
+                REPORTPERSON,
+            </if>
+            <if test="connphone != null">
+                CONNPHONE,
+            </if>
+            <if test="fax != null">
+                FAX,
+            </if>
+            <if test="roadcode != null">
+                ROADCODE,
+            </if>
+            <if test="roadname != null">
+                ROADNAME,
+            </if>
+            <if test="roadstart != null">
+                ROADSTART,
+            </if>
+            <if test="roadend != null">
+                ROADEND,
+            </if>
+            <if test="infoname != null">
+                INFONAME,
+            </if>
+            <if test="blockedstart != null">
+                BLOCKEDSTART,
+            </if>
+            <if test="blockedend != null">
+                BLOCKEDEND,
+            </if>
+            <if test="enumcode != null">
+                ENUMCODE,
+            </if>
+            <if test="enumcontent != null">
+                ENUMCONTENT,
+            </if>
+            <if test="reasoncode != null">
+                REASONCODE,
+            </if>
+            <if test="reasoncontent != null">
+                REASONCONTENT,
+            </if>
+            <if test="directioncode != null">
+                DIRECTIONCODE,
+            </if>
+            <if test="direction != null">
+                DIRECTION,
+            </if>
+            <if test="typecode != null">
+                TYPECODE,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="starttime != null">
+                STARTTIME,
+            </if>
+            <if test="endtime != null">
+                ENDTIME,
+            </if>
+            <if test="pubtime != null">
+                PUBTIME,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+            <if test="description != null">
+                DESCRIPTION,
+            </if>
+            <if test="ischecked != null">
+                ISCHECKED,
+            </if>
+            <if test="enumdetail != null">
+                ENUMDETAIL,
+            </if>
+            <if test="yx != null">
+                YX,
+            </if>
+            <if test="citycode != null">
+                CITYCODE,
+            </if>
+            <if test="cityname != null">
+                CITYNAME,
+            </if>
+            <if test="yxcode != null">
+                YXCODE,
+            </if>
+            <if test="f001 != null">
+                F001,
+            </if>
+            <if test="f002 != null">
+                F002,
+            </if>
+            <if test="f003 != null">
+                F003,
+            </if>
+            <if test="f004 != null">
+                F004,
+            </if>
+            <if test="f005 != null">
+                F005,
+            </if>
+            <if test="f006 != null">
+                F006,
+            </if>
+            <if test="f007 != null">
+                F007,
+            </if>
+            <if test="f008 != null">
+                F008,
+            </if>
+            <if test="f009 != null">
+                F009,
+            </if>
+            <if test="f010 != null">
+                F010,
+            </if>
+            <if test="ishebing != null">
+                ISHEBING,
+            </if>
+            <if test="isreportjtb != null">
+                ISREPORTJTB,
+            </if>
+            <if test="isreportyjxt != null">
+                ISREPORTYJXT,
+            </if>
+            <if test="iscancel != null">
+                ISCANCEL,
+            </if>
+            <if test="isstate != null">
+                ISSTATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="gldw != null">
+                #{gldw,jdbcType=VARCHAR},
+            </if>
+            <if test="reportperson != null">
+                #{reportperson,jdbcType=VARCHAR},
+            </if>
+            <if test="connphone != null">
+                #{connphone,jdbcType=VARCHAR},
+            </if>
+            <if test="fax != null">
+                #{fax,jdbcType=VARCHAR},
+            </if>
+            <if test="roadcode != null">
+                #{roadcode,jdbcType=VARCHAR},
+            </if>
+            <if test="roadname != null">
+                #{roadname,jdbcType=VARCHAR},
+            </if>
+            <if test="roadstart != null">
+                #{roadstart,jdbcType=VARCHAR},
+            </if>
+            <if test="roadend != null">
+                #{roadend,jdbcType=VARCHAR},
+            </if>
+            <if test="infoname != null">
+                #{infoname,jdbcType=VARCHAR},
+            </if>
+            <if test="blockedstart != null">
+                #{blockedstart,jdbcType=VARCHAR},
+            </if>
+            <if test="blockedend != null">
+                #{blockedend,jdbcType=VARCHAR},
+            </if>
+            <if test="enumcode != null">
+                #{enumcode,jdbcType=VARCHAR},
+            </if>
+            <if test="enumcontent != null">
+                #{enumcontent,jdbcType=VARCHAR},
+            </if>
+            <if test="reasoncode != null">
+                #{reasoncode,jdbcType=VARCHAR},
+            </if>
+            <if test="reasoncontent != null">
+                #{reasoncontent,jdbcType=VARCHAR},
+            </if>
+            <if test="directioncode != null">
+                #{directioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="typecode != null">
+                #{typecode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=VARCHAR},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=VARCHAR},
+            </if>
+            <if test="pubtime != null">
+                #{pubtime,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="ischecked != null">
+                #{ischecked,jdbcType=CHAR},
+            </if>
+            <if test="enumdetail != null">
+                #{enumdetail,jdbcType=VARCHAR},
+            </if>
+            <if test="yx != null">
+                #{yx,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityname != null">
+                #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="yxcode != null">
+                #{yxcode,jdbcType=VARCHAR},
+            </if>
+            <if test="f001 != null">
+                #{f001,jdbcType=VARCHAR},
+            </if>
+            <if test="f002 != null">
+                #{f002,jdbcType=VARCHAR},
+            </if>
+            <if test="f003 != null">
+                #{f003,jdbcType=VARCHAR},
+            </if>
+            <if test="f004 != null">
+                #{f004,jdbcType=VARCHAR},
+            </if>
+            <if test="f005 != null">
+                #{f005,jdbcType=VARCHAR},
+            </if>
+            <if test="f006 != null">
+                #{f006,jdbcType=VARCHAR},
+            </if>
+            <if test="f007 != null">
+                #{f007,jdbcType=VARCHAR},
+            </if>
+            <if test="f008 != null">
+                #{f008,jdbcType=VARCHAR},
+            </if>
+            <if test="f009 != null">
+                #{f009,jdbcType=VARCHAR},
+            </if>
+            <if test="f010 != null">
+                #{f010,jdbcType=VARCHAR},
+            </if>
+            <if test="ishebing != null">
+                #{ishebing,jdbcType=CHAR},
+            </if>
+            <if test="isreportjtb != null">
+                #{isreportjtb,jdbcType=CHAR},
+            </if>
+            <if test="isreportyjxt != null">
+                #{isreportyjxt,jdbcType=CHAR},
+            </if>
+            <if test="iscancel != null">
+                #{iscancel,jdbcType=CHAR},
+            </if>
+            <if test="isstate != null">
+                #{isstate,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.RoadZd">
+        update ROADBLOCKED
+        <set>
+            <if test="gldw != null">
+                GLDW = #{gldw,jdbcType=VARCHAR},
+            </if>
+            <if test="reportperson != null">
+                REPORTPERSON = #{reportperson,jdbcType=VARCHAR},
+            </if>
+            <if test="connphone != null">
+                CONNPHONE = #{connphone,jdbcType=VARCHAR},
+            </if>
+            <if test="fax != null">
+                FAX = #{fax,jdbcType=VARCHAR},
+            </if>
+            <if test="roadcode != null">
+                ROADCODE = #{roadcode,jdbcType=VARCHAR},
+            </if>
+            <if test="roadname != null">
+                ROADNAME = #{roadname,jdbcType=VARCHAR},
+            </if>
+            <if test="roadstart != null">
+                ROADSTART = #{roadstart,jdbcType=VARCHAR},
+            </if>
+            <if test="roadend != null">
+                ROADEND = #{roadend,jdbcType=VARCHAR},
+            </if>
+            <if test="infoname != null">
+                INFONAME = #{infoname,jdbcType=VARCHAR},
+            </if>
+            <if test="blockedstart != null">
+                BLOCKEDSTART = #{blockedstart,jdbcType=VARCHAR},
+            </if>
+            <if test="blockedend != null">
+                BLOCKEDEND = #{blockedend,jdbcType=VARCHAR},
+            </if>
+            <if test="enumcode != null">
+                ENUMCODE = #{enumcode,jdbcType=VARCHAR},
+            </if>
+            <if test="enumcontent != null">
+                ENUMCONTENT = #{enumcontent,jdbcType=VARCHAR},
+            </if>
+            <if test="reasoncode != null">
+                REASONCODE = #{reasoncode,jdbcType=VARCHAR},
+            </if>
+            <if test="reasoncontent != null">
+                REASONCONTENT = #{reasoncontent,jdbcType=VARCHAR},
+            </if>
+            <if test="directioncode != null">
+                DIRECTIONCODE = #{directioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                DIRECTION = #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="typecode != null">
+                TYPECODE = #{typecode,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                STARTTIME = #{starttime,jdbcType=VARCHAR},
+            </if>
+            <if test="endtime != null">
+                ENDTIME = #{endtime,jdbcType=VARCHAR},
+            </if>
+            <if test="pubtime != null">
+                PUBTIME = #{pubtime,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="ischecked != null">
+                ISCHECKED = #{ischecked,jdbcType=CHAR},
+            </if>
+            <if test="enumdetail != null">
+                ENUMDETAIL = #{enumdetail,jdbcType=VARCHAR},
+            </if>
+            <if test="yx != null">
+                YX = #{yx,jdbcType=VARCHAR},
+            </if>
+            <if test="citycode != null">
+                CITYCODE = #{citycode,jdbcType=VARCHAR},
+            </if>
+            <if test="cityname != null">
+                CITYNAME = #{cityname,jdbcType=VARCHAR},
+            </if>
+            <if test="yxcode != null">
+                YXCODE = #{yxcode,jdbcType=VARCHAR},
+            </if>
+            <if test="f001 != null">
+                F001 = #{f001,jdbcType=VARCHAR},
+            </if>
+            <if test="f002 != null">
+                F002 = #{f002,jdbcType=VARCHAR},
+            </if>
+            <if test="f003 != null">
+                F003 = #{f003,jdbcType=VARCHAR},
+            </if>
+            <if test="f004 != null">
+                F004 = #{f004,jdbcType=VARCHAR},
+            </if>
+            <if test="f005 != null">
+                F005 = #{f005,jdbcType=VARCHAR},
+            </if>
+            <if test="f006 != null">
+                F006 = #{f006,jdbcType=VARCHAR},
+            </if>
+            <if test="f007 != null">
+                F007 = #{f007,jdbcType=VARCHAR},
+            </if>
+            <if test="f008 != null">
+                F008 = #{f008,jdbcType=VARCHAR},
+            </if>
+            <if test="f009 != null">
+                F009 = #{f009,jdbcType=VARCHAR},
+            </if>
+            <if test="f010 != null">
+                F010 = #{f010,jdbcType=VARCHAR},
+            </if>
+            <if test="ishebing != null">
+                ISHEBING = #{ishebing,jdbcType=CHAR},
+            </if>
+            <if test="isreportjtb != null">
+                ISREPORTJTB = #{isreportjtb,jdbcType=CHAR},
+            </if>
+            <if test="isreportyjxt != null">
+                ISREPORTYJXT = #{isreportyjxt,jdbcType=CHAR},
+            </if>
+            <if test="iscancel != null">
+                ISCANCEL = #{iscancel,jdbcType=CHAR},
+            </if>
+            <if test="isstate != null">
+                ISSTATE = #{isstate,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.RoadZd">
+    update ROADBLOCKED
+    set GLDW = #{gldw,jdbcType=VARCHAR},
+      REPORTPERSON = #{reportperson,jdbcType=VARCHAR},
+      CONNPHONE = #{connphone,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      ROADCODE = #{roadcode,jdbcType=VARCHAR},
+      ROADNAME = #{roadname,jdbcType=VARCHAR},
+      ROADSTART = #{roadstart,jdbcType=VARCHAR},
+      ROADEND = #{roadend,jdbcType=VARCHAR},
+      INFONAME = #{infoname,jdbcType=VARCHAR},
+      BLOCKEDSTART = #{blockedstart,jdbcType=VARCHAR},
+      BLOCKEDEND = #{blockedend,jdbcType=VARCHAR},
+      ENUMCODE = #{enumcode,jdbcType=VARCHAR},
+      ENUMCONTENT = #{enumcontent,jdbcType=VARCHAR},
+      REASONCODE = #{reasoncode,jdbcType=VARCHAR},
+      REASONCONTENT = #{reasoncontent,jdbcType=VARCHAR},
+      DIRECTIONCODE = #{directioncode,jdbcType=VARCHAR},
+      DIRECTION = #{direction,jdbcType=VARCHAR},
+      TYPECODE = #{typecode,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=VARCHAR},
+      ENDTIME = #{endtime,jdbcType=VARCHAR},
+      PUBTIME = #{pubtime,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ISCHECKED = #{ischecked,jdbcType=CHAR},
+      ENUMDETAIL = #{enumdetail,jdbcType=VARCHAR},
+      YX = #{yx,jdbcType=VARCHAR},
+      CITYCODE = #{citycode,jdbcType=VARCHAR},
+      CITYNAME = #{cityname,jdbcType=VARCHAR},
+      YXCODE = #{yxcode,jdbcType=VARCHAR},
+      F001 = #{f001,jdbcType=VARCHAR},
+      F002 = #{f002,jdbcType=VARCHAR},
+      F003 = #{f003,jdbcType=VARCHAR},
+      F004 = #{f004,jdbcType=VARCHAR},
+      F005 = #{f005,jdbcType=VARCHAR},
+      F006 = #{f006,jdbcType=VARCHAR},
+      F007 = #{f007,jdbcType=VARCHAR},
+      F008 = #{f008,jdbcType=VARCHAR},
+      F009 = #{f009,jdbcType=VARCHAR},
+      F010 = #{f010,jdbcType=VARCHAR},
+      ISHEBING = #{ishebing,jdbcType=CHAR},
+      ISREPORTJTB = #{isreportjtb,jdbcType=CHAR},
+      ISREPORTYJXT = #{isreportyjxt,jdbcType=CHAR},
+      ISCANCEL = #{iscancel,jdbcType=CHAR},
+      ISSTATE = #{isstate,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

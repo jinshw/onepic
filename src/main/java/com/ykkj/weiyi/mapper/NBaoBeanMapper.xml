@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.NBaoBeanMapper">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.NBaoBean">
+        <result column="id" property="id"/>
+        <result column="roadcode" property="roadcode"/>
+        <result column="areacode" property="areacode"/>
+        <result column="roadname" property="roadname"/>
+        <result column="startname" property="startname"/>
+        <result column="endname" property="endname"/>
+        <result column="startzh" property="startzh"/>
+        <result column="endzh" property="endzh"/>
+        <result column="licheng" property="licheng"/>
+        <result column="jscode" property="jscode"/>
+        <result column="jslevel" property="jslevel"/>
+        <result column="sfyfgs" property="sfyfgs"/>
+        <result column="cdsl" property="cdsl"/>
+        <result column="mcdm" property="mcdm"/>
+        <result column="mclx" property="mclx"/>
+        <result column="ljkd" property="ljkd"/>
+        <result column="lmkdm" property="lmkdm"/>
+        <result column="lmkdcm" property="lmkdcm"/>
+        <result column="sjshisu" property="sjshisu"/>
+        <result column="nxniandu" property="nxniandu"/>
+        <result column="gzniandu" property="gzniandu"/>
+        <result column="zjdxniandu" property="zjdxniandu"/>
+        <result column="dllx" property="dllx"/>
+        <result column="sfcgld" property="sfcgld"/>
+        <result column="sfdtld" property="sfdtld"/>
+        <result column="sfsfld" property="sfsfld"/>
+        <result column="lxbh" property="lxbh"/>
+        <result column="cfstartzh" property="cfstartzh"/>
+        <result column="cfendzh" property="cfendzh"/>
+        <result column="yhls" property="yhls"/>
+        <result column="klhlc" property="klhlc"/>
+        <result column="dmdm" property="dmdm"/>
+        <result column="dmhz" property="dmhz"/>
+        <result column="hdsl" property="hdsl"/>
+        <result column="gydwmc" property="gydwmc"/>
+        <result column="shcrk" property="shcrk"/>
+        <result column="njrjtl" property="njrjtl"/>
+        <result column="gdtzqlxbh" property="gdtzqlxbh"/>
+        <result column="remark" property="remark"/>
+        <result column="gdzhcdyllc" property="gdzhcdyllc"/>
+        <result column="sfagxglgljy" property="sfagxglgljy"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `roadcode`,
+        `areacode`,
+        `roadname`,
+        `startname`,
+        `endname`,
+        `startzh`,
+        `endzh`,
+        `licheng`,
+        `jscode`,
+        `jslevel`,
+        `sfyfgs`,
+        `cdsl`,
+        `mcdm`,
+        `mclx`,
+        `ljkd`,
+        `lmkdm`,
+        `lmkdcm`,
+        `sjshisu`,
+        `nxniandu`,
+        `gzniandu`,
+        `zjdxniandu`,
+        `dllx`,
+        `sfcgld`,
+        `sfdtld`,
+        `sfsfld`,
+        `lxbh`,
+        `cfstartzh`,
+        `cfendzh`,
+        `yhls`,
+        `klhlc`,
+        `dmdm`,
+        `dmhz`,
+        `hdsl`,
+        `gydwmc`,
+        `shcrk`,
+        `njrjtl`,
+        `gdtzqlxbh`,
+        `remark`,
+        `gdzhcdyllc`,
+        `sfagxglgljy`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.roadcode">
+        INSERT INTO nbao (
+            `id`,
+            `roadcode`,
+            `areacode`,
+            `roadname`,
+            `startname`,
+            `endname`,
+            `startzh`,
+            `endzh`,
+            `licheng`,
+            `jscode`,
+            `jslevel`,
+            `sfyfgs`,
+            `cdsl`,
+            `mcdm`,
+            `mclx`,
+            `ljkd`,
+            `lmkdm`,
+            `lmkdcm`,
+            `sjshisu`,
+            `nxniandu`,
+            `gzniandu`,
+            `zjdxniandu`,
+            `dllx`,
+            `sfcgld`,
+            `sfdtld`,
+            `sfsfld`,
+            `lxbh`,
+            `cfstartzh`,
+            `cfendzh`,
+            `yhls`,
+            `klhlc`,
+            `dmdm`,
+            `dmhz`,
+            `hdsl`,
+            `gydwmc`,
+            `shcrk`,
+            `njrjtl`,
+            `gdtzqlxbh`,
+            `remark`,
+            `gdzhcdyllc`,
+            `sfagxglgljy`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.roadcode},
+            #{pojo.areacode},
+            #{pojo.roadname},
+            #{pojo.startname},
+            #{pojo.endname},
+            #{pojo.startzh},
+            #{pojo.endzh},
+            #{pojo.licheng},
+            #{pojo.jscode},
+            #{pojo.jslevel},
+            #{pojo.sfyfgs},
+            #{pojo.cdsl},
+            #{pojo.mcdm},
+            #{pojo.mclx},
+            #{pojo.ljkd},
+            #{pojo.lmkdm},
+            #{pojo.lmkdcm},
+            #{pojo.sjshisu},
+            #{pojo.nxniandu},
+            #{pojo.gzniandu},
+            #{pojo.zjdxniandu},
+            #{pojo.dllx},
+            #{pojo.sfcgld},
+            #{pojo.sfdtld},
+            #{pojo.sfsfld},
+            #{pojo.lxbh},
+            #{pojo.cfstartzh},
+            #{pojo.cfendzh},
+            #{pojo.yhls},
+            #{pojo.klhlc},
+            #{pojo.dmdm},
+            #{pojo.dmhz},
+            #{pojo.hdsl},
+            #{pojo.gydwmc},
+            #{pojo.shcrk},
+            #{pojo.njrjtl},
+            #{pojo.gdtzqlxbh},
+            #{pojo.remark},
+            #{pojo.gdzhcdyllc},
+            #{pojo.sfagxglgljy}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.roadcode">
+        INSERT INTO nbao
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.roadcode!=null"> `roadcode`,</if>
+            <if test="pojo.areacode!=null"> `areacode`,</if>
+            <if test="pojo.roadname!=null"> `roadname`,</if>
+            <if test="pojo.startname!=null"> `startname`,</if>
+            <if test="pojo.endname!=null"> `endname`,</if>
+            <if test="pojo.startzh!=null"> `startzh`,</if>
+            <if test="pojo.endzh!=null"> `endzh`,</if>
+            <if test="pojo.licheng!=null"> `licheng`,</if>
+            <if test="pojo.jscode!=null"> `jscode`,</if>
+            <if test="pojo.jslevel!=null"> `jslevel`,</if>
+            <if test="pojo.sfyfgs!=null"> `sfyfgs`,</if>
+            <if test="pojo.cdsl!=null"> `cdsl`,</if>
+            <if test="pojo.mcdm!=null"> `mcdm`,</if>
+            <if test="pojo.mclx!=null"> `mclx`,</if>
+            <if test="pojo.ljkd!=null"> `ljkd`,</if>
+            <if test="pojo.lmkdm!=null"> `lmkdm`,</if>
+            <if test="pojo.lmkdcm!=null"> `lmkdcm`,</if>
+            <if test="pojo.sjshisu!=null"> `sjshisu`,</if>
+            <if test="pojo.nxniandu!=null"> `nxniandu`,</if>
+            <if test="pojo.gzniandu!=null"> `gzniandu`,</if>
+            <if test="pojo.zjdxniandu!=null"> `zjdxniandu`,</if>
+            <if test="pojo.dllx!=null"> `dllx`,</if>
+            <if test="pojo.sfcgld!=null"> `sfcgld`,</if>
+            <if test="pojo.sfdtld!=null"> `sfdtld`,</if>
+            <if test="pojo.sfsfld!=null"> `sfsfld`,</if>
+            <if test="pojo.lxbh!=null"> `lxbh`,</if>
+            <if test="pojo.cfstartzh!=null"> `cfstartzh`,</if>
+            <if test="pojo.cfendzh!=null"> `cfendzh`,</if>
+            <if test="pojo.yhls!=null"> `yhls`,</if>
+            <if test="pojo.klhlc!=null"> `klhlc`,</if>
+            <if test="pojo.dmdm!=null"> `dmdm`,</if>
+            <if test="pojo.dmhz!=null"> `dmhz`,</if>
+            <if test="pojo.hdsl!=null"> `hdsl`,</if>
+            <if test="pojo.gydwmc!=null"> `gydwmc`,</if>
+            <if test="pojo.shcrk!=null"> `shcrk`,</if>
+            <if test="pojo.njrjtl!=null"> `njrjtl`,</if>
+            <if test="pojo.gdtzqlxbh!=null"> `gdtzqlxbh`,</if>
+            <if test="pojo.remark!=null"> `remark`,</if>
+            <if test="pojo.gdzhcdyllc!=null"> `gdzhcdyllc`,</if>
+            <if test="pojo.sfagxglgljy!=null"> `sfagxglgljy`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.roadcode!=null">#{pojo.roadcode},</if>
+            <if test="pojo.areacode!=null">#{pojo.areacode},</if>
+            <if test="pojo.roadname!=null">#{pojo.roadname},</if>
+            <if test="pojo.startname!=null">#{pojo.startname},</if>
+            <if test="pojo.endname!=null">#{pojo.endname},</if>
+            <if test="pojo.startzh!=null">#{pojo.startzh},</if>
+            <if test="pojo.endzh!=null">#{pojo.endzh},</if>
+            <if test="pojo.licheng!=null">#{pojo.licheng},</if>
+            <if test="pojo.jscode!=null">#{pojo.jscode},</if>
+            <if test="pojo.jslevel!=null">#{pojo.jslevel},</if>
+            <if test="pojo.sfyfgs!=null">#{pojo.sfyfgs},</if>
+            <if test="pojo.cdsl!=null">#{pojo.cdsl},</if>
+            <if test="pojo.mcdm!=null">#{pojo.mcdm},</if>
+            <if test="pojo.mclx!=null">#{pojo.mclx},</if>
+            <if test="pojo.ljkd!=null">#{pojo.ljkd},</if>
+            <if test="pojo.lmkdm!=null">#{pojo.lmkdm},</if>
+            <if test="pojo.lmkdcm!=null">#{pojo.lmkdcm},</if>
+            <if test="pojo.sjshisu!=null">#{pojo.sjshisu},</if>
+            <if test="pojo.nxniandu!=null">#{pojo.nxniandu},</if>
+            <if test="pojo.gzniandu!=null">#{pojo.gzniandu},</if>
+            <if test="pojo.zjdxniandu!=null">#{pojo.zjdxniandu},</if>
+            <if test="pojo.dllx!=null">#{pojo.dllx},</if>
+            <if test="pojo.sfcgld!=null">#{pojo.sfcgld},</if>
+            <if test="pojo.sfdtld!=null">#{pojo.sfdtld},</if>
+            <if test="pojo.sfsfld!=null">#{pojo.sfsfld},</if>
+            <if test="pojo.lxbh!=null">#{pojo.lxbh},</if>
+            <if test="pojo.cfstartzh!=null">#{pojo.cfstartzh},</if>
+            <if test="pojo.cfendzh!=null">#{pojo.cfendzh},</if>
+            <if test="pojo.yhls!=null">#{pojo.yhls},</if>
+            <if test="pojo.klhlc!=null">#{pojo.klhlc},</if>
+            <if test="pojo.dmdm!=null">#{pojo.dmdm},</if>
+            <if test="pojo.dmhz!=null">#{pojo.dmhz},</if>
+            <if test="pojo.hdsl!=null">#{pojo.hdsl},</if>
+            <if test="pojo.gydwmc!=null">#{pojo.gydwmc},</if>
+            <if test="pojo.shcrk!=null">#{pojo.shcrk},</if>
+            <if test="pojo.njrjtl!=null">#{pojo.njrjtl},</if>
+            <if test="pojo.gdtzqlxbh!=null">#{pojo.gdtzqlxbh},</if>
+            <if test="pojo.remark!=null">#{pojo.remark},</if>
+            <if test="pojo.gdzhcdyllc!=null">#{pojo.gdzhcdyllc},</if>
+            <if test="pojo.sfagxglgljy!=null">#{pojo.sfagxglgljy},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO nbao (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.roadcode},
+            #{pojo.areacode},
+            #{pojo.roadname},
+            #{pojo.startname},
+            #{pojo.endname},
+            #{pojo.startzh},
+            #{pojo.endzh},
+            #{pojo.licheng},
+            #{pojo.jscode},
+            #{pojo.jslevel},
+            #{pojo.sfyfgs},
+            #{pojo.cdsl},
+            #{pojo.mcdm},
+            #{pojo.mclx},
+            #{pojo.ljkd},
+            #{pojo.lmkdm},
+            #{pojo.lmkdcm},
+            #{pojo.sjshisu},
+            #{pojo.nxniandu},
+            #{pojo.gzniandu},
+            #{pojo.zjdxniandu},
+            #{pojo.dllx},
+            #{pojo.sfcgld},
+            #{pojo.sfdtld},
+            #{pojo.sfsfld},
+            #{pojo.lxbh},
+            #{pojo.cfstartzh},
+            #{pojo.cfendzh},
+            #{pojo.yhls},
+            #{pojo.klhlc},
+            #{pojo.dmdm},
+            #{pojo.dmhz},
+            #{pojo.hdsl},
+            #{pojo.gydwmc},
+            #{pojo.shcrk},
+            #{pojo.njrjtl},
+            #{pojo.gdtzqlxbh},
+            #{pojo.remark},
+            #{pojo.gdzhcdyllc},
+            #{pojo.sfagxglgljy}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE nbao
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.roadcode != null"> `roadcode` = #{pojo.roadcode}, </if>
+            <if test="pojo.areacode != null"> `areacode` = #{pojo.areacode}, </if>
+            <if test="pojo.roadname != null"> `roadname` = #{pojo.roadname}, </if>
+            <if test="pojo.startname != null"> `startname` = #{pojo.startname}, </if>
+            <if test="pojo.endname != null"> `endname` = #{pojo.endname}, </if>
+            <if test="pojo.startzh != null"> `startzh` = #{pojo.startzh}, </if>
+            <if test="pojo.endzh != null"> `endtzh` = #{pojo.endtzh}, </if>
+            <if test="pojo.licheng != null"> `licheng` = #{pojo.licheng}, </if>
+            <if test="pojo.jscode != null"> `jscode` = #{pojo.jscode}, </if>
+            <if test="pojo.jslevel != null"> `jslevel` = #{pojo.jslevel}, </if>
+            <if test="pojo.sfyfgs != null"> `sfyfgs` = #{pojo.sfyfgs}, </if>
+            <if test="pojo.cdsl != null"> `cdsl` = #{pojo.cdsl}, </if>
+            <if test="pojo.mcdm != null"> `mcdm` = #{pojo.mcdm}, </if>
+            <if test="pojo.mclx != null"> `mclx` = #{pojo.mclx}, </if>
+            <if test="pojo.ljkd != null"> `ljkd` = #{pojo.ljkd}, </if>
+            <if test="pojo.lmkdm != null"> `lmkdm` = #{pojo.lmkdm}, </if>
+            <if test="pojo.lmkdcm != null"> `lmkdcm` = #{pojo.lmkdcm}, </if>
+            <if test="pojo.sjshisu != null"> `sjshisu` = #{pojo.sjshisu}, </if>
+            <if test="pojo.nxniandu != null"> `nxniandu` = #{pojo.nxniandu}, </if>
+            <if test="pojo.gzniandu != null"> `gzniandu` = #{pojo.gzniandu}, </if>
+            <if test="pojo.zjdxniandu != null"> `zjdxniandu` = #{pojo.zjdxniandu}, </if>
+            <if test="pojo.dllx != null"> `dllx` = #{pojo.dllx}, </if>
+            <if test="pojo.sfcgld != null"> `sfcgld` = #{pojo.sfcgld}, </if>
+            <if test="pojo.sfdtld != null"> `sfdtld` = #{pojo.sfdtld}, </if>
+            <if test="pojo.sfsfld != null"> `sfsfld` = #{pojo.sfsfld}, </if>
+            <if test="pojo.lxbh != null"> `lxbh` = #{pojo.lxbh}, </if>
+            <if test="pojo.cfstartzh != null"> `cfstartzh` = #{pojo.cfstartzh}, </if>
+            <if test="pojo.cfendzh != null"> `cfendzh` = #{pojo.cfendzh}, </if>
+            <if test="pojo.yhls != null"> `yhls` = #{pojo.yhls}, </if>
+            <if test="pojo.klhlc != null"> `klhlc` = #{pojo.klhlc}, </if>
+            <if test="pojo.dmdm != null"> `dmdm` = #{pojo.dmdm}, </if>
+            <if test="pojo.dmhz != null"> `dmhz` = #{pojo.dmhz}, </if>
+            <if test="pojo.hdsl != null"> `hdsl` = #{pojo.hdsl}, </if>
+            <if test="pojo.gydwmc != null"> `gydwmc` = #{pojo.gydwmc}, </if>
+            <if test="pojo.shcrk != null"> `shcrk` = #{pojo.shcrk}, </if>
+            <if test="pojo.njrjtl != null"> `njrjtl` = #{pojo.njrjtl}, </if>
+            <if test="pojo.gdtzqlxbh != null"> `gdtzqlxbh` = #{pojo.gdtzqlxbh}, </if>
+            <if test="pojo.remark != null"> `remark` = #{pojo.remark}, </if>
+            <if test="pojo.gdzhcdyllc != null"> `gdzhcdyllc` = #{pojo.gdzhcdyllc}, </if>
+            <if test="pojo.sfagxglgljy != null"> `sfagxglgljy` = #{pojo.sfagxglgljy} </if>
+        </set>
+        WHERE roadcode = #{pojo.roadcode}
+    </update>
+
+    <select id="findList" parameterType="com.ykkj.weiyi.pojo.NBaoBean" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from nbao
+        <where>
+            <if test="id != null and id !='' ">
+                AND  id = #{id}
+            </if>
+            <if test="roadcode != null and roadcode !='' ">
+                AND  roadcode = #{roadcode}
+            </if>
+            <if test="areacode != null and areacode !='' ">
+                AND  areacode = #{areacode}
+            </if>
+            <if test="roadname != null and roadname !='' ">
+                AND  roadname = #{roadname}
+            </if>
+            <if test="startname != null and startname !='' ">
+                AND  startname = #{startname}
+            </if>
+            <if test="endname != null and endname !='' ">
+                AND  endname = #{endname}
+            </if>
+            <if test="startzh != null and startzh !='' ">
+                AND  cast(`startzh` as signed integer) &gt;= #{startzh}
+            </if>
+            <if test="endzh != null and endzh !='' ">
+                AND  cast(`endzh` as signed integer) &lt;= #{endzh}
+            </if>
+            <if test="licheng != null and licheng !='' ">
+                AND  licheng = #{licheng}
+            </if>
+            <if test="jscode != null and jscode !='' ">
+                AND  jscode = #{jscode}
+            </if>
+            <if test="jslevel != null and jslevel !='' ">
+                AND  jslevel = #{jslevel}
+            </if>
+            <if test="sfyfgs != null and sfyfgs !='' ">
+                AND  sfyfgs = #{sfyfgs}
+            </if>
+            <if test="cdsl != null and cdsl !='' ">
+                AND  cdsl = #{cdsl}
+            </if>
+            <if test="mcdm != null and mcdm !='' ">
+                AND  mcdm = #{mcdm}
+            </if>
+            <if test="mclx != null and mclx !='' ">
+                AND  mclx = #{mclx}
+            </if>
+            <if test="ljkd != null and ljkd !='' ">
+                AND  ljkd = #{ljkd}
+            </if>
+            <if test="lmkdm != null and lmkdm !='' ">
+                AND  lmkdm = #{lmkdm}
+            </if>
+            <if test="lmkdcm != null and lmkdcm !='' ">
+                AND  lmkdcm = #{lmkdcm}
+            </if>
+            <if test="sjshisu != null and sjshisu !='' ">
+                AND  sjshisu = #{sjshisu}
+            </if>
+            <if test="nxniandu != null and nxniandu !='' ">
+                AND  nxniandu = #{nxniandu}
+            </if>
+            <if test="gzniandu != null and gzniandu !='' ">
+                AND  gzniandu = #{gzniandu}
+            </if>
+            <if test="zjdxniandu != null and zjdxniandu !='' ">
+                AND  zjdxniandu = #{zjdxniandu}
+            </if>
+            <if test="dllx != null and dllx !='' ">
+                AND  dllx = #{dllx}
+            </if>
+            <if test="sfcgld != null and sfcgld !='' ">
+                AND  sfcgld = #{sfcgld}
+            </if>
+            <if test="sfdtld != null and sfdtld !='' ">
+                AND  sfdtld = #{sfdtld}
+            </if>
+            <if test="sfsfld != null and sfsfld !='' ">
+                AND  sfsfld = #{sfsfld}
+            </if>
+            <if test="lxbh != null and lxbh !='' ">
+                AND  lxbh = #{lxbh}
+            </if>
+            <if test="cfstartzh != null and cfstartzh !='' ">
+                AND  cfstartzh = #{cfstartzh}
+            </if>
+            <if test="cfendzh != null and cfendzh !='' ">
+                AND  cfendzh = #{cfendzh}
+            </if>
+            <if test="yhls != null and yhls !='' ">
+                AND  yhls = #{yhls}
+            </if>
+            <if test="klhlc != null and klhlc !='' ">
+                AND  klhlc = #{klhlc}
+            </if>
+            <if test="dmdm != null and dmdm !='' ">
+                AND  dmdm = #{dmdm}
+            </if>
+            <if test="dmhz != null and dmhz !='' ">
+                AND  dmhz = #{dmhz}
+            </if>
+            <if test="hdsl != null and hdsl !='' ">
+                AND  hdsl = #{hdsl}
+            </if>
+            <if test="gydwmc != null and gydwmc !='' ">
+                AND  gydwmc = #{gydwmc}
+            </if>
+            <if test="shcrk != null and shcrk !='' ">
+                AND  shcrk = #{shcrk}
+            </if>
+            <if test="njrjtl != null and njrjtl !='' ">
+                AND  njrjtl = #{njrjtl}
+            </if>
+            <if test="gdtzqlxbh != null and gdtzqlxbh !='' ">
+                AND  gdtzqlxbh = #{gdtzqlxbh}
+            </if>
+            <if test="sfagxglgljy != null and sfagxglgljy !='' ">
+                AND  sfagxglgljy = #{sfagxglgljy}
+            </if>
+            <if test="years != null and years !='' ">
+                AND  years = #{years}
+            </if>
+        </where>
+    </select>
+
+<!--auto generated by codehelper on 2018-05-23 09:45:25-->
+    <select id="findRoadcode" resultType="java.lang.String">
+        select DISTINCT replace(`roadcode`,' ','') roadcode
+        from nbao
+    </select>
+</mapper>
+

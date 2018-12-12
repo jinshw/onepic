@@ -1054,62 +1054,62 @@ public class PmsPlanTzkz01Example {
         }
 
         public Criteria andInserttimeIsNull() {
-            addCriterion("inserttime is null");
+            addCriterion("insertTime is null");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeIsNotNull() {
-            addCriterion("inserttime is not null");
+            addCriterion("insertTime is not null");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeEqualTo(Date value) {
-            addCriterionForJDBCDate("inserttime =", value, "inserttime");
+            addCriterionForJDBCDate("insertTime =", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("inserttime <>", value, "inserttime");
+            addCriterionForJDBCDate("insertTime <>", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("inserttime >", value, "inserttime");
+            addCriterionForJDBCDate("insertTime >", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("inserttime >=", value, "inserttime");
+            addCriterionForJDBCDate("insertTime >=", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeLessThan(Date value) {
-            addCriterionForJDBCDate("inserttime <", value, "inserttime");
+            addCriterionForJDBCDate("insertTime <", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("inserttime <=", value, "inserttime");
+            addCriterionForJDBCDate("insertTime <=", value, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeIn(List<Date> values) {
-            addCriterionForJDBCDate("inserttime in", values, "inserttime");
+            addCriterionForJDBCDate("insertTime in", values, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("inserttime not in", values, "inserttime");
+            addCriterionForJDBCDate("insertTime not in", values, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("inserttime between", value1, value2, "inserttime");
+            addCriterionForJDBCDate("insertTime between", value1, value2, "inserttime");
             return (Criteria) this;
         }
 
         public Criteria andInserttimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("inserttime not between", value1, value2, "inserttime");
+            addCriterionForJDBCDate("insertTime not between", value1, value2, "inserttime");
             return (Criteria) this;
         }
 

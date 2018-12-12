@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Flat Admin V.2 - Free Bootstrap Admin Templates</title>
+    <title>一张图</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
@@ -96,13 +96,33 @@
             float: right;
             margin: 8px 0
         }
+
         .flat-blue .btn.search-btn {
             background-color: #22a7f0;
             border-color: #22a7f0;
             border-radius: 5px;
         }
+
         .search-input {
             border-radius: 5px;
+        }
+
+        .tools-container {
+            position: absolute;
+            width: 45px;
+            /*height: 300px;*/
+            background-color: #353d47;
+            right: 5px;
+            bottom: 30%;
+            z-index: 100000;
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        .tools-item {
+            text-align: center;
+            padding: 7px 0;
+            cursor:pointer;
         }
     </style>
 </head>
@@ -128,41 +148,13 @@
                 <div class="search-area">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label for="inputPassword2" class="sr-only">搜索</label>
-                            <input type="password" class="form-control search-input" id="inputPassword2"
+                            <label for="searchInput" class="sr-only">搜索</label>
+                            <input type="text" class="form-control search-input" id="searchInput"
                                    placeholder="搜索内容" style="width: 185px;">
                         </div>
-                        <button type="submit" class="btn btn-primary search-btn">搜索</button>
+                        <button type="button" class="btn btn-primary search-btn" id="searchBtn">搜索</button>
                     </form>
                 </div>
-
-                <!--<ul class="nav navbar-nav navbar-right">
-                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-                        <i class="fa fa-times icon"></i>
-                    </button>
-                    <li class="dropdown profile">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            吴昊 <span class="caret"></span></a>
-                        <ul class="dropdown-menu animated fadeInDown">
-                            <li class="profile-img">
-                                <img src="../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-                            </li>
-                            <li>
-                                <div class="profile-info">
-                                    <h4 class="username">吴昊</h4>
-                                    <p>emily_hart@email.com</p>
-                                    <div class="btn-group margin-bottom-2x" role="group">
-                                        <button type="button" class="btn btn-default"><i class="fa fa-user"></i> Profile
-                                        </button>
-                                        <button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i>
-                                            退出
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>-->
             </div>
         </nav>
         <div class="side-menu sidebar-inverse">
@@ -173,19 +165,8 @@
                             <div class="icon fa fa-paper-plane" id="loginBtn"></div>
                             <div class="title">一张图</div>
                         </a>
-                        <!--<button type="button" class="navbar-expand-toggle pull-right visible-xs">-->
-                        <!--<i class="fa fa-times icon"></i>-->
-                        <!--</button>-->
                     </div>
                     <div class="filter-container">
-                        <!-- <form class="form-inline">
-                             <div class="form-group">
-                                 <label for="inputPassword2" class="sr-only">搜索</label>
-                                 <input type="password" class="form-control" id="inputPassword2"
-                                        placeholder="搜索内容" style="width: 185px;">
-                             </div>
-                             <button type="submit" class="btn btn-default">搜索</button>
-                         </form>-->
                         <div class="radio filter-line">
                             <label>
                                 <input type="radio" name="projectType" id="ptTBJ"
@@ -537,13 +518,36 @@
         <div class="wrapper">
             <!--<span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2015 Copyright.-->
             <!--More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a-->
-                <!--href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>-->
+            <!--href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>-->
         </div>
     </footer>
+    <div class="tools-container" id="leftToolsBar">
+        <div class="tools-item">
+            <img src="./icons/right_sj.png" alt="" style="width: 32px;height: 32px;" onclick="leftToolsHide()">
+        </div>
+        <div class="tools-item">
+            <img src="./icons/plus.png" alt="" style="width: 32px;height: 32px;" onclick="zoomin()">
+        </div>
+        <div class="tools-item">
+            <img src="./icons/minus.png" alt="" style="width: 32px;height: 32px;" onclick="zoomout()">
+        </div>
+        <div class="tools-item">
+            <img src="./icons/measure.png" alt="" style="width: 32px;height: 32px;" onclick="distanceMeasure()">
+        </div>
+        <div class="tools-item">
+            <img src="./icons/clear.png" alt="" style="width: 32px;height: 32px;" onclick="clearFeatures()">
+        </div>
+    </div>
+    <div class="tools-container" style="display: none;" id="leftToolsBt">
+        <div class="tools-item">
+            <img src="./icons/left_sj.png" alt="" style="width: 32px;height: 32px;" onclick="leftToolsShow()">
+        </div>
+    </div>
     <div>
         <!-- Javascript Libs -->
         <script type="text/javascript" src="../lib/js/jquery.min.js"></script>
-        <script type="text/javascript" src="../../../../static/lib/layer-v2.3/layer.js"></script>
+        <script type="text/javascript" src="../../../../static/lib/layer_mobile/layer.js"></script>
+        <!--<script type="text/javascript" src="../../../../static/lib/layer-v2.3/layer.js"></script>-->
         <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../lib/js/Chart.min.js"></script>
         <script type="text/javascript" src="../lib/js/bootstrap-switch.min.js"></script>
@@ -558,7 +562,7 @@
         <!-- Javascript -->
         <script type="text/javascript" src="../js/app.js"></script>
         <script src='../../../../static/lib/supermap/libs/SuperMap.Include.js'></script>
-        <script type="text/javascript" src="../../../../static/js/xjroud/xjroud-config.js"></script>
+        <script type="text/javascript" src="../js/xjroud-config.js"></script>
         <!--<script type="text/javascript" src="../js/xjroud-ztree.js"></script>-->
         <script type="text/javascript" src="../js/index.js"></script>
     </div>

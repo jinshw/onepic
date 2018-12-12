@@ -21,7 +21,12 @@ target/
 .idea/
 **/**/vue/xjone/node_modules/
 **/vue/xjone/.vscode/
+**/src/main/resources/docs/
+**/src/main/webapp/page/pad/
+**/src/main/webapp/page/map/vue/
 # 忽略 文件
 onepic.iml
 *.iml
 *test*.html
+src/main/resources/dev/demo15.json
+

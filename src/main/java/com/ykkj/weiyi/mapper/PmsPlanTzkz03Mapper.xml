@@ -14,7 +14,7 @@
     <result column="by_wctz_zhgs" property="byWctzZhgs" jdbcType="DECIMAL" />
     <result column="zby_wctz_sjcz" property="zbyWctzSjcz" jdbcType="DECIMAL" />
     <result column="zby_wctz_zhgs" property="zbyWctzZhgs" jdbcType="DECIMAL" />
-    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="insert_time" property="insertTime" jdbcType="DATE" />
     <result column="creattime" property="creattime" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -77,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, m_id, item, sn, gspf_jine, lastyear_wctz, bn_khjh, by_fjjh, by_wctz_sjcz, by_wctz_zhgs, 
-    zby_wctz_sjcz, zby_wctz_zhgs, inserttime, creattime
+    zby_wctz_sjcz, zby_wctz_zhgs, insert_time, creattime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03Example" >
     select
@@ -114,12 +114,12 @@
       sn, gspf_jine, lastyear_wctz, 
       bn_khjh, by_fjjh, by_wctz_sjcz, 
       by_wctz_zhgs, zby_wctz_sjcz, zby_wctz_zhgs, 
-      inserttime, creattime)
+      insert_time, creattime)
     values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{item,jdbcType=VARCHAR}, 
       #{sn,jdbcType=VARCHAR}, #{gspfJine,jdbcType=DECIMAL}, #{lastyearWctz,jdbcType=DECIMAL}, 
       #{bnKhjh,jdbcType=DECIMAL}, #{byFjjh,jdbcType=DECIMAL}, #{byWctzSjcz,jdbcType=DECIMAL}, 
       #{byWctzZhgs,jdbcType=DECIMAL}, #{zbyWctzSjcz,jdbcType=DECIMAL}, #{zbyWctzZhgs,jdbcType=DECIMAL}, 
-      #{inserttime,jdbcType=DATE}, #{creattime,jdbcType=DATE})
+      #{insertTime,jdbcType=DATE}, #{creattime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz03" >
     insert into pms_plan_tzkz03
@@ -160,8 +160,8 @@
       <if test="zbyWctzZhgs != null" >
         zby_wctz_zhgs,
       </if>
-      <if test="inserttime != null" >
-        inserttime,
+      <if test="insertTime != null" >
+        insert_time,
       </if>
       <if test="creattime != null" >
         creattime,
@@ -204,8 +204,8 @@
       <if test="zbyWctzZhgs != null" >
         #{zbyWctzZhgs,jdbcType=DECIMAL},
       </if>
-      <if test="inserttime != null" >
-        #{inserttime,jdbcType=DATE},
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=DATE},
       </if>
       <if test="creattime != null" >
         #{creattime,jdbcType=DATE},
@@ -257,8 +257,8 @@
       <if test="record.zbyWctzZhgs != null" >
         zby_wctz_zhgs = #{record.zbyWctzZhgs,jdbcType=DECIMAL},
       </if>
-      <if test="record.inserttime != null" >
-        inserttime = #{record.inserttime,jdbcType=DATE},
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=DATE},
       </if>
       <if test="record.creattime != null" >
         creattime = #{record.creattime,jdbcType=DATE},
@@ -282,7 +282,7 @@
       by_wctz_zhgs = #{record.byWctzZhgs,jdbcType=DECIMAL},
       zby_wctz_sjcz = #{record.zbyWctzSjcz,jdbcType=DECIMAL},
       zby_wctz_zhgs = #{record.zbyWctzZhgs,jdbcType=DECIMAL},
-      inserttime = #{record.inserttime,jdbcType=DATE},
+      insert_time = #{record.insertTime,jdbcType=DATE},
       creattime = #{record.creattime,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -324,8 +324,8 @@
       <if test="zbyWctzZhgs != null" >
         zby_wctz_zhgs = #{zbyWctzZhgs,jdbcType=DECIMAL},
       </if>
-      <if test="inserttime != null" >
-        inserttime = #{inserttime,jdbcType=DATE},
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=DATE},
       </if>
       <if test="creattime != null" >
         creattime = #{creattime,jdbcType=DATE},
@@ -346,7 +346,7 @@
       by_wctz_zhgs = #{byWctzZhgs,jdbcType=DECIMAL},
       zby_wctz_sjcz = #{zbyWctzSjcz,jdbcType=DECIMAL},
       zby_wctz_zhgs = #{zbyWctzZhgs,jdbcType=DECIMAL},
-      inserttime = #{inserttime,jdbcType=DATE},
+      insert_time = #{insertTime,jdbcType=DATE},
       creattime = #{creattime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>

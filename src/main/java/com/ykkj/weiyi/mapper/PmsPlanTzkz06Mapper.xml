@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz06Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz06" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="xiangmu_isbn" property="xiangmuIsbn" jdbcType="VARCHAR" />
+    <result column="xiangmu_name" property="xiangmuName" jdbcType="VARCHAR" />
+    <result column="tbdw" property="tbdw" jdbcType="VARCHAR" />
+    <result column="xmzhzxm" property="xmzhzxm" jdbcType="VARCHAR" />
+    <result column="xmzhzdh" property="xmzhzdh" jdbcType="VARCHAR" />
+    <result column="xmzhzsj" property="xmzhzsj" jdbcType="VARCHAR" />
+    <result column="zgxm" property="zgxm" jdbcType="VARCHAR" />
+    <result column="zgdh" property="zgdh" jdbcType="VARCHAR" />
+    <result column="zgsj" property="zgsj" jdbcType="VARCHAR" />
+    <result column="fzrxm" property="fzrxm" jdbcType="VARCHAR" />
+    <result column="fzrdh" property="fzrdh" jdbcType="VARCHAR" />
+    <result column="fzrsj" property="fzrsj" jdbcType="VARCHAR" />
+    <result column="ryxm" property="ryxm" jdbcType="VARCHAR" />
+    <result column="rydh" property="rydh" jdbcType="VARCHAR" />
+    <result column="rysj" property="rysj" jdbcType="VARCHAR" />
+    <result column="ryqq" property="ryqq" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="VARCHAR" />
+    <result column="chu_shi" property="chuShi" jdbcType="DECIMAL" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, xiangmu_isbn, xiangmu_name, tbdw, xmzhzxm, xmzhzdh, xmzhzsj, zgxm, zgdh, zgsj, 
+    fzrxm, fzrdh, fzrsj, ryxm, rydh, rysj, ryqq, sort_order, chu_shi, insert_time, creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz06
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz06
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pms_plan_tzkz06
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06Example" >
+    delete from pms_plan_tzkz06
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06" >
+    insert into pms_plan_tzkz06 (id, xiangmu_isbn, xiangmu_name, 
+      tbdw, xmzhzxm, xmzhzdh, 
+      xmzhzsj, zgxm, zgdh, 
+      zgsj, fzrxm, fzrdh, 
+      fzrsj, ryxm, rydh, 
+      rysj, ryqq, sort_order, 
+      chu_shi, insert_time, creattime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{xiangmuIsbn,jdbcType=VARCHAR}, #{xiangmuName,jdbcType=VARCHAR}, 
+      #{tbdw,jdbcType=VARCHAR}, #{xmzhzxm,jdbcType=VARCHAR}, #{xmzhzdh,jdbcType=VARCHAR}, 
+      #{xmzhzsj,jdbcType=VARCHAR}, #{zgxm,jdbcType=VARCHAR}, #{zgdh,jdbcType=VARCHAR}, 
+      #{zgsj,jdbcType=VARCHAR}, #{fzrxm,jdbcType=VARCHAR}, #{fzrdh,jdbcType=VARCHAR}, 
+      #{fzrsj,jdbcType=VARCHAR}, #{ryxm,jdbcType=VARCHAR}, #{rydh,jdbcType=VARCHAR}, 
+      #{rysj,jdbcType=VARCHAR}, #{ryqq,jdbcType=VARCHAR}, #{sortOrder,jdbcType=VARCHAR}, 
+      #{chuShi,jdbcType=DECIMAL}, #{insertTime,jdbcType=TIMESTAMP}, #{creattime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06" >
+    insert into pms_plan_tzkz06
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="xiangmuIsbn != null" >
+        xiangmu_isbn,
+      </if>
+      <if test="xiangmuName != null" >
+        xiangmu_name,
+      </if>
+      <if test="tbdw != null" >
+        tbdw,
+      </if>
+      <if test="xmzhzxm != null" >
+        xmzhzxm,
+      </if>
+      <if test="xmzhzdh != null" >
+        xmzhzdh,
+      </if>
+      <if test="xmzhzsj != null" >
+        xmzhzsj,
+      </if>
+      <if test="zgxm != null" >
+        zgxm,
+      </if>
+      <if test="zgdh != null" >
+        zgdh,
+      </if>
+      <if test="zgsj != null" >
+        zgsj,
+      </if>
+      <if test="fzrxm != null" >
+        fzrxm,
+      </if>
+      <if test="fzrdh != null" >
+        fzrdh,
+      </if>
+      <if test="fzrsj != null" >
+        fzrsj,
+      </if>
+      <if test="ryxm != null" >
+        ryxm,
+      </if>
+      <if test="rydh != null" >
+        rydh,
+      </if>
+      <if test="rysj != null" >
+        rysj,
+      </if>
+      <if test="ryqq != null" >
+        ryqq,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="chuShi != null" >
+        chu_shi,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangmuIsbn != null" >
+        #{xiangmuIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangmuName != null" >
+        #{xiangmuName,jdbcType=VARCHAR},
+      </if>
+      <if test="tbdw != null" >
+        #{tbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzxm != null" >
+        #{xmzhzxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzdh != null" >
+        #{xmzhzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzsj != null" >
+        #{xmzhzsj,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxm != null" >
+        #{zgxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zgdh != null" >
+        #{zgdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zgsj != null" >
+        #{zgsj,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrxm != null" >
+        #{fzrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrdh != null" >
+        #{fzrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrsj != null" >
+        #{fzrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ryxm != null" >
+        #{ryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="rydh != null" >
+        #{rydh,jdbcType=VARCHAR},
+      </if>
+      <if test="rysj != null" >
+        #{rysj,jdbcType=VARCHAR},
+      </if>
+      <if test="ryqq != null" >
+        #{ryqq,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="chuShi != null" >
+        #{chuShi,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz06
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz06
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xiangmuIsbn != null" >
+        xiangmu_isbn = #{record.xiangmuIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xiangmuName != null" >
+        xiangmu_name = #{record.xiangmuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tbdw != null" >
+        tbdw = #{record.tbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmzhzxm != null" >
+        xmzhzxm = #{record.xmzhzxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmzhzdh != null" >
+        xmzhzdh = #{record.xmzhzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xmzhzsj != null" >
+        xmzhzsj = #{record.xmzhzsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgxm != null" >
+        zgxm = #{record.zgxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgdh != null" >
+        zgdh = #{record.zgdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgsj != null" >
+        zgsj = #{record.zgsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzrxm != null" >
+        fzrxm = #{record.fzrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzrdh != null" >
+        fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzrsj != null" >
+        fzrsj = #{record.fzrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ryxm != null" >
+        ryxm = #{record.ryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rydh != null" >
+        rydh = #{record.rydh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rysj != null" >
+        rysj = #{record.rysj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ryqq != null" >
+        ryqq = #{record.ryqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortOrder != null" >
+        sort_order = #{record.sortOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chuShi != null" >
+        chu_shi = #{record.chuShi,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz06
+    set id = #{record.id,jdbcType=VARCHAR},
+      xiangmu_isbn = #{record.xiangmuIsbn,jdbcType=VARCHAR},
+      xiangmu_name = #{record.xiangmuName,jdbcType=VARCHAR},
+      tbdw = #{record.tbdw,jdbcType=VARCHAR},
+      xmzhzxm = #{record.xmzhzxm,jdbcType=VARCHAR},
+      xmzhzdh = #{record.xmzhzdh,jdbcType=VARCHAR},
+      xmzhzsj = #{record.xmzhzsj,jdbcType=VARCHAR},
+      zgxm = #{record.zgxm,jdbcType=VARCHAR},
+      zgdh = #{record.zgdh,jdbcType=VARCHAR},
+      zgsj = #{record.zgsj,jdbcType=VARCHAR},
+      fzrxm = #{record.fzrxm,jdbcType=VARCHAR},
+      fzrdh = #{record.fzrdh,jdbcType=VARCHAR},
+      fzrsj = #{record.fzrsj,jdbcType=VARCHAR},
+      ryxm = #{record.ryxm,jdbcType=VARCHAR},
+      rydh = #{record.rydh,jdbcType=VARCHAR},
+      rysj = #{record.rysj,jdbcType=VARCHAR},
+      ryqq = #{record.ryqq,jdbcType=VARCHAR},
+      sort_order = #{record.sortOrder,jdbcType=VARCHAR},
+      chu_shi = #{record.chuShi,jdbcType=DECIMAL},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06" >
+    update pms_plan_tzkz06
+    <set >
+      <if test="xiangmuIsbn != null" >
+        xiangmu_isbn = #{xiangmuIsbn,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangmuName != null" >
+        xiangmu_name = #{xiangmuName,jdbcType=VARCHAR},
+      </if>
+      <if test="tbdw != null" >
+        tbdw = #{tbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzxm != null" >
+        xmzhzxm = #{xmzhzxm,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzdh != null" >
+        xmzhzdh = #{xmzhzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xmzhzsj != null" >
+        xmzhzsj = #{xmzhzsj,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxm != null" >
+        zgxm = #{zgxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zgdh != null" >
+        zgdh = #{zgdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zgsj != null" >
+        zgsj = #{zgsj,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrxm != null" >
+        fzrxm = #{fzrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrdh != null" >
+        fzrdh = #{fzrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzrsj != null" >
+        fzrsj = #{fzrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ryxm != null" >
+        ryxm = #{ryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="rydh != null" >
+        rydh = #{rydh,jdbcType=VARCHAR},
+      </if>
+      <if test="rysj != null" >
+        rysj = #{rysj,jdbcType=VARCHAR},
+      </if>
+      <if test="ryqq != null" >
+        ryqq = #{ryqq,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="chuShi != null" >
+        chu_shi = #{chuShi,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz06" >
+    update pms_plan_tzkz06
+    set xiangmu_isbn = #{xiangmuIsbn,jdbcType=VARCHAR},
+      xiangmu_name = #{xiangmuName,jdbcType=VARCHAR},
+      tbdw = #{tbdw,jdbcType=VARCHAR},
+      xmzhzxm = #{xmzhzxm,jdbcType=VARCHAR},
+      xmzhzdh = #{xmzhzdh,jdbcType=VARCHAR},
+      xmzhzsj = #{xmzhzsj,jdbcType=VARCHAR},
+      zgxm = #{zgxm,jdbcType=VARCHAR},
+      zgdh = #{zgdh,jdbcType=VARCHAR},
+      zgsj = #{zgsj,jdbcType=VARCHAR},
+      fzrxm = #{fzrxm,jdbcType=VARCHAR},
+      fzrdh = #{fzrdh,jdbcType=VARCHAR},
+      fzrsj = #{fzrsj,jdbcType=VARCHAR},
+      ryxm = #{ryxm,jdbcType=VARCHAR},
+      rydh = #{rydh,jdbcType=VARCHAR},
+      rysj = #{rysj,jdbcType=VARCHAR},
+      ryqq = #{ryqq,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=VARCHAR},
+      chu_shi = #{chuShi,jdbcType=DECIMAL},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

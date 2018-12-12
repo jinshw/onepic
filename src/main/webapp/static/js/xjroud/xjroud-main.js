@@ -119,6 +119,12 @@ function init() {
         transparent: true,
         cacheEnabled: true
     });
+
+    layerMQI = new SuperMap.Layer.TiledDynamicRESTLayer("MQI", MAPURL.MQI, {
+        transparent: true,
+        cacheEnabled: true
+    });
+
     layerJSJDTWD = new SuperMap.Layer.TiledDynamicRESTLayer("layerJSJDTWD", MAPURL.JSJD_URL_TWD, {
         transparent: true,
         cacheEnabled: true
@@ -356,6 +362,7 @@ function removeVectorLayer() {
 }
 
 
+
 //异步加载图层
 function addLayer() {
     map.addLayers([
@@ -363,10 +370,10 @@ function addLayer() {
         layer20150913, layer20161210, layerYX20162,
         layerYX201705G216, layerYX201705TWD, layerYX201706, layerYX201707, layerYX2017081, layerYX2017082, layerYX201709, layerChangeArea,
         layerRoad, layerZJRoad,
-        layerJSJD, layerJSJDTWD, ponitLayer, vectorLayer, markers,areaLayer]);
+        layerJSJD, layerJSJDTWD, ponitLayer, vectorLayer, markers,areaLayer,layerMQI]);
 
     //显示地图范围9732011.83931, 5440449.31251    85.782, 41.344
-    map.setCenter(new SuperMap.LonLat(87.64226, 43.79469), 1);
+    map.setCenter(new SuperMap.LonLat(87.64226, 43.79469), 2);
 
     setLayerVisibility({
         layerT: true,

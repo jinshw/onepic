@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz05Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz05" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="DECIMAL" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="DECIMAL" />
+    <result column="zhb_cy_rs" property="zhbCyRs" jdbcType="DECIMAL" />
+    <result column="zhb_qz_jsry" property="zhbQzJsry" jdbcType="DECIMAL" />
+    <result column="zhb_cydwjs" property="zhbCydwjs" jdbcType="DECIMAL" />
+    <result column="jl_cy_ry" property="jlCyRy" jdbcType="DECIMAL" />
+    <result column="jl_qz_jsry" property="jlQzJsry" jdbcType="DECIMAL" />
+    <result column="jl_cydwjs" property="jlCydwjs" jdbcType="DECIMAL" />
+    <result column="syjc_cy_rs" property="syjcCyRs" jdbcType="DECIMAL" />
+    <result column="syjc_qz_jsry" property="syjcQzJsry" jdbcType="DECIMAL" />
+    <result column="syjc_cydwjs" property="syjcCydwjs" jdbcType="DECIMAL" />
+    <result column="sg_cy_rs" property="sgCyRs" jdbcType="DECIMAL" />
+    <result column="sg_qz_jsry" property="sgQzJsry" jdbcType="DECIMAL" />
+    <result column="sg_cydwjs" property="sgCydwjs" jdbcType="DECIMAL" />
+    <result column="lqhntbhz" property="lqhntbhz" jdbcType="DECIMAL" />
+    <result column="snwdtbhz" property="snwdtbhz" jdbcType="DECIMAL" />
+    <result column="snhntbhz" property="snhntbhz" jdbcType="DECIMAL" />
+    <result column="lqtpj" property="lqtpj" jdbcType="DECIMAL" />
+    <result column="swtpj" property="swtpj" jdbcType="DECIMAL" />
+    <result column="ylj" property="ylj" jdbcType="DECIMAL" />
+    <result column="pdl" property="pdl" jdbcType="DECIMAL" />
+    <result column="wjj" property="wjj" jdbcType="DECIMAL" />
+    <result column="zzj" property="zzj" jdbcType="DECIMAL" />
+    <result column="cl_hj" property="clHj" jdbcType="DECIMAL" />
+    <result column="cl_qzys" property="clQzys" jdbcType="DECIMAL" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, sn, item_name, type, zhb_cy_rs, zhb_qz_jsry, zhb_cydwjs, jl_cy_ry, jl_qz_jsry, 
+    jl_cydwjs, syjc_cy_rs, syjc_qz_jsry, syjc_cydwjs, sg_cy_rs, sg_qz_jsry, sg_cydwjs, 
+    lqhntbhz, snwdtbhz, snhntbhz, lqtpj, swtpj, ylj, pdl, wjj, zzj, cl_hj, cl_qzys, insert_time, 
+    creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz05
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz05
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_plan_tzkz05
+    where id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05Example" >
+    delete from pms_plan_tzkz05
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05" >
+    insert into pms_plan_tzkz05 (id, m_id, sn, 
+      item_name, type, zhb_cy_rs, 
+      zhb_qz_jsry, zhb_cydwjs, jl_cy_ry, 
+      jl_qz_jsry, jl_cydwjs, syjc_cy_rs, 
+      syjc_qz_jsry, syjc_cydwjs, sg_cy_rs, 
+      sg_qz_jsry, sg_cydwjs, lqhntbhz, 
+      snwdtbhz, snhntbhz, lqtpj, 
+      swtpj, ylj, pdl, wjj, 
+      zzj, cl_hj, cl_qzys, 
+      insert_time, creattime)
+    values (#{id,jdbcType=DECIMAL}, #{mId,jdbcType=VARCHAR}, #{sn,jdbcType=DECIMAL}, 
+      #{itemName,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, #{zhbCyRs,jdbcType=DECIMAL}, 
+      #{zhbQzJsry,jdbcType=DECIMAL}, #{zhbCydwjs,jdbcType=DECIMAL}, #{jlCyRy,jdbcType=DECIMAL}, 
+      #{jlQzJsry,jdbcType=DECIMAL}, #{jlCydwjs,jdbcType=DECIMAL}, #{syjcCyRs,jdbcType=DECIMAL}, 
+      #{syjcQzJsry,jdbcType=DECIMAL}, #{syjcCydwjs,jdbcType=DECIMAL}, #{sgCyRs,jdbcType=DECIMAL}, 
+      #{sgQzJsry,jdbcType=DECIMAL}, #{sgCydwjs,jdbcType=DECIMAL}, #{lqhntbhz,jdbcType=DECIMAL}, 
+      #{snwdtbhz,jdbcType=DECIMAL}, #{snhntbhz,jdbcType=DECIMAL}, #{lqtpj,jdbcType=DECIMAL}, 
+      #{swtpj,jdbcType=DECIMAL}, #{ylj,jdbcType=DECIMAL}, #{pdl,jdbcType=DECIMAL}, #{wjj,jdbcType=DECIMAL}, 
+      #{zzj,jdbcType=DECIMAL}, #{clHj,jdbcType=DECIMAL}, #{clQzys,jdbcType=DECIMAL}, 
+      #{insertTime,jdbcType=TIMESTAMP}, #{creattime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05" >
+    insert into pms_plan_tzkz05
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="zhbCyRs != null" >
+        zhb_cy_rs,
+      </if>
+      <if test="zhbQzJsry != null" >
+        zhb_qz_jsry,
+      </if>
+      <if test="zhbCydwjs != null" >
+        zhb_cydwjs,
+      </if>
+      <if test="jlCyRy != null" >
+        jl_cy_ry,
+      </if>
+      <if test="jlQzJsry != null" >
+        jl_qz_jsry,
+      </if>
+      <if test="jlCydwjs != null" >
+        jl_cydwjs,
+      </if>
+      <if test="syjcCyRs != null" >
+        syjc_cy_rs,
+      </if>
+      <if test="syjcQzJsry != null" >
+        syjc_qz_jsry,
+      </if>
+      <if test="syjcCydwjs != null" >
+        syjc_cydwjs,
+      </if>
+      <if test="sgCyRs != null" >
+        sg_cy_rs,
+      </if>
+      <if test="sgQzJsry != null" >
+        sg_qz_jsry,
+      </if>
+      <if test="sgCydwjs != null" >
+        sg_cydwjs,
+      </if>
+      <if test="lqhntbhz != null" >
+        lqhntbhz,
+      </if>
+      <if test="snwdtbhz != null" >
+        snwdtbhz,
+      </if>
+      <if test="snhntbhz != null" >
+        snhntbhz,
+      </if>
+      <if test="lqtpj != null" >
+        lqtpj,
+      </if>
+      <if test="swtpj != null" >
+        swtpj,
+      </if>
+      <if test="ylj != null" >
+        ylj,
+      </if>
+      <if test="pdl != null" >
+        pdl,
+      </if>
+      <if test="wjj != null" >
+        wjj,
+      </if>
+      <if test="zzj != null" >
+        zzj,
+      </if>
+      <if test="clHj != null" >
+        cl_hj,
+      </if>
+      <if test="clQzys != null" >
+        cl_qzys,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbCyRs != null" >
+        #{zhbCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbQzJsry != null" >
+        #{zhbQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbCydwjs != null" >
+        #{zhbCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlCyRy != null" >
+        #{jlCyRy,jdbcType=DECIMAL},
+      </if>
+      <if test="jlQzJsry != null" >
+        #{jlQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="jlCydwjs != null" >
+        #{jlCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcCyRs != null" >
+        #{syjcCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcQzJsry != null" >
+        #{syjcQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcCydwjs != null" >
+        #{syjcCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="sgCyRs != null" >
+        #{sgCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="sgQzJsry != null" >
+        #{sgQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="sgCydwjs != null" >
+        #{sgCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="lqhntbhz != null" >
+        #{lqhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="snwdtbhz != null" >
+        #{snwdtbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="snhntbhz != null" >
+        #{snhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="lqtpj != null" >
+        #{lqtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="swtpj != null" >
+        #{swtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="ylj != null" >
+        #{ylj,jdbcType=DECIMAL},
+      </if>
+      <if test="pdl != null" >
+        #{pdl,jdbcType=DECIMAL},
+      </if>
+      <if test="wjj != null" >
+        #{wjj,jdbcType=DECIMAL},
+      </if>
+      <if test="zzj != null" >
+        #{zzj,jdbcType=DECIMAL},
+      </if>
+      <if test="clHj != null" >
+        #{clHj,jdbcType=DECIMAL},
+      </if>
+      <if test="clQzys != null" >
+        #{clQzys,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz05
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz05
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhbCyRs != null" >
+        zhb_cy_rs = #{record.zhbCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhbQzJsry != null" >
+        zhb_qz_jsry = #{record.zhbQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhbCydwjs != null" >
+        zhb_cydwjs = #{record.zhbCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jlCyRy != null" >
+        jl_cy_ry = #{record.jlCyRy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jlQzJsry != null" >
+        jl_qz_jsry = #{record.jlQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jlCydwjs != null" >
+        jl_cydwjs = #{record.jlCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syjcCyRs != null" >
+        syjc_cy_rs = #{record.syjcCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syjcQzJsry != null" >
+        syjc_qz_jsry = #{record.syjcQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syjcCydwjs != null" >
+        syjc_cydwjs = #{record.syjcCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sgCyRs != null" >
+        sg_cy_rs = #{record.sgCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sgQzJsry != null" >
+        sg_qz_jsry = #{record.sgQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sgCydwjs != null" >
+        sg_cydwjs = #{record.sgCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lqhntbhz != null" >
+        lqhntbhz = #{record.lqhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.snwdtbhz != null" >
+        snwdtbhz = #{record.snwdtbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.snhntbhz != null" >
+        snhntbhz = #{record.snhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lqtpj != null" >
+        lqtpj = #{record.lqtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.swtpj != null" >
+        swtpj = #{record.swtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ylj != null" >
+        ylj = #{record.ylj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pdl != null" >
+        pdl = #{record.pdl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wjj != null" >
+        wjj = #{record.wjj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zzj != null" >
+        zzj = #{record.zzj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clHj != null" >
+        cl_hj = #{record.clHj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clQzys != null" >
+        cl_qzys = #{record.clQzys,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz05
+    set id = #{record.id,jdbcType=DECIMAL},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=DECIMAL},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=DECIMAL},
+      zhb_cy_rs = #{record.zhbCyRs,jdbcType=DECIMAL},
+      zhb_qz_jsry = #{record.zhbQzJsry,jdbcType=DECIMAL},
+      zhb_cydwjs = #{record.zhbCydwjs,jdbcType=DECIMAL},
+      jl_cy_ry = #{record.jlCyRy,jdbcType=DECIMAL},
+      jl_qz_jsry = #{record.jlQzJsry,jdbcType=DECIMAL},
+      jl_cydwjs = #{record.jlCydwjs,jdbcType=DECIMAL},
+      syjc_cy_rs = #{record.syjcCyRs,jdbcType=DECIMAL},
+      syjc_qz_jsry = #{record.syjcQzJsry,jdbcType=DECIMAL},
+      syjc_cydwjs = #{record.syjcCydwjs,jdbcType=DECIMAL},
+      sg_cy_rs = #{record.sgCyRs,jdbcType=DECIMAL},
+      sg_qz_jsry = #{record.sgQzJsry,jdbcType=DECIMAL},
+      sg_cydwjs = #{record.sgCydwjs,jdbcType=DECIMAL},
+      lqhntbhz = #{record.lqhntbhz,jdbcType=DECIMAL},
+      snwdtbhz = #{record.snwdtbhz,jdbcType=DECIMAL},
+      snhntbhz = #{record.snhntbhz,jdbcType=DECIMAL},
+      lqtpj = #{record.lqtpj,jdbcType=DECIMAL},
+      swtpj = #{record.swtpj,jdbcType=DECIMAL},
+      ylj = #{record.ylj,jdbcType=DECIMAL},
+      pdl = #{record.pdl,jdbcType=DECIMAL},
+      wjj = #{record.wjj,jdbcType=DECIMAL},
+      zzj = #{record.zzj,jdbcType=DECIMAL},
+      cl_hj = #{record.clHj,jdbcType=DECIMAL},
+      cl_qzys = #{record.clQzys,jdbcType=DECIMAL},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05" >
+    update pms_plan_tzkz05
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbCyRs != null" >
+        zhb_cy_rs = #{zhbCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbQzJsry != null" >
+        zhb_qz_jsry = #{zhbQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="zhbCydwjs != null" >
+        zhb_cydwjs = #{zhbCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlCyRy != null" >
+        jl_cy_ry = #{jlCyRy,jdbcType=DECIMAL},
+      </if>
+      <if test="jlQzJsry != null" >
+        jl_qz_jsry = #{jlQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="jlCydwjs != null" >
+        jl_cydwjs = #{jlCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcCyRs != null" >
+        syjc_cy_rs = #{syjcCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcQzJsry != null" >
+        syjc_qz_jsry = #{syjcQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="syjcCydwjs != null" >
+        syjc_cydwjs = #{syjcCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="sgCyRs != null" >
+        sg_cy_rs = #{sgCyRs,jdbcType=DECIMAL},
+      </if>
+      <if test="sgQzJsry != null" >
+        sg_qz_jsry = #{sgQzJsry,jdbcType=DECIMAL},
+      </if>
+      <if test="sgCydwjs != null" >
+        sg_cydwjs = #{sgCydwjs,jdbcType=DECIMAL},
+      </if>
+      <if test="lqhntbhz != null" >
+        lqhntbhz = #{lqhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="snwdtbhz != null" >
+        snwdtbhz = #{snwdtbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="snhntbhz != null" >
+        snhntbhz = #{snhntbhz,jdbcType=DECIMAL},
+      </if>
+      <if test="lqtpj != null" >
+        lqtpj = #{lqtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="swtpj != null" >
+        swtpj = #{swtpj,jdbcType=DECIMAL},
+      </if>
+      <if test="ylj != null" >
+        ylj = #{ylj,jdbcType=DECIMAL},
+      </if>
+      <if test="pdl != null" >
+        pdl = #{pdl,jdbcType=DECIMAL},
+      </if>
+      <if test="wjj != null" >
+        wjj = #{wjj,jdbcType=DECIMAL},
+      </if>
+      <if test="zzj != null" >
+        zzj = #{zzj,jdbcType=DECIMAL},
+      </if>
+      <if test="clHj != null" >
+        cl_hj = #{clHj,jdbcType=DECIMAL},
+      </if>
+      <if test="clQzys != null" >
+        cl_qzys = #{clQzys,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz05" >
+    update pms_plan_tzkz05
+    set m_id = #{mId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=DECIMAL},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=DECIMAL},
+      zhb_cy_rs = #{zhbCyRs,jdbcType=DECIMAL},
+      zhb_qz_jsry = #{zhbQzJsry,jdbcType=DECIMAL},
+      zhb_cydwjs = #{zhbCydwjs,jdbcType=DECIMAL},
+      jl_cy_ry = #{jlCyRy,jdbcType=DECIMAL},
+      jl_qz_jsry = #{jlQzJsry,jdbcType=DECIMAL},
+      jl_cydwjs = #{jlCydwjs,jdbcType=DECIMAL},
+      syjc_cy_rs = #{syjcCyRs,jdbcType=DECIMAL},
+      syjc_qz_jsry = #{syjcQzJsry,jdbcType=DECIMAL},
+      syjc_cydwjs = #{syjcCydwjs,jdbcType=DECIMAL},
+      sg_cy_rs = #{sgCyRs,jdbcType=DECIMAL},
+      sg_qz_jsry = #{sgQzJsry,jdbcType=DECIMAL},
+      sg_cydwjs = #{sgCydwjs,jdbcType=DECIMAL},
+      lqhntbhz = #{lqhntbhz,jdbcType=DECIMAL},
+      snwdtbhz = #{snwdtbhz,jdbcType=DECIMAL},
+      snhntbhz = #{snhntbhz,jdbcType=DECIMAL},
+      lqtpj = #{lqtpj,jdbcType=DECIMAL},
+      swtpj = #{swtpj,jdbcType=DECIMAL},
+      ylj = #{ylj,jdbcType=DECIMAL},
+      pdl = #{pdl,jdbcType=DECIMAL},
+      wjj = #{wjj,jdbcType=DECIMAL},
+      zzj = #{zzj,jdbcType=DECIMAL},
+      cl_hj = #{clHj,jdbcType=DECIMAL},
+      cl_qzys = #{clQzys,jdbcType=DECIMAL},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

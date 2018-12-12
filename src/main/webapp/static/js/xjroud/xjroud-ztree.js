@@ -53,7 +53,7 @@ function onClick(event, treeId, treeNode) {
 	    });
 	} else if (treeNode.gljb == 'SD') {
 	    queryParam = new SuperMap.REST.FilterParameter({
-		name : "一般省道@交通#3",
+		name : "GLSD@xj#4",
 		attributeFilter : "SmID = " + treeNode.smId
 	    });
 	}
@@ -186,7 +186,7 @@ $(function() {
 	name : "GLGD_3@xj"
     });
     queryParamSD = new SuperMap.REST.FilterParameter({
-	name : "一般省道@交通#3"
+	name : "GLSD@xj#4"
     });
     queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
 	queryParams : [ queryParamGS, queryParamGD, queryParamSD ],

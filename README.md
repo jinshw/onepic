@@ -50,3 +50,17 @@ xjroud-ztree.js
 * 类上添加@Component 注解标签
 * 定时器的方法没有返回值
 
+---------------------------------------
+实时路况用到jar包
+fastjson-1.2.4.jar
+
+多数据源配置用到jar包
+commons-pool-1.3.jar
+c3p0-0.9.1.2.jar
+ojdbc14-10.2.0.2.jar
+
+* maven3 手动安装oracle本地驱动jar到仓库，
+进入jar包所在文件夹执行：
+mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.2 -Dpackaging=jar -Dfile=ojdbc14-10.2.0.2.jar
+
+

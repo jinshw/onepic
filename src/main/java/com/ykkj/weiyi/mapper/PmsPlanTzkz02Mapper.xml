@@ -21,7 +21,7 @@
     <result column="zbyljwc21" property="zbyljwc21" jdbcType="DECIMAL" />
     <result column="zncljwc11" property="zncljwc11" jdbcType="DECIMAL" />
     <result column="zncljwc21" property="zncljwc21" jdbcType="DECIMAL" />
-    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="insert_time" property="insertTime" jdbcType="DATE" />
     <result column="creattime" property="creattime" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -84,7 +84,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, m_id, item_name, jhbz_id, id_two, unit, zb_type, zb_code, parent_code, htsl1, 
-    htsl2, fhsl1, fhsl2, bnjh1, bnjh2, zbyljwc11, zbyljwc21, zncljwc11, zncljwc21, inserttime, 
+    htsl2, fhsl1, fhsl2, bnjh1, bnjh2, zbyljwc11, zbyljwc21, zncljwc11, zncljwc21, insert_time, 
     creattime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02Example" >
@@ -124,7 +124,7 @@
       htsl1, htsl2, fhsl1, 
       fhsl2, bnjh1, bnjh2, 
       zbyljwc11, zbyljwc21, zncljwc11, 
-      zncljwc21, inserttime, creattime
+      zncljwc21, insert_time, creattime
       )
     values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
       #{jhbzId,jdbcType=VARCHAR}, #{idTwo,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
@@ -132,7 +132,7 @@
       #{htsl1,jdbcType=DECIMAL}, #{htsl2,jdbcType=DECIMAL}, #{fhsl1,jdbcType=DECIMAL}, 
       #{fhsl2,jdbcType=DECIMAL}, #{bnjh1,jdbcType=DECIMAL}, #{bnjh2,jdbcType=DECIMAL}, 
       #{zbyljwc11,jdbcType=DECIMAL}, #{zbyljwc21,jdbcType=DECIMAL}, #{zncljwc11,jdbcType=DECIMAL}, 
-      #{zncljwc21,jdbcType=DECIMAL}, #{inserttime,jdbcType=DATE}, #{creattime,jdbcType=DATE}
+      #{zncljwc21,jdbcType=DECIMAL}, #{insertTime,jdbcType=DATE}, #{creattime,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz02" >
@@ -195,8 +195,8 @@
       <if test="zncljwc21 != null" >
         zncljwc21,
       </if>
-      <if test="inserttime != null" >
-        inserttime,
+      <if test="insertTime != null" >
+        insert_time,
       </if>
       <if test="creattime != null" >
         creattime,
@@ -260,8 +260,8 @@
       <if test="zncljwc21 != null" >
         #{zncljwc21,jdbcType=DECIMAL},
       </if>
-      <if test="inserttime != null" >
-        #{inserttime,jdbcType=DATE},
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=DATE},
       </if>
       <if test="creattime != null" >
         #{creattime,jdbcType=DATE},
@@ -334,8 +334,8 @@
       <if test="record.zncljwc21 != null" >
         zncljwc21 = #{record.zncljwc21,jdbcType=DECIMAL},
       </if>
-      <if test="record.inserttime != null" >
-        inserttime = #{record.inserttime,jdbcType=DATE},
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=DATE},
       </if>
       <if test="record.creattime != null" >
         creattime = #{record.creattime,jdbcType=DATE},
@@ -366,7 +366,7 @@
       zbyljwc21 = #{record.zbyljwc21,jdbcType=DECIMAL},
       zncljwc11 = #{record.zncljwc11,jdbcType=DECIMAL},
       zncljwc21 = #{record.zncljwc21,jdbcType=DECIMAL},
-      inserttime = #{record.inserttime,jdbcType=DATE},
+      insert_time = #{record.insertTime,jdbcType=DATE},
       creattime = #{record.creattime,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -429,8 +429,8 @@
       <if test="zncljwc21 != null" >
         zncljwc21 = #{zncljwc21,jdbcType=DECIMAL},
       </if>
-      <if test="inserttime != null" >
-        inserttime = #{inserttime,jdbcType=DATE},
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=DATE},
       </if>
       <if test="creattime != null" >
         creattime = #{creattime,jdbcType=DATE},
@@ -458,7 +458,7 @@
       zbyljwc21 = #{zbyljwc21,jdbcType=DECIMAL},
       zncljwc11 = #{zncljwc11,jdbcType=DECIMAL},
       zncljwc21 = #{zncljwc21,jdbcType=DECIMAL},
-      inserttime = #{inserttime,jdbcType=DATE},
+      insert_time = #{insertTime,jdbcType=DATE},
       creattime = #{creattime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>

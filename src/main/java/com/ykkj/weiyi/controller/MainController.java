@@ -5,6 +5,7 @@ import com.ykkj.weiyi.pojo.Roud;
 import com.ykkj.weiyi.pojo.Stake;
 import com.ykkj.weiyi.service.impl.RoudService;
 import com.ykkj.weiyi.service.impl.StakeService;
+import com.ykkj.weiyi.socket.MyProducer;
 import com.ykkj.weiyi.util.*;
 import net.minidev.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -141,7 +143,8 @@ public class MainController {
         jsonObject.put("message", "success");
         String type = (String) request.getParameter("type");
 
-        String url = "http://localhost:8090/iserver/services/data-zaijiandaolu4/rest/data/featureResults.rjson?returnContent=true";
+        String url = "http://localhost:8090/iserver/services/data-xinjiang12/rest/data/featureResults.rjson?returnContent=true";
+//        String url = "http://localhost:8090/iserver/services/data-zaijiandaolu4/rest/data/featureResults.rjson?returnContent=true";
 //        String url = "http://localhost:8090/iserver/services/data-zhcs/rest/data/featureResults.rjson?returnContent=true";
         String param = "{\"getFeatureMode\":\"SQL\",\"targetEpsgCode\":4326,\"datasetNames\":[\"" +
                 type +
@@ -152,7 +155,7 @@ public class MainController {
         APIHttpClient apiHttpClient = new APIHttpClient(url);
 
         String responseStr = apiHttpClient.post(param);
-        FileUtils.writePageToFile(responseStr, "h:/json.json", "UTF-8");
+        FileUtils.writePageToFile(responseStr, "E:/json.json", "UTF-8");
         saveStake(responseStr);
         endTime = System.currentTimeMillis();
 
@@ -185,15 +188,33 @@ public class MainController {
             Object[] _filedsNames = fieldNames.toArray();
             Object[] _fieldValues = fieldValues.toArray();
             int _index = _filedsNames.length;
+            stakeName = "";
             for (int i = (_index - 1); i >= 0; i--) {
+                if (_filedsNames[i].equals("ROADCODE")) {// 线路名称
+                    stakeName = stakeName + (String) _fieldValues[i];
+                }
+                if (_filedsNames[i].equals("ROADNAME")) {// 线路名称
+                    stakeName = stakeName + (String) _fieldValues[i];
+                }
+                if (_filedsNames[i].equals("QDDM")) {// 线路名称
+                    stakeName = stakeName + (String) _fieldValues[i];
+                }
+                if (_filedsNames[i].equals("ZDDM")) {// 线路名称
+                    stakeName = stakeName + (String) _fieldValues[i];
+                }
+                if (_filedsNames[i].equals("LDLX")) {//类型
+                    stakeType = (String) _fieldValues[i];
+                }
+/*
                 if (_filedsNames[i].equals("XMMC")) {// 线路名称
                     stakeName = (String) _fieldValues[i];
                 }
-                if (_filedsNames[i].equals("GLJB")) {//类型
+*/
+                /*if (_filedsNames[i].equals("GLJB")) {//类型
                     stakeType = (String) _fieldValues[i];
-                }
+                }*/
             }
-
+            System.out.println("stakeName=="+stakeName);
             points = JsonPath.read(json, "$.features[" + count + "].geometry.points");
             _points = points.toArray();
             _count = 1;
@@ -268,11 +289,11 @@ public class MainController {
 
 
     @RequestMapping("uploadFile")
-    public void uploadFile(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response) throws Exception {
+    public void uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String filePath = "";
         JSONObject json = new JSONObject();
-        json.put("status",200);
-        json.put("messages","success");
+        json.put("status", 200);
+        json.put("messages", "success");
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
@@ -291,4 +312,26 @@ public class MainController {
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().print(json.toString());
     }
+
+    @RequestMapping("kafka")
+    public void kafkaServerStart(HttpServletRequest request,HttpServletResponse response ){
+        MyProducer.startKafka();
+        try {
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().print("Kafka模拟服务启动成功！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @RequestMapping("stopkafka")
+    public void kafkaServerStop(HttpServletRequest request,HttpServletResponse response){
+        MyProducer.stopKafka();
+        try {
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().print("Kafka模拟服务停止成功！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

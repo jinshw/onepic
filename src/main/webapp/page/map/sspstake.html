@@ -1,0 +1,1129 @@
+<!--10月份demo-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新疆公路建设指挥平台</title>
+    <link
+            href="../../static/lib/font-awesome-4.4.0/css/font-awesome.min.css"
+            rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="../../static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../static/lib/bootstrap-table/dist/bootstrap-table.css">
+    <script type="text/javascript"
+            src="../../static/lib/jquery/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script type="text/javascript"
+            src="../../static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="../../static/lib/bootstrap-table/dist/bootstrap-table.js"></script>
+
+    <script src='../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+
+    <!--<script src="../../static/js/getStake.js"></script>-->
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #map {
+            position: relative;
+            height: 800px;
+            border: 1px solid #3473b7;
+        }
+
+        #toolbar {
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 10px;
+            background-color: #16212b;
+        }
+    </style>
+    <script type="text/javascript">
+        var host = "http://localhost:8099";
+        var map, layer, routeObj, vectorLayer
+        lineStyle = {
+            strokeColor: "red",
+            strokeWidth: 5,
+            pointRadius: 3
+        },
+            lineStyle2 = {
+                strokeColor: "#669933",
+                strokeWidth: 3,
+                pointRadius: 3
+            },
+            url1 = host + "/iserver/services/map-zhdt/rest/maps/综合地图",
+            url2 = host + "/iserver/services/spatialAnalysis-xinjiang15/restjsr/spatialanalyst";
+
+        var feature;
+
+        function init() {
+
+            var allHeight = document.documentElement.clientHeight;
+            $("#map").height(allHeight);
+
+            //初始化图层
+            layer = new SuperMap.Layer.TiledDynamicRESTLayer("changchun", url1, {
+                transparent: true,
+                cacheEnabled: true
+            }, {maxResolution: "auto"});
+            vectorLayer = new SuperMap.Layer.Vector("RouteLayer");
+
+//图层初始化完毕调用添加图层函数
+            layer.events.on({"layerInitialized": addLayer});
+            map = new SuperMap.Map("map", {
+                allOverlays: true, controls: [
+                    new SuperMap.Control.LayerSwitcher(),
+                    new SuperMap.Control.ScaleLine(),
+                    new SuperMap.Control.Zoom(),
+                    new SuperMap.Control.MousePosition(),
+                    new SuperMap.Control.Navigation({
+                        dragPanOptions: {
+                            enableKinetic: true
+                        }
+                    })]
+            });
+        }
+
+        //添加必要图层
+        function addLayer() {
+            map.addLayers([layer, vectorLayer]);
+            map.setCenter(new SuperMap.LonLat(85.86399, 41.72669), 2.4);
+        }
+
+        //通过SQL查询路由对象
+        function CreateRouteObj() {
+            var queryParam, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "Routes_GD_KM@国省干道",
+                attributeFilter: "ROADCODE='G216'"
+//                attributeFilter: "ID='01deda1a-e0dc-49cf-83b5-4d62421c419b'"
+//                attributeFilter: "XZQH=650502"
+            });
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(url1, {
+                eventListeners: {
+                    "processCompleted": processCompleted,
+                    "processFailed": processFailed
+                }
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+
+        //        var routeObjArr = [];
+
+        //路由对象查询成功，初始化routeObj的值，同时将查询结果绘制在地图上
+        /*  function processCompleted(queryEventArgs) {
+              console.log("kkkkkkkkkk...........");
+              console.log(queryEventArgs);
+
+              var features = queryEventArgs.result.recordsets[0].features;
+              for (var i = 0; i < features.length; i++) {
+                  var geo = features[i].geometry;
+                  routeObjArr.push(geo);
+
+                  var feature = new SuperMap.Feature();
+                  feature.geometry = geo;
+                  feature.style = lineStyle;
+                  vectorLayer.addFeatures(feature);
+                  console.log("查询路由对象成功---" + i);
+              }
+
+  //            routeObj = geo = queryEventArgs.result.recordsets[0].features[0].geometry;
+  //            console.log(routeObj);
+
+              /!*   var feature = new SuperMap.Feature();
+                 feature.geometry = geo;
+                 feature.style = lineStyle;
+                 vectorLayer.addFeatures(feature);
+                 alert("查询路由对象成功");*!/
+          }
+  */
+        //路由对象查询失败，显示提示信息
+        function processFailed() {
+            alert("查询路由对象失败");
+        }
+
+
+        var list = [
+            {startzh: "1246", endzh: "1453.499"},
+            {startzh: "1453.499", endzh: "1636.104"},
+            {startzh: "1636.104", endzh: "1867.364"},
+            {startzh: "1867.364", endzh: "2101.429"},
+            {startzh: "2101.429", endzh: "2195.337"},
+            {startzh: "2195.337", endzh: "2326"}
+        ];
+        var mqi_list = [
+            {startzh: "1246", endzh: "1300"},
+            {startzh: "1300", endzh: "1350"},
+            {startzh: "1350", endzh: "1400"},
+            {startzh: "1500", endzh: "1620"},
+            {startzh: "1620", endzh: "1700"},
+            {startzh: "1700", endzh: "1920"},
+            {startzh: "1920", endzh: "2100"},
+            {startzh: "2100", endzh: "2326"},
+
+            {startzh: "1246", endzh: "1300"},
+            {startzh: "1300", endzh: "1350"},
+            {startzh: "1350", endzh: "1400"},
+            {startzh: "1500", endzh: "1620"},
+            {startzh: "1620", endzh: "1700"},
+            {startzh: "1700", endzh: "1920"},
+            {startzh: "1920", endzh: "2100"},
+            {startzh: "2100", endzh: "2326"},
+            {startzh: "1246", endzh: "1300"},
+            {startzh: "1300", endzh: "1350"},
+            {startzh: "1350", endzh: "1400"},
+            {startzh: "1500", endzh: "1620"},
+            {startzh: "1620", endzh: "1700"},
+            {startzh: "1700", endzh: "1920"},
+            {startzh: "1920", endzh: "2100"},
+            {startzh: "2100", endzh: "2326"},
+            {startzh: "1246", endzh: "1300"},
+            {startzh: "1300", endzh: "1350"},
+            {startzh: "1350", endzh: "1400"},
+            {startzh: "1500", endzh: "1620"},
+            {startzh: "1620", endzh: "1700"},
+            {startzh: "1700", endzh: "1920"},
+            {startzh: "1920", endzh: "2100"},
+            {startzh: "2100", endzh: "2326"},
+            {startzh: "1246", endzh: "1300"},
+            {startzh: "1300", endzh: "1350"},
+            {startzh: "1350", endzh: "1400"},
+            {startzh: "1500", endzh: "1620"},
+            {startzh: "1620", endzh: "1700"},
+            {startzh: "1700", endzh: "1920"},
+            {startzh: "1920", endzh: "2100"},
+            {startzh: "2100", endzh: "2326"},
+
+        ];
+
+        // 获取MQI值
+        var mqiIndex, mqiLength;
+        var currIndex, len;
+
+        function getMQI() {
+            /*for (var i = 0; i < mqi_list.length; i++) {
+                console.log("i-----" + i);
+                RouteLocator(mqi_list[i]);
+            }*/
+            routeIndex = 0;
+            mqiLength = mqi_list.length;
+            RouteLocator(mqi_list[routeIndex], routeIndex, mqiLength);
+        }
+
+        //"路由定线"操作，其中将routeObj和里程值作为参数传递到参数对象中
+         function RouteLocator(mqiObj, routeIndex, mqiLength) {
+             console.log("...............")
+             console.log(routeObjArr)
+             console.log("...............")
+             /*for (var i = 0; i < routeObjArr.length; i++) {
+                 getFixedLine(routeObjArr[i], mqiObj);
+             }*/
+             currIndex = 0;
+             len = routeObjArr.length;
+             getFixedLine(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength);
+         }
+
+        //"里程定线"操作成功触发该函数，并显示提示信息
+        /*function routeLocatorCompleted(e) {
+            console.log("123..")
+
+            feature = new SuperMap.Feature.Vector();
+            var geometry = e.result.resultGeometry;
+            console.log(e)
+            console.log(geometry)
+
+            feature.geometry = geometry;
+            feature.style = lineStyle2;
+            vectorLayer.addFeatures(feature);
+            console.log("里程定位线成功");
+        }
+
+        //"里程定线"操作失败触发该函数，并显示提示信息
+        function routeLocatorFailed(e) {
+            console.log("里程定位线失败");
+        }*/
+
+        //移除要素，并重置里程值
+        function Remove() {
+            vectorLayer.removeAllFeatures();
+            document.getElementById("startMeasure").value = "10";
+            document.getElementById("endMeasure").value = "240";
+            routeObj = null;
+        }
+
+        function getFixedLineGS(routeObjParam, mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle) {
+            var startzh = mqiObj.qdzh;
+            var endzh = mqiObj.zdzh;
+            if (!routeObjParam) {
+                alert("请通过查询获取路由对象！");
+                return;
+            }
+            console.log("startzh==" + startzh, "endzh==" + endzh,"code=="+code)
+
+
+
+            /*var _attributes = routeObjParam.geometry;
+            if ((parseFloat(startzh) < parseFloat(_attributes.STARTZH) && parseFloat(endzh) < parseFloat(_attributes.STARTZH) )
+                || ( parseFloat(startzh) > parseFloat(_attributes.ENDZH) && parseFloat(endzh) > parseFloat(_attributes.ENDZH) )
+            ) {// mqi桩号没有在该条线段中
+
+                currIndex = currIndex + 1;
+                if (currIndex < len) {
+                    getFixedLineGS(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                } else {
+                    routeIndex = routeIndex + 1;
+                    if (routeIndex < mqiLength) {
+                        RouteLocatorGS(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                    }
+                }
+
+            }
+
+            var routeLocatorParameters_point = new SuperMap.REST.RouteLocatorParameters({
+                "sourceRoute": routeObjParam.geometry,
+                "type": "LINE",
+                "startMeasure": startzh,
+                "endMeasure": endzh,
+                "isIgnoreGap": true
+            });
+            var routeLocatorService = new SuperMap.REST.RouteLocatorService(url2,
+                {
+                    eventListeners: {
+                        "processCompleted": function (e) {
+                            feature = new SuperMap.Feature.Vector();
+                            var geometry = e.result.resultGeometry;
+                            console.log("startzh****" + startzh, "endzh***" + endzh)
+
+                            feature.geometry = geometry;
+                            feature.style = lineStyle;
+                            vectorLayer.addFeatures(feature);
+                            console.log("里程定位线成功");
+
+                            currIndex = currIndex + 1;
+                            console.log("currIndex==" + currIndex, "len==" + len);
+                            console.log("routeIndex==" + routeIndex, "mqiLength==" + mqiLength);
+                            if (currIndex < len) {
+                                getFixedLineGS(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorGS(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+
+                        },
+                        'processFailed': function (e) {
+                            console.log("里程定位线失败");
+                            currIndex = currIndex + 1;
+                            if (currIndex < len) {
+                                getFixedLineGS(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorGS(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+                        }
+                    }
+                }
+            )
+            routeLocatorService.processAsync(routeLocatorParameters_point);*/
+        }
+        function getFixedLineGD(routeObjParam, mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle) {
+            var startzh = mqiObj.qdzh;
+            var endzh = mqiObj.zdzh;
+            if (!routeObjParam) {
+                alert("请通过查询获取路由对象！");
+                return;
+            }
+            console.log("startzh==" + startzh, "endzh==" + endzh)
+
+            var _attributes = routeObjParam.geometry;
+            if ((parseFloat(startzh) < parseFloat(_attributes.STARTZH) && parseFloat(endzh) < parseFloat(_attributes.STARTZH) )
+                || ( parseFloat(startzh) > parseFloat(_attributes.ENDZH) && parseFloat(endzh) > parseFloat(_attributes.ENDZH) )
+            ) {// mqi桩号没有在该条线段中
+
+                currIndex = currIndex + 1;
+                if (currIndex < len) {
+                    getFixedLineGD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                } else {
+                    routeIndex = routeIndex + 1;
+                    if (routeIndex < mqiLength) {
+                        RouteLocatorGD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                    }
+                }
+
+            }
+
+            var routeLocatorParameters_point = new SuperMap.REST.RouteLocatorParameters({
+                "sourceRoute": routeObjParam.geometry,
+                "type": "LINE",
+                "startMeasure": startzh,
+                "endMeasure": endzh,
+                "isIgnoreGap": true
+            });
+            var routeLocatorService = new SuperMap.REST.RouteLocatorService(url2,
+                {
+                    eventListeners: {
+                        "processCompleted": function (e) {
+                            feature = new SuperMap.Feature.Vector();
+                            var geometry = e.result.resultGeometry;
+                            console.log("startzh****" + startzh, "endzh***" + endzh)
+
+                            feature.geometry = geometry;
+                            feature.style = lineStyle;
+                            vectorLayer.addFeatures(feature);
+                            console.log("里程定位线成功");
+
+                            currIndex = currIndex + 1;
+                            console.log("currIndex==" + currIndex, "len==" + len);
+                            console.log("routeIndex==" + routeIndex, "mqiLength==" + mqiLength);
+                            if (currIndex < len) {
+                                getFixedLineGD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorGD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+
+                        },
+                        'processFailed': function (e) {
+                            console.log("里程定位线失败");
+                            currIndex = currIndex + 1;
+                            if (currIndex < len) {
+                                getFixedLineGD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorGD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+                        }
+                    }
+                }
+            )
+            routeLocatorService.processAsync(routeLocatorParameters_point);
+        }
+        function getFixedLineSD(routeObjParam, mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle) {
+            var startzh = mqiObj.qdzh;
+            var endzh = mqiObj.zdzh;
+            if (!routeObjParam) {
+                alert("请通过查询获取路由对象！");
+                return;
+            }
+            console.log("startzh==" + startzh, "endzh==" + endzh)
+
+            var _attributes = routeObjParam.geometry;
+            if ((parseFloat(startzh) < parseFloat(_attributes.STARTZH) && parseFloat(endzh) < parseFloat(_attributes.STARTZH) )
+                || ( parseFloat(startzh) > parseFloat(_attributes.ENDZH) && parseFloat(endzh) > parseFloat(_attributes.ENDZH) )
+            ) {// mqi桩号没有在该条线段中
+
+                currIndex = currIndex + 1;
+                if (currIndex < len) {
+                    getFixedLineSD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                } else {
+                    routeIndex = routeIndex + 1;
+                    if (routeIndex < mqiLength) {
+                        RouteLocatorSD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                    }
+                }
+
+            }
+
+            var routeLocatorParameters_point = new SuperMap.REST.RouteLocatorParameters({
+                "sourceRoute": routeObjParam.geometry,
+                "type": "LINE",
+                "startMeasure": startzh,
+                "endMeasure": endzh,
+                "isIgnoreGap": true
+            });
+            var routeLocatorService = new SuperMap.REST.RouteLocatorService(url2,
+                {
+                    eventListeners: {
+                        "processCompleted": function (e) {
+                            feature = new SuperMap.Feature.Vector();
+                            var geometry = e.result.resultGeometry;
+                            console.log("startzh****" + startzh, "endzh***" + endzh)
+
+                            feature.geometry = geometry;
+                            feature.style = lineStyle;
+                            vectorLayer.addFeatures(feature);
+                            console.log("里程定位线成功");
+
+                            currIndex = currIndex + 1;
+                            console.log("currIndex==" + currIndex, "len==" + len);
+                            console.log("routeIndex==" + routeIndex, "mqiLength==" + mqiLength);
+                            if (currIndex < len) {
+                                getFixedLineSD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorSD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+
+                        },
+                        'processFailed': function (e) {
+                            console.log("里程定位线失败");
+                            currIndex = currIndex + 1;
+                            if (currIndex < len) {
+                                getFixedLineSD(routeObjArr[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArr, code, list, lineStyle);
+                            } else {
+                                routeIndex = routeIndex + 1;
+                                if (routeIndex < mqiLength) {
+                                    RouteLocatorSD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+                                }
+                            }
+                        }
+                    }
+                }
+            )
+            routeLocatorService.processAsync(routeLocatorParameters_point);
+        }
+
+        var gsdatas = [], gddatas = [], sddatas = [];
+        var gsrouteObjArr = [], gdrouteObjArr = [], sdrouteObjArr = [];
+        var gsrouteObj = {}, gdrouteObj = {}, sdrouteObj = {};
+
+        var gslist = ["G30", "G3012", "G3014", "G3016"];
+        var gdlist = ["G216", "G217", "G218", "G219", "G312", "G314", "G315"];
+        var sdlist = [
+            "S101",
+            "S102",
+            "S103",
+            "S109",
+            "S110",
+            "S111",
+            "S112",
+            "S113",
+            "S114",
+            "S115",
+            "S201",
+            "S202",
+            "S203",
+            "S204",
+            "S205",
+            "S209",
+            "S211",
+            "S213",
+            "S214",
+            "S215",
+            "S216",
+            "S217",
+            "S218",
+            "S219",
+            "S220",
+            "S222",
+            "S223",
+            "S224",
+            "S226",
+            "S228",
+            "S229",
+            "S230",
+            "S231",
+            "S232",
+            "S233",
+            "S234",
+            "S235",
+            "S237",
+            "S243",
+            "S301",
+            "S302",
+            "S303",
+            "S304",
+            "S305",
+            "S306",
+            "S307",
+            "S308",
+            "S309",
+            "S310",
+            "S311",
+            "S312",
+            "S313",
+            "S315",
+            "S316",
+            "S317",
+            "S318",
+            "S319",
+            "S320",
+            "S321",
+            "S324",
+            "S326"
+        ]
+
+        //通过SQL查询路由对象
+        function getGSRoutes(code) {
+            var queryParam, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "Routes_GS_KM@国省干道",
+                attributeFilter: "ROADCODE='" + code + "'"
+            });
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(url1, {
+                eventListeners: {
+                    "processCompleted": function (queryEventArgs) {
+                        console.log(queryEventArgs);
+                        var tempgsrouteObjArr = [];
+                        var features = queryEventArgs.result.recordsets[0].features;
+                        for (var i = 0; i < features.length; i++) {
+                            var geo = {};
+                            geo.geometry = features[i].geometry;
+                            geo.attributes = features[i].attributes;
+                            tempgsrouteObjArr.push(geo);
+
+
+//                            var feature = new SuperMap.Feature();
+//                            feature.geometry = geo;
+//                            feature.style = lineStyle;
+//                            vectorLayer.addFeatures(feature);
+//                            console.log("查询路由对象成功---" + i);
+                        }
+                        gsrouteObj[code] = tempgsrouteObjArr;
+                    },
+                    "processFailed": processFailed
+                }
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+
+        function getGDRoutes(code) {
+            var queryParam, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "Routes_GD_KM@国省干道",
+                attributeFilter: "ROADCODE='" + code + "'"
+            });
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(url1, {
+                eventListeners: {
+                    "processCompleted": function (queryEventArgs) {
+                        var tempgsrouteObjArr = [];
+                        var features = queryEventArgs.result.recordsets[0].features;
+                        for (var i = 0; i < features.length; i++) {
+                            var geo = {};
+                            geo.geometry = features[i].geometry;
+                            geo.attributes = features[i].attributes;
+                            tempgsrouteObjArr.push(geo);
+                        }
+                        gdrouteObj[code] = tempgsrouteObjArr;
+                        console.log("gdrouteObj---", gdrouteObj)
+                    },
+                    "processFailed": processFailed
+                }
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+
+        function getSDRoutes(code) {
+            var queryParam, queryBySQLParams, queryBySQLService;
+            queryParam = new SuperMap.REST.FilterParameter({
+                name: "Routes_SD_KM@国省干道",
+                attributeFilter: "ROADCODE='" + code + "'"
+            });
+            queryBySQLParams = new SuperMap.REST.QueryBySQLParameters({
+                queryParams: [queryParam]
+            });
+            queryBySQLService = new SuperMap.REST.QueryBySQLService(url1, {
+                eventListeners: {
+                    "processCompleted": function (queryEventArgs) {
+                        var tempgsrouteObjArr = [];
+                        var features = queryEventArgs.result.recordsets[0].features;
+                        for (var i = 0; i < features.length; i++) {
+                            var geo = {};
+                            geo.geometry = features[i].geometry;
+                            geo.attributes = features[i].attributes;
+                            tempgsrouteObjArr.push(geo);
+                        }
+                        sdrouteObj[code] = tempgsrouteObjArr;
+                        console.log("sdrouteObj---", sdrouteObj)
+                    },
+                    "processFailed": processFailed
+                }
+            });
+            queryBySQLService.processAsync(queryBySQLParams);
+        }
+
+
+        function getGSData() {
+            $.ajax({
+                url: "/onepic" + '/mqi/gsmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    gsdatas = data;
+                    //1、获取路由对象信息
+//                    for (var i = 0; i < gslist.length; i++) {
+//                        code = gslist[i]
+//                        console.log(code);
+//                        // 获取路由对象
+////                        getGSRoutes(code);
+//                    }
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });
+            /*$.ajax({
+                url: "/onepic" + '/mqi/gdmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    datas = data;
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });
+            $.ajax({
+                url: "/onepic" + '/mqi/sdmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    datas = data;
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });*/
+        }
+
+        function getGDData() {
+            $.ajax({
+                url: "/onepic" + '/mqi/gdmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    gddatas = data;
+                    //1、获取路由对象信息
+                    for (var i = 0; i < gdlist.length; i++) {
+                        code = gdlist[i]
+                        console.log(code);
+                        // 获取路由对象
+                        getGDRoutes(code);
+                    }
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });
+        }
+
+        function getSDData() {
+            $.ajax({
+                url: "/onepic" + '/mqi/sdmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    sddatas = data;
+                    //1、获取路由对象信息
+                    for (var i = 0; i < sdlist.length; i++) {
+                        code = sdlist[i]
+                        console.log(code);
+                        // 获取路由对象
+                        getSDRoutes(code);
+                    }
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });
+        }
+
+        function renderGSMQI(list, code, lineStyle) {
+            var routeIndex = 0;
+            var mqiLength = list.length;
+            RouteLocatorGS(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+        }
+
+        function renderGDMQI(list, code, lineStyle) {
+            var routeIndex = 0;
+            var mqiLength = list.length;
+            RouteLocatorGD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+        }
+
+        function renderSDMQI(list, code, lineStyle) {
+            var routeIndex = 0;
+            var mqiLength = list.length;
+            RouteLocatorSD(list[routeIndex], routeIndex, mqiLength, code, list, lineStyle);
+        }
+
+        function RouteLocatorGS(mqiObj, routeIndex, mqiLength, code, list, lineStyle) {
+            var routeObjArrGS = gsrouteObj[code];
+            console.log("...............")
+            console.log(mqiObj)
+            console.log(routeIndex)
+            console.log(mqiLength)
+            console.log(code)
+            console.log(list)
+            console.log(routeObjArrGS)
+            console.log("...............")
+
+            var currIndex = 0;
+            var len = routeObjArrGS.length;
+            getFixedLineGS(routeObjArrGS[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArrGS, code, list, lineStyle);
+        }
+
+        function RouteLocatorGD(mqiObj, routeIndex, mqiLength, code, list, lineStyle) {
+            var routeObjArrGD = gdrouteObj[code];
+            var currIndex = 0;
+            var len = routeObjArrGD.length;
+            getFixedLineGD(routeObjArrGD[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArrGD, code, list, lineStyle);
+        }
+
+        function RouteLocatorSD(mqiObj, routeIndex, mqiLength, code, list, lineStyle) {
+            var routeObjArrSD = sdrouteObj[code];
+            var currIndex = 0;
+            var len = routeObjArrSD.length;
+            getFixedLineSD(routeObjArrSD[currIndex], mqiObj, currIndex, len, routeIndex, mqiLength, routeObjArrSD, code, list, lineStyle);
+        }
+
+        var lineStyleY = {
+                strokeColor: "#00F904",
+                strokeWidth: 4,
+                pointRadius: 3
+            },
+            lineStyleZ = {
+                strokeColor: "#FDFD00",
+                strokeWidth: 4,
+                pointRadius: 3
+            },
+            lineStyleC = {
+                strokeColor: "#650100",
+                strokeWidth: 4,
+                pointRadius: 3
+            };
+
+        function dxGS() {
+            var MiLEAGE_POSITION = "http://localhost:8099/iserver/services/MileagePosition/mileagePositionInterface";
+            var temp;
+            for (var i = 0; i < gsdatas.length; i++) {
+                var _code = gslist[i];
+                // 上行
+                var sxlist = gsdatas[i][0][0];
+                console.log(sxlist)
+                console.log("..........................")
+                for(var j=0;j<sxlist.length;j++){
+                    temp = sxlist[j]
+                    console.log("roadtype code startzh endzh","gs",temp.code,temp.qdzh,temp.zdzh)
+                    if(temp.code != ""){
+                        $.ajax({
+                            url:  MiLEAGE_POSITION,
+                            data: { roadtype: "gs", roadcode: temp.code, startzh: Number(temp.qdzh)*1000, endzh: Number(temp.zdzh)*1000 },
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log("success...", data);
+                                var features = [];
+                                if (data.length > 0) {
+                                    var feature, geometry, RouteLocatorResult;
+                                    for (var i = 0; i < data.length; i++) {
+                                        RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[i]);
+                                        feature = new SuperMap.Feature.Vector();
+                                        geometry = RouteLocatorResult.resultGeometry;
+                                        feature.geometry = geometry;
+                                        feature.style = {
+                                            fontColor: '#ff0000',
+                                            strokeColor: '#5298FE',//"#ff0000",
+                                            fillOpacity: 0.5,
+                                            strokeOpacity: 1,
+                                            strokeWidth: 5,
+                                            fillColor: '#5298FE',//"#ff0000",
+                                            labelXOffset: 120,
+                                            labelYOffset: 1,
+                                            pointRadius: 4
+                                        };
+                                        features.push(feature);
+                                    }
+                                    vectorLayer.addFeatures(features);
+//                                    thisCallBack.globalMap.setLocation(features);
+//                                    thisCallBack.globalMap.showFeatures(features, true);
+
+                                } else {
+                                    console.log("定位里程不存在！")
+
+                                }
+
+                            },
+                            error: function (e) {
+                                console.log(e)
+                            }
+                        });
+
+                    }
+
+
+                }
+
+
+               /* //优良80--100
+                if (sxlist[0].length > 0) {
+                    renderGSMQI(sxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxlist[1].length > 0) {
+                    renderGSMQI(sxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxlist[2].length > 0) {
+                    renderGSMQI(sxlist[2], _code, lineStyleC);
+                }
+
+
+                // 下行
+                var xxlist = gsdatas[i][1];
+                //优良80--100
+                if (xxlist[0].length > 0) {
+                    renderGSMQI(xxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (xxlist[1].length > 0) {
+                    renderGSMQI(xxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (xxlist[2].length > 0) {
+                    renderGSMQI(xxlist[2], _code, lineStyleC);
+                }
+
+
+                // 上下行
+                var sxxlist = gsdatas[i][2];
+                //优良80--100
+                if (sxxlist[0].length > 0) {
+                    renderGSMQI(sxxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxxlist[1].length > 0) {
+                    renderGSMQI(sxxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxxlist[2].length > 0) {
+                    renderGSMQI(sxxlist[2], _code, lineStyleC);
+                }*/
+            }
+        }
+
+        function dxGD() {
+            for (var i = 0; i < gddatas.length; i++) {
+                var _code = gdlist[i];
+                // 上行
+                var sxlist = gddatas[i][0];
+                //优良80--100
+                if (sxlist[0].length > 0) {
+                    renderGDMQI(sxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxlist[1].length > 0) {
+                    renderGDMQI(sxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxlist[2].length > 0) {
+                    renderGDMQI(sxlist[2], _code, lineStyleC);
+                }
+
+                // 下行
+                var xxlist = gddatas[i][1];
+                //优良80--100
+                if (xxlist[0].length > 0) {
+                    renderGDMQI(xxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (xxlist[1].length > 0) {
+                    renderGDMQI(xxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (xxlist[2].length > 0) {
+                    renderGDMQI(xxlist[2], _code, lineStyleC);
+                }
+
+                // 上下行
+                var sxxlist = gddatas[i][2];
+                //优良80--100
+                if (sxxlist[0].length > 0) {
+                    renderGDMQI(sxxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxxlist[1].length > 0) {
+                    renderGDMQI(sxxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxxlist[2].length > 0) {
+                    renderGDMQI(sxxlist[2], _code, lineStyleC);
+                }
+            }
+        }
+        function dxSD() {
+            for (var i = 0; i < sddatas.length; i++) {
+                var _code = sdlist[i];
+                // 上行
+                var sxlist = sddatas[i][0];
+                //优良80--100
+                if (sxlist[0].length > 0) {
+                    renderSDMQI(sxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxlist[1].length > 0) {
+                    renderSDMQI(sxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxlist[2].length > 0) {
+                    renderSDMQI(sxlist[2], _code, lineStyleC);
+                }
+
+                // 下行
+                var xxlist = sddatas[i][1];
+                //优良80--100
+                if (xxlist[0].length > 0) {
+                    renderSDMQI(xxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (xxlist[1].length > 0) {
+                    renderSDMQI(xxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (xxlist[2].length > 0) {
+                    renderSDMQI(xxlist[2], _code, lineStyleC);
+                }
+
+                // 上下行
+                var sxxlist = sddatas[i][2];
+                //优良80--100
+                if (sxxlist[0].length > 0) {
+                    renderSDMQI(sxxlist[0], _code, lineStyleY);
+                }
+                //中等70--80
+                if (sxxlist[1].length > 0) {
+                    renderSDMQI(sxxlist[1], _code, lineStyleZ);
+                }
+                //差等0--70
+                if (sxxlist[2].length > 0) {
+                    renderSDMQI(sxxlist[2], _code, lineStyleC);
+                }
+            }
+        }
+
+        function mileagePositon(){
+            $.ajax({
+                url: "/onepic" + '/mqi/getmqi',
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (mqi) {
+                    console.log("getmqi....")
+                    console.log(mqi)
+                    var temp;
+                    for(var ii=0;ii<mqi.length;ii++){
+                        temp = mqi[ii]
+                        position(temp,"gs")
+                        position(temp,"gd")
+                        position(temp,"sd")
+
+                    }
+
+                },
+                error: function () {
+                    console.log("错误...")
+                }
+            });
+        }
+
+        function position(temp,roadtype) {
+            $.ajax({
+                url:  "http://localhost:8099/iserver/services/MileagePosition/mileagePositionInterface",
+                data: { roadtype: roadtype, roadcode: temp.code, startzh: Number(temp.qdzh)*1000, endzh: Number(temp.zdzh)*1000 },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log("success...", data);
+                    var features = [];
+                    var colorVal = "";
+                    if (data.length > 0) {
+                        var feature, geometry, RouteLocatorResult;
+                        for (var i = 0; i < data.length; i++) {
+                            RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[i]);
+                            feature = new SuperMap.Feature.Vector();
+                            geometry = RouteLocatorResult.resultGeometry;
+
+                            if(Number(temp.mqi) >=80 ){
+                                colorVal = "#00b250"
+                            }else if(Number(temp.mqi) >70  && Number(temp.mqi) <80 ){
+                                colorVal = "#f79646"
+                            }else{
+                                colorVal = "#d33249"
+                            }
+                            feature.style = {
+                                fontColor: '#ff0000',
+                                strokeColor: colorVal,//"#ff0000",
+                                fillOpacity: 0.5,
+                                strokeOpacity: 1,
+                                strokeWidth: 3,
+                                fillColor:colorVal,
+                                labelXOffset: 120,
+                                labelYOffset: 1,
+                                pointRadius: 4
+                            };
+                            feature.geometry = geometry;
+                            vectorLayer.addFeatures(feature);
+
+//                                        features.push(feature);
+                        }
+//                                    vectorLayer.addFeatures(features);
+//                                    thisCallBack.globalMap.setLocation(features);
+//                                    thisCallBack.globalMap.showFeatures(features, true);
+
+                    } else {
+                        console.log("定位里程不存在！")
+
+                    }
+
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            });
+        }
+
+    </script>
+
+</head>
+<body onload="init()">
+<div id="toolbar">
+    <span style='font-size: 1.2em;'>起始里程点：</span>
+    <input type='number' style='width:200px;height:25px' id='startMeasure' value='10'/>
+    <span style='font-size: 1.2em;'>终止里程点：</span>
+    <input type='number' style='width:200px;height:25px' id='endMeasure' value='240'/>
+    <input type="button" class="btn" value="查询路由对象" style="margin-bottom: 10px" onclick="CreateRouteObj()"/>
+    <input type="button" class="btn" value="定位线" style="margin-bottom: 10px" onclick="getMQI()"/>
+    <!--<input type="button" class="btn" value="定位线" style="margin-bottom: 10px" onclick="RouteLocator()"/>-->
+    <input type="button" class="btn" value="清除" style="margin-bottom: 10px" onclick="Remove()"/>
+    <input type="button" class="btn" value="获取高速数据" style="margin-bottom: 10px" onclick="getGSData()"/>
+    <input type="button" class="btn" value="高速定线MQI" style="margin-bottom: 10px" onclick="dxGS()"/>
+    <input type="button" class="btn" value="获取国道数据" style="margin-bottom: 10px" onclick="getGDData()"/>
+    <input type="button" class="btn" value="国道定线MQI" style="margin-bottom: 10px" onclick="dxGD()"/>
+    <input type="button" class="btn" value="获取省道数据" style="margin-bottom: 10px" onclick="getSDData()"/>
+    <input type="button" class="btn" value="省道定线MQI" style="margin-bottom: 10px" onclick="dxSD()"/>
+    <input type="button" class="btn" value="里程桩定位" style="margin-bottom: 10px" onclick="mileagePositon()"/>
+</div>
+<div id="map"></div>
+</body>
+</html>

@@ -28,7 +28,7 @@ public class PmsPlanTzkz03 {
 
     private BigDecimal zbyWctzZhgs;
 
-    private Date inserttime;
+    private Date insertTime;
 
     private Date creattime;
 
@@ -128,12 +128,12 @@ public class PmsPlanTzkz03 {
         this.zbyWctzZhgs = zbyWctzZhgs;
     }
 
-    public Date getInserttime() {
-        return inserttime;
+    public Date getInsertTime() {
+        return insertTime;
     }
 
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
     }
 
     public Date getCreattime() {

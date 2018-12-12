@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <title>新疆一张图</title>
+    <link rel="stylesheet" href="../lib/css/jquery.pagination.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/bs.css">
+</head>
+<body>
+<div class="page-container">
+    <div id="map"></div>
+    <div id="left-panel" class="left-panel">
+        <div id="searchbox">
+            <div id="searchbox-container">
+                <div id="sole-searchbox-content" class="searchbox-content">
+                    <input id="sole-input" class="searchbox-content-common" type="text" name="word" autocomplete="off"
+                           maxlength="256" placeholder="搜索内容..." value="">
+                    <div class="searchbox-content-button right-button route-button loading-button" id="clearContent"
+                         data-title="清除内容"
+                         data-tooltip="2">
+                    </div>
+                </div>
+
+            </div>
+            <button id="search-button" data-title="搜索" data-tooltip="1"></button>
+        </div>
+        <div class="result-list" id="zjgcList" style="display: none;">
+            <div class="type-container" style="">
+                <div class="filter-container">
+                    <div class="">
+                        <label>
+                            <input type="radio" name="projectType" id="ptTBJ" value="tbj" checked="">
+                            厅本级
+                        </label>
+                        <label>
+                            <input type="radio" name="projectType" id="ptDZJ" value="dzj">
+                            地州级
+                        </label>
+                        <label>
+                            <input type="radio" name="projectType" id="ptJSBT" value="jsbt">
+                            生产建设兵团
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="accordionTBJ">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#gsTab" data-toggle="tab">高速</a></li>
+                    <li><a href="#gdTab" data-toggle="tab">国道</a></li>
+                    <li><a href="#sdTab" data-toggle="tab">省道</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="gsTab">
+                        <ul class="zjgc-ul" id="gsULTBJ"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="gdTab">
+                        <ul class="zjgc-ul" id="gdULTBJ"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="sdTab">
+                        <ul class="zjgc-ul" id="sdULTBJ"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="accordionDZJ" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#gsTabDZJ" data-toggle="tab">高速</a></li>
+                    <li><a href="#gdTabDZJ" data-toggle="tab">国道</a></li>
+                    <li><a href="#sdTabDZJ" data-toggle="tab">省道</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="gsTabDZJ">
+                        <ul class="zjgc-ul" id="gsULDZJ"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="gdTabDZJ">
+                        <ul class="zjgc-ul" id="gdULDZJ"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="sdTabDZJ">
+                        <ul class="zjgc-ul" id="sdULDZJ"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="accordionSCJS" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#gsTabSCJS" data-toggle="tab">高速</a></li>
+                    <li><a href="#gdTabSCJS" data-toggle="tab">国道</a></li>
+                    <li><a href="#sdTabSCJS" data-toggle="tab">省道</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="gsTabSCJS">
+                        <ul class="zjgc-ul" id="gsULSCJS"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="gdTabSCJS">
+                        <ul class="zjgc-ul" id="gdULSCJS"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="sdTabSCJS">
+                        <ul class="zjgc-ul" id="sdULSCJS"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="result-list" id="dituList" style="display: none;">
+            <div class="type-container" id="typeDT" style="">
+                <div class="filter-container">
+                    <div class="">
+                        <label>
+                            <input type="radio" name="searchType" id="placeName" value="place" checked="">
+                            地名
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" id="roadName" value="road">
+                            道路
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" id="bridgeName" value="bridge">
+                            桥梁
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" id="accessoryName" value="accessory">
+                            附属设施
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="placeContainer">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#cityTab" data-toggle="tab">城市</a></li>
+                    <li><a href="#countyTab" data-toggle="tab">区县</a></li>
+                    <li><a href="#townTab" data-toggle="tab">乡镇</a></li>
+                    <li><a href="#villageTab" data-toggle="tab">乡村</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="cityTab">
+                        <ul class="zjgc-ul" id="cityUL"></ul>
+                        <!--<div class="m-style city-page"></div>-->
+                    </div>
+                    <div class="tab-pane fade" id="countyTab">
+                        <ul class="zjgc-ul" id="countyUL"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="townTab">
+                        <ul class="zjgc-ul" id="townUL"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="villageTab">
+                        <ul class="zjgc-ul" id="villageUL"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="roadContainer" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#gsTabPlace" data-toggle="tab">高速</a></li>
+                    <li><a href="#gdTabPlace" data-toggle="tab">国道</a></li>
+                    <li><a href="#sdTabPlace" data-toggle="tab">省道</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="gsTabPlace">
+                        <ul class="zjgc-ul" id="gsULPlace"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="gdTabPlace">
+                        <ul class="zjgc-ul" id="gdULPlace"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="sdTabPlace">
+                        <ul class="zjgc-ul" id="sdULPlace"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="bridgeContainer" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#bigTabBridge" data-toggle="tab">桥梁</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="bigTabBridge">
+                        <ul class="zjgc-ul" id="bigULBridge"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="zjgc-ul" id="accessoryContainer" style="display: none;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#serviceTab" data-toggle="tab">服务区</a></li>
+                    <li><a href="#gasStationTab" data-toggle="tab">加油站</a></li>
+                    <li><a href="#tollStationTab" data-toggle="tab">收费站</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="serviceTab">
+                        <ul class="zjgc-ul" id="serviceUL"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="gasStationTab">
+                        <ul class="zjgc-ul" id="gasStationUL"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="tollStationTab">
+                        <ul class="zjgc-ul" id="tollStationUL"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rigth-panel">
+        <div class="tools-container">
+            <div class="tools-items" data-name="zjgc">
+                <span class="zjgc-item">
+                    <img class="left-img" src="../img/zjgc.png" alt="在建工程">
+                </span>
+                <i>在建工程</i>
+            </div>
+            <b class="tool-gap"></b>
+            <!-- <div class="tools-items" data-name="sslk">
+                 <span class="zjgc-item">
+                     <img class="left-img" src="../img/lukuang.png" alt="实时路况">
+                 </span>
+                 <i>实时路况</i>
+             </div>-->
+
+            <div class="tools-items" id="zttId" data-name="ztulist">
+                <span class="zjgc-item">
+                    <img class="left-img" src="../img/zhuanti.png" alt="专题图">
+                </span>
+                <i>专题图</i>
+                <img class="right-img" data-type="xiala" src="../img/sanjiao_xiala.png">
+            </div>
+            <div class="tools-child-list tools-child-ztt" style="display: none;">
+                <ul id="zttListUL">
+                    <li class="tools-child-item" data-name="blue">
+                        <span><img class="left-img" src="../img/yanghu.png" alt="蓝色专图"></span>
+                        <i>在建工程</i>
+                    </li>
+                    <li class="tools-child-item" data-name="green">
+                        <span><img class="left-img" src="../img/yanghu.png" alt="绿色专图"></span>
+                        <i>养护指数</i>
+                    </li>
+                    <li class="tools-child-item" data-name="gray">
+                        <span><img class="left-img" src="../img/yanghu.png" alt="灰色专图"></span>
+                        <i>两客一危</i>
+                    </li>
+                    <li class="tools-child-item" data-name="baidu">
+                        <span><img class="left-img" src="../img/yanghu.png" alt="百度专图"></span>
+                        <i>百度专图</i>
+                    </li>
+                </ul>
+            </div>
+            <b class="tool-gap"></b>
+            <div class="tools-items" id="ztListId" data-name="ztulist">
+                <span class="zjgc-item">
+                    <img class="left-img" src="../img/zhuanti.png" alt="专题图">
+                </span>
+                <i>沿线设施</i>
+                <img class="right-img" data-type="xiala" src="../img/sanjiao_xiala.png">
+            </div>
+            <div class="tools-child-list tools-child-yxss" style="display: none;">
+                <ul id="ztUL">
+                    <li class="tools-child-item" data-name="hyzs">
+                        <label>
+                            <input type="checkbox" name="jtztType" value="sfz">
+                            收费站
+                        </label>
+                        <!--<input type="checkbox" name="jtztType">
+                         &lt;!&ndash;<span>&ndash;&gt;
+                            &lt;!&ndash;<img class="left-img" src="../img/yanghu.png" alt="养护指数">&ndash;&gt;
+                         &lt;!&ndash;</span>&ndash;&gt;
+                        <i>养护指数</i>-->
+                    </li>
+                    <li class="tools-child-item" data-name="sxzt">
+                        <label>
+                            <input type="checkbox" name="jtztType" value="fwq">
+                            服务区
+                        </label>
+                        <!--<span>-->
+                        <!--<img class="left-img" src="../img/yanghu.png" alt="水系专图">-->
+                        <!--</span>-->
+                        <!--<i>水系专图</i>-->
+                    </li>
+                    <li class="tools-child-item" data-name="sxzt">
+                        <label>
+                            <input type="checkbox" name="jtztType" value="jyz">
+                            加油站
+                        </label>
+                    </li>
+                    <!--<li class="tools-child-item" data-name="sxzt">-->
+                    <!--<label>-->
+                    <!--<input type="checkbox" name="jtztType" value="tcq">-->
+                    <!--停车区-->
+                    <!--</label>-->
+                    <!--</li>-->
+                    <li class="tools-child-item" data-name="sxzt">
+                        <label>
+                            <input type="checkbox" name="jtztType" value="bridge">
+                            桥梁
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <b class="tool-gap"></b>
+        </div>
+
+    </div>
+    <div class="right-tools-container" id="rightToolsBar">
+        <div class="right-tools-item" title="强制刷新" onclick="refreshIndexdDB()">
+            <img src="../img/refresh.png" alt="刷新">
+        </div>
+        <div class="right-tools-item" onclick="zoomin()">
+            <img src="../img/plus.png" alt="放大">
+        </div>
+        <div class="right-tools-item" onclick="zoomout()">
+            <img src="../img/minus.png" alt="缩小">
+        </div>
+        <div class="right-tools-item" onclick="distanceMeasure()">
+            <img src="../img/measure.png" alt="测距">
+        </div>
+        <div class="right-tools-item" onclick="clearFeatures()">
+            <img src="../img/clear.png" alt="清除">
+        </div>
+    </div>
+    <div class="map-type-container expand">
+        <div class="map-type-list" id="mapType">
+            <div class="map-type-card normal active" data-name="normalMap">
+                <span>地图</span>
+            </div>
+            <div class="map-type-card earth" data-name="earth">
+                <span>影像</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../../static/lib/layer-v2.3/layer.js"></script>
+<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
+<script src='../../../static/lib/supermap/libs/SuperMap.Include.js'></script>
+<script src="../lib/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="../js/bs-indexddb.js"></script>
+<script type="text/javascript" src="../js/bs-config.js"></script>
+<script type="text/javascript" src="../js/bs-map.js"></script>
+<!--页面控制js-->
+<script type="text/javascript" src="../js/bs.js"></script>
+<!--专题图js-->
+<script type="text/javascript" src="../js/bs-zjgc.js"></script>
+</body>
+</html>

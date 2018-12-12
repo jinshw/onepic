@@ -15,6 +15,10 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
+    <!--websocket-->
+    <!--<listener>
+        <listener-class>com.ykkj.weiyi.socket.RunThread</listener-class>
+    </listener>-->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

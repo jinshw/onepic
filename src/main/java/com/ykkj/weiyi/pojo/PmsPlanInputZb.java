@@ -43,7 +43,7 @@ public class PmsPlanInputZb {
 
     private String bpmStatus;
 
-    private Date inserttime;
+    private Date insertTime;
 
     private Date creattime;
 
@@ -207,12 +207,12 @@ public class PmsPlanInputZb {
         this.bpmStatus = bpmStatus == null ? null : bpmStatus.trim();
     }
 
-    public Date getInserttime() {
-        return inserttime;
+    public Date getInsertTime() {
+        return insertTime;
     }
 
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
     }
 
     public Date getCreattime() {

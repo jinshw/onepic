@@ -40,9 +40,9 @@ public class HdTask
     public void getDatas()
     {
         getProjectInfo();
-//        getDirectInfo();
-//        getSupervisionInfo();
-//        getSectInfo();
+        getDirectInfo();
+        getSupervisionInfo();
+        getSectInfo();
     }
 
     /**

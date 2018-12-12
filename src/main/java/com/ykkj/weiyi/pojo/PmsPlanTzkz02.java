@@ -42,7 +42,7 @@ public class PmsPlanTzkz02 {
 
     private BigDecimal zncljwc21;
 
-    private Date inserttime;
+    private Date insertTime;
 
     private Date creattime;
 
@@ -198,12 +198,12 @@ public class PmsPlanTzkz02 {
         this.zncljwc21 = zncljwc21;
     }
 
-    public Date getInserttime() {
-        return inserttime;
+    public Date getInsertTime() {
+        return insertTime;
     }
 
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
     }
 
     public Date getCreattime() {

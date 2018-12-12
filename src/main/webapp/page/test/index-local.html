@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://localhost:8081/onepic/page/bigscreen/lib/js/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Hello Spring boot2233444442</h1>
+<div>
+    <input type="button" class="btn btn-primary" onclick="getData()" value="获取属性字段列表">
+    <input type="button" class="btn btn-primary" onclick="getList()" value="获取属性内容列表"/>
+    <input type="button" class="btn btn-primary" onclick="getLength()" value="获取道路长度"/>
+    <label for="">
+        线路编码：<input type="text" id="roadcode" value="G217">
+    </label>
+    <label for="">
+        起点桩号：<input type="text" id="startzh" value="1815.4">
+    </label>
+    <label for="">
+        终点桩号：<input type="text" id="endzh" value="1835.9">
+    </label>
+</div>
+<div>
+    <input type="button" class="btn btn-primary" onclick="findRoadNUM()" value="道路统计">
+    <input type="button" class="btn btn-primary" onclick="findBirdgeNUM()" value="桥梁统计">
+    <input type="button" class="btn btn-primary" onclick="findSuiDaoNUM()" value="隧道统计">
+    <input type="button" class="btn btn-primary" onclick="findSmallBirdgeNUM()" value="四五类桥梁统计">
+    <label for="">
+        年度：<input type="text" id="year" value="2017">
+    </label>
+    <label for="">
+        代码：<input type="text" id="code" value="">
+    </label>
+    <label for="">
+        行政等级：<input type="text" id="type" value="">
+    </label>
+    <label for="">
+        等级：<input type="text" id="level" value="">
+    </label>
+    <label for="">
+        统计单位：<input type="text" id="unit" value="">
+    </label>
+</div>
+<div>
+    <input type="button" class="btn btn-primary" onclick="findRttDataTop()" value="获取实时拥堵排名数据">
+</div>
+<script>
+    function getData() {
+        console.log("getData....")
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/getattributefield",
+            data: {},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function getList() {
+        console.log("getData....")
+        var roadcode = $("#roadcode").val()
+        var startzh = $("#startzh").val()
+        var endzh = $("#endzh").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/find",
+            data: {roadcode: roadcode, startzh: startzh, endzh: endzh},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function getLength() {
+        console.log("getData....")
+        var roadcode = $("#roadcode").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/queryLength",
+            data: {roadcode: roadcode},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function findRoadNUM() {
+        console.log("findRoadNUM....")
+        var year = $("#year").val()
+        var code = $("#code").val()
+        var type = $("#type").val()
+        var level = $("#level").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/findRoadNUM",
+            data: {year: year, code: code, type: type, level: level},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function findBirdgeNUM() {
+        console.log("findBirdgeNUM....")
+        var year = $("#year").val()
+        var code = $("#code").val()
+        var type = $("#type").val()
+        var level = $("#level").val()
+        var unit = $("#unit").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/findBirdgeNUM",
+            data: {year: year, code: code, type: type, level: level, unit: unit},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+    function findSmallBirdgeNUM() {
+        console.log("findSmallBirdgeNUM....")
+        var year = $("#year").val()
+        var code = $("#code").val()
+        var type = $("#type").val()
+        var level = $("#level").val()
+        var unit = $("#unit").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/findSmallBirdgeNUM",
+            data: {year: '2017', code: '2', type: '', level: '011', unit: '1'},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function findSuiDaoNUM() {
+        console.log("findSuiDaoNUM....")
+        var year = $("#year").val()
+        var code = $("#code").val()
+        var type = $("#type").val()
+        var level = $("#level").val()
+        var unit = $("#unit").val()
+        $.ajax({
+            url: "http://localhost:8081/onepic/nbattr/findSuiDaoNUM",
+            data: {year: year, code: code, type: type, level: level, unit: unit},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function findRttDataTop() {
+        console.log("findRttDataTop....")
+        $.ajax({
+            url: "http://localhost:8081/onepic/rttServer/find",
+            data: {orderBy: "asc"},
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

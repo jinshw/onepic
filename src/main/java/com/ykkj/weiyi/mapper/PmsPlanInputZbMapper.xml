@@ -25,7 +25,7 @@
 		<result column="submit_man" property="submitMan" jdbcType="VARCHAR" />
 		<result column="submit_time" property="submitTime" jdbcType="DATE" />
 		<result column="bpm_status" property="bpmStatus" jdbcType="VARCHAR" />
-		<result column="inserttime" property="inserttime" jdbcType="DATE" />
+		<result column="insert_time" property="insertTime" jdbcType="DATE" />
 		<result column="creattime" property="creattime" jdbcType="DATE" />
 	</resultMap>
 	<resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs"
@@ -108,7 +108,7 @@
 		user_type, property_a,
 		property_b, property_c, real_start_date, real_end_date,
 		is_sueno,
-		upload_id, submit_man, submit_time, bpm_status, inserttime, creattime
+		upload_id, submit_man, submit_time, bpm_status, insert_time, creattime
 	</sql>
 	<sql id="Blob_Column_List">
 		text_value1, text_value2, text_value3, text_value4,
@@ -176,9 +176,9 @@
 		property_c, real_start_date, real_end_date,
 		is_sueno, upload_id,
 		submit_man,
-		submit_time, bpm_status, inserttime,
-		creattime, text_value1,
-		text_value2,
+		submit_time, bpm_status, insert_time,
+		creattime,
+		text_value1, text_value2,
 		text_value3, text_value4, text_value5
 		)
 		values
@@ -195,7 +195,7 @@
 		#{isSueno,jdbcType=DECIMAL},
 		#{uploadId,jdbcType=VARCHAR}, #{submitMan,jdbcType=VARCHAR},
 		#{submitTime,jdbcType=DATE}, #{bpmStatus,jdbcType=VARCHAR},
-		#{inserttime,jdbcType=DATE},
+		#{insertTime,jdbcType=DATE},
 		#{creattime,jdbcType=DATE},
 		#{textValue1,jdbcType=LONGVARCHAR},
 		#{textValue2,jdbcType=LONGVARCHAR},
@@ -266,8 +266,8 @@
 			<if test="bpmStatus != null">
 				bpm_status,
 			</if>
-			<if test="inserttime != null">
-				inserttime,
+			<if test="insertTime != null">
+				insert_time,
 			</if>
 			<if test="creattime != null">
 				creattime,
@@ -349,8 +349,8 @@
 			<if test="bpmStatus != null">
 				#{bpmStatus,jdbcType=VARCHAR},
 			</if>
-			<if test="inserttime != null">
-				#{inserttime,jdbcType=DATE},
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=DATE},
 			</if>
 			<if test="creattime != null">
 				#{creattime,jdbcType=DATE},
@@ -442,8 +442,8 @@
 			<if test="record.bpmStatus != null">
 				bpm_status = #{record.bpmStatus,jdbcType=VARCHAR},
 			</if>
-			<if test="record.inserttime != null">
-				inserttime = #{record.inserttime,jdbcType=DATE},
+			<if test="record.insertTime != null">
+				insert_time = #{record.insertTime,jdbcType=DATE},
 			</if>
 			<if test="record.creattime != null">
 				creattime = #{record.creattime,jdbcType=DATE},
@@ -508,8 +508,8 @@
 		#{record.submitTime,jdbcType=DATE},
 		bpm_status =
 		#{record.bpmStatus,jdbcType=VARCHAR},
-		inserttime =
-		#{record.inserttime,jdbcType=DATE},
+		insert_time =
+		#{record.insertTime,jdbcType=DATE},
 		creattime =
 		#{record.creattime,jdbcType=DATE},
 		text_value1 =
@@ -566,8 +566,8 @@
 		#{record.submitTime,jdbcType=DATE},
 		bpm_status =
 		#{record.bpmStatus,jdbcType=VARCHAR},
-		inserttime =
-		#{record.inserttime,jdbcType=DATE},
+		insert_time =
+		#{record.insertTime,jdbcType=DATE},
 		creattime =
 		#{record.creattime,jdbcType=DATE}
 		<if test="_parameter != null">
@@ -634,8 +634,8 @@
 			<if test="bpmStatus != null">
 				bpm_status = #{bpmStatus,jdbcType=VARCHAR},
 			</if>
-			<if test="inserttime != null">
-				inserttime = #{inserttime,jdbcType=DATE},
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=DATE},
 			</if>
 			<if test="creattime != null">
 				creattime = #{creattime,jdbcType=DATE},
@@ -694,8 +694,8 @@
 		#{submitTime,jdbcType=DATE},
 		bpm_status =
 		#{bpmStatus,jdbcType=VARCHAR},
-		inserttime =
-		#{inserttime,jdbcType=DATE},
+		insert_time =
+		#{insertTime,jdbcType=DATE},
 		creattime = #{creattime,jdbcType=DATE},
 		text_value1 = #{textValue1,jdbcType=LONGVARCHAR},
 		text_value2 =
@@ -744,8 +744,8 @@
 		#{submitTime,jdbcType=DATE},
 		bpm_status =
 		#{bpmStatus,jdbcType=VARCHAR},
-		inserttime =
-		#{inserttime,jdbcType=DATE},
+		insert_time =
+		#{insertTime,jdbcType=DATE},
 		creattime = #{creattime,jdbcType=DATE}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
@@ -755,45 +755,52 @@
 		delete from pms_plan_input_zb;
 	</delete>
 	<insert id="insertPmsPlanInputZbList" parameterType="com.ykkj.weiyi.pojo.PmsPlanInputZbWithBLOBs">
-		insert into pms_plan_input_zb (id, entity_id, entity_type,
+		insert into pms_plan_input_zb
+		(id, entity_id, entity_type,
 		year, month,
 		is_suance,
-		update_people, update_time, update_action,
+		update_people,
+		update_time, update_action,
 		user_type,
 		property_a, property_b,
 		property_c, real_start_date, real_end_date,
-		is_sueno, upload_id, submit_man,
-		submit_time, bpm_status, inserttime,
-		creattime, text_value1, text_value2,
+		is_sueno, upload_id,
+		submit_man,
+		submit_time, bpm_status, insert_time,
+		creattime,
+		text_value1, text_value2,
 		text_value3, text_value4,
 		text_value5
 		)
 		values
 		<foreach item="item" index="index" collection="list"
 			separator=",">
-			(#{item.id,jdbcType=VARCHAR}, #{item.entityId,jdbcType=VARCHAR},
+			(#{item.id,jdbcType=VARCHAR},
+			#{item.entityId,jdbcType=VARCHAR},
 			#{item.entityType,jdbcType=VARCHAR},
 			#{item.year,jdbcType=DECIMAL},
 			#{item.month,jdbcType=DECIMAL},
 			#{item.isSuance,jdbcType=DECIMAL},
-			#{item.updatePeople,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=DATE},
+			#{item.updatePeople,jdbcType=VARCHAR},
+			#{item.updateTime,jdbcType=DATE},
 			#{item.updateAction,jdbcType=VARCHAR},
 			#{item.userType,jdbcType=DECIMAL},
 			#{item.propertyA,jdbcType=VARCHAR},
 			#{item.propertyB,jdbcType=VARCHAR},
-			#{item.propertyC,jdbcType=VARCHAR}, #{item.realStartDate,jdbcType=DATE},
+			#{item.propertyC,jdbcType=VARCHAR}, 
+			#{item.realStartDate,jdbcType=DATE},
 			#{item.realEndDate,jdbcType=DATE},
-		 <if test="item.isSueno != -1" >
-      #{item.isSueno,jdbcType=DECIMAL},
-      </if>
-      	 <if test="item.isSueno == -1" >
-     Null ,
-      </if>
-			
+			<if test="item.isSueno != -1">
+				#{item.isSueno,jdbcType=DECIMAL},
+			</if>
+			<if test="item.isSueno == -1">
+				Null ,
+			</if>
 			#{item.uploadId,jdbcType=VARCHAR},
 			#{item.submitMan,jdbcType=VARCHAR},
-			#{item.submitTime,jdbcType=DATE}, #{item.bpmStatus,jdbcType=VARCHAR},
-			#{item.inserttime,jdbcType=DATE},
+			#{item.submitTime,jdbcType=DATE},
+			#{item.bpmStatus,jdbcType=VARCHAR},
+			#{item.insertTime,jdbcType=DATE},
 			#{item.creattime,jdbcType=DATE},
 			#{item.textValue1,jdbcType=LONGVARCHAR},
 			#{item.textValue2,jdbcType=LONGVARCHAR},
@@ -803,5 +810,6 @@
 			)
 		</foreach>
 	</insert>
+
 
 </mapper>

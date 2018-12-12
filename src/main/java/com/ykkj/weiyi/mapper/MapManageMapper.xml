@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.MapManageMapper">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.MapManage">
+        <result column="id" property="id"/>
+        <result column="layer_name" property="layerName"/>
+        <result column="ip" property="ip"/>
+        <result column="port" property="port"/>
+        <result column="uri" property="uri"/>
+        <result column="service_type" property="serviceType"/>
+        <result column="map_type" property="mapType"/>
+        <result column="effective_datetime" property="effectiveDatetime"/>
+        <result column="code" property="code"/>
+        <result column="group_name" property="groupName"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="orders" property="orders"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `layer_name`,
+        `ip`,
+        `port`,
+        `uri`,
+        `service_type`,
+        `map_type`,
+        `effective_datetime`,
+        `code`,
+        `group_name`,
+        `is_delete`,
+        `orders`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO map_manage (
+            `id`,
+            `layer_name`,
+            `ip`,
+            `port`,
+            `uri`,
+            `service_type`,
+            `map_type`,
+            `effective_datetime`,
+            `code`,
+            `group_name`,
+            `is_delete`,
+            `orders`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.layerName},
+            #{pojo.ip},
+            #{pojo.port},
+            #{pojo.uri},
+            #{pojo.serviceType},
+            #{pojo.mapType},
+            #{pojo.effectiveDatetime},
+            #{pojo.code},
+            #{pojo.groupName},
+            #{pojo.isDelete},
+            #{pojo.orders}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO map_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">`id`,</if>
+            <if test="pojo.layerName!=null">`layer_name`,</if>
+            <if test="pojo.ip!=null">`ip`,</if>
+            <if test="pojo.port!=null">`port`,</if>
+            <if test="pojo.uri!=null">`uri`,</if>
+            <if test="pojo.serviceType!=null">`service_type`,</if>
+            <if test="pojo.mapType!=null">`map_type`,</if>
+            <if test="pojo.effectiveDatetime!=null">`effective_datetime`,</if>
+            <if test="pojo.code!=null">`code`,</if>
+            <if test="pojo.groupName!=null">`group_name`,</if>
+            <if test="pojo.isDelete!=null">`is_delete`,</if>
+            <if test="pojo.orders!=null">`orders`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.layerName!=null">#{pojo.layerName},</if>
+            <if test="pojo.ip!=null">#{pojo.ip},</if>
+            <if test="pojo.port!=null">#{pojo.port},</if>
+            <if test="pojo.uri!=null">#{pojo.uri},</if>
+            <if test="pojo.serviceType!=null">#{pojo.serviceType},</if>
+            <if test="pojo.mapType!=null">#{pojo.mapType},</if>
+            <if test="pojo.effectiveDatetime!=null">#{pojo.effectiveDatetime},</if>
+            <if test="pojo.code!=null">#{pojo.code},</if>
+            <if test="pojo.groupName!=null">#{pojo.groupName},</if>
+            <if test="pojo.isDelete!=null">#{pojo.isDelete},</if>
+            <if test="pojo.orders!=null">#{pojo.orders},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO map_manage (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.layerName},
+            #{pojo.ip},
+            #{pojo.port},
+            #{pojo.uri},
+            #{pojo.serviceType},
+            #{pojo.mapType},
+            #{pojo.effectiveDatetime},
+            #{pojo.code},
+            #{pojo.groupName},
+            #{pojo.isDelete},
+            #{pojo.orders}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE map_manage
+        <set>
+            <if test="pojo.id != null">`id` = #{pojo.id},</if>
+            <if test="pojo.layerName != null">`layer_name` = #{pojo.layerName},</if>
+            <if test="pojo.ip != null">`ip` = #{pojo.ip},</if>
+            <if test="pojo.port != null">`port` = #{pojo.port},</if>
+            <if test="pojo.uri != null">`uri` = #{pojo.uri},</if>
+            <if test="pojo.serviceType != null">`service_type` = #{pojo.serviceType},</if>
+            <if test="pojo.mapType != null">`map_type` = #{pojo.mapType},</if>
+            <if test="pojo.effectiveDatetime != null">`effective_datetime` = #{pojo.effectiveDatetime},</if>
+            <if test="pojo.code != null">`code` = #{pojo.code},</if>
+            <if test="pojo.groupName != null">`group_name` = #{pojo.groupName},</if>
+            <if test="pojo.isDelete != null">`is_delete` = #{pojo.isDelete},</if>
+            <if test="pojo.orders != null">`orders` = #{pojo.orders}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <!--auto generated by codehelper on 2018-04-11 18:06:22-->
+    <select id="find" resultMap="AllColumnMap" parameterType="com.ykkj.weiyi.pojo.MapManage">
+        select
+        <include refid="all_column"/>
+        from map_manage
+        <where>
+            <if test="id != null and id !=''">
+                AND id = #{id}
+            </if>
+            <if test="layerName != null and layerName !=''">
+                AND layer_name = #{layerName}
+            </if>
+            <if test="ip != null and ip !=''">
+                AND ip = #{ip}
+            </if>
+            <if test="port != null and port !=''">
+                AND port = #{port}
+            </if>
+            <if test="uri != null and uri !=''">
+                AND uri = #{uri}
+            </if>
+            <if test="serviceType != null and serviceType !=''">
+                AND service_type = #{serviceType}
+            </if>
+            <if test="mapType != null and mapType !=''">
+                AND map_type = #{mapType}
+            </if>
+            <if test="effectiveDatetime != null and effectiveDatetime !=''">
+                AND effective_datetime = #{effectiveDatetime}
+            </if>
+            <if test="code != null and code !=''">
+                AND code = #{code}
+            </if>
+            <if test="groupName != null and groupName !=''">
+                AND group_name = #{groupName}
+            </if>
+            <if test="isDelete != null and isDelete !=''">
+                AND is_delete = #{isDelete}
+            </if>
+        </where>
+    </select>
+</mapper>
+

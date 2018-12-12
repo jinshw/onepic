@@ -16,7 +16,7 @@
     <result column="sn" property="sn" jdbcType="DECIMAL" />
     <result column="page" property="page" jdbcType="DECIMAL" />
     <result column="project_plan_duration" property="projectPlanDuration" jdbcType="DECIMAL" />
-    <result column="inserttime" property="inserttime" jdbcType="DATE" />
+    <result column="insertTime" property="inserttime" jdbcType="DATE" />
     <result column="creattime" property="creattime" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -80,7 +80,7 @@
   <sql id="Base_Column_List" >
     id, m_id, monitor_dept, mt_pact_money, monitorLeader, inspection_dept, ip_money, 
     inspection_leader, director_dept, dtpact_money, directo_leader, sn, page, project_plan_duration, 
-    inserttime, creattime
+    insertTime, creattime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz01Example" >
     select
@@ -117,7 +117,7 @@
       mt_pact_money, monitorLeader, inspection_dept, 
       ip_money, inspection_leader, director_dept, 
       dtpact_money, directo_leader, sn, 
-      page, project_plan_duration, inserttime, 
+      page, project_plan_duration, insertTime, 
       creattime)
     values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{monitorDept,jdbcType=VARCHAR}, 
       #{mtPactMoney,jdbcType=DECIMAL}, #{monitorleader,jdbcType=VARCHAR}, #{inspectionDept,jdbcType=VARCHAR}, 
@@ -172,7 +172,7 @@
         project_plan_duration,
       </if>
       <if test="inserttime != null" >
-        inserttime,
+        insertTime,
       </if>
       <if test="creattime != null" >
         creattime,
@@ -281,7 +281,7 @@
         project_plan_duration = #{record.projectPlanDuration,jdbcType=DECIMAL},
       </if>
       <if test="record.inserttime != null" >
-        inserttime = #{record.inserttime,jdbcType=DATE},
+        insertTime = #{record.inserttime,jdbcType=DATE},
       </if>
       <if test="record.creattime != null" >
         creattime = #{record.creattime,jdbcType=DATE},
@@ -307,7 +307,7 @@
       sn = #{record.sn,jdbcType=DECIMAL},
       page = #{record.page,jdbcType=DECIMAL},
       project_plan_duration = #{record.projectPlanDuration,jdbcType=DECIMAL},
-      inserttime = #{record.inserttime,jdbcType=DATE},
+      insertTime = #{record.inserttime,jdbcType=DATE},
       creattime = #{record.creattime,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -356,7 +356,7 @@
         project_plan_duration = #{projectPlanDuration,jdbcType=DECIMAL},
       </if>
       <if test="inserttime != null" >
-        inserttime = #{inserttime,jdbcType=DATE},
+        insertTime = #{inserttime,jdbcType=DATE},
       </if>
       <if test="creattime != null" >
         creattime = #{creattime,jdbcType=DATE},
@@ -379,7 +379,7 @@
       sn = #{sn,jdbcType=DECIMAL},
       page = #{page,jdbcType=DECIMAL},
       project_plan_duration = #{projectPlanDuration,jdbcType=DECIMAL},
-      inserttime = #{inserttime,jdbcType=DATE},
+      insertTime = #{inserttime,jdbcType=DATE},
       creattime = #{creattime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>

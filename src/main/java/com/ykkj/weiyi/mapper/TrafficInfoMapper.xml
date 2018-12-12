@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.TrafficInfoMapper">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.TrafficInfo">
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="tid" jdbcType="VARCHAR" property="rticId"/>
+        <result column="startlen" jdbcType="INTEGER" property="flowStartlen"/>
+        <result column="affectlen" jdbcType="INTEGER" property="flowAffectlen"/>
+        <result column="los" jdbcType="VARCHAR" property="flowLos"/>
+        <result column="traveltime" jdbcType="VARCHAR" property="flowTraveltime"/>
+        <result column="nid" jdbcType="VARCHAR" property="nid"/>
+        <result column="roadcode" jdbcType="VARCHAR" property="roadCode"/>
+        <result column="roadname" jdbcType="VARCHAR" property="roadName"/>
+        <result column="startzh" jdbcType="DOUBLE" property="startzh"/>
+        <result column="endzh" jdbcType="DOUBLE" property="endzh"/>
+        <result column="startpoint" jdbcType="VARCHAR" property="startPoint"/>
+        <result column="endpoinrt" jdbcType="VARCHAR" property="endPoint"/>
+        <result column="batch" jdbcType="VARCHAR" property="batch"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="include" jdbcType="VARCHAR" property="includeStr"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        ID          ,
+        TID         ,
+        STARTLEN    ,
+        AFFECTLEN   ,
+        LOS         ,
+        TRAVELTIME  ,
+        NID         ,
+        ROADCODE    ,
+        ROADNAME    ,
+        STARTZH     ,
+        ENDZH       ,
+        STARTPOINT  ,
+        ENDPOINRT   ,
+        BATCH       ,
+        CREATETIME  ,
+        INCLUDE
+    </sql>
+
+    <select id="findList" parameterType="com.ykkj.weiyi.pojo.TrafficInfo" resultMap="AllColumnMap">
+        SELECT * FROM
+        (
+        SELECT * from (
+        SELECT * from traffic_info t ORDER BY createtime DESC
+        ) torder LIMIT 0,10
+        ) top ORDER BY top.startlen
+        <if test="pojo.orderBy == 'desc'">
+            DESC
+        </if>
+        <if test ="pojo.orderBy == 'asc'">
+            ASC
+        </if>
+    </select>
+
+</mapper>
+

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz04Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz04" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="DECIMAL" />
+    <result column="nmg_by_rs" property="nmgByRs" jdbcType="DECIMAL" />
+    <result column="nmg_jzby_ljrc" property="nmgJzbyLjrc" jdbcType="DECIMAL" />
+    <result column="nmg_by_sr" property="nmgBySr" jdbcType="DECIMAL" />
+    <result column="nmg_jzby_ljsr" property="nmgJzbyLjsr" jdbcType="DECIMAL" />
+    <result column="ddnmg_by_rs" property="ddnmgByRs" jdbcType="DECIMAL" />
+    <result column="ddnmg_jzby_ljrc" property="ddnmgJzbyLjrc" jdbcType="DECIMAL" />
+    <result column="ddnmg_br_sr" property="ddnmgBrSr" jdbcType="DECIMAL" />
+    <result column="ddnmg_jzby_ljsr" property="ddnmgJzbyLjsr" jdbcType="DECIMAL" />
+    <result column="lq_jzby_ljxh" property="lqJzbyLjxh" jdbcType="DECIMAL" />
+    <result column="sn_by_xh" property="snByXh" jdbcType="DECIMAL" />
+    <result column="sn_jzby_ljxh" property="snJzbyLjxh" jdbcType="DECIMAL" />
+    <result column="gc_by_xh" property="gcByXh" jdbcType="DECIMAL" />
+    <result column="gc_jzby_ljxh" property="gcJzbyLjxh" jdbcType="DECIMAL" />
+    <result column="ry_by_xh" property="ryByXh" jdbcType="DECIMAL" />
+    <result column="ry_jzby_ljxh" property="ryJzbyLjxh" jdbcType="DECIMAL" />
+    <result column="sh_by_xh" property="shByXh" jdbcType="DECIMAL" />
+    <result column="lq_by_xh" property="lqByXh" jdbcType="DECIMAL" />
+    <result column="sh_by_ljxh" property="shByLjxh" jdbcType="DECIMAL" />
+    <result column="lq_by_zkgljxh" property="lqByZkgljxh" jdbcType="DECIMAL" />
+    <result column="sn_by_zkgljxh" property="snByZkgljxh" jdbcType="DECIMAL" />
+    <result column="gc_by_zkgljxh" property="gcByZkgljxh" jdbcType="DECIMAL" />
+    <result column="ry_by_zkgljxh" property="ryByZkgljxh" jdbcType="DECIMAL" />
+    <result column="sh_by_zkgljxh" property="shByZkgljxh" jdbcType="DECIMAL" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, sn, item_name, type, nmg_by_rs, nmg_jzby_ljrc, nmg_by_sr, nmg_jzby_ljsr, 
+    ddnmg_by_rs, ddnmg_jzby_ljrc, ddnmg_br_sr, ddnmg_jzby_ljsr, lq_jzby_ljxh, sn_by_xh, 
+    sn_jzby_ljxh, gc_by_xh, gc_jzby_ljxh, ry_by_xh, ry_jzby_ljxh, sh_by_xh, lq_by_xh, 
+    sh_by_ljxh, lq_by_zkgljxh, sn_by_zkgljxh, gc_by_zkgljxh, ry_by_zkgljxh, sh_by_zkgljxh, 
+    insert_time, creattime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz04
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz04
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_plan_tzkz04
+    where id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04Example" >
+    delete from pms_plan_tzkz04
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04" >
+    insert into pms_plan_tzkz04 (id, m_id, sn, 
+      item_name, type, nmg_by_rs, 
+      nmg_jzby_ljrc, nmg_by_sr, nmg_jzby_ljsr, 
+      ddnmg_by_rs, ddnmg_jzby_ljrc, ddnmg_br_sr, 
+      ddnmg_jzby_ljsr, lq_jzby_ljxh, sn_by_xh, 
+      sn_jzby_ljxh, gc_by_xh, gc_jzby_ljxh, 
+      ry_by_xh, ry_jzby_ljxh, sh_by_xh, 
+      lq_by_xh, sh_by_ljxh, lq_by_zkgljxh, 
+      sn_by_zkgljxh, gc_by_zkgljxh, ry_by_zkgljxh, 
+      sh_by_zkgljxh, insert_time, creattime
+      )
+    values (#{id,jdbcType=DECIMAL}, #{mId,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, #{nmgByRs,jdbcType=DECIMAL}, 
+      #{nmgJzbyLjrc,jdbcType=DECIMAL}, #{nmgBySr,jdbcType=DECIMAL}, #{nmgJzbyLjsr,jdbcType=DECIMAL}, 
+      #{ddnmgByRs,jdbcType=DECIMAL}, #{ddnmgJzbyLjrc,jdbcType=DECIMAL}, #{ddnmgBrSr,jdbcType=DECIMAL}, 
+      #{ddnmgJzbyLjsr,jdbcType=DECIMAL}, #{lqJzbyLjxh,jdbcType=DECIMAL}, #{snByXh,jdbcType=DECIMAL}, 
+      #{snJzbyLjxh,jdbcType=DECIMAL}, #{gcByXh,jdbcType=DECIMAL}, #{gcJzbyLjxh,jdbcType=DECIMAL}, 
+      #{ryByXh,jdbcType=DECIMAL}, #{ryJzbyLjxh,jdbcType=DECIMAL}, #{shByXh,jdbcType=DECIMAL}, 
+      #{lqByXh,jdbcType=DECIMAL}, #{shByLjxh,jdbcType=DECIMAL}, #{lqByZkgljxh,jdbcType=DECIMAL}, 
+      #{snByZkgljxh,jdbcType=DECIMAL}, #{gcByZkgljxh,jdbcType=DECIMAL}, #{ryByZkgljxh,jdbcType=DECIMAL}, 
+      #{shByZkgljxh,jdbcType=DECIMAL}, #{insertTime,jdbcType=TIMESTAMP}, #{creattime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04" >
+    insert into pms_plan_tzkz04
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nmgByRs != null" >
+        nmg_by_rs,
+      </if>
+      <if test="nmgJzbyLjrc != null" >
+        nmg_jzby_ljrc,
+      </if>
+      <if test="nmgBySr != null" >
+        nmg_by_sr,
+      </if>
+      <if test="nmgJzbyLjsr != null" >
+        nmg_jzby_ljsr,
+      </if>
+      <if test="ddnmgByRs != null" >
+        ddnmg_by_rs,
+      </if>
+      <if test="ddnmgJzbyLjrc != null" >
+        ddnmg_jzby_ljrc,
+      </if>
+      <if test="ddnmgBrSr != null" >
+        ddnmg_br_sr,
+      </if>
+      <if test="ddnmgJzbyLjsr != null" >
+        ddnmg_jzby_ljsr,
+      </if>
+      <if test="lqJzbyLjxh != null" >
+        lq_jzby_ljxh,
+      </if>
+      <if test="snByXh != null" >
+        sn_by_xh,
+      </if>
+      <if test="snJzbyLjxh != null" >
+        sn_jzby_ljxh,
+      </if>
+      <if test="gcByXh != null" >
+        gc_by_xh,
+      </if>
+      <if test="gcJzbyLjxh != null" >
+        gc_jzby_ljxh,
+      </if>
+      <if test="ryByXh != null" >
+        ry_by_xh,
+      </if>
+      <if test="ryJzbyLjxh != null" >
+        ry_jzby_ljxh,
+      </if>
+      <if test="shByXh != null" >
+        sh_by_xh,
+      </if>
+      <if test="lqByXh != null" >
+        lq_by_xh,
+      </if>
+      <if test="shByLjxh != null" >
+        sh_by_ljxh,
+      </if>
+      <if test="lqByZkgljxh != null" >
+        lq_by_zkgljxh,
+      </if>
+      <if test="snByZkgljxh != null" >
+        sn_by_zkgljxh,
+      </if>
+      <if test="gcByZkgljxh != null" >
+        gc_by_zkgljxh,
+      </if>
+      <if test="ryByZkgljxh != null" >
+        ry_by_zkgljxh,
+      </if>
+      <if test="shByZkgljxh != null" >
+        sh_by_zkgljxh,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgByRs != null" >
+        #{nmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgJzbyLjrc != null" >
+        #{nmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgBySr != null" >
+        #{nmgBySr,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgJzbyLjsr != null" >
+        #{nmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgByRs != null" >
+        #{ddnmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgJzbyLjrc != null" >
+        #{ddnmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgBrSr != null" >
+        #{ddnmgBrSr,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgJzbyLjsr != null" >
+        #{ddnmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="lqJzbyLjxh != null" >
+        #{lqJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="snByXh != null" >
+        #{snByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="snJzbyLjxh != null" >
+        #{snJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcByXh != null" >
+        #{gcByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcJzbyLjxh != null" >
+        #{gcJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryByXh != null" >
+        #{ryByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryJzbyLjxh != null" >
+        #{ryJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByXh != null" >
+        #{shByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="lqByXh != null" >
+        #{lqByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByLjxh != null" >
+        #{shByLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="lqByZkgljxh != null" >
+        #{lqByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="snByZkgljxh != null" >
+        #{snByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcByZkgljxh != null" >
+        #{gcByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryByZkgljxh != null" >
+        #{ryByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByZkgljxh != null" >
+        #{shByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz04
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz04
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmgByRs != null" >
+        nmg_by_rs = #{record.nmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmgJzbyLjrc != null" >
+        nmg_jzby_ljrc = #{record.nmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmgBySr != null" >
+        nmg_by_sr = #{record.nmgBySr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nmgJzbyLjsr != null" >
+        nmg_jzby_ljsr = #{record.nmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ddnmgByRs != null" >
+        ddnmg_by_rs = #{record.ddnmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ddnmgJzbyLjrc != null" >
+        ddnmg_jzby_ljrc = #{record.ddnmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ddnmgBrSr != null" >
+        ddnmg_br_sr = #{record.ddnmgBrSr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ddnmgJzbyLjsr != null" >
+        ddnmg_jzby_ljsr = #{record.ddnmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lqJzbyLjxh != null" >
+        lq_jzby_ljxh = #{record.lqJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.snByXh != null" >
+        sn_by_xh = #{record.snByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.snJzbyLjxh != null" >
+        sn_jzby_ljxh = #{record.snJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gcByXh != null" >
+        gc_by_xh = #{record.gcByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gcJzbyLjxh != null" >
+        gc_jzby_ljxh = #{record.gcJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ryByXh != null" >
+        ry_by_xh = #{record.ryByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ryJzbyLjxh != null" >
+        ry_jzby_ljxh = #{record.ryJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shByXh != null" >
+        sh_by_xh = #{record.shByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lqByXh != null" >
+        lq_by_xh = #{record.lqByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shByLjxh != null" >
+        sh_by_ljxh = #{record.shByLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lqByZkgljxh != null" >
+        lq_by_zkgljxh = #{record.lqByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.snByZkgljxh != null" >
+        sn_by_zkgljxh = #{record.snByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gcByZkgljxh != null" >
+        gc_by_zkgljxh = #{record.gcByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ryByZkgljxh != null" >
+        ry_by_zkgljxh = #{record.ryByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shByZkgljxh != null" >
+        sh_by_zkgljxh = #{record.shByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz04
+    set id = #{record.id,jdbcType=DECIMAL},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=DECIMAL},
+      nmg_by_rs = #{record.nmgByRs,jdbcType=DECIMAL},
+      nmg_jzby_ljrc = #{record.nmgJzbyLjrc,jdbcType=DECIMAL},
+      nmg_by_sr = #{record.nmgBySr,jdbcType=DECIMAL},
+      nmg_jzby_ljsr = #{record.nmgJzbyLjsr,jdbcType=DECIMAL},
+      ddnmg_by_rs = #{record.ddnmgByRs,jdbcType=DECIMAL},
+      ddnmg_jzby_ljrc = #{record.ddnmgJzbyLjrc,jdbcType=DECIMAL},
+      ddnmg_br_sr = #{record.ddnmgBrSr,jdbcType=DECIMAL},
+      ddnmg_jzby_ljsr = #{record.ddnmgJzbyLjsr,jdbcType=DECIMAL},
+      lq_jzby_ljxh = #{record.lqJzbyLjxh,jdbcType=DECIMAL},
+      sn_by_xh = #{record.snByXh,jdbcType=DECIMAL},
+      sn_jzby_ljxh = #{record.snJzbyLjxh,jdbcType=DECIMAL},
+      gc_by_xh = #{record.gcByXh,jdbcType=DECIMAL},
+      gc_jzby_ljxh = #{record.gcJzbyLjxh,jdbcType=DECIMAL},
+      ry_by_xh = #{record.ryByXh,jdbcType=DECIMAL},
+      ry_jzby_ljxh = #{record.ryJzbyLjxh,jdbcType=DECIMAL},
+      sh_by_xh = #{record.shByXh,jdbcType=DECIMAL},
+      lq_by_xh = #{record.lqByXh,jdbcType=DECIMAL},
+      sh_by_ljxh = #{record.shByLjxh,jdbcType=DECIMAL},
+      lq_by_zkgljxh = #{record.lqByZkgljxh,jdbcType=DECIMAL},
+      sn_by_zkgljxh = #{record.snByZkgljxh,jdbcType=DECIMAL},
+      gc_by_zkgljxh = #{record.gcByZkgljxh,jdbcType=DECIMAL},
+      ry_by_zkgljxh = #{record.ryByZkgljxh,jdbcType=DECIMAL},
+      sh_by_zkgljxh = #{record.shByZkgljxh,jdbcType=DECIMAL},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04" >
+    update pms_plan_tzkz04
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgByRs != null" >
+        nmg_by_rs = #{nmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgJzbyLjrc != null" >
+        nmg_jzby_ljrc = #{nmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgBySr != null" >
+        nmg_by_sr = #{nmgBySr,jdbcType=DECIMAL},
+      </if>
+      <if test="nmgJzbyLjsr != null" >
+        nmg_jzby_ljsr = #{nmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgByRs != null" >
+        ddnmg_by_rs = #{ddnmgByRs,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgJzbyLjrc != null" >
+        ddnmg_jzby_ljrc = #{ddnmgJzbyLjrc,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgBrSr != null" >
+        ddnmg_br_sr = #{ddnmgBrSr,jdbcType=DECIMAL},
+      </if>
+      <if test="ddnmgJzbyLjsr != null" >
+        ddnmg_jzby_ljsr = #{ddnmgJzbyLjsr,jdbcType=DECIMAL},
+      </if>
+      <if test="lqJzbyLjxh != null" >
+        lq_jzby_ljxh = #{lqJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="snByXh != null" >
+        sn_by_xh = #{snByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="snJzbyLjxh != null" >
+        sn_jzby_ljxh = #{snJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcByXh != null" >
+        gc_by_xh = #{gcByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcJzbyLjxh != null" >
+        gc_jzby_ljxh = #{gcJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryByXh != null" >
+        ry_by_xh = #{ryByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryJzbyLjxh != null" >
+        ry_jzby_ljxh = #{ryJzbyLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByXh != null" >
+        sh_by_xh = #{shByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="lqByXh != null" >
+        lq_by_xh = #{lqByXh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByLjxh != null" >
+        sh_by_ljxh = #{shByLjxh,jdbcType=DECIMAL},
+      </if>
+      <if test="lqByZkgljxh != null" >
+        lq_by_zkgljxh = #{lqByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="snByZkgljxh != null" >
+        sn_by_zkgljxh = #{snByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="gcByZkgljxh != null" >
+        gc_by_zkgljxh = #{gcByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ryByZkgljxh != null" >
+        ry_by_zkgljxh = #{ryByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="shByZkgljxh != null" >
+        sh_by_zkgljxh = #{shByZkgljxh,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz04" >
+    update pms_plan_tzkz04
+    set m_id = #{mId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=DECIMAL},
+      nmg_by_rs = #{nmgByRs,jdbcType=DECIMAL},
+      nmg_jzby_ljrc = #{nmgJzbyLjrc,jdbcType=DECIMAL},
+      nmg_by_sr = #{nmgBySr,jdbcType=DECIMAL},
+      nmg_jzby_ljsr = #{nmgJzbyLjsr,jdbcType=DECIMAL},
+      ddnmg_by_rs = #{ddnmgByRs,jdbcType=DECIMAL},
+      ddnmg_jzby_ljrc = #{ddnmgJzbyLjrc,jdbcType=DECIMAL},
+      ddnmg_br_sr = #{ddnmgBrSr,jdbcType=DECIMAL},
+      ddnmg_jzby_ljsr = #{ddnmgJzbyLjsr,jdbcType=DECIMAL},
+      lq_jzby_ljxh = #{lqJzbyLjxh,jdbcType=DECIMAL},
+      sn_by_xh = #{snByXh,jdbcType=DECIMAL},
+      sn_jzby_ljxh = #{snJzbyLjxh,jdbcType=DECIMAL},
+      gc_by_xh = #{gcByXh,jdbcType=DECIMAL},
+      gc_jzby_ljxh = #{gcJzbyLjxh,jdbcType=DECIMAL},
+      ry_by_xh = #{ryByXh,jdbcType=DECIMAL},
+      ry_jzby_ljxh = #{ryJzbyLjxh,jdbcType=DECIMAL},
+      sh_by_xh = #{shByXh,jdbcType=DECIMAL},
+      lq_by_xh = #{lqByXh,jdbcType=DECIMAL},
+      sh_by_ljxh = #{shByLjxh,jdbcType=DECIMAL},
+      lq_by_zkgljxh = #{lqByZkgljxh,jdbcType=DECIMAL},
+      sn_by_zkgljxh = #{snByZkgljxh,jdbcType=DECIMAL},
+      gc_by_zkgljxh = #{gcByZkgljxh,jdbcType=DECIMAL},
+      ry_by_zkgljxh = #{ryByZkgljxh,jdbcType=DECIMAL},
+      sh_by_zkgljxh = #{shByZkgljxh,jdbcType=DECIMAL},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

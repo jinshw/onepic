@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.PmsPlanTzkz07Mapper" >
+  <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.PmsPlanTzkz07" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="DECIMAL" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="DECIMAL" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="creattime" property="creattime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ykkj.weiyi.pojo.PmsPlanTzkz07WithBLOBs" extends="BaseResultMap" >
+    <result column="xxjdsm" property="xxjdsm" jdbcType="LONGVARCHAR" />
+    <result column="problem" property="problem" jdbcType="LONGVARCHAR" />
+    <result column="solve_problem" property="solveProblem" jdbcType="LONGVARCHAR" />
+    <result column="measuer" property="measuer" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, m_id, sn, remarks, sort_order, project_name, insert_time, creattime
+  </sql>
+  <sql id="Blob_Column_List" >
+    xxjdsm, problem, solve_problem, measuer
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pms_plan_tzkz07
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_plan_tzkz07
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pms_plan_tzkz07
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pms_plan_tzkz07
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07Example" >
+    delete from pms_plan_tzkz07
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07WithBLOBs" >
+    insert into pms_plan_tzkz07 (id, m_id, sn, 
+      remarks, sort_order, project_name, 
+      insert_time, creattime, xxjdsm, 
+      problem, solve_problem, measuer
+      )
+    values (#{id,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{sn,jdbcType=DECIMAL}, 
+      #{remarks,jdbcType=VARCHAR}, #{sortOrder,jdbcType=DECIMAL}, #{projectName,jdbcType=VARCHAR}, 
+      #{insertTime,jdbcType=TIMESTAMP}, #{creattime,jdbcType=TIMESTAMP}, #{xxjdsm,jdbcType=LONGVARCHAR}, 
+      #{problem,jdbcType=LONGVARCHAR}, #{solveProblem,jdbcType=LONGVARCHAR}, #{measuer,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07WithBLOBs" >
+    insert into pms_plan_tzkz07
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="creattime != null" >
+        creattime,
+      </if>
+      <if test="xxjdsm != null" >
+        xxjdsm,
+      </if>
+      <if test="problem != null" >
+        problem,
+      </if>
+      <if test="solveProblem != null" >
+        solve_problem,
+      </if>
+      <if test="measuer != null" >
+        measuer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xxjdsm != null" >
+        #{xxjdsm,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="problem != null" >
+        #{problem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="solveProblem != null" >
+        #{solveProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="measuer != null" >
+        #{measuer,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07Example" resultType="java.lang.Integer" >
+    select count(*) from pms_plan_tzkz07
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_plan_tzkz07
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortOrder != null" >
+        sort_order = #{record.sortOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creattime != null" >
+        creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.xxjdsm != null" >
+        xxjdsm = #{record.xxjdsm,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.problem != null" >
+        problem = #{record.problem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.solveProblem != null" >
+        solve_problem = #{record.solveProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.measuer != null" >
+        measuer = #{record.measuer,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update pms_plan_tzkz07
+    set id = #{record.id,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=DECIMAL},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      sort_order = #{record.sortOrder,jdbcType=DECIMAL},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP},
+      xxjdsm = #{record.xxjdsm,jdbcType=LONGVARCHAR},
+      problem = #{record.problem,jdbcType=LONGVARCHAR},
+      solve_problem = #{record.solveProblem,jdbcType=LONGVARCHAR},
+      measuer = #{record.measuer,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_plan_tzkz07
+    set id = #{record.id,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=DECIMAL},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      sort_order = #{record.sortOrder,jdbcType=DECIMAL},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      creattime = #{record.creattime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07WithBLOBs" >
+    update pms_plan_tzkz07
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creattime != null" >
+        creattime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xxjdsm != null" >
+        xxjdsm = #{xxjdsm,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="problem != null" >
+        problem = #{problem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="solveProblem != null" >
+        solve_problem = #{solveProblem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="measuer != null" >
+        measuer = #{measuer,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07WithBLOBs" >
+    update pms_plan_tzkz07
+    set m_id = #{mId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=DECIMAL},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=DECIMAL},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP},
+      xxjdsm = #{xxjdsm,jdbcType=LONGVARCHAR},
+      problem = #{problem,jdbcType=LONGVARCHAR},
+      solve_problem = #{solveProblem,jdbcType=LONGVARCHAR},
+      measuer = #{measuer,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ykkj.weiyi.pojo.PmsPlanTzkz07" >
+    update pms_plan_tzkz07
+    set m_id = #{mId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=DECIMAL},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=DECIMAL},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      creattime = #{creattime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
