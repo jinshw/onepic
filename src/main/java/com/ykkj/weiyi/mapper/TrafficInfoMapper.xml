@@ -42,12 +42,14 @@
     </sql>
 
     <select id="findList" parameterType="com.ykkj.weiyi.pojo.TrafficInfo" resultMap="AllColumnMap">
+        <![CDATA[
         SELECT * FROM
         (
         SELECT * from (
         SELECT * from traffic_info t ORDER BY createtime DESC
         ) torder LIMIT 0,10
         ) top ORDER BY top.startlen
+        ]]>
         <if test="pojo.orderBy == 'desc'">
             DESC
         </if>
