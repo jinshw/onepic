@@ -68,6 +68,8 @@ public class TrafficInfo {
     private String endPoint; // 映射到年报底图的终点x,y
     private String batch;// 批次
     private Timestamp createtime;
+    private String startPointNB;
+    private String endPointNB;
 
     /**
      * 扩展字段
@@ -75,6 +77,23 @@ public class TrafficInfo {
      * @return
      */
     private String orderBy = "";// 排序方式
+
+
+    public String getStartPointNB() {
+        return startPointNB;
+    }
+
+    public void setStartPointNB(String startPointNB) {
+        this.startPointNB = startPointNB;
+    }
+
+    public String getEndPointNB() {
+        return endPointNB;
+    }
+
+    public void setEndPointNB(String endPointNB) {
+        this.endPointNB = endPointNB;
+    }
 
     public String getOrderBy() {
         return orderBy;
