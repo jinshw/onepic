@@ -11,7 +11,7 @@ public interface NBaoAttrService {
      *
      * @return
      */
-    public List<String> getAttributeField();
+    public List<String> getAttributeField(String searchType);
 
     /**
      * 查询所有道路属性
@@ -35,5 +35,9 @@ public interface NBaoAttrService {
     public Integer findSuiDaoNUM(NBaoSuiDaoNUM pojo);
 
     public Integer findSmallBirdgeNUM(NBaoSmallBridgeNUM pojo);
+
+    public List findBridgeList(NBaoAttrBridge nBaoAttrBridge);
+
+    public List findSuiDaoList(NBaoAttrSuiDao nBaoAttrSuiDao);
 
 }

@@ -10,9 +10,30 @@
 <body>
 <h1>Hello Spring boot2233444442</h1>
 <div>
+    <select id="attrTypeSelectId">
+        <option value="road" selected>道路</option>
+        <option value="bridge">桥梁</option>
+        <option value="suidao">隧道</option>
+    </select>
+    <label for="">
+        年份：<input type="text" id="yearNbAttr" value="2017">
+    </label>
+    <label for="">
+        桥梁roadcode：<input type="text" id="roadcodeAttr" value="G30">
+    </label>
+    <label for="">
+        桥梁code：<input type="text" id="codeAttr" value="K5100">
+    </label>
+    <label for="">
+        桥梁xzqh：<input type="text" id="xzqh" value="652301">
+    </label>
+    <label for="">
+        隧道代码：<input type="text" id="fsbm" value="H30654023U9070">
+    </label>
     <input type="button" class="btn btn-primary" onclick="getData()" value="获取属性字段列表">
     <input type="button" class="btn btn-primary" onclick="getList()" value="获取属性内容列表"/>
     <input type="button" class="btn btn-primary" onclick="getLength()" value="获取道路长度"/>
+
     <label for="">
         线路编码：<input type="text" id="roadcode" value="G217">
     </label>
@@ -50,9 +71,11 @@
 <script>
     function getData() {
         console.log("getData....")
+        var searchType = $("#attrTypeSelectId").val()
+        console.log("searchType=",searchType)
         $.ajax({
             url: "http://localhost:8081/onepic/nbattr/getattributefield",
-            data: {},
+            data: {searchType:searchType},
             type: "get",
             dataType: "jsonp",
             success: function (data) {
@@ -69,9 +92,18 @@
         var roadcode = $("#roadcode").val()
         var startzh = $("#startzh").val()
         var endzh = $("#endzh").val()
+        var yearNbAttr = $("#yearNbAttr").val()
+        var roadcodeAttr = $("#roadcodeAttr").val()
+        var codeAttr = $("#codeAttr").val()
+        var xzqh = $("#xzqh").val()
+        var fsbm = $("#fsbm").val()
+        var searchType = $("#attrTypeSelectId").val()
+        if(searchType != "road"){
+            roadcode = roadcodeAttr;
+        }
         $.ajax({
             url: "http://localhost:8081/onepic/nbattr/find",
-            data: {roadcode: roadcode, startzh: startzh, endzh: endzh},
+            data: {roadcode: roadcode, startzh: startzh, endzh: endzh,searchType:searchType,year:yearNbAttr,code:codeAttr,xzqh:xzqh,fsbm:fsbm},
             type: "get",
             dataType: "jsonp",
             success: function (data) {

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ykkj.weiyi.dao.NBaoAttrSuiDaoDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ykkj.weiyi.pojo.NBaoAttrSuiDao">
+        <result column="F_VC_GLSDMXBZJ" jdbcType="VARCHAR" property="F_VC_GLSDMXBZJ"/>
+        <result column="F_NB_ND" jdbcType="DOUBLE" property="F_NB_ND"/>
+        <result column="F_VC_LXBH" jdbcType="VARCHAR" property="F_VC_LXBH"/>
+        <result column="F_VC_LXMC" jdbcType="VARCHAR" property="F_VC_LXMC"/>
+        <result column="F_VC_GLJSDJDM" jdbcType="VARCHAR" property="F_VC_GLJSDJDM"/>
+        <result column="F_VC_GLJSDJMC" jdbcType="VARCHAR" property="F_VC_GLJSDJMC"/>
+        <result column="F_VC_SDMC" jdbcType="VARCHAR" property="F_VC_SDMC"/>
+        <result column="F_VC_SDDM" jdbcType="VARCHAR" property="F_VC_SDDM"/>
+        <result column="F_NB_SDZXZH" jdbcType="DOUBLE" property="F_NB_SDZXZH"/>
+        <result column="F_NB_SDCD" jdbcType="DOUBLE" property="F_NB_SDCD"/>
+        <result column="F_NB_SDJK" jdbcType="DOUBLE" property="F_NB_SDJK"/>
+        <result column="F_NB_SDJG" jdbcType="DOUBLE" property="F_NB_SDJG"/>
+        <result column="F_VC_SDFLDM" jdbcType="VARCHAR" property="F_VC_SDFLDM"/>
+        <result column="F_VC_SDFLMC" jdbcType="VARCHAR" property="F_VC_SDFLMC"/>
+        <result column="F_CR_SFSXSD" jdbcType="VARCHAR" property="F_CR_SFSXSD"/>
+        <result column="F_VC_JSDW" jdbcType="VARCHAR" property="F_VC_JSDW"/>
+        <result column="F_VC_SJDW" jdbcType="VARCHAR" property="F_VC_SJDW"/>
+        <result column="F_VC_SGDW" jdbcType="VARCHAR" property="F_VC_SGDW"/>
+        <result column="F_VC_JLDW" jdbcType="VARCHAR" property="F_VC_JLDW"/>
+        <result column="F_NB_XJND" jdbcType="DOUBLE" property="F_NB_XJND"/>
+        <result column="F_DT_JCTCRQ" jdbcType="DATE" property="F_DT_JCTCRQ"/>
+        <result column="F_VC_GYDWXZDM" jdbcType="VARCHAR" property="F_VC_GYDWXZDM"/>
+        <result column="F_VC_GYDWMC" jdbcType="VARCHAR" property="F_VC_GYDWMC"/>
+        <result column="F_VC_GLSDJSDJZKPDMC" jdbcType="VARCHAR" property="F_VC_GLSDJSDJZKPDMC"/>
+        <result column="F_VC_GLSDJSDJZKPDDW" jdbcType="VARCHAR" property="F_VC_GLSDJSDJZKPDDW"/>
+        <result column="F_VC_ZJYCGZWGRQ" jdbcType="DATE" property="F_VC_ZJYCGZWGRQ"/>
+        <result column="F_VC_YHJGDWMC" jdbcType="VARCHAR" property="F_VC_YHJGDWMC"/>
+        <result column="F_VC_ZJYCGZGCXZ" jdbcType="VARCHAR" property="F_VC_ZJYCGZGCXZ"/>
+        <result column="F_VC_GLSDJSDJZKPDDM" jdbcType="VARCHAR" property="F_VC_GLSDJSDJZKPDDM"/>
+        <result column="F_VC_GLSDJSDJZKPDRQ" jdbcType="DATE" property="F_VC_GLSDJSDJZKPDRQ"/>
+        <result column="F_VC_ZJYCGZND" jdbcType="DOUBLE" property="F_VC_ZJYCGZND"/>
+        <result column="F_VC_ZJYCGZBW" jdbcType="VARCHAR" property="F_VC_ZJYCGZBW"/>
+        <result column="F_VC_DQZYBHBW" jdbcType="VARCHAR" property="F_VC_DQZYBHBW"/>
+        <result column="F_VC_DQZYBH" jdbcType="VARCHAR" property="F_VC_DQZYBH"/>
+        <result column="F_VC_XZQH" jdbcType="VARCHAR" property="F_VC_XZQH"/>
+        <result column="F_VC_BZ" jdbcType="VARCHAR" property="F_VC_BZ"/>
+        <result column="F_DT_CJSJ" jdbcType="DATE" property="F_DT_CJSJ"/>
+        <result column="F_DT_GXSJ" jdbcType="DATE" property="F_DT_GXSJ"/>
+        <result column="F_VC_SJLY" jdbcType="VARCHAR" property="F_VC_SJLY"/>
+        <result column="F_VC_JDMC" jdbcType="VARCHAR" property="F_VC_JDMC"/>
+        <result column="F_NB_YZBS" jdbcType="DOUBLE" property="F_NB_YZBS"/>
+        <result column="F_VC_FSBS" jdbcType="VARCHAR" property="F_VC_FSBS"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        F_VC_GLSDMXBZJ       ,
+        F_NB_ND              ,
+        F_VC_LXBH            ,
+        F_VC_LXMC            ,
+        F_VC_GLJSDJDM        ,
+        F_VC_GLJSDJMC        ,
+        F_VC_SDMC            ,
+        F_VC_SDDM            ,
+        F_NB_SDZXZH          ,
+        F_NB_SDCD            ,
+        F_NB_SDJK            ,
+        F_NB_SDJG            ,
+        F_VC_SDFLDM          ,
+        F_VC_SDFLMC          ,
+        F_CR_SFSXSD          ,
+        F_VC_JSDW            ,
+        F_VC_SJDW            ,
+        F_VC_SGDW            ,
+        F_VC_JLDW            ,
+        F_NB_XJND            ,
+        F_DT_JCTCRQ          ,
+        F_VC_GYDWXZDM        ,
+        F_VC_GYDWMC          ,
+        F_VC_GLSDJSDJZKPDMC  ,
+        F_VC_GLSDJSDJZKPDDW  ,
+        F_VC_ZJYCGZWGRQ      ,
+        F_VC_YHJGDWMC        ,
+        F_VC_ZJYCGZGCXZ      ,
+        F_VC_GLSDJSDJZKPDDM  ,
+        F_VC_GLSDJSDJZKPDRQ  ,
+        F_VC_ZJYCGZND        ,
+        F_VC_ZJYCGZBW        ,
+        F_VC_DQZYBHBW        ,
+        F_VC_DQZYBH          ,
+        F_VC_XZQH            ,
+        F_VC_BZ              ,
+        F_DT_CJSJ            ,
+        F_DT_GXSJ            ,
+        F_VC_SJLY            ,
+        F_VC_JDMC            ,
+        F_NB_YZBS            ,
+        F_VC_FSBS
+    </sql>
+
+    <select id="findList" parameterType="com.ykkj.weiyi.pojo.NBaoAttrSuiDao" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        FROM SJZX_ODS.V_A_GLBB_GLSDMXB
+        <where>
+            <if test="F_VC_SDDM != null and F_VC_SDDM !='' ">
+                AND F_VC_SDDM = #{F_VC_SDDM}
+            </if>
+            <if test="F_NB_ND != null and F_NB_ND  !='' ">
+                AND F_NB_ND = #{F_NB_ND }
+            </if>
+        </where>
+    </select>
+
+</mapper>
+

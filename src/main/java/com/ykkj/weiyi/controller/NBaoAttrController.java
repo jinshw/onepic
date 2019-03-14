@@ -24,7 +24,8 @@ public class NBaoAttrController {
 
     @RequestMapping("/getattributefield")
     public void getAttributeField(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List list = nBaoAttrService.getAttributeField();
+        String searchType = request.getParameter("searchType");//road 道路，bridge 桥梁 ，suidao 隧道
+        List list = nBaoAttrService.getAttributeField(searchType);
         response.setContentType("application/json;charset=utf-8");
         String result = JSONUtil.toJsonStr(list);
         String callback = request.getParameter("callback");
@@ -41,15 +42,40 @@ public class NBaoAttrController {
 
     @RequestMapping("/find")
     public void findList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List list = null;
+        String searchType = request.getParameter("searchType");//road 道路，bridge 桥梁 ，suidao 隧道
+        //桥梁代码= roadcode + xzqh + code
+        String year = request.getParameter("year");
+        String code = request.getParameter("code");// 桥梁code
+        String xzqh = request.getParameter("xzqh");// 桥梁行政区划 拼接桥梁
+        String fsbm = request.getParameter("fsbm");//隧道代码：在searchType=suidao 不为空
+
         String roadcode = request.getParameter("roadcode");
         String startzh = request.getParameter("startzh");
         String endzh = request.getParameter("endzh");
-        System.out.println("roadcode=" + roadcode + "  startzh=" + startzh + " endzh=" + endzh);
-        NBaoAttr nBaoAttr = new NBaoAttr();
-        nBaoAttr.setF_VC_LXBH(roadcode);
-        nBaoAttr.setF_NB_GLLDQDZH(Float.valueOf(startzh));
-        nBaoAttr.setF_NB_GLLDZDZH(Float.valueOf(endzh));
-        List list = nBaoAttrService.findList(nBaoAttr);
+        System.out.println("searchType=" + searchType + " fsbm=" + fsbm + " code=" + code + "  xzqh=" + xzqh + " roadcode=" + roadcode + "  startzh=" + startzh + " endzh=" + endzh);
+
+        if (searchType.equals("road")) {
+            NBaoAttr nBaoAttr = new NBaoAttr();
+            nBaoAttr.setF_VC_LXBH(roadcode);
+            nBaoAttr.setF_NB_GLLDQDZH(Float.valueOf(startzh));
+            nBaoAttr.setF_NB_GLLDZDZH(Float.valueOf(endzh));
+            list = nBaoAttrService.findList(nBaoAttr);
+        } else if (searchType.equals("bridge")) {
+            String bridgeCode = roadcode + xzqh + code;
+            NBaoAttrBridge nBaoAttrBridge = new NBaoAttrBridge();
+            nBaoAttrBridge.setF_VC_QLDM(bridgeCode);
+            nBaoAttrBridge.setF_NB_ND(Integer.valueOf(year));
+            list = nBaoAttrService.findBridgeList(nBaoAttrBridge);
+        } else {
+            NBaoAttrSuiDao nBaoAttrSuiDao = new NBaoAttrSuiDao();
+            nBaoAttrSuiDao.setF_NB_ND(Integer.valueOf(year));
+            nBaoAttrSuiDao.setF_VC_SDDM(fsbm);
+            System.out.println("fsbm222=" + fsbm);
+            list = nBaoAttrService.findSuiDaoList(nBaoAttrSuiDao);
+            System.out.println("suidao list=" + list.size());
+        }
+
         response.setContentType("application/json;charset=utf-8");
         String result = JSONUtil.toJsonStr(list);
 
