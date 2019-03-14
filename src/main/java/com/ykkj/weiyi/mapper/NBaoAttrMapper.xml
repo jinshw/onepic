@@ -42,9 +42,9 @@
         <result column="F_VC_GYDMBM" jdbcType="VARCHAR" property="F_VC_GYDMBM"/>
         <result column="F_VC_GYDMMC" jdbcType="VARCHAR" property="F_VC_GYDMMC"/>
         <result column="F_NB_SJCRK" jdbcType="DOUBLE" property="F_NB_SJCRK"/>
-        <result column="F_NB_NJRJTL" jdbcType="DOUBLE" property="F_NB_NJRJTL"/>
+        <!--<result column="F_NB_NJRJTL" jdbcType="DOUBLE" property="F_NB_NJRJTL"/>-->
         <result column="F_VC_GDTZQLXBH" jdbcType="VARCHAR" property="F_VC_GDTZQLXBH"/>
-        <result column="F_NB_GDZHCDYLLC" jdbcType="DOUBLE" property="F_NB_GDZHCDYLLC"/>
+        <!--<result column="F_NB_GDZHCDYLLC" jdbcType="DOUBLE" property="F_NB_GDZHCDYLLC"/>-->
         <result column="F_CR_SFAGXGLGLJY" jdbcType="CHAR" property="F_CR_SFAGXGLGLJY"/>
         <result column="F_VC_BZ" jdbcType="VARCHAR" property="F_VC_BZ"/>
         <result column="F_DT_CJSJ" jdbcType="DATE" property="F_DT_CJSJ"/>
@@ -96,9 +96,9 @@
         F_VC_GYDMBM,
         F_VC_GYDMMC,
         F_NB_SJCRK,
-        F_NB_NJRJTL,
+--         F_NB_NJRJTL,
         F_VC_GDTZQLXBH,
-        F_NB_GDZHCDYLLC,
+--         F_NB_GDZHCDYLLC,
         F_CR_SFAGXGLGLJY,
         F_VC_BZ,
         F_DT_CJSJ,
@@ -112,8 +112,11 @@
     <select id="findList" parameterType="com.ykkj.weiyi.pojo.NBaoAttr" resultMap="AllColumnMap">
         select
         <include refid="all_column"/>
-        from XJCX.V_A_GLBB_GLLXJBQKMXB
+        from SJZX_ODS.V_A_GLBB_GLLXJBQKMXB
         <where>
+            <if test="F_NB_ND != null and F_NB_ND !='' ">
+                AND F_NB_ND = #{F_NB_ND}
+            </if>
             <if test="F_VC_LXBH != null and F_VC_LXBH !='' ">
                 AND F_VC_LXBH = #{F_VC_LXBH}
             </if>
@@ -136,12 +139,19 @@
     </select>
 
     <select id="queryLenght" parameterType="com.ykkj.weiyi.pojo.NBaoAttr" resultType="java.lang.String">
-        SELECT SUM (G.F_NB_GLLDLC) FROM XJCX.V_A_GLBB_GLLXJBQKMXB G
-        where G.F_VC_LXBH = #{F_VC_LXBH}
+        SELECT SUM (G.F_NB_GLLDLC) FROM SJZX_ODS.V_A_GLBB_GLLXJBQKMXB G
+        <where>
+            <if test="1==1">
+                AND G.F_VC_LXBH = #{F_VC_LXBH}
+            </if>
+            <if test="F_NB_ND != null and F_NB_ND !='' ">
+                AND F_NB_ND = #{F_NB_ND}
+            </if>
+        </where>
     </select>
 
     <select id="findRoadNUM" parameterType="com.ykkj.weiyi.pojo.NBaoRoadJSDJNUM" resultType="java.lang.String">
-        select sum(F_NB_LC) tj from V_A_GLBB_GLLCNDDDSAJSDJF
+        select sum(F_NB_LC) tj from SJZX_ODS.V_A_GLBB_GLLCNDDDSAJSDJF
         <where>
             <if test="f_nb_nd != '' and f_nb_nd != null">
                 AND f_nb_nd = #{f_nb_nd}
@@ -158,7 +168,7 @@
         </where>
     </select>
     <select id="findBirdgeNUM" parameterType="com.ykkj.weiyi.pojo.NBaoBirdgeNUM" resultType="java.lang.Integer">
-        select sum(F_NB_TJZ) tj from V_A_GLBB_GLQLDKNDDDS
+        select sum(F_NB_TJZ) tj from SJZX_ODS.V_A_GLBB_GLQLDKNDDDS
         <where>
             <if test="1==1">
                 AND F_VC_XZDJDM &lt;&gt; 'GS'
@@ -181,7 +191,7 @@
         </where>
     </select>
     <select id="findSuiDaoNUM" parameterType="com.ykkj.weiyi.pojo.NBaoSuiDaoNUM" resultType="java.lang.Integer">
-        select sum(F_NB_TJZ) tj from V_A_GLBB_GLSDNDDDS
+        select sum(F_NB_TJZ) tj from SJZX_ODS.V_A_GLBB_GLSDNDDDS
         <where>
             <if test="1==1">
                 AND F_VC_XZDJDM &lt;&gt; 'GS'

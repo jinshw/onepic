@@ -42,9 +42,9 @@ public class NBaoAttr {
     private String F_VC_GYDMBM;
     private String F_VC_GYDMMC;
     private Integer F_NB_SJCRK;
-    private Integer F_NB_NJRJTL;
+    //    private Integer F_NB_NJRJTL;
     private String F_VC_GDTZQLXBH;
-    private Float F_NB_GDZHCDYLLC;
+    //    private Float F_NB_GDZHCDYLLC;
     private String F_CR_SFAGXGLGLJY;
     private String F_VC_BZ;
 
@@ -367,13 +367,13 @@ public class NBaoAttr {
         F_NB_SJCRK = f_NB_SJCRK;
     }
 
-    public Integer getF_NB_NJRJTL() {
-        return F_NB_NJRJTL;
-    }
-
-    public void setF_NB_NJRJTL(Integer f_NB_NJRJTL) {
-        F_NB_NJRJTL = f_NB_NJRJTL;
-    }
+//    public Integer getF_NB_NJRJTL() {
+//        return F_NB_NJRJTL;
+//    }
+//
+//    public void setF_NB_NJRJTL(Integer f_NB_NJRJTL) {
+//        F_NB_NJRJTL = f_NB_NJRJTL;
+//    }
 
     public String getF_VC_GDTZQLXBH() {
         return F_VC_GDTZQLXBH;
@@ -383,13 +383,13 @@ public class NBaoAttr {
         F_VC_GDTZQLXBH = f_VC_GDTZQLXBH;
     }
 
-    public Float getF_NB_GDZHCDYLLC() {
-        return F_NB_GDZHCDYLLC;
-    }
-
-    public void setF_NB_GDZHCDYLLC(Float f_NB_GDZHCDYLLC) {
-        F_NB_GDZHCDYLLC = f_NB_GDZHCDYLLC;
-    }
+//    public Float getF_NB_GDZHCDYLLC() {
+//        return F_NB_GDZHCDYLLC;
+//    }
+//
+//    public void setF_NB_GDZHCDYLLC(Float f_NB_GDZHCDYLLC) {
+//        F_NB_GDZHCDYLLC = f_NB_GDZHCDYLLC;
+//    }
 
     public String getF_CR_SFAGXGLGLJY() {
         return F_CR_SFAGXGLGLJY;

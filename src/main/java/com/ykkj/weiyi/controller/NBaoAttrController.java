@@ -60,6 +60,10 @@ public class NBaoAttrController {
             nBaoAttr.setF_VC_LXBH(roadcode);
             nBaoAttr.setF_NB_GLLDQDZH(Float.valueOf(startzh));
             nBaoAttr.setF_NB_GLLDZDZH(Float.valueOf(endzh));
+            if (year != null && year != "") {
+                nBaoAttr.setF_NB_ND(Integer.valueOf(year));
+            }
+            System.out.println("road year==" + year);
             list = nBaoAttrService.findList(nBaoAttr);
         } else if (searchType.equals("bridge")) {
             String bridgeCode = roadcode + xzqh + code;
@@ -93,9 +97,15 @@ public class NBaoAttrController {
 
     @RequestMapping("/queryLength")
     public void queryLength(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String year = request.getParameter("year");
         String roadcode = request.getParameter("roadcode");
         NBaoAttr nBaoAttr = new NBaoAttr();
         nBaoAttr.setF_VC_LXBH(roadcode);
+
+        if (year != null && year != "") {
+            nBaoAttr.setF_NB_ND(Integer.valueOf(year));
+        }
+        nBaoAttr.setF_NB_ND(2017);
 
         String result = nBaoAttrService.queryLenght(nBaoAttr);
         String callback = request.getParameter("callback");
