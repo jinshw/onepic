@@ -19,6 +19,8 @@
         <result column="batch" jdbcType="VARCHAR" property="batch"/>
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
         <result column="include" jdbcType="VARCHAR" property="includeStr"/>
+        <result column="startpoint_nb" jdbcType="VARCHAR" property="startPointNB"/>
+        <result column="endpoint_nb" jdbcType="VARCHAR" property="endPointNB"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -38,23 +40,35 @@
         ENDPOINRT   ,
         BATCH       ,
         CREATETIME  ,
-        INCLUDE
+        INCLUDE,
+        startpoint_nb,
+        endpoint_nb
     </sql>
 
     <select id="findList" parameterType="com.ykkj.weiyi.pojo.TrafficInfo" resultMap="AllColumnMap">
+           SELECT * from traffic_info
+           WHERE
+            createtime = (
+              SELECT max(createtime) from traffic_info t
+            ) ORDER BY startlen DESC
+    </select>
+
+    <!--<select id="findList" parameterType="com.ykkj.weiyi.pojo.TrafficInfo" resultMap="AllColumnMap">
+        <![CDATA[
         SELECT * FROM
         (
         SELECT * from (
         SELECT * from traffic_info t ORDER BY createtime DESC
         ) torder LIMIT 0,10
         ) top ORDER BY top.startlen
+        ]]>
         <if test="pojo.orderBy == 'desc'">
             DESC
         </if>
         <if test ="pojo.orderBy == 'asc'">
             ASC
         </if>
-    </select>
+    </select>-->
 
 </mapper>
 

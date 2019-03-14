@@ -16,7 +16,8 @@ Welcome<br/><input id="text" type="text"/>
     var websocket = null;
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8081/onepic/websocket");
+//        websocket = new WebSocket("ws://localhost:8081/onepic/websocket");
+        websocket = new WebSocket("ws://localhost:8090/iserver/websocket");
     }
     else {
         alert('当前浏览器 Not support websocket')
@@ -50,6 +51,7 @@ Welcome<br/><input id="text" type="text"/>
     //将消息显示在网页上
     function setMessageInnerHTML(innerHTML) {
         document.getElementById('message').innerHTML += innerHTML + '<br/>';
+        console.log(innerHTML)
     }
 
     //关闭WebSocket连接

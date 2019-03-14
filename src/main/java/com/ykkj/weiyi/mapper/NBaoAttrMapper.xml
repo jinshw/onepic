@@ -222,7 +222,7 @@
         <where>
             <if test="1==1">
                 AND (
-                GG.F_VC_XZDJDM &lt;&gt; 'GS' and GG.F_VC_XZDJDM &lt;&gt; 'Y'
+                GG.F_VC_XZDJDM &lt;&gt; 'GS' and GG.F_VC_XZDJDM &lt;&gt; 'Y' and GG.F_VC_XZDJDM &lt;&gt; 'C'
                 )
             </if>
             <if test="f_nb_nd != null">

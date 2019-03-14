@@ -25,6 +25,7 @@ target/
 **/src/main/webapp/page/map/vue/
 # 忽略 文件
 onepic.iml
+onepic.iml___jb_tmp___
 *.iml
 *test*.html
 src/main/resources/dev/demo15.json

@@ -68,6 +68,14 @@
 <div>
     <input type="button" class="btn btn-primary" onclick="findRttDataTop()" value="获取实时拥堵排名数据">
 </div>
+<div>
+    线路类型：<input type="text" id="mileageRoadType" value="gs">
+    线路编号：<input type="text" id="mileageRoadCode" value="G30">
+    起始桩号：<input type="text" id="mileageStartZH" value="4015">
+    终点桩号：<input type="text" id="mileageEndZH" value="4025">
+    <input type="button" class="btn btn-primary" onclick="mileagePositon()" value="里程桩定位">
+    <input type="button" class="btn btn-primary" onclick="getZDXX()" value="获取阻断信息">
+</div>
 <script>
     function getData() {
         console.log("getData....")
@@ -172,6 +180,7 @@
             }
         });
     }
+
     function findSmallBirdgeNUM() {
         console.log("findSmallBirdgeNUM....")
         var year = $("#year").val()
@@ -217,7 +226,7 @@
     function findRttDataTop() {
         console.log("findRttDataTop....")
         $.ajax({
-            url: "http://localhost:8081/onepic/rttServer/find",
+            url: "http://192.168.251.183/rttServer/find",
             data: {orderBy: "asc"},
             type: "get",
             dataType: "jsonp",
@@ -228,6 +237,118 @@
                 console.log(e);
             }
         });
+    }
+
+    function mileagePositon() {
+        var roadtype = $("#mileageRoadType").val()
+        var roadcode = $("#mileageRoadCode").val()
+        var startzh = $.trim($("#mileageStartZH").val())
+        var endzh = $.trim($("#mileageEndZH").val())
+        if($.trim(startzh) != ""){
+            startzh = Number(startzh) * 1000
+        }
+        if($.trim(endzh) != ""){
+            endzh = Number(endzh) * 1000
+        }
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                roadtype: roadtype,
+                roadcode: roadcode,
+                startzh: startzh,
+                endzh: endzh
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+                /*var features = [];
+                if (data.length > 0) {
+                    var feature, geometry, RouteLocatorResult;
+                    if ($.trim(startzh) == "" || $.trim(endzh) == "") {
+                        RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[0]);
+                        feature = new SuperMap.Feature.Vector();
+                        geometry = RouteLocatorResult.resultGeometry;
+                        feature.geometry = geometry;
+                        thisCallBack.globalMap.setLocation(feature);
+                        thisCallBack.globalMap.showFeatures(feature, true);
+                    } else {
+                        for (var i = 0; i < data.length; i++) {
+                            RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[i]);
+                            feature = new SuperMap.Feature.Vector();
+                            geometry = RouteLocatorResult.resultGeometry;
+                            feature.geometry = geometry;
+                            feature.style = {
+                                fontColor: "#ff0000",
+                                strokeColor: "#5298FE",
+                                fillOpacity: 0.5,
+                                strokeOpacity: 1,
+                                strokeWidth: 5,
+                                fillColor: "#5298FE",
+                                labelXOffset: 120,
+                                labelYOffset: 1,
+                                pointRadius: 4
+                            }; //"#ff0000", //"#ff0000",
+                            features.push(feature);
+                        }
+                        thisCallBack.globalMap.setLocation(features);
+                        thisCallBack.globalMap.showFeatures(features, true);
+                    }
+
+                    if (roadtype == 'gs') {
+                        thisCallBack.searchGS({roadcode: roadcode})
+                    } else if (roadtype == 'gd') {
+                        thisCallBack.searchGD({roadcode: roadcode})
+                    } else if (roadtype == 'sd') {
+                        thisCallBack.searchSD({roadcode: roadcode})
+                    }
+
+
+                } else {
+                    console.log("定位里程不存在！")
+                    thisCallBack.globalMap.alert({msg: "定位里程不存在！", type: "success", width: 300});
+                    setTimeout(function () {
+                        thisCallBack.globalMap.alert({status: true});
+                    }, 3000)
+
+                }*/
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+
+    }
+    function getZDXX() {
+        var roadtype = $("#mileageRoadType").val()
+        var roadcode = $("#mileageRoadCode").val()
+        var startzh = $.trim($("#mileageStartZH").val())
+        var endzh = $.trim($("#mileageEndZH").val())
+        if($.trim(startzh) != ""){
+            startzh = Number(startzh) * 1000
+        }
+        if($.trim(endzh) != ""){
+            endzh = Number(endzh) * 1000
+        }
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                requestType:"zdxx",
+                roadtype: roadtype,
+                roadcode: roadcode,
+                startzh: startzh,
+                endzh: endzh
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+
     }
 
 </script>
