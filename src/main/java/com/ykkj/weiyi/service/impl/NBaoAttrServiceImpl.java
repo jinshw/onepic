@@ -49,7 +49,13 @@ public class NBaoAttrServiceImpl implements NBaoAttrService {
     }
 
     public String findRoadNUM(NBaoRoadJSDJNUM pojo) {
-        return nBaoAttrDao.findRoadNUM(pojo);
+        String result = "0";
+        if(pojo.getF_vc_xzdjdm().equals("GS")){
+            result = nBaoAttrDao.findRoadNUMGS(pojo);
+        }else{
+            result = nBaoAttrDao.findRoadNUM(pojo);
+        }
+        return result;
     }
 
     public Integer findBirdgeNUM(NBaoBirdgeNUM pojo) {

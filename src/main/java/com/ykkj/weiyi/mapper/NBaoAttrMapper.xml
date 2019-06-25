@@ -167,6 +167,26 @@
             </if>
         </where>
     </select>
+
+    <select id="findRoadNUMGS" parameterType="com.ykkj.weiyi.pojo.NBaoRoadJSDJNUM" resultType="java.lang.String">
+        select sum(F_NB_LC) tj
+        from SJZX_ODS.V_A_GLBB_GLLCNDDDSAJSDJF
+        <where>
+            <if test="f_nb_nd != '' and f_nb_nd != null">
+                AND f_nb_nd = #{f_nb_nd}
+            </if>
+            <if test="1==1">
+                AND F_VC_GLLCNDDDSZBDM = '2'
+            </if>
+            <if test="1==1">
+                AND F_VC_XZDJDM != 'GS'
+            </if>
+            <if test="1==1">
+                AND F_VC_GLJSDJDM = '011'
+            </if>
+        </where>
+    </select>
+
     <select id="findBirdgeNUM" parameterType="com.ykkj.weiyi.pojo.NBaoBirdgeNUM" resultType="java.lang.Integer">
         select sum(F_NB_TJZ) tj from SJZX_ODS.V_A_GLBB_GLQLDKNDDDS
         <where>

@@ -226,8 +226,8 @@
     function findRttDataTop() {
         console.log("findRttDataTop....")
         $.ajax({
-            url: "http://192.168.251.183/rttServer/find",
-            data: {orderBy: "asc"},
+            url: "http://127.0.0.1:8081/onepic/rttServer/find",
+            data: {},
             type: "get",
             dataType: "jsonp",
             success: function (data) {

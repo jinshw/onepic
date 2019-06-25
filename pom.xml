@@ -464,6 +464,14 @@
             <version>4.1.0</version>
         </dependency>
 
+        <!-- 邮件start -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- 邮件end -->
+
     </dependencies>
 
 

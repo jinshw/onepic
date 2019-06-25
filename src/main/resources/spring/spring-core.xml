@@ -39,6 +39,26 @@
 		<property name="testOnBorrow" value="true"></property>
 		<property name="validationQuery" value="select * from user"></property>
 	</bean>
+	<bean id="dataSourceMysTow" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${mysql-tow-driver}" />
+		<property name="url" value="${mysql-tow-url}" />
+		<property name="username" value="${mysql-tow-username}" />
+		<property name="password" value="${mysql-tow-password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${minIdle}"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${maxWait}"></property>
+		<!--解决连接中断问题 -->
+		<property name="testOnBorrow" value="true"></property>
+		<!--<property name="validationQuery" value="select * from user"></property>-->
+	</bean>
 	<bean id="dataSourceOrc" class="org.apache.commons.dbcp.BasicDataSource"
 		  destroy-method="close">
 		<property name="driverClassName" value="${orc-driver}" />
@@ -84,6 +104,7 @@
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="dataSourceMys" value-ref="dataSourceMys"></entry>
+				<entry key="dataSourceMysTow" value-ref="dataSourceMysTow"></entry>
 				<entry key="dataSourceOrc" value-ref="dataSourceOrc"></entry>
 				<entry key="dataSourceOrcODS" value-ref="dataSourceOrcODS"></entry>
 			</map>

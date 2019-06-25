@@ -105,7 +105,7 @@ public class NBaoAttrController {
         if (year != null && year != "") {
             nBaoAttr.setF_NB_ND(Integer.valueOf(year));
         }
-        nBaoAttr.setF_NB_ND(2017);
+//        nBaoAttr.setF_NB_ND(2017);
 
         String result = nBaoAttrService.queryLenght(nBaoAttr);
         String callback = request.getParameter("callback");
@@ -141,6 +141,8 @@ public class NBaoAttrController {
 
         String result = "";
         String num = nBaoAttrService.findRoadNUM(nBaoRoadJSDJNUM);
+
+        System.out.println("findRoadNUM---year="+year+" code="+code+" type="+type+" level="+level +"  result="+num);
         result = num;
         String callback = request.getParameter("callback");
         if (!StringUtils.isBlank(callback)) {
@@ -173,7 +175,6 @@ public class NBaoAttrController {
          */
         String unit = request.getParameter("unit");
 
-
         NBaoBirdgeNUM nBaoBirdgeNUM = new NBaoBirdgeNUM();
         if (year != null && year != "") {
             nBaoBirdgeNUM.setF_nb_nd(Integer.valueOf(year));
@@ -185,6 +186,9 @@ public class NBaoAttrController {
 
         String result = "";
         Integer num = nBaoAttrService.findBirdgeNUM(nBaoBirdgeNUM);
+
+        System.out.println("findBirdgeNUM ---- year="+year+" code="+code+" type="+type+" level="+level+" unit="+unit +"  result="+num);
+
         result = String.valueOf(num);
         String callback = request.getParameter("callback");
         if (!StringUtils.isBlank(callback)) {
@@ -223,6 +227,7 @@ public class NBaoAttrController {
 
         String result = "";
         Integer num = nBaoAttrService.findSuiDaoNUM(nBaoSuiDaoNUM);
+        System.out.println("findSuiDaoNUM ---- year="+year+" code="+code+" type="+type+" level="+level+" unit="+unit +"  result="+num);
         result = String.valueOf(num);
         String callback = request.getParameter("callback");
         if (!StringUtils.isBlank(callback)) {
@@ -268,6 +273,8 @@ public class NBaoAttrController {
 
         String result = "";
         Integer num = nBaoAttrService.findSmallBirdgeNUM(nBaoSmallBridgeNUM);
+
+        System.out.println("findSmallBirdgeNUM ---- year="+year+" code="+code+" type="+type+" level="+level+" unit="+unit +"  result="+num);
         result = String.valueOf(num);
         String callback = request.getParameter("callback");
         if (!StringUtils.isBlank(callback)) {

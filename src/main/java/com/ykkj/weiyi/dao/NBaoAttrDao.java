@@ -13,6 +13,8 @@ public interface NBaoAttrDao {
 
     String findRoadNUM(NBaoRoadJSDJNUM pojo);
 
+    String findRoadNUMGS(NBaoRoadJSDJNUM pojo);
+
     Integer findBirdgeNUM(NBaoBirdgeNUM pojo);
 
     Integer findSuiDaoNUM(NBaoSuiDaoNUM pojo);

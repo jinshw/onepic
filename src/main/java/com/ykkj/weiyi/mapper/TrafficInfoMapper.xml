@@ -70,5 +70,24 @@
         </if>
     </select>-->
 
+    <select id="findHistoryList" parameterType="com.ykkj.weiyi.pojo.TrafficHistoryInfo" resultMap="AllColumnMap">
+        SELECT * from traffic_info t
+           WHERE t.createtime &gt;= STR_TO_DATE(#{pojo.startDateStr},'%Y-%m-%d %H:%i:%s')
+        AND t.createtime &lt;= STR_TO_DATE(#{pojo.endDateStr},'%Y-%m-%d %H:%i:%s')
+        ORDER BY createtime DESC
+
+    </select>
+    
+    <select id="findNums" resultType="java.lang.Integer">
+        SELECT count(1) from traffic_info t
+        where t.createtime >
+        (
+          SELECT STR_TO_DATE(DATE_SUB(NOW(),INTERVAL 20 MINUTE),'%Y-%m-%d %H:%i:%s')
+        )
+    </select>
+    <select id="findMaxTime" resultType="java.lang.String">
+        SELECT max(createtime) from traffic_info t
+    </select>
+
 </mapper>
 

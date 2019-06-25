@@ -7,6 +7,7 @@ import com.ykkj.weiyi.common.CommUtil;
 import com.ykkj.weiyi.common.RticPropertiesUtils;
 import com.ykkj.weiyi.common.XmlToJson;
 import com.ykkj.weiyi.pojo.NBaoAttr;
+import com.ykkj.weiyi.pojo.TrafficHistoryInfo;
 import com.ykkj.weiyi.pojo.TrafficInfo;
 import com.ykkj.weiyi.service.TrafficInfoService;
 import com.ykkj.weiyi.util.FileUtils;
@@ -37,14 +38,38 @@ public class RttDataServerConttoller {
     public void queryLength(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<TrafficInfo> list = new ArrayList<>();
         String orderBy = request.getParameter("orderBy");
-        if(StringUtils.isEmpty(orderBy)){
+        if (StringUtils.isEmpty(orderBy)) {
             orderBy = "desc";
         }
         TrafficInfo trafficInfo = new TrafficInfo();
         trafficInfo.setOrderBy(orderBy);
-        System.out.println("orderBy=="+orderBy);
+        System.out.println("orderBy==" + orderBy);
         list = trafficInfoService.findList(trafficInfo);
-        System.out.println("list=="+list);
+        System.out.println("list==" + list);
+        String result = JSONUtil.toJsonStr(list);
+        String callback = request.getParameter("callback");
+        if (!StringUtils.isBlank(callback)) {
+            result = callback + "(" + result + ")";
+            response.setContentType("text/javascript");
+        } else {
+            response.setContentType("application/x-json");
+        }
+        PrintWriter out = response.getWriter();
+        out.write(result);
+        out.close();
+    }
+
+    @RequestMapping("/findHistory")
+    public void queryRttHistory(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<String> list = new ArrayList<>();
+        TrafficHistoryInfo trafficHistoryInfo = new TrafficHistoryInfo();
+        String startDateStr = request.getParameter("startDateStr");
+        String endDateStr = request.getParameter("endDateStr");
+        trafficHistoryInfo.setStartDateStr(startDateStr + " 00:00:01");
+        trafficHistoryInfo.setEndDateStr(endDateStr + " 23:59:59");
+
+        list = trafficInfoService.findHistoryList(trafficHistoryInfo);
+
         String result = JSONUtil.toJsonStr(list);
         String callback = request.getParameter("callback");
         if (!StringUtils.isBlank(callback)) {

@@ -6,11 +6,9 @@ import java.util.ResourceBundle;
  * 静态常量类
  *
  * @作者: 张晓东 @创建日期： 2015年12月19日
- *
  * @修改记录（修改时间、作者、原因）：
  */
-public class StaticUtils
-{
+public class StaticUtils {
     // 获取静态配置文件
     static ResourceBundle rb = ResourceBundle.getBundle("static");
     // 访问路径前半部分
@@ -38,5 +36,12 @@ public class StaticUtils
             .getString("hd_pmsPlanTzkz01Info");
     public static final String HD_PMSPLANTZKZ02INFO = rb
             .getString("hd_pmsPlanTzkz02Info");
+
+    // email配置
+    public static final String emailHost = rb.getString("email_host");
+    public static final int emailPort = Integer.valueOf(rb.getString("email_port"));
+    public static final String emailUsername = rb.getString("email_username");
+    public static final String emailPassword = rb.getString("email_password");
+    public static final String emailTo = rb.getString("email_to");
 
 }
