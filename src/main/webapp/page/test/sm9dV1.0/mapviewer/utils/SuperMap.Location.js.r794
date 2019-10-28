@@ -1,0 +1,473 @@
+﻿define(function (require, exports, module) {
+    BaseObject.Location = BaseHelper.Class.create();
+    BaseObject.Location.prototype = BaseHelper.Class.inherit(BaseObject.Component, {
+        initialize: function (globalMap, configData) {
+            this.features = [];
+            this.selectPoint = null;
+            this.timerInterval = 0;
+            this.titleFeatures = [];
+            this.lineStyle = {};
+            this.lineStyle["normal"] = {
+                "color": "#1E90FF",
+                "weight": 5,
+                "opacity": 0.65
+            };
+            this.lineStyle["highlight"] = {
+                weight: 5,
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                dashArray: ''
+            };
+
+            this.lineStyle["location"] = {
+                weight: 5,
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                dashArray: ''
+            };
+
+            this.polygonStyle = {};
+            this.polygonStyle["normal"] = {
+                weight: 3,
+                color: '#1874CD',
+                dashArray: '',
+                fillOpacity: 0.5
+            };
+            this.polygonStyle["highlight"] = {
+                weight: 5,
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                dashArray: ''
+            };
+            this.polygonStyle["location"] = {
+                weight: 5,
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                dashArray: ''
+            };
+            this.pointStyle = {};
+            this.pointStyle["normal"] = L.icon({
+                iconUrl: BaseObject.path + "/styles/css_map/marker/marker_red.png",
+                iconSize: [24, 24],
+            });
+            this.pointStyle["highlight"] = L.icon({
+                iconUrl: BaseObject.path + "/styles/css_map/marker/marker_red.png",
+                iconSize: [28, 28],
+            });
+            this.pointStyle["location"] = L.icon.pulse({
+                iconSize: [12, 12],
+                color: '#ff0000'
+            });
+            if (globalMap) {
+                configData == null ? {} : configData;
+                this.init(globalMap, configData)
+            }
+        },
+        init: function (globalMap, configData) {
+            this.configData = configData;
+            this.globalMap = globalMap;
+            this.configLayer = this.globalMap.getConfigLayer("BaseDrawVector");
+            this.drawVector = this.configLayer.getLayer();
+            this.globalMap.addTool(this);
+
+            var thisCallBack = this;
+
+            this.globalMap.addEventListener("removeOverLayerCompleted", function (e) {
+                thisCallBack.removeOverLayerCompleted(e);
+            });
+
+        },
+
+        removeOverLayerCompleted: function (e) {
+            if (!e.datasetName) return;
+            var datasetNames = e.datasetName.split(",");
+            if (this.geojson) {
+                var layers = this.geojson.getLayers();
+                for (var i = 0; i < layers.length; i++) {
+                    var item = layers[i].feature;
+                    
+                    if (find(item.properties["GIST_DATASET_NAME"])) {
+                        this.drawVector.removeLayer(layers[i]);
+                        layers[i].remove();
+                    }
+                }
+            }
+            if (this.locationTarget) {
+                var layers = this.locationTarget.getLayers();
+                for (var i = 0; i < layers.length; i++) {
+                    var item = layers[i].feature;
+                    if (find(item.properties["GIST_DATASET_NAME"])) {
+                        this.drawVector.removeLayer(layers[i]);
+                        layers[i].remove();
+                    }
+                }
+            }
+
+            clearInterval(this.timerInterval);
+
+            function find(name)
+            {
+                for (var i = 0; i < datasetNames.length; i++) {
+                    if (datasetNames[i] == name)
+                        return true;
+                }
+
+                return false;
+            }
+        },
+        setLocation: function (target, config) {
+            config = config || {};
+            var level = config.level || -1;
+            var isClear = config.isClear || true;
+            var isConvert = config.isConvert || false;
+            var isFly = config.isFly || false;
+            var style = config.style;
+
+            this.drawVector = this.configLayer.getLayer();
+            var thisCallBack = this;
+            if (this.locationTarget) this.removeLocation(this.locationTarget);
+            if (!target) return;
+
+            if (isConvert) {
+                var coordinates = this.convert(target.geometry);
+                target.geometry.coordinates = coordinates;
+            }
+
+            this.locationTarget = L.geoJSON(target, {
+                style: function (feature) {
+                    feature.status = "location";
+                    if (style)
+                        return style;
+                    else
+                        return thisCallBack.getStyle(feature)
+                },
+                onEachFeature: function (target, layer, geojson) {
+                    if (target.geometry.type == "Point") {
+                        target.status = "location";
+                        var style = thisCallBack.getStyle(target);
+                        layer.setIcon(style)
+                    }
+
+                    if (config.labelField) {
+                        layer.on("mouseover",
+                        function (e) {
+                            var html = thisCallBack._getTooltipText(e.target.feature, config);
+                            layer.bindTooltip(html, {
+                                permanent: true,
+                                offset: [15, 0],
+                                direction: "right",
+                                className: 'tooltip'
+                            }).openTooltip()
+                        });
+                        layer.on("mouseout",
+                        function (e) {
+                            layer.closeTooltip()
+                        })
+                    }
+                }
+            });
+            this.drawVector.addLayer(this.locationTarget);
+            if (level != -1) {
+                    var center= this.locationTarget.getBounds().getCenter();
+                    this.globalMap.setView(center, level);
+            }
+            if (target.geometry.type == "MultiPolygon" || target.geometry.type == "Polygon" || target.geometry.type == "MultiLineString" || target.geometry.type == "LineString")
+                this.startAnimation(isClear);
+            else {
+                this.timerInterval = setTimeout(function () {
+                    thisCallBack.clearLocation();
+                }, 3000)
+            }
+
+            this.globalMap.dispathEvent("setLocation", { data: target });
+        },
+
+        _getTooltipText: function (feature, configData) {
+            var innerHtml = "";
+            var width = configData.width ||200;
+            var height = configData.height || "100%";
+
+            if (configData.labelField)
+                innerHtml += '<div style="min-width:'+width+'px">' + feature.properties[configData.labelField] + '</div> ';
+            if (configData.fields) {
+                if (innerHtml)
+                    innerHtml += "<br><hr style='margin:1px'>";
+                for (var i = 0; i < configData.fields.length; i++) {
+                    var item = configData.fields[i];
+                    if (feature.properties[item.value] != null) {
+                        var value = feature.properties[item.value] || "";
+                        innerHtml += '<div>' + item.key + " :" + value + '</div> ';
+                    }
+                }
+            }
+            return innerHtml
+        },
+
+        startAnimation: function (isClear) {
+            clearInterval(this.timerInterval);
+            this.timerIndex = 0;
+            var thisCallBack = this;
+            this.timerInterval = setInterval(function (e) {
+                if (thisCallBack.timerIndex % 2 != 0) thisCallBack.drawVector.addLayer(thisCallBack.locationTarget);
+                else thisCallBack.drawVector.removeLayer(thisCallBack.locationTarget);
+                thisCallBack.timerIndex++;
+                if (thisCallBack.timerIndex > 5) {
+                    clearInterval(thisCallBack.timerInterval);
+                    thisCallBack.timerIndex = 0;
+                    if (!isClear)
+                        thisCallBack.clearLocation();
+                }
+            },
+            1000)
+        },
+
+        getStyle: function (target, index, isDefault) {
+            var type = target.geometry.type;
+            var thisCallBack = this;
+            var style = null;
+            switch (type) {
+                case "LineString":
+                    style = this.lineStyle[target.status];
+                    break;
+                case "Point":
+                    style = this.pointStyle[target.status];
+                    break;
+                case "MultiPolygon":
+                    style = this.polygonStyle[target.status];
+                    break;
+                case 'Polygon':
+                    style = this.polygonStyle[target.status];
+                    break;
+                case 'MultiLineString':
+                    style = this.polygonStyle[target.status];
+                    break
+            }
+            return style
+        },
+        onEachFeature: function (target, layer, geojson) {
+            var thisCallBack = this;
+            var type = target.geometry.type;
+            if (type == "MultiPolygon") {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: zoomToFeature
+                })
+            } else if (type == "Point") {
+                target.status = "normal";
+                var style = null;
+                var config = target.configData;
+                if (config.statusField) {
+                    style = getCustomStyle();
+                }
+                else {
+                    style = thisCallBack.getStyle(target);
+                }
+                layer.setIcon(style);
+                layer.on("mouseover",
+                function (e) {
+                    var layer = e.target;
+                    layer.feature.status = "highlight";
+                    if (config.statusField) {
+                        style = getCustomStyle();
+                    }
+                    else
+                        style = thisCallBack.getStyle(layer.feature);
+                    layer.setIcon(style)
+                });
+                layer.on("mouseout",
+                function (e) {
+                    var layer = e.target;
+                    layer.feature.status = "normal";
+                    if (config.statusField) {
+                        style = getCustomStyle();
+                    }
+                    else
+                        style = thisCallBack.getStyle(layer.feature);
+                    layer.setIcon(style)
+                })
+            }
+
+            function getCustomStyle()
+            {
+                var config = target.configData;
+
+                if (config.styleList) {
+                    for (var index = 0; index < config.styleList.length; index++) {
+                        var item = config.styleList[index];
+                        if (target.properties[config.statusField] == item.statusValue) {
+                            style = item.style;
+
+                            return style;
+                        }
+                    }
+                }
+            } 
+            function highlightFeature(e) {
+                var layer = e.target;
+                layer.feature.status = "highlight";
+                var style = thisCallBack.getStyle(layer.feature);
+                layer.setStyle(style);
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                    layer.bringToFront()
+                }
+            }
+            function resetHighlight(e) {
+                //thisCallBack.globalMap.tmpFeatures[0].resetStyle(e.target);
+                thisCallBack.geojson.resetStyle(e.target)
+            }
+            function zoomToFeature(e) {
+                L.polygon(e.target.getLatLngs()[0], {}).addTo(thisCallBack.globalMap.mapObject);
+                thisCallBack.globalMap.mapObject.fitBounds(e.target.getBounds())
+            }
+        },
+        show: function (target, config) {
+            config = config || {};
+            var isDefault = config.isDefault || false;
+            var isZoom = config.isZoom || false;
+            var isConvert = config.isConvert || false;
+            var thisCallBack = this;
+            this.drawVector = this.configLayer.getLayer();
+            if (this.geojson) this.removeLocation(this.geojson);
+
+            if (isConvert) {
+                for (var i = 0; i < target.length; i++) {
+                    var coordinates = this.convert(target[i].geometry);
+                    target[i].geometry.coordinates = coordinates
+                }
+            }
+            this.geojson = L.geoJSON(target, {
+                style: function (feature) {
+                    if (!isDefault) {
+                        feature.status = "normal";
+                       
+                        return thisCallBack.getStyle(feature);
+                    }
+                },
+                onEachFeature: function (feature, layer) {
+                    feature.configData = config;
+                    thisCallBack.onEachFeature(feature, layer, this);
+                   
+                    if (config.labelField) {
+                        layer.on("mouseover",
+                        function (e) {
+                            var html = thisCallBack._getTooltipText(e.target.feature, config);
+                            layer.bindTooltip(html, {
+                                permanent: true,
+                                offset: [15, 0],
+                                direction: "right",
+                                className: 'tooltip',
+                                width:300
+                            }).openTooltip()
+                        });
+                        layer.on("mouseout",
+                        function (e) {
+                             layer.closeTooltip()
+                        })
+                    }
+                }
+            });
+            this.drawVector.addLayer(this.geojson);
+            if (isZoom) {
+                if (this.geojson != null && target.length!=0) {
+                    if (target.length == 1)
+                    {
+                        var center = this.geojson.getBounds().getCenter();
+                        this.globalMap.setView(center, 10);
+                    }
+                    else
+                    this.globalMap.flyToBounds(this.geojson.getBounds());
+                }
+            }
+
+            if (this.globalMap.editManage) this.globalMap.editManage.deactivate()
+        },
+        clear: function () {
+            this.drawVector.clearLayers()
+        },
+
+        clearLocation: function () {
+            if (this.locationTarget) {
+                clearInterval(this.timerInterval);
+                this.removeLocation(this.locationTarget)
+            }
+        },
+        removeLocation: function (item) {
+            if (this.drawVector.hasLayer(item)) {
+                this.drawVector.removeLayer(item);
+                item.remove();
+
+            }
+            if (item) item.remove();
+
+            item = null;
+        },
+        convert: function (geometry) {
+            var coords = geometry.coordinates,
+            layers = [],
+            latlng,
+            latlngs,
+            i,
+            len,
+            layer;
+            switch (geometry.type) {
+                case 'Point':
+                    latlng = this.coordsToLatLng(coords);
+                    return latlng;
+                case 'MultiPoint':
+                    for (i = 0, len = coords.length; i < len; i++) {
+                        latlng = this.coordsToLatLng(coords[i]);
+                        layer = pointToLayer ? pointToLayer(latlng) : new L.Marker(latlng);
+                        layers.push(layer)
+                    }
+                    return new L.FeatureGroup(layers);
+                case 'LineString':
+                    latlngs = this.coordsToLatLngs(coords);
+                    return latlngs;
+                case 'Polygon':
+                    latlngs = this.coordsToLatLngs(coords, 1);
+                    return latlngs;
+                case 'MultiLineString':
+                    latlngs = this.coordsToLatLngs(coords, 1);
+                    return latlngs;
+                case "MultiPolygon":
+                    latlngs = this.coordsToLatLngs(coords, 2);
+                    return latlngs;
+                case "GeometryCollection":
+                    for (i = 0, len = geometry.geometries.length; i < len; i++) {
+                        layer = this.geometryToLayer(geometry.geometries[i], pointToLayer);
+                        layers.push(layer)
+                    }
+                    return new L.FeatureGroup(layers);
+                default:
+                    throw new Error('Invalid GeoJSON object.');
+            }
+        },
+        coordsToLatLng: function (coords, reverse) {
+            var lat = parseFloat(coords[reverse ? 0 : 1]),
+            lng = parseFloat(coords[reverse ? 1 : 0]);
+            var latLng = Utils.mercator2lonLat({
+                x: lng,
+                y: lat
+            });
+            return [latLng.x, latLng.y]
+        },
+        coordsToLatLngs: function (coords, levelsDeep, reverse) {
+            var latlng, latlngs = [],
+            i,
+            len;
+            for (i = 0, len = coords.length; i < len; i++) {
+                latlng = levelsDeep ? this.coordsToLatLngs(coords[i], levelsDeep - 1, reverse) : this.coordsToLatLng(coords[i], reverse);
+                latlngs.push(latlng)
+            }
+            return latlngs
+        },
+        initPosition: function () { },
+        CLASS_NAME: "BaseObject.Location"
+    });
+    module.exports = BaseObject.Location
+});

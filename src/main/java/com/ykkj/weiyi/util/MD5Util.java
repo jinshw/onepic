@@ -155,9 +155,21 @@ public class MD5Util {
 		System.out.println("766971文件加密结果为：" + getFileMD5String(new File(filePath2)));
 		String filePath = "F:/图片/搜狗图片/766972.jpg";
 		System.out.println("766972文件加密结果为：" + getFileMD5String(new File(filePath)));*/
-		String filePath1 = UUIDUtil.create32UpperUUID();
-		System.out.println(getMD5String(filePath1));
-		System.out.println(getId());
-		System.out.println(getUUIDByRules("1234567890qwertyuiopasdfghjklzxcvbnm"));
-	}
+//		String filePath1 = UUIDUtil.create32UpperUUID();
+//		System.out.println(getMD5String(filePath1));
+//		System.out.println(getId());
+//		System.out.println(getUUIDByRules("1234567890qwertyuiopasdfghjklzxcvbnm"));
+
+		System.out.println(getMD5String("jinshw"));
+		System.out.println(getMD5String("e346ef0472828e1182dafe8d0835e749\n1566458315885\n41f46b99497d46d4910baaa0e9b120d2\n/v1/radar/rain/full/json"));
+		String password = "e346ef0472828e1182dafe8d0835e749";
+		long timesMillis = System.currentTimeMillis();
+		String nonce = UUIDUtil.create32UUID();
+		String suburl = "/v1/radar/rain/full/json";
+		String ss = password +"\n"+timesMillis+"\n"+nonce+"\n"+suburl;
+		System.out.println("timesMillis="+timesMillis+"  nonce="+nonce);
+		System.out.println(getMD5String(ss));
+
+
+    }
 }

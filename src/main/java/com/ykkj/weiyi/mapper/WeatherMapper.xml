@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykkj.weiyi.dao.WeatherMapper">
+    <resultMap id="BaseResultMap" type="com.ykkj.weiyi.pojo.Weather">
+        <result column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="TYPE" jdbcType="INTEGER" property="type"/>
+        <result column="POINTTIME" jdbcType="INTEGER" property="pointtime"/>
+        <result column="POINTUNIT" jdbcType="VARCHAR" property="pointunit"/>
+        <result column="IMGNAME" jdbcType="VARCHAR" property="imgname"/>
+        <result column="STARTLAT" jdbcType="VARCHAR" property="startlat"/>
+        <result column="STARTLON" jdbcType="VARCHAR" property="startlon"/>
+        <result column="ENDLAT" jdbcType="VARCHAR" property="endlat"/>
+        <result column="ENDLON" jdbcType="VARCHAR" property="endlon"/>
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+      ID,TYPE,POINTTIME,POINTUNIT,IMGNAME,STARTLAT,STARTLON,ENDLAT,ENDLON,CREATETIME
+    </sql>
+
+    <select id="findAllList" parameterType="com.ykkj.weiyi.pojo.Weather" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM weather_img t
+        <where>
+            <if test="1==1">
+                AND 1=1
+            </if>
+            <if test="type != null">
+                AND type = #{type}
+            </if>
+            <if test="pointtime != null and pointtime != ''">
+                AND pointtime = #{pointtime}
+            </if>
+        </where>
+        ORDER BY createtime DESC
+        LIMIT 0,9
+    </select>
+
+</mapper>

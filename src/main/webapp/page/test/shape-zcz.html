@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>治超站数据整理</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>治超站数据整理</h1>
+<div>
+    线路类型：<input type="text" id="mileageRoadType" value="gs">
+    线路编号：<input type="text" id="mileageRoadCode" value="G30">
+    起始桩号：<input type="text" id="mileageStartZH" value="4015">
+    终点桩号：<input type="text" id="mileageEndZH" value="4025">
+    <input type="button" class="btn btn-primary" onclick="mileagePositon()" value="里程桩定位">
+
+</div>
+<div>
+    <input type="file" id="excel-file">
+    <input type="button" class="btn btn-primary" onclick="exportJson()" value="导出json文件">
+</div>
+<script>
+    var persons = []; // 存储获取到的数据
+    function mileagePositon() {
+        var roadtype = $("#mileageRoadType").val()
+        var roadcode = $("#mileageRoadCode").val()
+        var startzh = $.trim($("#mileageStartZH").val())
+        var endzh = $.trim($("#mileageEndZH").val())
+        if ($.trim(startzh) != "") {
+            startzh = Number(startzh) * 1000
+        }
+        if ($.trim(endzh) != "") {
+            endzh = Number(endzh) * 1000
+        }
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                roadtype: roadtype,
+                roadcode: roadcode,
+                startzh: startzh,
+                endzh: endzh
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+                /*var features = [];
+                if (data.length > 0) {
+                    var feature, geometry, RouteLocatorResult;
+                    if ($.trim(startzh) == "" || $.trim(endzh) == "") {
+                        RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[0]);
+                        feature = new SuperMap.Feature.Vector();
+                        geometry = RouteLocatorResult.resultGeometry;
+                        feature.geometry = geometry;
+                        thisCallBack.globalMap.setLocation(feature);
+                        thisCallBack.globalMap.showFeatures(feature, true);
+                    } else {
+                        for (var i = 0; i < data.length; i++) {
+                            RouteLocatorResult = new SuperMap.REST.RouteLocatorResult.fromJson(data[i]);
+                            feature = new SuperMap.Feature.Vector();
+                            geometry = RouteLocatorResult.resultGeometry;
+                            feature.geometry = geometry;
+                            feature.style = {
+                                fontColor: "#ff0000",
+                                strokeColor: "#5298FE",
+                                fillOpacity: 0.5,
+                                strokeOpacity: 1,
+                                strokeWidth: 5,
+                                fillColor: "#5298FE",
+                                labelXOffset: 120,
+                                labelYOffset: 1,
+                                pointRadius: 4
+                            }; //"#ff0000", //"#ff0000",
+                            features.push(feature);
+                        }
+                        thisCallBack.globalMap.setLocation(features);
+                        thisCallBack.globalMap.showFeatures(features, true);
+                    }
+
+                    if (roadtype == 'gs') {
+                        thisCallBack.searchGS({roadcode: roadcode})
+                    } else if (roadtype == 'gd') {
+                        thisCallBack.searchGD({roadcode: roadcode})
+                    } else if (roadtype == 'sd') {
+                        thisCallBack.searchSD({roadcode: roadcode})
+                    }
+
+
+                } else {
+                    console.log("定位里程不存在！")
+                    thisCallBack.globalMap.alert({msg: "定位里程不存在！", type: "success", width: 300});
+                    setTimeout(function () {
+                        thisCallBack.globalMap.alert({status: true});
+                    }, 3000)
+
+                }*/
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+
+    }
+
+    $('#excel-file').change(function (e) {
+        var files = e.target.files;
+        var fileReader = new FileReader();
+        fileReader.onload = function (ev) {
+            try {
+                var data = ev.target.result,
+                    workbook = XLSX.read(data, {
+                        type: 'binary'
+                    }); // 以二进制流方式读取得到整份excel表格对象
+
+            } catch (e) {
+                console.log('文件类型不正确');
+                return;
+            }
+            // 遍历每张表读取
+            for (var sheet in workbook.Sheets) {
+                if (workbook.Sheets.hasOwnProperty(sheet)) {
+                    var fromTo = workbook.Sheets[sheet]['!ref'];
+                    console.log(fromTo);
+                    var datas = workbook.Sheets[sheet];
+
+                    // 如果有不规范数据可以在这里进行处理datas
+
+                    persons = persons.concat(XLSX.utils.sheet_to_json(datas));
+                    break; // 只读了第一张表
+                }
+            }
+            console.log(persons);
+            mileagePositon2(persons)
+        };
+        // 以二进制方式打开文件
+        fileReader.readAsBinaryString(files[0]);
+    });
+
+    function mileagePositon2(persons) {
+        var person = null;
+        for (var index in persons) {
+            person = persons[index]
+            gzno = person["路线编码"]
+            zh = person["站点桩号位置"]
+            // zhK = person["站点桩号位置"]
+            // zh = Number(zhK)
+
+            console.log("路线编码==" + person["路线编码"])
+            console.log("桩号==" + zh, zh)
+            // person["桩号"] = zh
+            // roadcode = gzno.substring(0, gzno.indexOf("L"))
+            roadcode = gzno
+            console.log(roadcode, zh)
+            result = searchGS({roadcode: roadcode, zh: Number(zh) * 1000})
+            if (result == null || result.length == 0) {
+                result = searchGD({roadcode: roadcode, zh: Number(zh) * 1000})
+            }
+            if (result == null || result.length == 0) {
+                result = searchSD({roadcode: roadcode, zh: Number(zh) * 1000})
+            }
+            var x, y = 0;
+            if (result != null && result.length > 0) {
+                x = result[0].resultGeometry.center.x
+                y = result[0].resultGeometry.center.y
+            } else {
+                x = 0;
+                y = 0;
+            }
+            console.log("x=" + x, "y=" + y)
+            persons[index].x = x
+            persons[index].y = y
+        }
+
+        console.log(persons)
+    }
+
+    function searchGS(obj) {
+        var result = null;
+        $.ajaxSettings.async = false;
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                roadtype: "gs",
+                roadcode: obj.roadcode,
+                startzh: obj.zh,
+                endzh: ""
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+                result = data;
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+        return result;
+    }
+
+    function searchGD(obj) {
+        var result = null;
+        $.ajaxSettings.async = false;
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                roadtype: "gd",
+                roadcode: obj.roadcode,
+                startzh: obj.zh,
+                endzh: ""
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+                result = data;
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+
+        return result;
+    }
+
+    function searchSD(obj) {
+        var result = null;
+        $.ajaxSettings.async = false;
+        $.ajax({
+            url: "http://map.xjjt.gov.cn:8090/iserver/services/MileagePosition/mileagePositionInterface",
+            data: {
+                roadtype: "sd",
+                roadcode: obj.roadcode,
+                startzh: obj.zh,
+                endzh: ""
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log("success...", data);
+                result = data;
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+        return result;
+    }
+
+    function exportJson() {
+        export_raw("export.json", JSON.stringify(persons))
+    }
+
+    function export_raw(name, data) {
+        var urlObject = window.URL || window.webkitURL || window;
+
+        var export_blob = new Blob([data]);
+
+        var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+        save_link.href = urlObject.createObjectURL(export_blob);
+        save_link.download = name;
+        fake_click(save_link);
+    }
+
+    function fake_click(obj) {
+        var ev = document.createEvent("MouseEvents");
+        ev.initMouseEvent(
+            "click", true, false, window, 0, 0, 0, 0, 0
+            , false, false, false, false, 0, null
+        );
+        obj.dispatchEvent(ev);
+    }
+
+    function getZH(zhStr) {
+        var zhArr = zhStr.split("+")
+        var aNum, bNum
+        aNum = zhArr[0]
+        if (zhArr.length == 2) {
+            bNum = zhArr[1]
+        } else {
+            bNum = "0"
+        }
+        return Number(aNum.substr(1, aNum.length)) + Number(bNum) / 1000
+    }
+
+</script>
+</body>
+</html>

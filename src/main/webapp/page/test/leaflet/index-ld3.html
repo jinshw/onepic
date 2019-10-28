@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts Lines-Bus with Leaflet</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/weather.css">
+    <link rel="stylesheet" href="../../../static/js/jtimeline/css/jtimeline-default.v1.0.css">
+    <script src="../echarts-4.2.1/test/lib/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="./static/js/md5.min.js"></script>
+    <script type="text/javascript" include="echarts" src="../sm9dV1.0/supermap/dist/include-leaflet.js"></script>
+    <script type="text/javascript" src="../../../static/js/jtimeline/js/jtimeline.v1.0.js"></script>
+
+</head>
+
+<body style=" margin: 0;overflow: hidden;background: #fff;width: 100%;height:100%;position: absolute;top: 0;">
+
+    <!--<div id="getRadarNum" class="btn btn-primary" style="position:absolute;top:2px;right:10px;z-index: 10000;">雷达站站号查询接口-->
+    <!--</div>-->
+    <!--<div id="getOne" class="btn btn-primary" style="position:absolute;top:80px;right:10px;z-index: 10000;">单站雷达实况接口</div>-->
+    <!--<div id="getRadarRain2H" class="btn btn-primary" style="position:absolute;top:140px;right:10px;z-index: 10000;">-->
+    <!--获取未来2H内数据-->
+    <!--</div>-->
+    <!--<div id="getEcForecast" class="btn btn-primary" style="position:absolute;top:200px;right:10px;z-index: 10000;">-->
+    <!--获取未来7天预报-->
+    <!--</div>-->
+    <!--<div id="getCldasReal" class="btn btn-primary" style="position:absolute;top:240px;right:10px;z-index: 10000;">格点实况数据-->
+    <!--</div>-->
+
+    <div id="map" style="margin:0 auto;width: 100%;height: 100%"></div>
+    <div class="left-bar">
+        <ul class="btnList" id="btnList">
+            <li data-type="radar"><i class="caseBtn0"></i><span>雷达</span></li>
+            <li data-type="rain"><i class="caseBtn1"></i><span>未来2小时降水</span></li>
+            <li data-type="7days"><i class="caseBtn2"></i><span>7天降水预报</span></li>
+            <li data-type="livedatas"><i class="caseBtn3"></i><span>降水实况</span></li>
+            <!--<li data-type=""><i class="caseBtn4"></i><span class="rain">过去24H<br>降水排行</span></li>-->
+        </ul>
+    </div>
+
+    <canvas id="drawing"></canvas>
+
+    <div id='timeLineDIV' style='z-index:10000;position: absolute;bottom: 20px;left: 500px;'></div>
+    <div id="legend" class="container-legend">
+        <div class="img-item" data-type="radar" id="radarLegend">
+            <img src="./static/img/legend/radarLegend.png" alt="">
+        </div>
+        <div class="img-item" data-type="rain" id="rainLegend">
+            <img src="./static/img/legend/rainLegend.png" alt="">
+        </div>
+        <div class="img-item" data-type="7days" id="7daysLegend">
+            <img src="./static/img/legend/7daysLegend.png" alt="">
+        </div>
+        <div class="img-item" data-type="livedatas" id="livedatasLegend">
+            <img src="./static/img/legend/livedatasLegend.png" alt="">
+        </div>
+    </div>
+    <div id="flash" style="position: absolute;top: 10px;right: 20px;z-index: 10000;cursor: pointer;">
+        <img style="width: 30px;height: 30px;cursor: pointer;" src="./static/img/legend/flash.png" alt="刷新">
+        <span style="display: block;font-size: 12px;margin-left: 3px;">刷新</span>
+    </div>
+
+    <script src="./static/js/moment.js"></script>
+    <script src="./static/js/index-ld3.js"></script>
+</body>
+
+</html>

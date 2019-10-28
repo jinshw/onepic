@@ -25,6 +25,7 @@ public class NBaoAttrController {
     @RequestMapping("/getattributefield")
     public void getAttributeField(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String searchType = request.getParameter("searchType");//road 道路，bridge 桥梁 ，suidao 隧道
+        System.out.println("getattributefield....searchType="+searchType);
         List list = nBaoAttrService.getAttributeField(searchType);
         response.setContentType("application/json;charset=utf-8");
         String result = JSONUtil.toJsonStr(list);
@@ -99,6 +100,7 @@ public class NBaoAttrController {
     public void queryLength(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String year = request.getParameter("year");
         String roadcode = request.getParameter("roadcode");
+        System.out.println("year=="+year+"  roadcode==="+roadcode);
         NBaoAttr nBaoAttr = new NBaoAttr();
         nBaoAttr.setF_VC_LXBH(roadcode);
 

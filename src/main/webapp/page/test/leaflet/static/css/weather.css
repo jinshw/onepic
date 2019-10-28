@@ -1,0 +1,103 @@
+
+ul {
+    list-style: none;
+}
+
+.left-bar {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    height: 400px;
+    width: 70px;
+    z-index: 10000;
+}
+
+.btnList {
+    width: 70px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+    background: #fff;
+    border-radius: 10px;
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-inline-start: initial
+}
+
+.btnList li {
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    color: #303133;
+    cursor: pointer;
+}
+
+.btnList li.active {
+    background-color: #e9ecef;
+}
+
+
+.btnList li i {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 5px 11px 0 11px;
+    float: left;
+    background-size: 100% 100% !important;
+}
+
+.btnList li span {
+    display: block;
+    width: 52px;
+    margin-left: 9px;
+    margin-bottom: 5px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+}
+
+.btnList li i.caseBtn0 {
+    background: url(../img/legend/radar.png) no-repeat center center;
+}
+
+.btnList li i.caseBtn1 {
+    background: url(../img/legend/2hrain.png) no-repeat center center;
+}
+
+.btnList li i.caseBtn2 {
+    background: url(../img/legend/7days.png) no-repeat center center;
+    width: 38px;
+    height: 38px;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.btnList li i.caseBtn3 {
+    background: url(../img/legend/livedatas.png) no-repeat center center;
+    width: 38px;
+    height: 38px;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.btnList li i.caseBtn4 {
+    background: url(https://i.tq121.com.cn/i/radarMap/caseBtnCur4.png) no-repeat center center;
+}
+
+.container-legend {
+    z-index: 10000;
+    position: absolute;
+    top: 14%;
+    right: 1%;
+    width: 25px;
+}
+.container-legend .img-item{
+    display: none;
+}
+.container-legend .active{
+    display: block;
+}

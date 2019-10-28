@@ -1,0 +1,951 @@
+﻿BaseObject.GlobalMap = BaseHelper.Class.create();
+BaseObject.GlobalMap.prototype = BaseHelper.Class.inherit(BaseHelper.EventListener, {
+    initialize: function (data) {
+        this.compnents = [];
+        this.tools = [];
+        this.controls = [];
+        this.widgets = [];
+        this.services = [];
+        this.singleInstances = {};
+        this.commonComponets = [];
+        this.hashMapLayers = [];
+        this.configIMaps = {};
+        this.isload = true;
+        this.isXzqhVisibility = true;
+        this.baseMaps = [];
+        this.externalWidgets = [];
+        this.externalTools = [];
+        this.isOverLayerZoom = true;
+        this.ID = "BaseObject.GloabalMap" + Utils.getGUID();
+        this.overLayers = [];
+        this.overModels = [];
+        this.loadjsList = [];
+        this._isLockResize = false;
+    },
+    init: function (mapDivId, params) {
+        var thisCallBack = this;
+        this.params = params;
+        this.mapDivId = mapDivId;
+        this.mainContainer = $("#" + mapDivId);
+        this.currentMapInfos = null;
+        this.currentMapLayer = null;
+        this.remove();
+        this.clear();
+        $(this.viewerContainer).remove();
+        this.viewerContainer = document.createElement("div");
+        this.viewerContainer.id = "veiwerContainerDiv_" + Utils.getGUID;
+        this.viewerContainer.style.cssText = "clear:both; width:100%; height:100%;position:relative;";
+        this.mainContainer.append(this.viewerContainer);
+        this.loadjs([BaseObject.path + "/sm9dV1.0/mapviewer/config/SuperMap.GisConfigManager.js", BaseObject.path + "/sm9dV1.0/mapviewer/config/SuperMap.ConfigData.js"], function (arguments) {
+            thisCallBack.configManager = new arguments[0](thisCallBack);
+            _innerInitialize()
+        })
+
+        function _innerInitialize() {
+            if (BaseObject.TokenKey) {
+                SuperMap.Credential.CREDENTIAL = new SuperMap.Credential(BaseObject.TokenKey)
+            }
+            var configIMaps = BaseObject.GlobalMap.DefaultConfigData.configIMaps;
+            var iMap = null;
+            for (var index = 0; index < configIMaps.length; index++) {
+                var item = configIMaps[index];
+                item.isinner = true
+                thisCallBack.configIMaps[item.code] = {
+                    target: item
+                }
+            }
+            for (var key in thisCallBack.configIMaps) {
+                var item = thisCallBack.configIMaps[key];
+                if (item.target.isDefault) {
+                    iMap = item.target;
+                    break;
+                }
+            }
+			
+            if (iMap == null) iMap = configIMaps[0];
+            thisCallBack.loadMapHandler(iMap);
+        }
+        this._bindEventListener();
+
+        //this.loadjs(BaseObject.path + "/sm9dV1.0/mapviewer/service/SuperMap.MapService.js",
+        //function (a) {
+        //    var instance = new a[0]();
+        //    instance.init(thisCallBack);
+        //    instance.getAllLayers()
+        //})
+    },
+
+    loadMapHandler: function (iMap, callback) {
+        var thisCallBack = this;
+        var url = iMap.isinner != true ? iMap.url : BaseObject.path + iMap.url;
+        this.loadjs(url, function (arguments) {
+            if (arguments[0]) {
+                var mapHandlerClass = arguments[0];
+                var mapHandler = new mapHandlerClass();
+                mapHandler.init(thisCallBack, iMap);
+                mapHandler.mapHandlerClass = mapHandlerClass;
+                iMap.mapHandler = mapHandler;
+                thisCallBack.mapHandler = mapHandler;
+                thisCallBack.configManager.load(iMap.params,
+                function (data) {
+                    thisCallBack._configSetting(data);
+                    if (callback) callback(mapHandler);
+                    thisCallBack.dispathEvent("loadMapHandlerCompleted", mapHandler);
+                });
+            }
+            else {
+                console.log("错误的js地址:" + BaseObject.path + iMap.url)
+            }
+        });
+    },
+
+    cloneMapHandler: function () {
+        return new this.mapHandler.mapHandlerClass();
+    },
+
+    switchMapHandler: function (code) {
+        this.mapHandler.hide();
+
+        var config = this.configIMaps[code];
+        if (!config.target.mapHandler) {
+            this.loadMapHandler(config.target, function (mapHandler) {
+            });
+        }
+        else {
+            this.mapHandler = config.target.mapHandler;
+            this.filterWidgets();
+            config.target.mapHandler.show();
+            this.dispathEvent("loadMapHandlerCompleted", this.mapHandler);
+        }
+    },
+
+    setParams: function (data) {
+        this.params = data
+    },
+    _configSetting: function (data) {
+        var thisCallBack = this;
+        thisCallBack.configData = data;
+        thisCallBack.initTools(data);
+        thisCallBack._initCommonComponets(function () {
+            thisCallBack.initWidgets(data,
+            function (e) {
+                thisCallBack.initControls(data,
+                function (e) {
+                    thisCallBack.initMaps(data);
+                    thisCallBack.dispathEvent("loadCompleted", {
+                        data: data
+                    })
+                })
+            })
+        })
+    },
+
+    addIMap: function (data) {
+        this.configIMaps[data.code] = {
+            target: data
+        }
+    },
+    _bindEventListener: function () {
+        var thisCallBack = this;
+        $(window).resize(function () {
+            thisCallBack.resize()
+        })
+    },
+
+    showThematic: function (data) {
+        this.mapHandler.showThematic(data);
+    },
+    clearThematic: function () {
+        this.mapHandler.clearThematic();
+    },
+    setLocationThematic: function (data) {
+        this.mapHandler.setLocationThematic(data);
+    },
+    
+    setLockResize: function (e) {
+        this._isLockResize = e;
+    },
+    resize: function () {
+        if (!this._isLockResize) {
+            for (var index = 0; index < this.controls.length; index++) {
+                var item = this.controls[index];
+                item.resize()
+            }
+            for (var index = 0; index < this.widgets.length; index++) {
+                var item = this.widgets[index];
+                item.resize()
+            }
+        }
+    },
+    setParams: function (data) {
+        this.params = data
+    },
+    initMaps: function (data) {
+        if (this.isload) {
+            this.configData = data;
+            var configMap = null;
+            for (var index = 0; index < data.baseMaps.length; index++) {
+                var item = data.baseMaps[index];
+                if (item.isDefault == 1) {
+                    configMap = item;
+                    break
+                }
+            }
+            if (!configMap) configMap = data.baseMaps[0];
+            if (configMap.code == "yx") configMap = data.baseMaps[1];
+            this.currentMapConfigData = configMap;
+            this._settingConfigMap(this.currentMapConfigData)
+        }
+    },
+    _settingConfigMap: function (configMap) {
+        if (configMap) {
+            this.loadMapCompleted = false;
+            this.currentMapBounds = null;
+            $(this.viewerContainer).show();
+            if (this.currentMapLayer) {
+                this.currentMapInfos = {
+                    center: this.mapObject.getCenter(),
+                    level: this.mapObject.getZoom()
+                };
+                var item = this.mapObject.getLayer(this.currentMapLayer.id);
+                if (item) this.mapObject.removeLayer(item, true);
+                this.currentMapLayer = null
+            }
+            this.mapHandler.settingConfigMap(configMap)
+        }
+    },
+    resetLayerIndex: function () {
+        this.mapHandler.resetLayerIndex()
+    },
+    displayBaseMap: function (val) {
+        for (var index = 0; index < this.baseMaps.length; index++) {
+            var item = this.baseMaps[index];
+            if (val) item.remove();
+            else this.mapObject.addLayer(item)
+        }
+    },
+    getMapObject: function () {
+        return this.mapHandler.mapObject
+    },
+    removeBaseLayer: function () {
+        for (var index = 0; index < this.baseMaps.length; index++) {
+            var item = this.baseMaps[index];
+            if (this.mapObject.hasLayer(item)) {
+                this.mapObject.removeLayer(item)
+            }
+        }
+        this.currentMapLayer = null;
+        this.baseMaps = []
+    },
+    resetBaseMapLayerIndex: function () {
+        this.mapObject.setLayerIndex(this.currentMapLayer, 0)
+    },
+    setViewerBounds: function (coordinates, level) {
+        this.mapHandler.setViewerBounds(coordinates, level)
+    },
+    fullViewer: function () {
+        var configMap = this.currentMapConfigData;
+        this.setViewerBounds(configMap.bounds, 0)
+    },
+    setLocationByCoordinates: function (data, isEdit) {
+        var vector = null;
+        if (data.type == "SuperMap.Geometry.Point") {
+            vector = createPoint(JSON.parse(data.geometry))
+        } else if (data.type == "SuperMap.Geometry.MultiLineString") {
+            vector = createLine(JSON.parse(data.geometry))
+        } else if (data.type == "SuperMap.Geometry.Polygon") {
+            vector = createPolygon(JSON.parse(data.geometry))
+        }
+        function createPoint(data) {
+            var geometry = new SuperMap.Geometry.Point(data.x, data.y);
+            var feature = new SuperMap.Feature.Vector(geometry, null);
+            return feature
+        }
+        function createLine(data) {
+            var points = [];
+            for (var i = 0; i < data.length; i++) {
+                points.push(new SuperMap.Geometry.Point(data[i].x, data[i].y))
+            }
+            var line = new SuperMap.Geometry.LinearRing(points);
+            var vector = new SuperMap.Feature.Vector(line);
+            return vector
+        }
+        function createPolygon(data) {
+            var points = [];
+            for (var i = 0; i < data.length; i++) {
+                points.push(new SuperMap.Geometry.Point(data[i].x, data[i].y))
+            }
+            var line = new SuperMap.Geometry.LinearRing(points);
+            var region = new SuperMap.Geometry.Polygon([line]);
+            var vector = new SuperMap.Feature.Vector(region);
+            return vector
+        }
+        if (vector) {
+            this.showFeatures(vector);
+            this.setLocation(vector)
+        }
+    },
+    getConfigMapData: function (code) {
+        for (var index = 0; index < this.configData.baseMaps.length; index++) {
+            var item = this.configData.baseMaps[index];
+            if (item.code == code) {
+                return item
+            }
+        }
+        return null
+    },
+    setChangeMap: function (code) {
+        this.mapHandler.setChangeMap(code);
+    },
+    getConfigLayer: function (name) {
+        return this.mapHandler.getConfigLayer(name)
+    },
+    flyToBounds: function (bounds) {
+        this.mapHandler.flyToBounds(bounds)
+    },
+    fitBounds: function (bounds) {
+        this.mapHandler.fitBounds(bounds)
+    },
+    setView: function (lnglat, level) {
+        this.mapHandler.setView(lnglat, level)
+    },
+    setOpacity: function (val) {
+        this.mapHandler.setOpacity(val)
+    },
+    clear: function () {
+        if (this.mapHandler) this.mapHandler.clear();
+        for (var index = 0; index < this.compnents.length; index++) {
+            if (this.compnents[index]) {
+                this.compnents[index].clear();
+                this.compnents[index].setDisabled(true)
+            }
+        }
+        for (var key in this.overLayers) {
+            var item = this.overLayers[key];
+            if (item) {
+                this.removeOverLayer(item);
+                delete this.overLayers[key];
+            }
+        }
+        for (var key in this.overModels) {
+            var item = this.overModels[key];
+            if (item) {
+                this.removeOverModel(item);
+                delete this.overModels[key];
+            }
+        }
+        if (this.loading_widget) this.loading_widget.hide();
+        this.overLayers = []
+    },
+    initControls: function (data, callback) {
+        var thisCallBack = this;
+        var uriList = [];
+        for (var index = 0; index < data.controls.length; index++) {
+            var item = data.controls[index];
+            uriList.push(BaseObject.path + "/" + item.url)
+        }
+        this.loadjs(uriList,
+        function (arguments) {
+            for (var i = 0; i < arguments.length; i++) {
+                var argument = arguments[i];
+                if (argument) {
+                    var instance = new argument(thisCallBack, data.controls[i]);
+                    instance.activate();
+                    thisCallBack.addControl(instance);
+                }
+                else {
+                    alert(uriList[i] + "模块加载失败！");
+                }
+            }
+            thisCallBack.dispathEvent("loadControlComplated", data.widgets);
+            callback()
+        })
+    },
+    initTools: function (data, callback) {
+        var thisCallBack = this;
+        for (var index = 0; index < this.externalTools.length; index++) {
+            data.tools.push(this.externalTools[index])
+        }
+        Utils.jsonSort(data.tools, "sortIndex", false)
+    },
+    _initCommonComponets: function (callback) {
+        var thisCallBack = this;
+        var uriList = [];
+        var configCommonComponets = BaseObject.GlobalMap.DefaultConfigData.configCommonComponets;
+        Utils.jsonSort(configCommonComponets, "sortIndex", false);
+        for (var index = 0; index < configCommonComponets.length; index++) {
+            var item = configCommonComponets[index];
+            uriList.push(BaseObject.path + "/" + item.url)
+        }
+        this.loadjs(uriList,
+        function (arguments) {
+            for (var i = 0; i < arguments.length; i++) {
+                var argument = arguments[i];
+                if (argument) {
+                    var instance = new argument(thisCallBack, uriList[i]);
+                    instance.activate();
+                    thisCallBack.addCommonComponets(instance);
+                }
+                else {
+                    alert(uriList[i] + "模块加载失败！");
+                }
+            }
+            thisCallBack.dispathEvent("loadCommonComponetsComplated", uriList[i]);
+            if (callback) callback()
+        })
+    },
+    initWidgets: function (data, callback) {
+        var thisCallBack = this;
+        var uriList = [];
+        Utils.jsonSort(data.widgets, "sortIndex", false);
+
+        for (var index = 0; index < data.widgets.length; index++) {
+            var item = data.widgets[index];
+            uriList.push(BaseObject.path + "/" + item.url)
+        }
+        for (var index = 0; index < this.externalWidgets.length; index++) {
+            if (this.mapHandler.configData.code.indexOf(this.externalWidgets[index].filterMap) > -1) {
+                continue;
+            }
+            uriList.push(this.externalWidgets[index].url);
+            data.widgets.push(this.externalWidgets[index]);
+        }
+
+        this.loadjs(uriList,
+        function (arguments) {
+            for (var i = 0; i < arguments.length; i++) {
+                var argument = arguments[i];
+                if (argument) {
+                    if (!thisCallBack.singleInstances[data.widgets[i].code]) {
+                        var instance = new argument(thisCallBack, data.widgets[i]);
+                        instance.activate();
+                        thisCallBack.addWidget(instance);
+                        if (data.widgets[i].scope == "global")
+                            thisCallBack.singleInstances[data.widgets[i].code] = { target: instance, configData: data.widgets[i] };
+                    }
+                }
+                else {
+                    alert(uriList[i] + "模块加载失败！");
+                }
+            }
+            thisCallBack.dispathEvent("loadWdigetComplated", data.widgets);
+            callback()
+        })
+    },
+
+
+    filterWidgets: function () {
+        this.clear();
+
+        for (var i = 0; i < this.widgets.length; i++) {
+            if (this.widgets[i].configData && this.widgets[i].configData.filterMap) {
+                if (this.mapHandler.configData.code.indexOf(this.widgets[i].configData.filterMap) > -1) {
+                    this.widgets[i].hide();
+                }
+                else
+                    this.widgets[i].display();
+            }
+        }
+    },
+    addWidget: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var widget = arguments[i];
+            if (typeof widget == 'object') {
+                this.widgets.push(widget);
+                this.compnents.push(widget)
+            }
+        }
+    },
+    addCommonComponets: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var cmp = arguments[i];
+            if (typeof cmp == 'object') {
+                this.commonComponets.push(cmp);
+                this.compnents.push(cmp)
+            }
+        }
+    },
+    addControl: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var control = arguments[i];
+            if (typeof control == 'object') {
+                this.compnents.push(control);
+                this.controls.push(control)
+            }
+        }
+    },
+    addTool: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var tool = arguments[i];
+            if (typeof tool == 'object') {
+                this.compnents.push(tool);
+                this.tools.push(tool)
+            }
+        }
+    },
+    addService: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var tool = arguments[i];
+            if (typeof tool == 'object') {
+                this.compnents.push(tool);
+                this.services.push(tool)
+            }
+        }
+    },
+    removeControlByObj: function () {
+        for (var i = 0; i < arguments.length; i++) {
+            var controlObj = arguments[i];
+            if (typeof controlObj == 'object') {
+                LC.Util.removeItem(this.controls, controlObj)
+            }
+        }
+    },
+    getControlByClassName: function (name) {
+        for (var i = 0; i < this.controls.length; i++) {
+            var obj = this.controls[i];
+            if (obj.CLASS_NAME == name) return obj
+        }
+        return null
+    },
+    getWidgetByClassName: function (name) {
+        for (var i = 0; i < this.widgets.length; i++) {
+            var obj = this.widgets[i];
+            if (obj.CLASS_NAME == name) return obj
+        }
+        return null
+    },
+    getToolsByClassName: function (name) {
+        for (var i = 0; i < this.tools.length; i++) {
+            var obj = this.tools[i];
+            if (obj.CLASS_NAME == name) return obj
+        }
+    },
+    addLayer: function (item) {
+        this.subjectLayers.push(item)
+    },
+    hideComponent: function (names) {
+        for (var index = 0; index < this.compnents.length; index++) {
+            for (var i = 0; i < this.compnents.length; i++) {
+                var obj = this.compnents[i];
+                if (obj.CLASS_NAME == names[index]) {
+                    obj.hide()
+                }
+            }
+        }
+    },
+    displayComponent: function (names) {
+        for (var index = 0; index < this.compnents.length; index++) {
+            for (var i = 0; i < this.compnents.length; i++) {
+                var obj = this.compnents[i];
+                if (obj.CLASS_NAME == names[index]) {
+                    obj.display()
+                }
+            }
+        }
+    },
+    loadPrintMap: function (mapId) {
+        var mapObj = this.currentMapConfigData;
+        var thisCallBack = this;
+        var mapObject = new SuperMap.Map(mapId, {
+            controls: [new SuperMap.Control.Navigation({
+                dragPanOptions: {
+                    enableKinetic: true
+                }
+            })],
+            allOverlays: true
+        });
+        var currentLayer = new SuperMap.Layer.TiledDynamicRESTLayer(mapObj.name, mapObj.url, {
+            transparent: true,
+            cacheEnabled: mapObj.cache
+        },
+        {
+            maxResolution: "auto",
+            useCanvas: false,
+            useCORS: true
+        });
+        currentLayer.isBaseLayer = true;
+        currentLayer.events.on({
+            "layerInitialized": function () {
+                mapObject.addLayers([currentLayer]);
+                if (mapObj.x) mapObject.setCenter(new SuperMap.LonLat(mapObj.x, mapObj.y), mapObj.level);
+                else {
+                    var curentViewerBounds = thisCallBack.currentMapLayer.getExtent();
+                    mapObject.zoomToExtent(curentViewerBounds);
+                    mapObject.zoomTo(4)
+                }
+            }
+        })
+       
+    },
+    addDocker: function (data) {
+        var element = data.element;
+        if (!element) return;
+        $(this.mainContainer).append(element);
+        if (!this.dockerHashMap) this.dockerHashMap = {};
+        this.dockerHashMap[element.id] = data;
+        this.resizeDocker(data)
+    },
+    resizeDocker: function (data) {
+        var left = data.left;
+        var right = data.left;
+        var top = data.left;
+        var bottom = data.left;
+        if (left >= 0) {
+            $(this.viewerContainer).css({
+                "margin-left": left,
+                width: $(this.mainContainer).width() - left
+            })
+        }
+        if (top >= 0) { }
+        if (bottom >= 0) { }
+        if (right >= 0) { }
+        this.resize()
+    },
+    removeDocker: function (element) {
+        if (!element) return;
+        $(this.element).remove();
+        if (this.dockerHashMap) {
+            this.resizeDocker({
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
+            });
+            delete this.dockerHashMap[element.id]
+        }
+    },
+
+    addViewerContainer: function (el, type) {
+
+        el.style.cssText = "right:0; display:inline-block;border-left:0px solid #0000FF;";
+        if (type == 'after') {
+            $(this.viewerContainer).prepend($(el));
+        }
+        else {
+            $(this.viewerContainer).children(":first").before($(el));
+        }
+
+        $(this.viewerContainer).children(".viewer-container").css({
+            "width": "50%",
+            "height": "100%"
+        });
+        this.resize();
+        this.mapHandler.updateSize();
+    },
+    fullViewerContainer: function (el, type) {
+        var thisCallBack = this;
+        var index = 0;
+        if (type == "half-hide") {
+            $(thisCallBack.mainContainer).children(".viewer-container").css({
+                "width": "100%",
+                "height": "100%"
+            });
+            thisCallBack.resize();
+            thisCallBack.dispathEvent("viewerContainerReizse", {
+                width: "0",
+                type: "half-hide-end",
+                id: el.id
+            })
+        } else {
+            $(thisCallBack.mainContainer).children(".viewer-container").css({
+                "width": "0%",
+                "height": "100%"
+            });
+            $(el).css({
+                "width": "100%",
+            });
+            thisCallBack.dispathEvent("viewerContainerReizse", {
+                width: "100%",
+                type: "full",
+                id: el.id
+            })
+        }
+    },
+    removeViewerContainer: function (el) {
+        $(el).remove();
+        $(this.viewerContainer).children(".viewer-container").css({
+            "width": "100%",
+            "height": "100%"
+        });
+        this.resize();
+        this.mapHandler.updateSize();
+    },
+    useTool: function (ids, callback) {
+        var tmp = [];
+        var list = [];
+        if (typeof (ids) == 'string') tmp.push(ids);
+        else tmp = ids;
+        var configTools = BaseObject.GlobalMap.DefaultConfigData.configTools;
+        for (var index = 0; index < tmp.length; index++) {
+            for (var k = 0; k < configTools.length; k++) {
+                if (configTools[k].code == tmp[index]) {
+                    list.push(BaseObject.path + "/" + configTools[k].url);
+                    break
+                }
+            }
+        }
+        var thisCallBack = this;
+        this.loadjs(list, function (args) { callback(args[0]) })
+    },
+    useWidget: function (id, callback) { },
+    useControl: function (id, callback) { },
+    useService: function (ids, callback) {
+        var tmp = [];
+        var list = [];
+        if (typeof (ids) == 'string') tmp.push(ids);
+        else tmp = ids;
+        var configServices = BaseObject.GlobalMap.DefaultConfigData.configServices;
+        for (var index = 0; index < tmp.length; index++) {
+            for (var k = 0; k < configServices.length; k++) {
+                if (configServices[k].code == tmp[index]) {
+                    list.push(BaseObject.path + "/" + configServices[k].url);
+                    break
+                }
+            }
+        }
+        var thisCallBack = this;
+        this.loadjs(list, function (args) { callback(args[0]) })
+    },
+    useRemoteService: function (ids, callback) {
+        var tmp = [];
+        var list = [];
+        if (typeof (ids) == 'string') tmp.push(ids);
+        else tmp = ids;
+        for (var index = 0; index < tmp.length; index++) {
+            for (var k = 0; k < tmp.length; k++) {
+                list.push(tmp[index])
+            }
+        }
+        var thisCallBack = this;
+        this.loadjs(list, function (arguments) { callback(arguments[0]) });
+    },
+
+    setLocation: function (target, config) {
+        this.mapHandler.setLocation(target, config)
+    },
+
+    clearLocation: function () {
+        this.mapHandler.clearLocation();
+    },
+    showFeatures: function (features, config) {
+        var geoJSON = this.mapHandler.showFeatures(features, config);
+        return geoJSON;
+    },
+
+    clearFeatures: function () {
+        this.mapHandler.clear();
+    },
+
+    emableMapBackground: function (val) {
+        this.mapHandler.emableMapBackground(val);
+    },
+    lockOverLayerZoom: function (val) {
+        this.isOverLayerZoom = val
+    },
+    addOverLayer: function (data) {
+        var id = data.id;
+        this.removeOverLayer(data);
+        this.registerToken(data.url);
+        //if (data.scale && this.isOverLayerZoom) {
+        //    this.mapHandler.zoomTo(parseInt(data.scale))
+        //}
+        var thisCallBack = this;
+        if (this.overLayers[id] == undefined) {
+            this.mapHandler.addOverLayer(data)
+        }
+    },
+
+    registerToken: function (serviceUrl) {
+        SuperMap.SecurityManager.destroyToken(serviceUrl);
+        //使用前要先注册token,如果为该地址注册过则不用重复注册
+        SuperMap.SecurityManager.registerToken(serviceUrl, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogImV4cCI6IDE1NTE5MjY5MjU4MDYsCiAidXNlck5hbWUiOiAiMWFkbWluIgp9.HZE86c4vSUGhOqRHda4XsJfInw-u8AVOm0TIN0g4ESc");
+    },
+
+    addOverModel: function (data) {
+        var id = data.id;
+        this.removeOverModel(data);
+        var thisCallBack = this;
+        if (this.overModels[id] == undefined) {
+            this.mapHandler.addOverModel(data);
+            this.overModels[id] = data;
+        }
+    },
+
+    removeOverModel: function (data) {
+        var id = data.id;
+        var item = this.overModels[id];
+        if (item) {
+            this.mapHandler.removeOverModel(item);
+            delete this.overModels[id]
+        }
+    },
+
+    getOverlayerDatasetNames: function () {
+        var datasetNames = [];
+        for (var key in this.overLayers) {
+            if (this.overLayers[key].datasetName) {
+                var list = this.overLayers[key].datasetName.split(",");
+                for (var i = 0; i < list.length; i++)
+                    datasetNames.push(list[i]);
+            }
+
+        }
+        return datasetNames;
+    },
+
+    orderAllLayers: function () {
+        var layers = this.mapObject.layers;
+        for (var index = layers.length - 1; index > 0; index--) {
+            var item = layers[index];
+            if (!item.isBaseLayer && item.sortIndex > 0) {
+                var sortIndex = item.sortIndex;
+                item.setZIndex(sortIndex)
+            }
+        }
+    },
+    removeOverLayer: function (data) {
+        var id = data.id;
+        var item = this.overLayers[id];
+        if (item) {
+            this.mapHandler.removeOverLayer(item);
+            delete this.overLayers[id]
+        }
+    },
+
+    removeOverLayers: function () {
+        for (var key in this.overLayers) {
+            var item = this.overLayers[key];
+            if (item) {
+                this.removeOverLayer(item);
+                delete this.overLayers[key];
+            }
+        }
+    },
+    registerWidget: function (target) {
+        if (target instanceof Array) {
+            for (var index = 0; index < target.length; index++) {
+                this.externalWidgets.push(target[index])
+            }
+        } else {
+            this.externalWidgets.push(target)
+        }
+    },
+    registerTool: function (target) {
+        if (target instanceof Array) {
+            for (var index = 0; index < target.length; index++) {
+                this.externalTools.push(target[index])
+            }
+        } else {
+            this.externalTools.push(target)
+        }
+    },
+    alert: function (data) {
+        if (!this.loading_widget) {
+            var thisCallBack = this;
+            this.loadjs(BaseObject.path + "/sm9dV1.0/mapviewer/widget/SuperMap.Alert.js",
+            function (arguments) {
+                var instance = new arguments[0]();
+                instance.init(thisCallBack);
+                thisCallBack.loading_widget = instance;
+                if (!data.status) thisCallBack.loading_widget.show(data)
+                else thisCallBack.loading_widget.hide()
+            })
+        } else {
+            if (!data.status) this.loading_widget.show(data)
+            else this.loading_widget.hide()
+        }
+    },
+
+    clone: function (obj) {
+        var str, newobj = obj.constructor === Array ? [] : {};
+        if (typeof obj !== 'object') {
+            return;
+        } else if (window.JSON) {
+            str = JSON.stringify(obj), //序列化对象
+            newobj = JSON.parse(str); //还原
+        } else {
+            for (var i in obj) {
+                newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i];
+            }
+        }
+        return newobj;
+    },
+
+    loadjs: function (paths, callback) {
+        if (paths.length == 0) {
+            if (callback) callback([]); return;
+        }
+        this.loadjsList.push({
+            paths: paths,
+            callback: callback
+        });
+        if (this.loadjsRunning) return;
+        this.loadjsInterval();
+    },
+    loadjsInterval: function () {
+       
+        var that = this;
+        that.loadjsRunning = true;
+        that.timerNum = setTimeout(incrementNumber, 50);
+        function incrementNumber() {
+            if (that.loadjsList.length > 0) that.loadjsObj = that.loadjsList[0];
+            else {
+                that.loadjsRunning = false;
+                clearTimeout(that.timerNum);
+            }
+
+            seajs.use(that.loadjsObj.paths,
+            function () {
+                if (arguments.length != 0) {
+                    that.loadjsList.splice(0, 1);;
+                    that.loadjsObj.callback(arguments);
+                } else {
+                     console.log(that.loadjsObj.paths.toString());
+                    if (!that.loadjsObj.count) that.loadjsObj.count = 1;
+                    else {
+                        if (that.loadjsObj.count >= 3) that.loadjsList.splice(0, 1);
+                        that.loadjsObj.count++;
+                    }
+                }
+                if (that.loadjsList.length > 0) that.timerNum = setTimeout(incrementNumber, 50);
+                else {
+                    that.loadjsRunning = false;
+                    clearTimeout(that.timerNum);
+                }
+            },
+            50);
+        }
+    },
+    CLASS_NAME: "BaseObject.GlobalMap"
+});
+$.fn.setDefauleValue = function () {
+    supportPlaceholder = 'placeholder' in document.createElement('input'),
+    placeholder = function (input) {
+        var text = input.attr('placeholder'),
+        defaultValue = input.defaultValue;
+        if (!defaultValue) {
+            input.val(text).addClass("phcolor")
+        }
+        input.focus(function () {
+            if (input.val() == text) {
+                $(this).val("")
+            }
+        });
+        input.blur(function () {
+            if (input.val() == "") {
+                $(this).val(text).addClass("phcolor")
+            }
+        });
+        input.keydown(function () {
+            $(this).removeClass("phcolor")
+        })
+    };
+    if (!supportPlaceholder) {
+        $('input').each(function () {
+            text = $(this).attr("placeholder");
+            if ($(this).attr("type") == "text") {
+                placeholder($(this))
+            }
+        })
+    }
+}

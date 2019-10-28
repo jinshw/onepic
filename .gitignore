@@ -23,6 +23,8 @@ target/
 **/vue/xjone/.vscode/
 **/src/main/webapp/page/pad/
 **/src/main/webapp/page/map/vue/
+**/src/main/webapp/page/weatherimg/*.png
+
 # 忽略 文件
 onepic.iml
 onepic.iml___jb_tmp___
